@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="swipe_refresh_header_height">60dp</dimen>
+    <dimen name="swipe_refresh_footer_height">80dp</dimen>
+
+    <dimen name="SwipeRefresh_itemPadding">8dp</dimen>
+    <dimen name="SwipeRefresh_tv_width">150dp</dimen>
+
+    <string name="swipe_refresh_pull_down">下拉</string>
+    <string name="swipe_refresh_pull_down_to_refresh">下拉刷新</string>
+    <string name="swipe_refresh_release_to_refresh">释放刷新</string>
+    <string name="swipe_refresh_refreshing">加载中…</string>
+    <string name="swipe_refresh_refresh_complete">更新完成.</string>
+
+    <string name="swipe_refresh_last_update">上次更新:&#160;</string>
+    <string name="swipe_refresh_seconds_ago">&#160;秒之前</string>
+    <string name="swipe_refresh_minutes_ago">&#160;分钟之前</string>
+    <string name="swipe_refresh_hours_ago">&#160;小时之前</string>
+
+    <string name="swipe_refresh_load_more_loading">加载中…</string>
+    <string name="swipe_refresh_pull_up_to_load_more">上拉加载更多</string>
+    <string name="swipe_refresh_release_to_load_more">释放加载更多</string>
+    <string name="swipe_refresh_load_more_loaded_no_more">全部数据加载完毕</string>
+    <string name="swipe_refresh_load_more_loaded_empty">数据为空</string>
+    <string name="swipe_refresh_load_more_error">加载失败,点击重试</string>
+
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/dialog.container">
+
+    <DatePicker
+        android:id="@+id/_dp_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        android:spinnersShown="true" />
+    <View style="@style/line" android:layout_marginTop="@dimen/l_m_v" />
+    <include layout="@layout/l_bts"/>
+
+</LinearLayout>

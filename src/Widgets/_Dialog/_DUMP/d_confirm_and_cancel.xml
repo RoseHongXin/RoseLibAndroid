@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/dialog.container">
+
+    <TextView style="@style/dialog.title" tools:text="标题" android:id="@+id/_tb_tv_title"/>
+    <TextView style="@style/dialog.content" tools:text="内容" android:id="@+id/_tv_content"/>
+    <include layout="@layout/l_bts"/>
+
+</LinearLayout>

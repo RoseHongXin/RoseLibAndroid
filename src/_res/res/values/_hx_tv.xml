@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="tv">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="tv.title" parent="tv">
+        <item name="android:gravity">center_vertical|left|start</item>
+        <item name="android:textSize">@dimen/txt_title</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="tv.content" parent="tv">
+        <item name="android:gravity">left|start</item>
+        <item name="android:textSize">@dimen/txt_content</item>
+        <item name="android:textColor">@color/textColorSecondary</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="tv.content.emphases" parent="tv.content">
+        <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
+
+    <style name="tv.small" parent="tv">
+        <item name="android:textColor">@color/txt_content</item>
+        <item name="android:textSize">@dimen/txt_small</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="tv.warning" parent="tv">
+        <item name="android:textColor">@color/txt_warning</item>
+        <item name="android:textSize">@dimen/txt_small</item>
+        <item name="android:gravity">start|left</item>
+        <item name="android:paddingLeft">@dimen/l_p_h</item>
+        <item name="android:paddingRight">@dimen/l_p_h</item>
+    </style>
+
+    <style name="tv.emphasize" parent="tv.title">
+        <item name="android:textColor">@color/txt_emphasize</item>
+    </style>
+
+</resources>

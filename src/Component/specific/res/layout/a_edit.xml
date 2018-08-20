@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/l_tb_def"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:focusableInTouchMode="true"
+        android:layout_marginTop="24dp">
+
+        <EditText
+            android:id="@+id/_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:singleLine="true"
+            android:textColor="#101010"
+            android:textColorHint="#aaaaaa"
+            android:textSize="14dp"
+            android:imeOptions="actionDone"
+            android:maxLength="128"/>
+
+        <ImageView
+            android:id="@+id/_iv_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/i_edit_delete"
+            android:layout_gravity="right|center_vertical"
+            android:padding="10dp"/>
+
+    </FrameLayout>
+
+</LinearLayout>

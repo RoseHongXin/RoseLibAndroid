@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="account_hint">请输入手机号</string>
+    <string name="captcha_hint">请输入验证码</string>
+    <string name="pwd_hint">请输入6–16位新密码</string>
+    <string name="new_pwd_hint">密码由6–20位英文字母、数字或符号组成</string>
+
+    <string name="captcha_null_note">验证码为空</string>
+    <string name="account_null_note">账号为空</string>
+    <string name="phone_null_note">手机号码为空</string>
+    <string name="pwd_null_note">密码为空</string>
+    <string name="pwd_confirm_null_note">确认密码为空</string>
+    <string name="pwd_not_match_note">两次输入密码不匹配，请重新输入</string>
+
+    <string name="sign_phone">手&#160;&#160;机&#160;&#160;号</string>
+    <string name="sign_captcha">验&#160;&#160;证&#160;&#160;码</string>
+    <string name="sign_pwd">新&#160;&#160;密&#160;&#160;码</string>
+    <string name="sign_has_account_login_now">已有账户？立即登录</string>
+
+    <string name="not_yet_login">您还未登录！</string>
+    <string name="login_failed">登陆失败</string>
+    <string name="login_timeout">登陆超时,请重试!</string>
+    <string name="login_expire">登陆失效,请重新登陆!</string>
+
+    <string name="captcha_obtaining">%1$d秒后可重发</string>
+    <string name="captcha_resend_until">重新发送(%1$d)</string>
+    <string name="captcha_sent">验证码已发送到您的手机</string>
+
+
+</resources>

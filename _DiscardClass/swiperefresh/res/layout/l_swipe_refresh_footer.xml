@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<hx.view.swiperefresh.SwipeLoadMoreFooterView xmlns:android="http://schemas.android.com/apk/res/android"
+                                              xmlns:tools="http://schemas.android.com/tools"
+                                              android:layout_width="match_parent"
+                                              android:layout_height="@dimen/swipe_refresh_footer_height">
+
+
+    <ProgressBar
+        android:id="@id/_sr_pb"
+        style="?android:attr/progressBarStyleSmallInverse"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/SwipeRefresh_itemPadding"
+        android:layout_toLeftOf="@id/_sr_tv_loadmore"/>
+
+    <ImageView
+        android:id="@+id/_sr_iv_success"
+        style="@style/SwipeRefresh_iv_success"
+        android:layout_toLeftOf="@id/_sr_tv_loadmore"/>
+
+    <TextView
+        android:id="@id/_sr_tv_loadmore"
+        style="@style/SwipeRefresh_tv"
+        android:textColor="?attr/colorPrimary"
+        tools:text="LoadMore"/>
+</hx.view.swiperefresh.SwipeLoadMoreFooterView>
+
+    <!--
+
+            <item name="android:textColor">?attr/colorPrimary</item>
+
+
+    <ProgressBar
+    android:id="@id/_sr_pb"
+    style="?android:attr/progressBarStyleSmallInverse"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_marginRight="@dimen/SwipeRefresh_itemPadding"
+    android:layout_toLeftOf="@id/_sr_tv_loadmore" />
+    <ProgressBar
+                android:id="@id/_sr_pb"
+                style="@style/SwipeRefresh_pb"
+                android:layout_toLeftOf="@id/_sr_tv_loadmore" />
+    -->

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="_sr_container" type="id" />
+    <item name="_sr_target" type="id" />
+    <item name="_sr_header" type="id" />
+    <item name="_sr_footer" type="id" />
+    <item name="_sr_rv" type="id" />
+
+    <item name="_sr_iv_arrow" type="id"/>
+    <item name="_sr_iv_success" type="id"/>
+    <item name="_sr_tv_loadmore" type="id"/>
+    <item name="_sr_tv_refresh" type="id"/>
+    <item name="_sr_pb" type="id"/>
+</resources>

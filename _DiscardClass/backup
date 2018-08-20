@@ -1,0 +1,31 @@
+<!--<style name="pb_theme_base">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="pb_request_base" parent="Base.Widget.AppCompat.ProgressBar">
+        <item name="android:theme">@style/pb_theme</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:isIndicator">true</item>
+        <item name="android:progressDrawable">@drawable/pb_request</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:indeterminateTint">@color/colorAccent</item>
+        <item name="android:indeterminateTintMode">src_atop</item>
+    </style>-->
+
+
+
+
+@Deprecated
+    private void scrollTextViewIfNeeded(){
+        _tv_testResult.post(() -> {
+            int offset = _tv_testResult.getLineCount() * _tv_testResult.getLineHeight();
+//            if(offset > (_tv_testResult.getHeight() - _tv_testResult.getLineHeight() - 20)){
+//                _tv_testResult.scrollTo(0, offset - _tv_testResult.getHeight() + _tv_testResult.getLineHeight() + 20);
+//            }
+            int height = _tv_testResult.getHeight();
+            if(offset > height) _tv_testResult.scrollTo(0, offset - height);
+        });
+    }

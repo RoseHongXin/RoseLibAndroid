@@ -1,0 +1,96 @@
+apply plugin: 'com.android.library'
+apply from:"HXModuleConfig.gradle"
+
+android {
+    compileSdkVersion props.compileSdkVersion
+    buildToolsVersion props.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion props.minSdkVersion
+        targetSdkVersion props.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled buildVars.proguard
+            zipAlignEnabled buildVars.proguard
+            if(buildVars.proguard) proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled buildVars.proguard
+            zipAlignEnabled buildVars.proguard
+            if(buildVars.proguard) proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            List<String> resDirs = new ArrayList<>()
+            getDirs(resDirs, file("src").listFiles(), "res")
+            for (int i = 0; i < resDirs.size(); i++) {
+                res.srcDirs resDirs.get(i)
+            }
+            List<String> javaDirs = new ArrayList<>()
+            getDirs(javaDirs, file("src").listFiles(), "java")
+            for (int i = 0; i < javaDirs.size(); i++) {
+                java.srcDirs javaDirs.get(i)
+            }
+        }
+    }
+    repositories {
+        maven { url 'https://oss.jfrog.org/libs-snapshot' }
+    }
+}
+
+dependencies {
+    compile libraries.supportv4
+    compile libraries.appcompatv7
+    compile libraries.cardviewv7
+    compile libraries.design
+    compile libraries.supportPercnet
+    compile libraries.recyclerviewv7
+    compile libraries.butterknife
+    compile libraries.fastjson
+    compile libraries.fastjsonAndroid
+    compile libraries.rxjava
+    compile libraries.rxandroid
+    //    compile libraries.disklrucache
+    compile libraries.galleryfinal
+    compile libraries.jacksonCore
+    compile libraries.jacksonAnnotations
+    compile libraries.jacksonDataBind
+    compile 'com.cncoderx.wheelview:library:1.1.0'
+    compile 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+    compile 'com.android.support.constraint:constraint-layout:1.1.2'
+    compile 'com.squareup.okhttp3:okhttp:3.11.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+}
+
+void getDirs(List<String> list, dirs, String key){
+    dirs.each{
+        if(it.isDirectory()){
+            if(it.name == key) list.add(it)
+            else getDirs(list, it.listFiles(), key)
+        }
+    }
+}
+
+//compile 'com.nineoldandroids:library:2.4.0'
+
+//    compile 'commons-beanutils:commons-beanutils:20030211.134440'
+//    compile 'org.openpnp:opencv:3.2.0-1'
+
+//annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
+//compile 'com.google.dagger:dagger:2.8'

@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">RoseAndroidLib</string>
+
+    <string name="camera">相机</string>
+    <string name="gallery">图库</string>
+
+    <string name="scan">扫一扫</string>
+    <string name="message">消息</string>
+
+    <string name="more">更多</string>
+    <string name="complete">完成</string>
+    <string name="has_complete">已完成</string>
+    <string name="skip">跳过</string>
+    <string name="close">关闭</string>
+    <string name="cancel">取消</string>
+    <string name="send">发送</string>
+    <string name="commit">提交</string>
+    <string name="check_account">查账</string>
+    <string name="apply">申请</string>
+    <string name="next_page">下一页</string>
+    <string name="call">呼叫</string>
+    <string name="submit">提交</string>
+    <string name="developing">功能开发中......</string>
+    <string name="setting">设置</string>
+    <string name="data_import">数据导入</string>
+    <string name="append">添加</string>
+    <string name="save">保存</string>
+    <string name="clear">清空</string>
+
+    <string name="confirm">确定</string>
+
+    <string name="full_paragraph">全文</string>
+    <string name="paragraph_roll_up">收起</string>
+
+    <string name="login">登录</string>
+    <string name="logout_hint">退出登陆提示</string>
+    <string name="logout_confirm">确认退出当前登录账号?</string>
+    <string name="logout">退出登录</string>
+    <string name="register">注册</string>
+    <string name="register_new_account">注册新用户</string>
+    <string name="phone_no">手机号</string>
+    <string name="captcha">验证码</string>
+    <string name="obtain_captcha">获取验证码</string>
+    <string name="captcha_resend">重新发送</string>
+    <string name="new_pwd">新密码</string>
+    <string name="confirm_pwd">确认密码</string>
+    <string name="forget_pwd">忘记密码</string>
+    <string name="reset_pwd">重置密码</string>
+
+
+    <string name="idcard_front">身份证正面</string>
+    <string name="idcard_reverse">身份证背面</string>
+
+    <string name="apply_now">立即申请</string>
+
+    <string name="please_choose">请选择</string>
+    <string name="fill_in_optional">选填</string>
+
+    <string name="authorized">已授权</string>
+    <string name="unauthorized">未授权</string>
+
+
+</resources>

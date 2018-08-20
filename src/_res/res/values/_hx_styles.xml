@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+    </style>
+
+    <style name="tab_theme_base" parent="Theme.AppCompat">
+        <item name="android:textColorPrimary">@color/colorAccent</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="skb" parent="Base.Widget.AppCompat.SeekBar">
+        <item name="android:max">100</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxHeight">2dp</item>
+        <item name="android:isIndicator">false</item>
+        <item name="android:progressDrawable">@drawable/sh_pb_horizontal</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+    </style>
+    
+    <style name="line">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/_line</item>
+    </style>
+    <style name="vertical_line">
+        <item name="android:layout_width">1px</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/_line</item>
+    </style>
+
+    <style name="et">
+        <item name="android:textSize">@dimen/txt_et</item>
+        <item name="android:textColorHint">@color/txt_content</item>
+        <item name="android:gravity">center_vertical|start|left</item>
+        <item name="android:textColor">@color/txt_title</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+</resources>

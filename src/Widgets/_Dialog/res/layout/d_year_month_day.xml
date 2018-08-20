@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/dialog.container">
+
+    <LinearLayout style="@style/Fra.H" android:gravity="center">
+        <com.cncoderx.wheelview.Wheel3DView
+            android:id="@+id/_whv_year"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView style="@style/dialog.tv_hint" android:text="@string/HX_year"/>
+        <com.cncoderx.wheelview.Wheel3DView
+            android:id="@+id/_whv_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView style="@style/dialog.tv_hint" android:text="@string/HX_month"/>
+        <com.cncoderx.wheelview.Wheel3DView
+            android:id="@+id/_whv_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView style="@style/dialog.tv_hint" android:text="@string/HX_day"/>
+    </LinearLayout>
+
+    <View style="@style/line"/>
+    <TextView style="@style/dialog.tv_confirm" />
+
+</LinearLayout>
