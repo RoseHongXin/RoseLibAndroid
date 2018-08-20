@@ -26,18 +26,18 @@ public class RequestBase {
     protected DialogFragment sDialog;
     protected Context sCtx;
     protected OkHttpClient mOkHttpClient;
+    protected OkHttpClient.Builder mOkHttpBuilder;
     protected ObjectMapper mObjMapper;
 
     protected RequestBase(Context ctx){
         this.sCtx = ctx;
         HttpLoggingInterceptor bodyLogger = new HttpLoggingInterceptor(message -> Log4Android.v(TAG, message));
         bodyLogger.setLevel(HttpLoggingInterceptor.Level.BODY);
-        mOkHttpClient = new OkHttpClient.Builder()
+        mOkHttpBuilder = new OkHttpClient.Builder()
                 .readTimeout(TIME, TimeUnit.SECONDS)
                 .writeTimeout(TIME, TimeUnit.SECONDS)
                 .connectTimeout(TIME, TimeUnit.SECONDS)
-                .addInterceptor(bodyLogger)
-                .build();
+                .addInterceptor(bodyLogger);
         mObjMapper = new ObjectMapper();
         mObjMapper.configure(JsonParser.Feature.IGNORE_UNDEFINED, true);
         mObjMapper.configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);
