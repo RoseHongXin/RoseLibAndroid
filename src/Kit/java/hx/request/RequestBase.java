@@ -20,8 +20,8 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 public class RequestBase {
 
-    private final String TAG = "Api.Request";
-    private static final int TIME = 12;
+    protected final String TAG = "Api.Request";
+    protected static int TIME = 16;
 
     protected DialogFragment sDialog;
     protected Context sCtx;
@@ -31,13 +31,10 @@ public class RequestBase {
 
     protected RequestBase(Context ctx){
         this.sCtx = ctx;
-        HttpLoggingInterceptor bodyLogger = new HttpLoggingInterceptor(message -> Log4Android.v(TAG, message));
-        bodyLogger.setLevel(HttpLoggingInterceptor.Level.BODY);
         mOkHttpBuilder = new OkHttpClient.Builder()
                 .readTimeout(TIME, TimeUnit.SECONDS)
                 .writeTimeout(TIME, TimeUnit.SECONDS)
-                .connectTimeout(TIME, TimeUnit.SECONDS)
-                .addInterceptor(bodyLogger);
+                .connectTimeout(TIME, TimeUnit.SECONDS);
         mObjMapper = new ObjectMapper();
         mObjMapper.configure(JsonParser.Feature.IGNORE_UNDEFINED, true);
         mObjMapper.configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);
