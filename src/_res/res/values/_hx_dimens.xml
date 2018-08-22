@@ -10,7 +10,7 @@
     <!--<dimen name="txt_et">?android:textSize</dimen>-->
     <dimen name="txt_et">13sp</dimen>
 
-    <dimen name="bt_height">36dp</dimen>
+    <dimen name="bt_height">32dp</dimen>
     <dimen name="bt_p_h">12dp</dimen>
     <dimen name="bt_p_v">6dp</dimen>
     <dimen name="bt_txt">20sp</dimen>
