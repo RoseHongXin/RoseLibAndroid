@@ -47,6 +47,17 @@ public class AppHelper {
         }
         return false;
     }
+    public static boolean isAppRunning(Context ctx){
+        ActivityManager am = ctx == null ? null : (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
+        if(am == null) return false;
+        List<ActivityManager.RunningAppProcessInfo> processes = am.getRunningAppProcesses();
+        if(processes == null || processes.isEmpty()) return false;
+        String packageName = ctx.getPackageName();
+        for(ActivityManager.RunningAppProcessInfo process : processes){
+            if(process.processName.equals(packageName)) return true;
+        }
+        return false;
+    }
 
     public static void start(Activity act, Class<? extends Activity> targetAct){
         start(act, targetAct, 0, null);

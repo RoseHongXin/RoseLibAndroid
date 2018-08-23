@@ -1,6 +1,7 @@
 package hx.components;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class PermissionImpl {
 
-    public static final int PERMISSION_REQ_CODE = 0xFFEE;
+    public static final int REQ_CODE_PERMISSIONS = 0xFFEE;
 
     public static void require(Activity act, String ... permissions) {
         List<String> needDoRequire = new ArrayList<>();
@@ -32,24 +33,24 @@ public class PermissionImpl {
         if(needDoRequire.isEmpty()) return;
         permissionArray = new String[needDoRequire.size()];
         needDoRequire.toArray(permissionArray);
-        ActivityCompat.requestPermissions(act, permissionArray, PERMISSION_REQ_CODE);
+        ActivityCompat.requestPermissions(act, permissionArray, REQ_CODE_PERMISSIONS);
     }
 
     public static boolean checkIfDenied(Activity act, String permission){
         return ActivityCompat.checkSelfPermission(act, permission) == PackageManager.PERMISSION_DENIED;
     }
-    public static boolean checkIfGranted(Activity act, String permission){
-        return ContextCompat.checkSelfPermission(act, permission) == PackageManager.PERMISSION_GRANTED;
+    public static boolean checkIfGranted(Context ctx, String permission){
+        return ContextCompat.checkSelfPermission(ctx, permission) == PackageManager.PERMISSION_GRANTED;
     }
-    public static boolean checkIfGranted(Activity act, String ... permissions){
+    public static boolean checkIfGranted(Context ctx, String ... permissions){
         for(String permission : permissions){
-            boolean granted = ContextCompat.checkSelfPermission(act, permission) == PackageManager.PERMISSION_GRANTED;
+            boolean granted = ContextCompat.checkSelfPermission(ctx, permission) == PackageManager.PERMISSION_GRANTED;
             if(!granted) return false;
         }
         return true;
     }
 
     public void requirePermissions(Fragment fra, String ... permissions){
-        fra.requestPermissions(permissions, PERMISSION_REQ_CODE);
+        fra.requestPermissions(permissions, REQ_CODE_PERMISSIONS);
     }
 }

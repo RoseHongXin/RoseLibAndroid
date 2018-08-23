@@ -4,7 +4,7 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <include layout="l_tb_def"/>
+    <include layout="@layout/l_tb_def"/>
 
     <WebView xmlns:android="http://schemas.android.com/apk/res/android"
              android:id="@+id/_wv_"

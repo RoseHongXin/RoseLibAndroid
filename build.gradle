@@ -52,27 +52,27 @@ android {
 }
 
 dependencies {
-    compile libraries.supportv4
-    compile libraries.appcompatv7
-    compile libraries.cardviewv7
-    compile libraries.design
-    compile libraries.supportPercnet
-    compile libraries.recyclerviewv7
-    compile libraries.butterknife
-    compile libraries.fastjson
-    compile libraries.fastjsonAndroid
-    compile libraries.rxjava
-    compile libraries.rxandroid
+    implementation libraries.supportv4
+    implementation libraries.appcompatv7
+    implementation libraries.cardviewv7
+    implementation libraries.design
+    implementation libraries.supportPercnet
+    implementation libraries.recyclerviewv7
+    implementation libraries.butterknife
+    implementation libraries.fastjson
+    implementation libraries.fastjsonAndroid
+    implementation libraries.rxjava
+    implementation libraries.rxandroid
     //    compile libraries.disklrucache
-    compile libraries.galleryfinal
-    compile libraries.jacksonCore
-    compile libraries.jacksonAnnotations
-    compile libraries.jacksonDataBind
-    compile 'com.cncoderx.wheelview:library:1.1.0'
-    compile 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
-    compile 'com.android.support.constraint:constraint-layout:1.1.2'
-    compile 'com.squareup.okhttp3:okhttp:3.11.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation libraries.galleryfinal
+    implementation libraries.jacksonCore
+    implementation libraries.jacksonAnnotations
+    implementation libraries.jacksonDataBind
+    implementation 'com.cncoderx.wheelview:library:1.1.0'
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
 }
 
 void getDirs(List<String> list, dirs, String key){
@@ -83,11 +83,3 @@ void getDirs(List<String> list, dirs, String key){
         }
     }
 }
-
-//compile 'com.nineoldandroids:library:2.4.0'
-
-//    compile 'commons-beanutils:commons-beanutils:20030211.134440'
-//    compile 'org.openpnp:opencv:3.2.0-1'
-
-//annotationProcessor 'com.google.dagger:dagger-compiler:2.8'
-//compile 'com.google.dagger:dagger:2.8'

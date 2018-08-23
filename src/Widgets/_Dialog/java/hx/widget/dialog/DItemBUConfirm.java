@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,8 @@ public class DItemBUConfirm extends DialogFragment{
     private Wheel3DView _whv_items;
     private Callback mCb;
     private CharSequence[] mTexts;
+    private int[] mValues;
+    private String mDefValue;
     private Activity mAct;
     private TextView _tv_anchor;
 
@@ -54,6 +57,18 @@ public class DItemBUConfirm extends DialogFragment{
         }
         _whv_items = (Wheel3DView) view.findViewById(R.id._whv_items);
         _whv_items.setEntries(mTexts);
+        int defIdx = -1;
+        if(mDefValue != null){
+            for(int i = 0; i < mTexts.length; i++){
+                if(TextUtils.equals(mTexts[i], mDefValue)){
+                    defIdx = i;
+                    break;
+                }
+            }
+        }
+        if(defIdx != -1){
+            _whv_items.setCurrentIndex(defIdx);
+        }
         int itemCount = mTexts.length;
         if(itemCount <= 3) _whv_items.setVisibleItems(itemCount + 1);
         view.findViewById(R.id._bt_confirm).setOnClickListener(v -> {
@@ -63,7 +78,10 @@ public class DItemBUConfirm extends DialogFragment{
                 _tv_anchor.setText(text);
                 _tv_anchor.setTag(idx);
             }
-            if(mCb != null) mCb.onSelect(idx, text);
+            if(mCb != null) {
+                if(mValues == null) mCb.onSelect(idx, text);
+                else mCb.onSelect(mValues[idx], text);
+            }
             dismiss();
         });
     }
@@ -86,8 +104,22 @@ public class DItemBUConfirm extends DialogFragment{
         this.mTexts = texts;
         return this;
     }
+    public DItemBUConfirm defaultValue(String value){
+        mDefValue = value;
+        return this;
+    }
     public DItemBUConfirm anchor(TextView _tv_anchor){
         this._tv_anchor = _tv_anchor;
+        return this;
+    }
+    public DItemBUConfirm range(int[] texts, String format){
+        mTexts = new String[texts[1] - texts[0] + 1];
+        mValues = new int[mTexts.length];
+        for(int i = 0; i < mTexts.length; i++) {
+            int v = texts[0] + i;
+            mValues[i] = v;
+            mTexts[i] = String.format(format, v);
+        }
         return this;
     }
 
@@ -95,7 +127,7 @@ public class DItemBUConfirm extends DialogFragment{
         show(((AppCompatActivity)mAct).getSupportFragmentManager(), "DItemBUConfirm");
         return this;
     }
-    
+
     public interface Callback{
         void onSelect(int idx, String text);
     }
