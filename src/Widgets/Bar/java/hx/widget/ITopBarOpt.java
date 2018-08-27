@@ -12,6 +12,7 @@ import android.view.View;
 public interface ITopBarOpt {
     void title(@StringRes int strRes);
     void title(String title);
+    String title();
     void icon(@DrawableRes int iconRes, View.OnClickListener listener);
     void icon(@DrawableRes int iconRes);
     void text(String text, View.OnClickListener listener);
