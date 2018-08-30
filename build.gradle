@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply from:"HXModuleConfig.gradle"
+apply from:"LibConfig.gradle"
 
 android {
     compileSdkVersion props.compileSdkVersion
@@ -52,27 +52,27 @@ android {
 }
 
 dependencies {
-    implementation libraries.supportv4
-    implementation libraries.appcompatv7
-    implementation libraries.cardviewv7
-    implementation libraries.design
-    implementation libraries.supportPercnet
-    implementation libraries.recyclerviewv7
-    implementation libraries.butterknife
-    implementation libraries.fastjson
-    implementation libraries.fastjsonAndroid
-    implementation libraries.rxjava
-    implementation libraries.rxandroid
+    api libraries.supportv4
+    api libraries.appcompatv7
+    api libraries.cardviewv7
+    api libraries.design
+    api libraries.supportPercnet
+    api libraries.recyclerviewv7
+    api libraries.butterknife
+    api libraries.fastjson
+    api libraries.fastjsonAndroid
+    api libraries.rxjava
+    api libraries.rxandroid
     //    compile libraries.disklrucache
-    implementation libraries.galleryfinal
-    implementation libraries.jacksonCore
-    implementation libraries.jacksonAnnotations
-    implementation libraries.jacksonDataBind
-    implementation 'com.cncoderx.wheelview:library:1.1.0'
-    implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    api libraries.galleryfinal
+    api libraries.jacksonCore
+    api libraries.jacksonAnnotations
+    api libraries.jacksonDataBind
+    api 'com.cncoderx.wheelview:library:1.1.0'
+    api 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
+    api 'com.android.support.constraint:constraint-layout:1.1.2'
+    api 'com.squareup.okhttp3:okhttp:3.11.0'
+    api 'com.squareup.okhttp3:logging-interceptor:3.11.0'
 }
 
 void getDirs(List<String> list, dirs, String key){
