@@ -62,6 +62,11 @@ public class TopBar extends AppBarLayout implements ITopBarOpt{
         mTopBarHelper.title(title);
     }
 
+    @Override
+    public String title() {
+        return mTopBarHelper.title();
+    }
+
     public void icon(@DrawableRes int iconRes, View.OnClickListener listener){
         mTopBarHelper.icon(iconRes, listener);
     }

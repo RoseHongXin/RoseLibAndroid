@@ -62,6 +62,19 @@ public class TopBarHelper implements ITopBarOpt{
         if(_tb_ != null) _tb_.setTitle("");
 
     }
+
+    @Override
+    public String title() {
+        String title = "";
+        try {
+            if (_tv_tbTitle != null) {
+                title = _tv_tbTitle.getText().toString();
+            }
+            if (_tb_ != null) title = _tb_.getTitle().toString();
+        }catch (Exception e){}
+        return title;
+    }
+
     @Override
     public void icon(@DrawableRes int iconRes, View.OnClickListener listener){
         if(_iv_tbRight != null){
