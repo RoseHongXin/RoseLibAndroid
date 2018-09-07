@@ -4,13 +4,13 @@
     <!--<dimen name="l_corner">8dp</dimen>-->
 
     <!--<dimen name="txt_title">18sp</dimen>-->
-    <dimen name="txt_content">16sp</dimen>
+    <!--<dimen name="txt_content">16sp</dimen>-->
     <!--<dimen name="txt_small">12sp</dimen>-->
     <!--<dimen name="txt_min">10sp</dimen>-->
     <!--&lt;!&ndash;<dimen name="txt_et">?android:textSize</dimen>&ndash;&gt;-->
     <!--<dimen name="txt_et">13sp</dimen>-->
 
-    <dimen name="bt_height">40dp</dimen>
+    <dimen name="bt_height">36dp</dimen>
     <!--<dimen name="bt_p_h">12dp</dimen>-->
     <!--<dimen name="bt_p_v">6dp</dimen>-->
     <!--<dimen name="bt_txt">20sp</dimen>-->

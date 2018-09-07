@@ -5,15 +5,18 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.TextView;
+
 import com.cncoderx.wheelview.Wheel3DView;
 
 import java.util.Calendar;
@@ -54,13 +57,13 @@ public class DHourMinute extends DialogFragment{
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.d_hour_minute, container, true);
     }
 
     @SuppressLint("DefaultLocale")
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Dialog dialog = getDialog();
         dialog.setCancelable(true);
@@ -107,6 +110,18 @@ public class DHourMinute extends DialogFragment{
     public DHourMinute defValues(int hour, int minute){
         this.mDefHour = hour;
         this.mDefMinute = minute;
+        return this;
+    }
+    public DHourMinute defValues(String time){
+        if(!TextUtils.isEmpty(time)) {
+            String[] times = time.split(":");
+            if(times.length == 2) {
+                try {
+                    this.mDefHour = Integer.parseInt(times[0]);
+                    this.mDefMinute = Integer.parseInt(times[1]);
+                }catch (Exception e){}
+            }
+        }
         return this;
     }
 
