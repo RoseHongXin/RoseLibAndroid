@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply from:"HXModuleConfig.gradle"
+apply from:"RoseLibConfig.gradle"
 
 android {
     compileSdkVersion props.compileSdkVersion
