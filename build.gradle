@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply from:"RoseLibConfig.gradle"
+apply from:"LibConfig.gradle"
 
 android {
     compileSdkVersion props.compileSdkVersion

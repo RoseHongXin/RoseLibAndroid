@@ -41,7 +41,7 @@ public class SpHelper {
         if(mSp != null) mSp.edit().putString(key, data).apply();
     }
     public static <T> void set(String key, T t){
-        String data = JSON.toJSONString(t);
+        String data = JSONHelper.toJSONStr(t);
         if(mSp != null) mSp.edit().putString(key, data).apply();
     }
     public static void set(String key, boolean b){

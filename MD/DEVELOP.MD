@@ -27,3 +27,17 @@ clone 出现Permission denied (publickey)  用https://
 
 
 #### lambda在低版本手机(比如华为4.4pad),通过this::****调用父类的方法,会报错(找不到方法?).
+
+*  fastjson,  1.2.49 toJSONString  可能有bug.
+
+#### activity给第三方app调用
+```
+manifest.xml intent-filter必须指定Category(一般指定android.intent.category.DEFAULT即可)
+是否指定exported=true,没有实际效果(或许是测试包的原因)
+通过setComponent("pkgName", "pkgName.clzName")一样可以打开activity.
+uri方式打开activity还没测试.
+```
+
+> * 注意点
+    Switch 的onClick事件, 回调的是selected参数, setSelected给该view的checked赋值
+    非焦点view,还是正常的isChecked/setChecked操作状态!
