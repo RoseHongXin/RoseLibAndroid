@@ -2,7 +2,7 @@ ext{
     props = [
             compileSdkVersion: 27,
             buildToolsVersion: '27.0.3',
-            minSdkVersion:15,
+            minSdkVersion:20,
             targetSdkVersion:27,
             dependencyVersion:'27.1.1'
     ]
