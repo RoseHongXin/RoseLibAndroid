@@ -77,7 +77,7 @@ public class DInput extends DialogFragment{
             window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         }
-        dialog.setOnDismissListener(dialog1 -> ViewKit.hideInputManager(_et_edit));
+        dialog.setOnDismissListener(dialog1 -> ViewKit.hideInputMgr(_et_edit));
     }
 
     @Override
