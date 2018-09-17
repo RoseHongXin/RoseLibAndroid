@@ -41,3 +41,6 @@ uri方式打开activity还没测试.
 > * 注意点
     Switch 的onClick事件, 回调的是selected参数, setSelected给该view的checked赋值
     非焦点view,还是正常的isChecked/setChecked操作状态!
+
+> * 获取sha1
+    keytool -exportcert -list -v -alias <your-key-name> -keystore <path-to-production-keystore>
