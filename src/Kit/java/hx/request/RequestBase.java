@@ -21,7 +21,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 public class RequestBase {
 
     protected final String TAG = "Api.Request";
-    protected static int TIME = 30;
+    protected static int TIME = 90;
 
     protected DialogFragment sDialog;
     protected Context sCtx;
