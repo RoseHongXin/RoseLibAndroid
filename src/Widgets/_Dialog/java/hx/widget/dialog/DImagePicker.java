@@ -3,11 +3,10 @@ package hx.widget.dialog;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
-import android.content.ComponentCallbacks2;
+import android.content.ClipData;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -16,33 +15,26 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.FileProvider;
-import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
-import cn.finalteam.galleryfinal.GalleryFinal;
-import cn.finalteam.galleryfinal.model.PhotoInfo;
 import hx.kit.log.Log4Android;
 import hx.lib.R;
+import hx.widget.adapterview.recyclerview.ApBase;
 
 /**
  * Created by rose on 16-8-1.
- * <p>
- * Based on GalleryFinal.
  */
 
 public class DImagePicker {
 
-    private static final String FILE_PROVIDER = "com.powerbee.jikong.fileprovider";
     private static final int CAMERA_REQ_CODE = 5002;
     private static final int IMAGE_REQ_CODE = 5001;
 
@@ -53,6 +45,8 @@ public class DImagePicker {
     private Activity mAct;
     private Callback mCb;
     private ImageView _iv_;
+    private boolean mMultiSelect = false;
+    private static String mFileProvider = "";   //com.powerbee.jikong.fileprovider
 
     private DImagePicker(Activity act) {
         this.mAct = act;
@@ -62,7 +56,7 @@ public class DImagePicker {
         return new DImagePicker(act);
     }
 
-    public DImagePicker callback(Callback cb) {
+    public DImagePicker cameraCallback(Callback cb) {
         this.mCb = cb;
         return this;
     }
@@ -72,16 +66,26 @@ public class DImagePicker {
         return this;
     }
 
+    public DImagePicker multiSelect(boolean yes){
+        this.mMultiSelect = yes;
+        return this;
+    }
+    public DImagePicker fileProvider(String provider){
+        mFileProvider = provider;
+        return this;
+    }
+
     public DImagePicker show() {
         DMenuBU.obtain()
                 .host(mAct)
                 .texts(mAct.getString(R.string.HX_gallery), mAct.getString(R.string.HX_camera))
                 .callback((idx, text) -> {
                     if (idx == 0) {
-                        Intent intent = new Intent();
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.addCategory(Intent.CATEGORY_OPENABLE);
                         intent.setType("image/*");
-                        intent.setAction(Intent.ACTION_GET_CONTENT);
-                        mAct.startActivityForResult(intent, IMAGE_REQ_CODE);
+                        if(mMultiSelect) intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+                        mAct.startActivityForResult(Intent.createChooser(intent,"Select Picture"), IMAGE_REQ_CODE);
                     } else if (idx == 1) {
                         File img = creatFile(mAct);
                         Uri imageUriFromCamera = createImagePathUri(mAct, img);
@@ -116,23 +120,22 @@ public class DImagePicker {
         return this;
     }
 
-//    public static void show(Activity host, Callback cb){
-//        show(host, null, cb);
-//    }
-//    public static void show(Activity host, ImageView iv, Callback cb){
-//        GalleryFinal.OnHanlderResultCallback callback = new GalleryFinal.OnHanlderResultCallback() {
-//            @Override public void onHanlderSuccess(int requestCode, List<PhotoInfo> resultList) {
-//                String path = resultList.get(0).getPhotoPath();
-//                if(iv != null) iv.setImageURI(Uri.fromFile(new File(path)));
-//                if(cb != null) cb.onPicture(path);
-//            }
-//            @Override public void onHanlderFailure(int requestCode, String errorMsg) {}
-//        };
-//        GalleryFinal.openCamera(0, callback);
-//
-////                        GalleryFinal.openGallerySingle(1, callback);
-//
-//    }
+    public static void onActivityResult(int requestCode, int resultCode, Intent data, ApBase adapter) {
+        if(requestCode == DImagePicker.IMAGE_REQ_CODE && resultCode == Activity.RESULT_OK){
+            if(data.getClipData() != null) {
+                ClipData clipData = data.getClipData();
+                for (int i = 0, count = clipData.getItemCount(); i < count; i++) {
+                    ClipData.Item item = clipData.getItemAt(i);
+                    Uri uri = item.getUri();
+                    adapter.addData(DImagePicker.getRealPathFromUri(adapter.mAct, uri));
+                }
+            }
+            if(data.getData() != null){
+                Uri uri = data.getData();
+                adapter.addData(DImagePicker.getRealPathFromUri(adapter.mAct, uri));
+            }
+        }
+    }
 
     private static File creatFile(Context context) {
         String status = Environment.getExternalStorageState();
@@ -155,7 +158,7 @@ public class DImagePicker {
         Uri uri;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             img.getParentFile().mkdirs();
-            uri = FileProvider.getUriForFile(context.getApplicationContext(), FILE_PROVIDER, img);
+            uri = FileProvider.getUriForFile(context.getApplicationContext(), mFileProvider, img);
         } else {
             uri = Uri.fromFile(img);
         }
@@ -184,7 +187,7 @@ public class DImagePicker {
             File img = new File((context.getExternalCacheDir() == null ? context.getCacheDir() : context.getExternalCacheDir()).getPath() + imageName);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 img.getParentFile().mkdirs();
-                imageFilePath[0] = FileProvider.getUriForFile(context.getApplicationContext(), FILE_PROVIDER, img);
+                imageFilePath[0] = FileProvider.getUriForFile(context.getApplicationContext(), mFileProvider, img);
             } else {
                 imageFilePath[0] = Uri.fromFile(img);
             }
@@ -201,9 +204,8 @@ public class DImagePicker {
     public static String getRealPathFromUri(Context context, Uri uri) {
         int sdkVersion = Build.VERSION.SDK_INT;
         if (sdkVersion < 11) return getRealPathFromUri_BelowApi11(context, uri);
-        else if (sdkVersion < Build.VERSION_CODES.N) return getRealPathFromUri_Api11To18(context, uri);
+        else if (sdkVersion < Build.VERSION_CODES.M) return getRealPathFromUri_Api11To18(context, uri);
         else return getRealPathFromUri_AboveApi19(context, uri);
-//        return getRealPathFromUri_Api11To18(context, uri);
     }
 
     /**

@@ -44,3 +44,11 @@ uri方式打开activity还没测试.
 
 > * 获取sha1
     keytool -exportcert -list -v -alias <your-key-name> -keystore <path-to-production-keystore>
+
+# .java 2 .class   , jar包class修改.
+```
+javac -encoding UTF-8 -nowarn -cp wearable.jar;android.jar com\mediatek\wearableProfiles\WearableClientProfileManager.java
+
+jar uvf wearable.jar com\mediatek\wearableProfiles\WearableClientProfileManager.class
+
+```
