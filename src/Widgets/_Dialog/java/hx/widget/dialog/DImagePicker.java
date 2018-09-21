@@ -1,5 +1,6 @@
 package hx.widget.dialog;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Application;
@@ -25,6 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import hx.components.PermissionImpl;
 import hx.kit.log.Log4Android;
 import hx.lib.R;
 import hx.widget.adapterview.recyclerview.ApBase;
@@ -76,6 +78,10 @@ public class DImagePicker {
     }
 
     public DImagePicker show() {
+        if(!PermissionImpl.checkIfGranted(mAct, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)) {
+            PermissionImpl.require(mAct, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA);
+            return this;
+        }
         DMenuBU.obtain()
                 .host(mAct)
                 .texts(mAct.getString(R.string.HX_gallery), mAct.getString(R.string.HX_camera))

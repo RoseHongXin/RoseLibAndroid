@@ -3,6 +3,7 @@ package hx.kit.data;
 import android.text.TextUtils;
 
 import java.util.Locale;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -23,6 +24,8 @@ public class Formater {
             "([1-9]|[1-9][0-9]|1\\d\\d|2[0-4]\\d|25[0-5])\\." +
             "([1-9]|[1-9][0-9]|1\\d\\d|2[0-4]\\d|25[0-5])\\." +
             "([1-9]|[1-9][0-9]|1\\d\\d|2[0-4]\\d|25[0-5])";
+    private static final Pattern SPECIAL_CHARS_PATTERN = Pattern.compile("[ _`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\n|\r|\t");
+
 
     public static boolean isMobile(String mobile){
         return Pattern.compile(MOBILE_FORMAT).matcher(mobile).matches();
@@ -60,6 +63,11 @@ public class Formater {
     }
     public static boolean isIpAddr(String ip){
         return !TextUtils.isEmpty(ip) && Pattern.compile(IP_FORMAT).matcher(ip).matches();
+    }
+
+    public static boolean containSpecialChar(String str){
+        Matcher m = SPECIAL_CHARS_PATTERN.matcher(str);
+        return m.find();
     }
 
 }

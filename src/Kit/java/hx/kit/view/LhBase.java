@@ -1,8 +1,11 @@
 package hx.kit.view;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.Resources;
 import android.support.annotation.CallSuper;
 import android.support.annotation.IdRes;
+import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -49,6 +52,17 @@ public class LhBase<D> extends RecyclerView.ViewHolder{
 
     public D getData(){
         return mData;
+    }
+
+    private Context getContext(){
+        return mAct == null ? mFra.getContext() : mAct;
+    }
+
+    protected Resources getResources(){
+        return getContext().getResources();
+    }
+    protected String getString(@StringRes int res){
+        return getContext().getString(res);
     }
 
 }
