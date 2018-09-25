@@ -57,6 +57,7 @@ dependencies {
     api libraries.cardviewv7
     api libraries.design
     api libraries.supportPercnet
+//    api 'com.android.support:percent:28.0.0'
     api libraries.recyclerviewv7
     api libraries.butterknife
     api libraries.fastjson
@@ -64,7 +65,7 @@ dependencies {
     api libraries.rxjava
     api libraries.rxandroid
     //    compile libraries.disklrucache
-    api libraries.galleryfinal
+//    api libraries.galleryfinal
     api libraries.jacksonCore
     api libraries.jacksonAnnotations
     api libraries.jacksonDataBind

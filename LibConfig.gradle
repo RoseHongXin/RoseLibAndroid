@@ -1,10 +1,10 @@
 ext{
     props = [
-            compileSdkVersion: 27,
-            buildToolsVersion: '27.0.3',
-            minSdkVersion:15,
-            targetSdkVersion:27,
-            dependencyVersion:'27.1.1'
+            compileSdkVersion: 28,
+            buildToolsVersion: '28.0.1',
+            minSdkVersion:20,
+            targetSdkVersion:28,
+            dependencyVersion:'28.0.0'
     ]
     libraries = [
             supportv4: 'com.android.support:support-v4:' + props.dependencyVersion,
@@ -22,7 +22,7 @@ ext{
             rxjava: 'io.reactivex.rxjava2:rxjava:2.2.0',
             rxandroid: 'io.reactivex.rxjava2:rxandroid:2.0.2',
 //            disklrucache: 'com.jakewharton:disklrucache:2.0.2',
-            galleryfinal: 'cn.finalteam:galleryfinal:1.4.8.7'
+//            galleryfinal: 'cn.finalteam:galleryfinal:1.4.8.7'
     ]
     buildVars =[
             proguard: false
