@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#FE6000</color>
+    <color name="colorPrimaryDark">#FE6000</color>
+    <color name="colorAccent">#fe6000</color>
+    <color name="textColorPrimary">#3C3C3C</color>
+    <color name="textColorSecondary">#3C3C3C</color>
+    <color name="textColorHint">#9B9B9B</color>
+    <color name="textColorEmphasize">#FE6000</color>
+    <color name="windowBackground">#EFEFEF</color>
+    <!--<color name="navigationBarColor">@color/colorPrimaryDark</color>-->
+
+    <color name="_bg">@android:color/white</color>
+    <color name="_line">#9F9F9F</color>
+    <color name="_disabled">#C1C1C1</color>
+    <color name="_default">@color/_line</color>
+
+    <color name="txt_title">@color/textColorPrimary</color>
+    <color name="txt_content">@color/textColorSecondary</color>
+    <color name="txt_emphasize">@color/colorAccent</color>
+    <color name="txt_warning">@android:color/holo_red_light</color>
+
+    <color name="white">#ffffff</color>
+    <color name="white_dim">#44ffffff</color>
+    <color name="gray">#44000000</color>
+
+</resources>

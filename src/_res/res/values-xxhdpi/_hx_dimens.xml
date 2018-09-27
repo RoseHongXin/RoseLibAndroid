@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--<dimen name="l_corner">8dp</dimen>-->
+
+    <!--<dimen name="txt_title">18sp</dimen>-->
+    <!--<dimen name="txt_content">18sp</dimen>-->
+    <!--<dimen name="txt_small">12sp</dimen>-->
+    <!--<dimen name="txt_min">10sp</dimen>-->
+    <!--&lt;!&ndash;<dimen name="txt_et">?android:textSize</dimen>&ndash;&gt;-->
+    <!--<dimen name="txt_et">13sp</dimen>-->
+
+    <dimen name="bt_height">40dp</dimen>
+    <!--<dimen name="bt_p_h">12dp</dimen>-->
+    <!--<dimen name="bt_p_v">6dp</dimen>-->
+    <!--<dimen name="bt_txt">20sp</dimen>-->
+    <!--<dimen name="bt_corner">@dimen/l_corner</dimen>-->
+    <!--<dimen name="bt_border">1dp</dimen>-->
+
+    <!--<dimen name="l_p_h">16dp</dimen>-->
+    <!--<dimen name="l_p_h_middle">20dp</dimen>-->
+    <!--<dimen name="l_p_h_larger">24dp</dimen>-->
+    <!--<dimen name="l_p_v">8dp</dimen>-->
+    <!--<dimen name="l_p_v_middle">12dp</dimen>-->
+    <!--<dimen name="l_p_v_larger">16dp</dimen>-->
+    <!--<dimen name="l_p_middle">10dp</dimen>-->
+    <!--<dimen name="l_p_small">6dp</dimen>-->
+    <!--<dimen name="l_p_little">4dp</dimen>-->
+    <!--<dimen name="l_p_min">2dp</dimen>-->
+
+    <!--<dimen name="l_m_h">12dp</dimen>-->
+    <!--<dimen name="l_m_h_middle">24dp</dimen>-->
+    <!--<dimen name="l_m_h_larger">36dp</dimen>-->
+    <!--<dimen name="l_m_v">12dp</dimen>-->
+    <!--<dimen name="l_m_v_middle">24dp</dimen>-->
+    <!--<dimen name="l_m_v_larger">36dp</dimen>-->
+    <!--<dimen name="l_m_small">8dp</dimen>-->
+    <!--<dimen name="l_m_min">4dp</dimen>-->
+
+    <!--<dimen name="tab_height">48dp</dimen>-->
+    <!--<dimen name="tab_p_v">2dp</dimen>-->
+    <!--<dimen name="tab_icon_txt_gap">2dp</dimen>-->
+    <!--<dimen name="tab_txt">20sp</dimen>-->
+
+    <!--<dimen name="iv_pic_size">128dp</dimen>-->
+    <!--<dimen name="iv_pic_width">128dp</dimen>-->
+    <!--<dimen name="iv_pic_height">96dp</dimen>-->
+
+    <!--<dimen name="LineItem_height">48dp</dimen>-->
+    <!--<dimen name="LineItem_name_maxWidth">128dp</dimen>-->
+    <!--<dimen name="LineItem_name_minWidth">72dp</dimen>-->
+
+</resources>

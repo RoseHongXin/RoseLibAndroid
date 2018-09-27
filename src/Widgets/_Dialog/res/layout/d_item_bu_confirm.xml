@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/dialog.container">
+
+    <com.cncoderx.wheelview.Wheel3DView
+        android:id="@+id/_whv_items"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/l_m_v"
+        android:layout_marginBottom="@dimen/l_m_v"/>
+
+    <View style="@style/line"/>
+    <TextView style="@style/dialog.tv_confirm" />
+
+</LinearLayout>

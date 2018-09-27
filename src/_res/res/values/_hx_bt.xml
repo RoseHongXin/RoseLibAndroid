@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="_Btn">
+        <!--<item name="android:layout_height">@dimen/bt_height</item>-->
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:paddingLeft">@dimen/bt_p_h</item>
+        <item name="android:paddingRight">@dimen/bt_p_h</item>
+        <item name="android:paddingTop">@dimen/bt_p_v</item>
+        <item name="android:paddingBottom">@dimen/bt_p_v</item>
+        <item name="android:textSize">@dimen/txt_content</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="_Btn.stroke" parent="_Btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/sl_bt_stroke</item>
+        <item name="android:textColor">@color/bt_stroke_txt</item>
+    </style>
+    <style name="_Btn.stroke.reverse" parent="_Btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/sl_bt_stroke_reverse</item>
+        <item name="android:textColor">@color/bt_stroke_reverse_txt</item>
+    </style>
+    <style name="_Btn.stroke.FixHeight">
+        <item name="android:layout_height">@dimen/bt_height</item>
+    </style>
+    <style name="_Btn.stroke.reverse.FixHeight">
+        <item name="android:layout_height">@dimen/bt_height</item>
+    </style>
+
+    <style name="_Btn.solid" parent="_Btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/sl_bt_solid</item>
+        <item name="android:textColor">@color/bt_solid_txt</item>
+    </style>
+    <style name="_Btn.solid.FixHeight">
+        <item name="android:layout_height">@dimen/bt_height</item>
+    </style>
+
+    <style name="Btn" parent="_Btn.solid"/>
+    <style name="Btn.FixHeight" parent="_Btn.solid.FixHeight"/>
+
+</resources>

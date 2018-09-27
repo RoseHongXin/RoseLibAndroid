@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <style name="AdapterView"/>
+    <style name="AdapterView.Item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/_bg</item>
+    </style>
+    <style name="AdapterView.Item.paddingV">
+        <item name="contentPaddingBottom">@dimen/l_p_v</item>
+        <item name="contentPaddingTop">@dimen/l_p_v</item>
+    </style>
+    <style name="AdapterView.Item.paddingH">
+        <item name="contentPaddingRight">@dimen/l_p_h</item>
+        <item name="contentPaddingLeft">@dimen/l_p_h</item>
+    </style>
+    <style name="AdapterView.Item.padding">
+        <item name="contentPaddingBottom">@dimen/l_p_v</item>
+        <item name="contentPaddingTop">@dimen/l_p_v</item>
+        <item name="contentPaddingRight">@dimen/l_p_h</item>
+        <item name="contentPaddingLeft">@dimen/l_p_h</item>
+    </style>
+
+    <style name="AdapterView.ItemPadding" parent="AdapterView.Item">
+        <item name="android:paddingBottom">@dimen/l_p_v</item>
+        <item name="android:paddingTop">@dimen/l_p_v</item>
+        <item name="android:paddingRight">@dimen/l_p_h</item>
+        <item name="android:paddingLeft">@dimen/l_p_h</item>
+    </style>
+
+
+
+
+</resources>

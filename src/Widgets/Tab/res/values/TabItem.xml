@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <declare-styleable name="TabItem">
+        <attr name="gap" format="reference|dimension"/>
+        <attr name="iconList" format="reference"/>
+        <attr name="textColorList" format="reference"/>
+        <attr name="text" format="reference|string"/>
+    </declare-styleable>
+
+    <dimen name="TabItem_p">4dp</dimen>
+
+    <style name="TabItem"/>
+    <style name="TabItem.Container">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="TabItem.iv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:contentDescription">TabItem</item>
+    </style>
+    <style name="TabItem.tv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:lines">1</item>
+        <item name="android:layout_marginTop">@dimen/TabItem_p</item>
+    </style>
+
+</resources>

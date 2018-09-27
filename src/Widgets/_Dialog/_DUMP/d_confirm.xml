@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/dialog.container">
+
+    <TextView style="@style/dialog.title" tools:text="标题" android:id="@+id/_tb_tv_title"/>
+    <TextView style="@style/dialog.content" tools:text="内容" android:id="@+id/_tv_content"/>
+    <View style="@style/line" android:layout_marginTop="@dimen/l_m_v"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="4dp">
+        <TextView style="@style/dialog.bt" android:text="@string/HX_confirm" android:id="@+id/_bt" />
+    </LinearLayout>
+
+
+</LinearLayout>

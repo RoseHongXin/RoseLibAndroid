@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="HX_confirm">Confirm</string>
+    <string name="HX_cancel">Cancel</string>
+    <string name="HX_save">Save</string>
+
+    <string name="HX_camera">Camera</string>
+    <string name="HX_gallery">Gallery</string>
+
+    <string name="HX_confirm_finish_current_page">Exit current page now?</string>
+    <string name="HX_finish_while_editing_confirm">Information\'s not saved, Exit now？</string>
+    <string name="HX_click_again_to_home">Click again and switch to HOME!</string>
+    <string name="HX_socket_timeout">Request timeout</string>
+    <string name="HX_invalid_http_request">Request invalid</string>
+
+    <string name="HX_hour">Hour</string>
+    <string name="HX_minute">Minute</string>
+    <string name="HX_year">Year</string>
+    <string name="HX_month">Month</string>
+    <string name="HX_day">Day</string>
+
+    <string name="HX_phone_number">Phone Number</string>
+    <string name="HX_phone_prefix_china">+86</string>
+    <string name="HX_password">Password</string>
+    <string name="HX_login">Login</string>
+    <string name="HX_register">Register</string>
+    <string name="HX_forget_password">Forget Password</string>
+    <string name="HX_modify_password">Reset Password</string>
+    <string name="HX_captcha">Captcha</string>
+    <string name="HX_obtain_captcha">Obtain Captcha</string>
+    <string name="HX_show">Show</string>
+    <string name="HX_hide">Hide</string>
+    <string name="HX_jump_over">Jump Over</string>
+    <string name="HX_gender">Gender</string>
+    <string name="HX_male">Male</string>
+    <string name="HX_female">Female</string>
+    <string name="HX_avatar">Avatar</string>
+    <string name="HX_personal_profile">Personal Profile</string>
+    <string name="HX_add">Add</string>
+    <string name="HX_nickname">Nickname</string>
+    <string name="HX_address">Address</string>
+    <string name="HX_refresh">Refresh</string>
+    <string name="HX_sync">Synchronize</string>
+
+    <string name="HX_start">Start</string>
+    <string name="HX_deadline">Deadline</string>
+    <string name="HX_time_select">Time Select</string>
+    <string name="HX_open">Open</string>
+    <string name="HX_close">Close</string>
+    <string name="HX_about_us">About Us</string>
+    <string name="HX_software_licensing_agreement">Software Agreement</string>
+    <string name="HX_privacy_agreement">Privacy Agreement</string>
+    <string name="HX_exit">Exit</string>
+    <string name="HX_qrcode_scan">QrCode Scan</string>
+    <string name="HX_scan">Scan</string>
+    <string name="HX_edit">Edit</string>
+    <string name="HX_on">On</string>
+    <string name="HX_off">Off</string>
+
+
+    <string name="HX_yourNicknameInputHint">Please input your nickname</string>
+    <string name="HX_phoneInputHint">Please input your phone number</string>
+    <string name="HX_phoneInputWrongHint">Please input correct phone number</string>
+    <string name="HX_passwordInputHint">Please input password</string>
+    <string name="HX_loginFailed">Login Failed</string>
+    <string name="HX_cameraPermissionNotGranted">Camera unauthorized, please grant camera permission at the System Settings.</string>
+    <string name="HX_accountLogoutConfirm">Logout The Account Now?</string>
+    <string name="HX_deleteConfirm">Delete Now?</string>
+    <string name="HX_deleteConfirmWithParam">Delete [%1$s] ?</string>
+
+
+    <!--<string name="append">添加</string>-->
+    <!--<string name="save">保存</string>-->
+    <!--<string name="clear">清空</string>-->
+
+    <!--<string name="logout">退出登录</string>-->
+    <!--<string name="logout_confirm">确认退出当前登录账号?</string>-->
+    <!--<string name="data_problem">页面数据错误，请重新操作！</string>-->
+    <!--<string name="text_copied_to_clipboard">文本已复制到剪切板</string>-->
+
+
+
+</resources>

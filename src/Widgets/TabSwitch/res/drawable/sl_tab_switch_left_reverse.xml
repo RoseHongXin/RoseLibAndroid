@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <shape>
+            <corners android:topLeftRadius="@dimen/TabSwitch_corner" android:bottomLeftRadius="@dimen/TabSwitch_corner"/>
+            <solid android:color="@color/TabSwitch_bg_default"/>
+            <stroke android:width="@dimen/TabSwitch_border_bold" android:color="@color/TabSwitch_bg_default"/>
+        </shape>
+    </item>
+    <item >
+        <shape>
+            <corners android:topLeftRadius="@dimen/TabSwitch_corner" android:bottomLeftRadius="@dimen/TabSwitch_corner"/>
+            <solid android:color="@color/TabSwitch_bg_check"/>
+            <stroke android:width="@dimen/TabSwitch_border_bold" android:color="@color/TabSwitch_bg_default"/>
+        </shape>
+    </item>
+
+</selector>
