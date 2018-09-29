@@ -52,3 +52,10 @@ javac -encoding UTF-8 -nowarn -cp wearable.jar;android.jar com\mediatek\wearable
 jar uvf wearable.jar com\mediatek\wearableProfiles\WearableClientProfileManager.class
 
 ```
+
+# adb wifi 方式调试
+```
+adb tcpip 55555
+adb connect 192.168.15.152  PC和设备在同一网段
+adb kill-server
+```
