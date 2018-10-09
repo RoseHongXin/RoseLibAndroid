@@ -59,3 +59,8 @@ adb tcpip 55555
 adb connect 192.168.15.152  PC和设备在同一网段
 adb kill-server
 ```
+
+# SHA1
+```
+keytool -list -v -keystore "%USERPROFILE%\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
+```

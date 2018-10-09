@@ -1,18 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<in.srain.cube.views.ptr.PtrClassicFrameLayout-->
-    <!--android:id="@+id/_p2rl_"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:fillViewport="true"-->
-    <!--xmlns:android="http://schemas.android.com/apk/res/android">-->
-    <!--<android.support.v7.widget.RecyclerView-->
-        <!--android:id="@+id/_rv_"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:nestedScrollingEnabled="true"/>-->
-
-<!--</in.srain.cube.views.ptr.PtrClassicFrameLayout>-->
-
 <in.srain.cube.views.ptr.PtrClassicFrameLayout
     android:id="@+id/_p2rl_"
     android:layout_width="match_parent"

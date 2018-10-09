@@ -35,7 +35,7 @@ public abstract class FBaseRefresh extends FBase{
         _p2rl_ = view.findViewById(R.id._p2rl_);
         _p2rl_.setMode(PtrFrameLayout.Mode.REFRESH);
         new P2rlLoader() {
-            @Override public void onRefresh() {
+            @Override protected void onRefresh() {
                 refresh();
             }
         }
