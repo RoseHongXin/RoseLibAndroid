@@ -70,6 +70,27 @@
     <string name="HX_deleteConfirmWithParam">Delete [%1$s] ?</string>
 
 
+    <string name="HX_unknown">Unknown</string>
+    <string name="HX_add_new">Add New</string>
+    <string name="HX_unallot">Unallot</string>
+    <string name="HX_ungroup">Ungroup</string>
+    <string name="HX_delete">Delete</string>
+    <string name="HX_upload">Upload</string>
+    <string name="HX_upload_now">Upload Now</string>
+    <string name="HX_original_password">Original Password</string>
+    <string name="HX_new_password">New Password</string>
+
+
+    <string name="HX_captchaInputHint">Please input captcha</string>
+    <string name="HX_captchaHasSent2Phone">Captcha has sent to your phone</string>
+    <string name="HX_originalPassInputHint">Please input original password</string>
+    <string name="HX_newPassInputHint">Please input new password</string>
+    <string name="HX_selectHint">Please select [%1$s]</string>
+
+    <string name="HX_inputAlphabetNumberFilter">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="HX_inputHexFilter">0123456789abcdefABCDEF</string>
+
+
     <!--<string name="append">添加</string>-->
     <!--<string name="save">保存</string>-->
     <!--<string name="clear">清空</string>-->

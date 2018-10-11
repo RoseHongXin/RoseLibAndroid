@@ -98,7 +98,25 @@
     <string name="HX_deleteConfirm">确定删除?</string>
     <string name="HX_deleteConfirmWithParam">确定删除 [%1$s] ?</string>
 
+    <string name="HX_unknown">未知</string>
+    <string name="HX_add_new">新增</string>
+    <string name="HX_unallot">未分配</string>
+    <string name="HX_ungroup">未分组</string>
+    <string name="HX_delete">删除</string>
+    <string name="HX_upload">上传</string>
+    <string name="HX_upload_now">立即上传</string>
+    <string name="HX_original_password">原密码</string>
+    <string name="HX_new_password">新密码</string>
 
+    <string name="HX_captchaInputHint">请输入验证码</string>
+    <string name="HX_captchaHasSent2Phone">验证码已发送到手机,请注意查收!</string>
+    <string name="HX_originalPassInputHint">请输入原密码</string>
+    <string name="HX_newPassInputHint">请输入新密码</string>
+    <string name="HX_selectHint">请选择[%1$s]</string>
+
+
+    <string name="HX_inputAlphabetNumberFilter">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="HX_inputHexFilter">0123456789abcdefABCDEF</string>
 
 
 

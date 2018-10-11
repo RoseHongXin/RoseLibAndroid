@@ -1,6 +1,8 @@
 package in.srain.cube.views.ptr;
 
+import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ScrollView;
 
@@ -17,6 +19,11 @@ public abstract class PtrDefaultHandler implements PtrHandler {
                 return view.getScrollY() > 0;
             }
         } else {
+            if(view instanceof ViewPager){
+                ViewPager _vp_ = ((ViewPager) view);
+                ViewGroup _vg_ = (ViewGroup) _vp_.getChildAt(0);
+                return _vg_.canScrollVertically(-1);
+            }
             return view.canScrollVertically(-1);
         }
     }
