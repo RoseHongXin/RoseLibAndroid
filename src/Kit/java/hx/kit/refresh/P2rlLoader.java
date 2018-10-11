@@ -64,6 +64,12 @@ public abstract class P2rlLoader {
 
     }
 
-    public abstract void onRefresh();
+    public void refresh(){
+        if(_p2rl_ != null){
+            _p2rl_.postDelayed(() -> _p2rl_.autoRefresh(), 200);
+        }
+    }
+
+    protected abstract void onRefresh();
 
 }
