@@ -66,7 +66,6 @@ public class VpConfig {
     private void _create(){
         if(mOffScreenSize == 0) mOffScreenSize = 1;
         if(mPageCount == 0) mPageCount = mFras.size();
-
         _vp_.setAdapter(new FragmentStatePagerAdapter(mFraMgr) {
             @Override
             public Fragment getItem(int position) {

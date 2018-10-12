@@ -25,7 +25,7 @@
         android:maxLines="1"
         android:textColor="@color/tb_txt"
         android:textStyle="bold"
-        tools:textColor="@android:color/white"
+        tools:textColor="@color/tb_txt"
         android:textSize="@dimen/tb_txt_title"/>
         <!--tools:text="title"/>-->
 

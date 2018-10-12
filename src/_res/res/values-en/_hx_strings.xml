@@ -58,7 +58,6 @@
     <string name="HX_on">On</string>
     <string name="HX_off">Off</string>
 
-
     <string name="HX_yourNicknameInputHint">Please input your nickname</string>
     <string name="HX_phoneInputHint">Please input your phone number</string>
     <string name="HX_phoneInputWrongHint">Please input correct phone number</string>
@@ -86,20 +85,9 @@
     <string name="HX_originalPassInputHint">Please input original password</string>
     <string name="HX_newPassInputHint">Please input new password</string>
     <string name="HX_selectHint">Please select [%1$s]</string>
+    <string name="HX_dataRequesting">Data requesting ......</string>
 
     <string name="HX_inputAlphabetNumberFilter">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <string name="HX_inputHexFilter">0123456789abcdefABCDEF</string>
-
-
-    <!--<string name="append">添加</string>-->
-    <!--<string name="save">保存</string>-->
-    <!--<string name="clear">清空</string>-->
-
-    <!--<string name="logout">退出登录</string>-->
-    <!--<string name="logout_confirm">确认退出当前登录账号?</string>-->
-    <!--<string name="data_problem">页面数据错误，请重新操作！</string>-->
-    <!--<string name="text_copied_to_clipboard">文本已复制到剪切板</string>-->
-
-
 
 </resources>

@@ -1,5 +1,7 @@
 package hx.widget;
 
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +14,7 @@ import android.view.View;
 public interface ITopBarOpt {
     void title(@StringRes int strRes);
     void title(String title);
+    void color(@ColorInt int colorRes);
     String title();
     void icon(@DrawableRes int iconRes, View.OnClickListener listener);
     void icon(@DrawableRes int iconRes);

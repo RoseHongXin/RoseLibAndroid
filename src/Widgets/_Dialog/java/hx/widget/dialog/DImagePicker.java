@@ -28,7 +28,6 @@ import java.util.Locale;
 import hx.components.PermissionImpl;
 import hx.kit.log.Log4Android;
 import hx.lib.R;
-import hx.widget.adapterview.recyclerview.ApBase;
 
 /**
  * Created by rose on 16-8-1.
@@ -40,15 +39,11 @@ public class DImagePicker {
     private static final int CAMERA_REQ_CODE = 5002;
     private static final int IMAGE_REQ_CODE = 5001;
 
-    public static boolean hasReturn(int requestCode, int resultCode, Intent data) {
-        return requestCode == IMAGE_REQ_CODE && resultCode == Activity.RESULT_OK && data.getData() != null;
-    }
-
     private Activity mAct;
     private Callback mCb;
     private ImageView _iv_;
     private boolean mMultiSelect = false;
-    private static String mFileProvider = "";   //com.powerbee.jikong.fileprovider
+    private static String mFileProvider = "";
 
     private DImagePicker(Activity act) {
         this.mAct = act;
@@ -123,11 +118,6 @@ public class DImagePicker {
         return this;
     }
 
-    @Deprecated
-    public static void onActivityResult(int requestCode, int resultCode, Intent data, ApBase adapter) {
-        List<String> paths = onActivityResult(adapter.mAct, requestCode, resultCode, data);
-        adapter.addData(paths);
-    }
     public static List<String> onActivityResult(Context ctx, int requestCode, int resultCode, Intent data) {
         List<String> paths = new ArrayList<>();
         if(requestCode == DImagePicker.IMAGE_REQ_CODE && resultCode == Activity.RESULT_OK){
@@ -136,12 +126,12 @@ public class DImagePicker {
                 for (int i = 0, count = clipData.getItemCount(); i < count; i++) {
                     ClipData.Item item = clipData.getItemAt(i);
                     Uri uri = item.getUri();
-                    paths.add(DImagePicker.getRealPathFromUri(ctx, uri));
+                    paths.add(getRealPathFromUri(ctx, uri));
                 }
             }
             if(data.getData() != null){
                 Uri uri = data.getData();
-                paths.add(DImagePicker.getRealPathFromUri(ctx, uri));
+                paths.add(getRealPathFromUri(ctx, uri));
             }
         }
         return paths;
