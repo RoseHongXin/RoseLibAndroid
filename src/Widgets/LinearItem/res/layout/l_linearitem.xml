@@ -2,20 +2,22 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
        xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:id="@+id/_tv_lineItemLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="@dimen/LinearItem_gap"
-        android:layout_gravity="start|center_vertical"
-        android:gravity="start|center_vertical"/>
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:gravity="center_vertical|start" android:layout_gravity="start">
+        <ImageView android:id="@+id/_iv_linearItemLeft" style="@style/LinearItem"
+                   android:layout_marginRight="@dimen/LinearItem_gapLeft" android:layout_marginEnd="@dimen/LinearItem_gapLeft"
+                   tools:src="@android:drawable/ic_menu_rotate"/>
+        <TextView android:id="@+id/_tv_linearItemLeft" style="@style/LinearItem" android:gravity="start"
+                  tools:text="test"/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/_tv_lineItemRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="@dimen/LinearItem_gap"
-        android:layout_gravity="end|center_vertical"
-        android:gravity="end|center_vertical"/>
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:gravity="center_vertical|end" android:layout_gravity="end">
+        <TextView android:id="@+id/_tv_linearItemRight" style="@style/LinearItem" android:gravity="end"
+                  android:layout_marginRight="@dimen/LinearItem_gapRight" android:layout_marginEnd="@dimen/LinearItem_gapRight"
+                  tools:src="@android:drawable/ic_menu_rotate"/>
+        <ImageView android:id="@+id/_iv_linearItemRight" style="@style/LinearItem"
+                   tools:text="test"/>
+    </LinearLayout>
 
 </merge>

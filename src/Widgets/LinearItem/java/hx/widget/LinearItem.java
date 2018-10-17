@@ -186,11 +186,11 @@ public class LinearItem extends FrameLayout {
     }
 
     private void init(Context ctx, AttributeSet attrs){
-        LayoutInflater.from(ctx).inflate(R.layout.l_lineitem, this, true);
-        _iv_itemLeft = (ImageView)findViewById(R.id._iv_lineItemLeft);
-        _tv_itemLeft = (TextView)findViewById(R.id._tv_lineItemLeft);
-        _iv_itemRight = (ImageView)findViewById(R.id._iv_lineItemRight);
-        _tv_itemRight = (TextView)findViewById(R.id._tv_lineItemRight);
+        LayoutInflater.from(ctx).inflate(R.layout.l_linearitem, this, true);
+        _iv_itemLeft = (ImageView)findViewById(R.id._iv_linearItemLeft);
+        _tv_itemLeft = (TextView)findViewById(R.id._tv_linearItemLeft);
+        _iv_itemRight = (ImageView)findViewById(R.id._iv_linearItemRight);
+        _tv_itemRight = (TextView)findViewById(R.id._tv_linearItemRight);
 
         TypedArray ta = ctx.obtainStyledAttributes(attrs, R.styleable.LinearItem);
 
