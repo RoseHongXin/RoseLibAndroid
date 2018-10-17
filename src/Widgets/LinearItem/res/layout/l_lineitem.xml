@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:gravity="center_vertical|start" android:layout_gravity="start">
+        <ImageView android:id="@+id/_iv_lineItemLeft" style="@style/LinearItem"
+                   android:layout_marginRight="@dimen/LinearItem_gapLeft" android:layout_marginEnd="@dimen/LinearItem_gapLeft"
+                   tools:src="@android:drawable/ic_menu_rotate"/>
+        <TextView android:id="@+id/_tv_lineItemLeft" style="@style/LinearItem" android:gravity="start"
+                  tools:text="test"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                  android:gravity="center_vertical|end" android:layout_gravity="end">
+        <TextView android:id="@+id/_tv_lineItemRight" style="@style/LinearItem" android:gravity="end"
+                  android:layout_marginRight="@dimen/LinearItem_gapRight" android:layout_marginEnd="@dimen/LinearItem_gapRight"
+                  tools:src="@android:drawable/ic_menu_rotate"/>
+        <ImageView android:id="@+id/_iv_lineItemRight" style="@style/LinearItem"
+                   tools:text="test"/>
+    </LinearLayout>
+
+</merge>

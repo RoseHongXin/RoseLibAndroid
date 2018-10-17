@@ -66,6 +66,8 @@
     <string name="HX_loginFailed">登陆失败!</string>
     <string name="HX_cameraPermissionNotGranted">未授予调用手机摄像头的权限,请到系统设置里授予摄像头权限.</string>
     <string name="HX_accountLogoutConfirm">确定退出当前账号?</string>
+    <string name="HX_pleaseCheckNetConnectState">请检查网络连接状态！</string>
+    <string name="HX_pleaseWait">请稍后......</string>
 
     <string name="HX_deleteConfirm">确定删除?</string>
     <string name="HX_deleteConfirmWithParam">确定删除 [%1$s] ?</string>
@@ -89,6 +91,8 @@
 
     <string name="HX_inputAlphabetNumberFilter">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <string name="HX_inputHexFilter">0123456789abcdefABCDEF</string>
+
+    <string name="HX_logining">登陆中••••••</string>
 
 
     <!--<string name="append">添加</string>-->

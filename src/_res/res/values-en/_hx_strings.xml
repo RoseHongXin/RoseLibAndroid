@@ -65,6 +65,9 @@
     <string name="HX_loginFailed">Login Failed</string>
     <string name="HX_cameraPermissionNotGranted">Camera unauthorized, please grant camera permission at the System Settings.</string>
     <string name="HX_accountLogoutConfirm">Logout The Account Now?</string>
+    <string name="HX_pleaseCheckNetConnectState">Please check network state!</string>
+    <string name="HX_pleaseWait">Please wait ......</string>
+
     <string name="HX_deleteConfirm">Delete Now?</string>
     <string name="HX_deleteConfirmWithParam">Delete [%1$s] ?</string>
 
@@ -89,5 +92,7 @@
 
     <string name="HX_inputAlphabetNumberFilter">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <string name="HX_inputHexFilter">0123456789abcdefABCDEF</string>
+
+    <string name="HX_logining">Logining ......</string>
 
 </resources>

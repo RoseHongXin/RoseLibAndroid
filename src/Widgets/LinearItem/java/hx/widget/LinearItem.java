@@ -2,15 +2,16 @@ package hx.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import hx.lib.R;
@@ -21,103 +22,152 @@ import hx.lib.R;
 
 public class LinearItem extends FrameLayout {
 
-    final static private int NOTHING = -1;
+    final static private int NOTHING_SET = -1;
 
-    public TextView _tv_itemLeft;
-    public TextView _tv_itemRight;
+    private ImageView _iv_itemLeft;
+    private TextView _tv_itemLeft;
+    private ImageView _iv_itemRight;
+    private TextView _tv_itemRight;
 
     @DrawableRes int iconLeft, iconRight;
-    @ColorInt int colorTextLeft, colorTextRight;
-    int sizeIconLeft, sizeIconRight;
-    int sizeTextLeft, sizeTextRight;
+    @ColorInt int textColorLeft, textColorRight;
+    int iconSizeLeft, iconSizeRight;
+    int textSizeLeft, textSizeRight;
     String textLeft, textRight;
     int gapLeft, gapRight, paddingHorizontal, paddingVertical;
-    boolean clickRectRight;
 
+    public ImageView _iv_left() {
+        return _iv_itemLeft;
+    }
+    public ImageView _iv_right() {
+        return _iv_itemRight;
+    }
+    public TextView _tv_left() {
+        return _tv_itemLeft;
+    }
+    public TextView _tv_right() {
+        return _tv_itemRight;
+    }
 
-    public void paddingHorizontal(int paddingHorizontal) {
+    public int getPaddingHorizontal() {
+        return paddingHorizontal;
+    }
+    public void setPaddingHorizontal(int paddingHorizontal) {
         this.paddingHorizontal = paddingHorizontal;
-        //因为有drawableRight在,paddingHorizontal的右边,就不设值了.
-        _tv_itemRight.setPadding(paddingHorizontal, _tv_itemRight.getPaddingTop(), _tv_itemRight.getPaddingRight(), _tv_itemRight.getPaddingBottom());
+        setPadding(paddingHorizontal, getPaddingTop(), paddingHorizontal, getPaddingBottom());
     }
-    public void paddingVertical(int paddingVertical) {
+    public int getPaddingVertical() {
+        return paddingVertical;
+    }
+    public void setPaddingVertical(int paddingVertical) {
         this.paddingVertical = paddingVertical;
-        _tv_itemRight.setPadding(_tv_itemRight.getPaddingLeft(), paddingVertical, _tv_itemRight.getPaddingRight(), paddingVertical);
+        setPadding(getPaddingLeft(), paddingVertical, getPaddingRight(), paddingVertical);
     }
-    public void gapLeft(int gap) {
-        this.gapLeft = gap;
-        _tv_itemLeft.setCompoundDrawablePadding(gap);
+    public int getGapLeft() {
+        return gapLeft;
     }
-    public void gapRight(int gap) {
-        this.gapRight = gap;
-        _tv_itemRight.setCompoundDrawablePadding(gap);
+    public void setGapLeft(int gapLeft) {
+        this.gapLeft = gapLeft;
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) _iv_itemLeft.getLayoutParams();
+        params.rightMargin = gapLeft;
+        _iv_itemLeft.setLayoutParams(params);
     }
-    public void iconLeft(@DrawableRes int icon) {
-        this.iconLeft = icon;
-        _tv_itemLeft.setCompoundDrawablesWithIntrinsicBounds(icon, 0, 0, 0);
+    public int getGapRight() {
+        return gapRight;
     }
-    public void iconRight(@DrawableRes int icon) {
-        this.iconRight = icon;
-        _tv_itemRight.setCompoundDrawablesWithIntrinsicBounds(0, 0, icon, 0);
+    public void setGapRight(int gapRight) {
+        this.gapRight = gapRight;
+        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) _tv_itemRight.getLayoutParams();
+        params.rightMargin = gapRight;
+        _tv_itemRight.setLayoutParams(params);
     }
-    public int sizeIconLeft() {
-        return sizeIconLeft;
+    @DrawableRes public int getIconLeft() {
+        return iconLeft;
     }
-    public void sizeIconLeft(int size) {
-        this.sizeIconLeft = size;
-//        ViewGroup.LayoutParams params = _iv_itemLeft.getLayoutParams();
-//        params.width = size;
-//        params.height = size;
-//        _iv_itemLeft.setLayoutParams(params);
+    public void setIconLeft(@DrawableRes int iconLeft) {
+        this.iconLeft = iconLeft;
+        _iv_itemLeft.setVisibility(VISIBLE);
+        _iv_itemLeft.setImageResource(iconLeft);
     }
-    public int sizeIconRight() {
-        return sizeIconRight;
+    @DrawableRes public int getIconRight() {
+        return iconRight;
     }
-    public void sizeIconRight(int size) {
-        this.sizeIconRight = size;
-//        ViewGroup.LayoutParams params = _iv_itemRight.getLayoutParams();
-//        params.width = size;
-//        params.height = size;
-//        _iv_itemRight.setLayoutParams(params);
+    public void setIconRight(@DrawableRes int iconRight) {
+        this.iconRight = iconRight;
+        _iv_itemRight.setVisibility(VISIBLE);
+        _iv_itemRight.setImageResource(iconRight);
+    }
+    public int getIconSizeLeft() {
+        return iconSizeLeft;
+    }
+    public void setIconSizeLeft(int iconSizeLeft) {
+        this.iconSizeLeft = iconSizeLeft;
+        ViewGroup.LayoutParams params = _iv_itemLeft.getLayoutParams();
+        params.width = iconSizeLeft;
+        params.height = iconSizeLeft;
+        _iv_itemLeft.setLayoutParams(params);
+    }
+    public int getIconSizeRight() {
+        return iconSizeRight;
+    }
+    public void setIconSizeRight(int iconSizeRight) {
+        this.iconSizeRight = iconSizeRight;
+        ViewGroup.LayoutParams params = _iv_itemRight.getLayoutParams();
+        params.width = iconSizeRight;
+        params.height = iconSizeRight;
+        _iv_itemRight.setLayoutParams(params);
     }
 
-    public void colorTextLeft(@ColorInt int color) {
-        this.colorTextLeft = color;
-        _tv_itemLeft.setTextColor(color);
+    public int getTextColorLeft() {
+        return textColorLeft;
     }
-    public void colorTextRight(@ColorInt int color) {
-        this.colorTextRight = color;
-        _tv_itemRight.setTextColor(color);
+    public void setTextColorLeft(int textColorLeft) {
+        this.textColorLeft = textColorLeft;
+        _tv_itemLeft.setTextColor(textColorLeft);
     }
-    public String textLeft() {
+    public int getTextColorRight() {
+        return textColorRight;
+    }
+    public void setTextColorRight(int textColorRight) {
+        this.textColorRight = textColorRight;
+        _tv_itemRight.setTextColor(textColorRight);
+    }
+    public String getTextLeft() {
         return textLeft;
     }
-    public void textLeft(String text) {
-        this.textLeft = text;
-        _tv_itemLeft.setText(text);
+    public void setTextLeft(String textLeft) {
+        this.textLeft = textLeft;
+        _tv_itemLeft.setVisibility(VISIBLE);
+        _tv_itemLeft.setText(textLeft);
     }
-    public String textRight() {
+    public String getTextRight() {
         return textRight;
     }
-    public void textRight(String text) {
-        this.textRight = text;
-        _tv_itemRight.setText(text);
+    public void setTextRight(String textRight) {
+        this.textRight = textRight;
+        _tv_itemRight.setVisibility(VISIBLE);
+        _tv_itemRight.setText(textRight);
+    }
+    public int getTextSizeLeft() {
+        return textSizeLeft;
+    }
+    public void setTextSizeLeft(int textSizeLeft) {
+        this.textSizeLeft = textSizeLeft;
+        _tv_itemLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeLeft);
+    }
+    public int getTextSizeRight() {
+        return textSizeRight;
+    }
+    public void setTextSizeRight(int textSizeRight) {
+        this.textSizeRight = textSizeRight;
+        _tv_itemRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSizeRight);
     }
 
-    public void sizeTextLeft(int size) {
-        this.sizeTextLeft = size;
-        _tv_itemLeft.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
+    public void setText(String text){
+        setTextLeft(text);
     }
-    public void sizeTextRight(int size) {
-        this.sizeTextRight = size;
-        _tv_itemRight.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
-    }
-
-    public void text(String text){
-        textLeft(text);
-    }
-    public void icon(@DrawableRes int drawableRes){
-        iconLeft(drawableRes);
+    public void setIcon(@DrawableRes int drawableRes){
+        setIconLeft(drawableRes);
     }
 
     public LinearItem(Context context) {
@@ -136,44 +186,35 @@ public class LinearItem extends FrameLayout {
     }
 
     private void init(Context ctx, AttributeSet attrs){
-        LayoutInflater.from(ctx).inflate(R.layout.l_linearitem, this, true);
+        LayoutInflater.from(ctx).inflate(R.layout.l_lineitem, this, true);
+        _iv_itemLeft = (ImageView)findViewById(R.id._iv_lineItemLeft);
         _tv_itemLeft = (TextView)findViewById(R.id._tv_lineItemLeft);
+        _iv_itemRight = (ImageView)findViewById(R.id._iv_lineItemRight);
         _tv_itemRight = (TextView)findViewById(R.id._tv_lineItemRight);
 
         TypedArray ta = ctx.obtainStyledAttributes(attrs, R.styleable.LinearItem);
 
-        gapLeft = ta.getDimensionPixelSize(R.styleable.LinearItem_gapLeft, NOTHING); if(gapLeft != NOTHING) gapLeft(gapLeft);
-        gapRight = ta.getDimensionPixelSize(R.styleable.LinearItem_gapRight, NOTHING); if(gapRight != NOTHING) gapRight(gapRight);
-        paddingHorizontal = ta.getDimensionPixelSize(R.styleable.LinearItem_paddingHorizontal, NOTHING); if(paddingHorizontal != NOTHING) paddingHorizontal(paddingHorizontal);
-        paddingVertical = ta.getDimensionPixelSize(R.styleable.LinearItem_paddingVertical, NOTHING); if(paddingVertical != NOTHING) paddingVertical(paddingVertical);
+        gapLeft = ta.getDimensionPixelSize(R.styleable.LinearItem_gapLeft, NOTHING_SET); if(gapLeft != NOTHING_SET) setGapLeft(gapLeft);
+        gapRight = ta.getDimensionPixelSize(R.styleable.LinearItem_gapRight, NOTHING_SET); if(gapRight != NOTHING_SET) setGapRight(gapRight);
 
-        iconLeft = ta.getResourceId(R.styleable.LinearItem_iconLeft, NOTHING); if(iconLeft != NOTHING) iconLeft(iconLeft);
-        iconRight = ta.getResourceId(R.styleable.LinearItem_iconRight, NOTHING); if(iconRight != NOTHING) iconRight(iconRight);
-        sizeIconLeft = ta.getDimensionPixelSize(R.styleable.LinearItem_sizeIconLeft, NOTHING); if(sizeIconLeft != NOTHING) sizeIconLeft(sizeIconLeft);
-        sizeIconRight = ta.getDimensionPixelSize(R.styleable.LinearItem_sizeIconRight, NOTHING); if(sizeIconRight != NOTHING) sizeIconRight(sizeIconRight);
+        paddingHorizontal = ta.getDimensionPixelSize(R.styleable.LinearItem_paddingHorizontal, NOTHING_SET); if(paddingHorizontal != NOTHING_SET) setPaddingHorizontal(paddingHorizontal);
+        paddingVertical = ta.getDimensionPixelSize(R.styleable.LinearItem_paddingVertical, NOTHING_SET); if(paddingVertical != NOTHING_SET) setPaddingVertical(paddingVertical);
 
-        textLeft = ta.getString(R.styleable.LinearItem_textLeft); if(!TextUtils.isEmpty(textLeft)) textLeft(textLeft);
-        textRight = ta.getString(R.styleable.LinearItem_textRight); if(!TextUtils.isEmpty(textRight)) textRight(textRight);
-        colorTextLeft = ta.getColor(R.styleable.LinearItem_colorTextLeft, NOTHING); if(colorTextLeft != NOTHING) colorTextLeft(colorTextLeft);
-        colorTextRight = ta.getColor(R.styleable.LinearItem_colorTextRight, NOTHING); if(colorTextRight != NOTHING) colorTextRight(colorTextRight);
-        sizeTextLeft = ta.getDimensionPixelSize(R.styleable.LinearItem_sizeTextLeft, NOTHING); if(sizeTextLeft != NOTHING) sizeTextLeft(sizeTextLeft);
-        sizeTextRight = ta.getDimensionPixelSize(R.styleable.LinearItem_sizeTextRight, NOTHING); if(sizeTextRight != NOTHING) sizeTextRight(sizeTextRight);
+        iconLeft = ta.getResourceId(R.styleable.LinearItem_iconLeft, NOTHING_SET); if(iconLeft != NOTHING_SET) setIconLeft(iconLeft);
+        iconRight = ta.getResourceId(R.styleable.LinearItem_iconRight, NOTHING_SET); if(iconRight != NOTHING_SET) setIconRight(iconRight);
+        iconSizeLeft = ta.getDimensionPixelSize(R.styleable.LinearItem_sizeIconLeft, NOTHING_SET); if(iconSizeLeft != NOTHING_SET) setIconSizeLeft(iconSizeLeft);
+        iconSizeRight = ta.getDimensionPixelSize(R.styleable.LinearItem_sizeIconRight, NOTHING_SET); if(iconSizeRight != NOTHING_SET) setIconSizeRight(iconSizeRight);
 
-        clickRectRight = ta.getBoolean(R.styleable.LinearItem_clickRectRight, false);
+
+        textLeft = ta.getString(R.styleable.LinearItem_textLeft); if(!TextUtils.isEmpty(textLeft)) setTextLeft(textLeft);
+        textRight = ta.getString(R.styleable.LinearItem_textRight); if(!TextUtils.isEmpty(textRight)) setTextRight(textRight);
+
+        textColorLeft = ta.getColor(R.styleable.LinearItem_colorTextLeft, NOTHING_SET); if(textColorLeft != NOTHING_SET) setTextColorLeft(textColorLeft);
+        textColorRight = ta.getColor(R.styleable.LinearItem_colorTextRight, NOTHING_SET); if(textColorRight != NOTHING_SET) setTextColorRight(textColorRight);
+        textSizeLeft = ta.getDimensionPixelSize(R.styleable.LinearItem_sizeTextLeft, NOTHING_SET); if(textSizeLeft != NOTHING_SET) setTextSizeLeft(textSizeLeft);
+        textSizeRight = ta.getDimensionPixelSize(R.styleable.LinearItem_sizeTextRight, NOTHING_SET); if(textSizeRight != NOTHING_SET) setTextSizeRight(textSizeRight);
 
         ta.recycle();
     }
 
-    @Override
-    public void setOnClickListener(@Nullable OnClickListener l) {
-        Drawable[] drawables = _tv_itemRight.getCompoundDrawables();
-        if(clickRectRight && (!TextUtils.isEmpty(_tv_itemRight.getText()) || drawables[2] != null)){
-            _tv_itemRight.setClickable(true);
-            _tv_itemRight.setOnClickListener(v -> {
-                if(l != null) l.onClick(LinearItem.this);
-            });
-        }else{
-            super.setOnClickListener(l);
-        }
-    }
 }
