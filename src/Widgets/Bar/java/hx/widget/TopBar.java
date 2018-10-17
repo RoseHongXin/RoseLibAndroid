@@ -2,6 +2,7 @@ package hx.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.support.design.widget.AppBarLayout;
@@ -46,11 +47,13 @@ public class TopBar extends AppBarLayout implements ITopBarOpt{
             int navDrawable = ta.getResourceId(R.styleable.TopBar_tb_navigation, 0);
             String text = ta.getString(R.styleable.TopBar_tb_text);
             int icon = ta.getResourceId(R.styleable.TopBar_tb_icon, 0);
+            int color = ta.getColor(R.styleable.TopBar_tb_color, -1);
             ta.recycle();
             title(title);
             navigation(navDrawable);
             text(text);
             icon(icon);
+            color(color);
         }
     }
 
@@ -64,6 +67,17 @@ public class TopBar extends AppBarLayout implements ITopBarOpt{
         mTopBarHelper.title(title);
     }
 
+    @Override
+    public void color(@ColorInt int color) {
+        mTopBarHelper.color(color);
+    }
+
+    @Override
+    public String title() {
+        return mTopBarHelper.title();
+    }
+
+    @Override
     public void icon(@DrawableRes int iconRes, OnClickListener listener){
         mTopBarHelper.icon(iconRes, listener);
     }
