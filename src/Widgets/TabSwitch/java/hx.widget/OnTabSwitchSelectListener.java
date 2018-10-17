@@ -8,5 +8,5 @@ import android.widget.TextView;
  */
 
 public interface OnTabSwitchSelectListener {
-    void onSelected(@IdRes int id, TextView _tv);
+    void onSelected(@IdRes int id, int idx, TextView _tv);
 }
