@@ -1,6 +1,8 @@
-package hx.kit.refresh;
+package com.powerbee.ammeter.kit;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -19,29 +21,40 @@ import io.reactivex.Observable;
  * Created by RoseHongXin on 2017/10/30 0030.
  */
 
+@SuppressLint("CheckResult")
 public abstract class P2rlPageLoader<Ap extends ApBase<Vh, D>, Vh extends VhBase<D>, D> {
 
-    private final static int LAZY_INIT_REFRESH_DELAY = 100;
+    private final static int LAZY_INIT_REFRESH_DELAY = 200;
 
-    protected PtrClassicFrameLayout _ptrl_;
-    private ViewGroup _vg_container;
+    protected PtrFrameLayout _p2rl_;
+    private ViewGroup _vg_target;
     private Activity mAct;
+    private Fragment mFra;
     private Ap mAdapter;
     private PtrFrameLayout.Mode mMode = null;
 
     private int mPageIdx = 0;
 
 
-    public P2rlPageLoader act(Activity act){
+    public P2rlPageLoader host(Activity act){
         this.mAct = act;
         return this;
     }
-    public P2rlPageLoader content(ViewGroup _vg_container){
-        this._vg_container = _vg_container;
+    public P2rlPageLoader host(Fragment fra){
+        this.mFra = fra;
         return this;
     }
-    public P2rlPageLoader target(PtrClassicFrameLayout _ptrl_){
-        this._ptrl_ = _ptrl_;
+    public P2rlPageLoader target(ViewGroup _vg_target){
+        this._vg_target = _vg_target;
+        return this;
+    }
+    public <P extends PtrFrameLayout> P2rlPageLoader anchor(P _p2rl_){
+        this._p2rl_ = _p2rl_;
+        return this;
+    }
+    public P2rlPageLoader mode(PtrFrameLayout.Mode mode){
+        if(_p2rl_ != null) _p2rl_.setMode(mode);
+        this.mMode = mode;
         return this;
     }
     public P2rlPageLoader create(){
@@ -51,62 +64,51 @@ public abstract class P2rlPageLoader<Ap extends ApBase<Vh, D>, Vh extends VhBase
         return this;
     }
 
-    public P2rlPageLoader refresh(){
-        _ptrl_.postDelayed(() -> _ptrl_.autoRefresh(), LAZY_INIT_REFRESH_DELAY);
-        return this;
-    }
-
-    public P2rlPageLoader mode(PtrFrameLayout.Mode mode){
-        if(_ptrl_ != null) _ptrl_.setMode(mode);
-        this.mMode = mode;
-        return this;
-    }
-
-    public void testMode(List<D> data){
-        _ptrl_.postDelayed(() -> _ptrl_.refreshComplete(), LAZY_INIT_REFRESH_DELAY + 50);
-        mAdapter.setData(data);
-    }
-
     private void initPtrRefresh() {
-        _ptrl_.setLastUpdateTimeRelateObject(mAct);
-        _ptrl_.setMode(mMode == null ? PtrFrameLayout.Mode.BOTH : mMode);
-        _ptrl_.setPtrHandler(new PtrDefaultHandler2() {
+        if(_p2rl_ instanceof PtrClassicFrameLayout) ((PtrClassicFrameLayout) _p2rl_).setLastUpdateTimeRelateObject(mAct == null ? (mFra == null ? new Object() : mFra) : mAct);
+        _p2rl_.setMode(mMode == null ? PtrFrameLayout.Mode.BOTH : mMode);
+        _p2rl_.setPtrHandler(new PtrDefaultHandler2() {
             @Override
             public void onLoadMoreBegin(PtrFrameLayout frame) {
                 Observable<List<D>> observable = request(mPageIdx + 1);
                 if(observable != null) {
                     observable
-                            .doOnComplete(() -> _ptrl_.refreshComplete())
+                            .doOnComplete(() -> _p2rl_.refreshComplete())
                             .subscribe(datas -> {
-                                if (!datas.isEmpty()) {
+                                if (datas != null && !datas.isEmpty()) {
                                     mPageIdx++;
                                     mAdapter.addData(datas);
                                 }
                             }, throwable -> {
-                                _ptrl_.refreshComplete();
+                                _p2rl_.refreshComplete();
                             });
                 }
             }
-            @Override
-            public void onRefreshBegin(PtrFrameLayout frame) {
+            @Override public void onRefreshBegin(PtrFrameLayout frame) {
                 mPageIdx = 0;
                 Observable<List<D>> observable = request(mPageIdx);
                 if(observable != null) {
                     observable
-                            .doOnComplete(() -> _ptrl_.refreshComplete())
+                            .doOnComplete(() -> _p2rl_.refreshComplete())
                             .subscribe(datas -> {
                                 mAdapter.setData(datas);
                             }, throwable -> {
-                                _ptrl_.refreshComplete();
+                                _p2rl_.refreshComplete();
                                 mAdapter.setData(new ArrayList<>());
                             });
                 }
             }
             @Override
             public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
-                return PtrDefaultHandler.checkContentCanBePulledDown(frame, _vg_container, header);
+                return PtrDefaultHandler.checkContentCanBePulledDown(frame, _vg_target, header);
             }
         });
+
+    }
+
+    public P2rlPageLoader refresh(){
+        _p2rl_.postDelayed(() -> _p2rl_.autoRefresh(), LAZY_INIT_REFRESH_DELAY);
+        return this;
     }
 
     public abstract Observable<List<D>> request(int pageIdx);

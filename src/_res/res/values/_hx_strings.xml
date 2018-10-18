@@ -88,6 +88,7 @@
     <string name="HX_newPassInputHint">请输入新密码</string>
     <string name="HX_selectHint">请选择[%1$s]</string>
     <string name="HX_dataRequesting">数据获取中 ......</string>
+    <string name="HX_dataUploadFailed">数据提交失败</string>
 
     <string name="HX_inputAlphabetNumberFilter">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
     <string name="HX_inputHexFilter">0123456789abcdefABCDEF</string>

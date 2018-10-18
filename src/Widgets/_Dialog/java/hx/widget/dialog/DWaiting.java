@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -93,6 +94,13 @@ public class DWaiting extends DialogFragment{
             if(_tv_hint != null) _tv_hint.setText(mHint);
         }
     }
+    public void hint(@StringRes int hint){
+        if(_tv_hint == null) return;
+        mHint = _tv_hint.getResources().getString(hint);
+        if(getDialog() != null && getDialog().isShowing()){
+            if(_tv_hint != null) _tv_hint.setText(mHint);
+        }
+    }
     public String hint(){
         return _tv_hint != null && _tv_hint.getText() != null ? _tv_hint.getText().toString() : "";
     }
@@ -136,11 +144,17 @@ public class DWaiting extends DialogFragment{
     public static DWaiting show(Activity act){
         return _show(act, null, true);
     }
+    public static DWaiting show(Activity act, @StringRes int hint){
+        return show(act, act.getString(hint));
+    }
     public static DWaiting show(Activity act, String hint){
         return _show(act, hint, true);
     }
     public static DWaiting showForce(Activity act){
         return _show(act, null, false);
+    }
+    public static DWaiting showForce(Activity act, @StringRes int hint){
+        return show(act, act.getString(hint));
     }
     public static DWaiting showForce(Activity act, String hint){
         return _show(act, hint, false);
