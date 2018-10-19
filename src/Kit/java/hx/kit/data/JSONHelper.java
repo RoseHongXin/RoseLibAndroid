@@ -61,6 +61,8 @@ public class JSONHelper {
         }
         return null;
     }
+
+    @Deprecated
     public static <D> D parse(Object obj, Class<D> clz){
         obj = obj == null ? "" : obj;
         D d = null;

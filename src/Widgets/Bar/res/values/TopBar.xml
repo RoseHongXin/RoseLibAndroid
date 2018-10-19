@@ -14,7 +14,7 @@
         <attr name="tb_navigation" format="reference"/>
         <attr name="tb_icon" format="reference"/>
         <attr name="tb_text" format="string"/>
-        <attr name="tb_color" format="color"/>
+        <attr name="tb_color" format="reference|color"/>
     </declare-styleable>
 
 

@@ -66,7 +66,6 @@ public class TopBarHelper implements ITopBarOpt{
 
     @Override
     public void color(@ColorInt int color) {
-        if(color == -1) return;
         if(_tv_tbTitle != null) _tv_tbTitle.setTextColor(color);
         if(_tv_tbRight != null) _tv_tbRight.setTextColor(color);
     }

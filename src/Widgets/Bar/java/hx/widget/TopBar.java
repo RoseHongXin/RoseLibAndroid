@@ -47,7 +47,7 @@ public class TopBar extends AppBarLayout implements ITopBarOpt{
             int navDrawable = ta.getResourceId(R.styleable.TopBar_tb_navigation, 0);
             String text = ta.getString(R.styleable.TopBar_tb_text);
             int icon = ta.getResourceId(R.styleable.TopBar_tb_icon, 0);
-            int color = ta.getColor(R.styleable.TopBar_tb_color, -1);
+            int color = ta.getColor(R.styleable.TopBar_tb_color, context.getResources().getColor(R.color.tb_txt));
             ta.recycle();
             title(title);
             navigation(navDrawable);
