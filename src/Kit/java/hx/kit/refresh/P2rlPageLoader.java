@@ -1,4 +1,4 @@
-package com.powerbee.ammeter.kit;
+package hx.kit.refresh;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

@@ -2,7 +2,6 @@ package hx.widget.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -95,8 +94,8 @@ public class DWaiting extends DialogFragment{
         }
     }
     public void hint(@StringRes int hint){
+        mHint = mAct == null ? "" : mAct.getString(hint);
         if(_tv_hint == null) return;
-        mHint = _tv_hint.getResources().getString(hint);
         if(getDialog() != null && getDialog().isShowing()){
             if(_tv_hint != null) _tv_hint.setText(mHint);
         }
@@ -124,21 +123,6 @@ public class DWaiting extends DialogFragment{
         dWaiting.mCancelable = cancelable;
         dWaiting.mAct = act;
         return dWaiting;
-    }
-    /* Call this method after builder or force, carefully. */
-    public DialogFragment show(){
-        //预防Activity异常退出,或者切换太快,引起的getSupportFragmentManager() 为null.
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                if (mAct != null && (mAct instanceof AppCompatActivity) && !mAct.isFinishing() && !mAct.isDestroyed())
-                    show(((AppCompatActivity) mAct).getSupportFragmentManager(), TAG);
-            } else {
-                if (mAct != null && !mAct.isFinishing()) show(((AppCompatActivity) mAct).getSupportFragmentManager(), TAG);
-            }
-        }
-        catch (NullPointerException e){ Log4Android.w(this, "show exception, null pointer."); }
-        catch (IllegalStateException e) { Log4Android.w(this, "show exception, illegal state."); }
-        return this;
     }
 
     public static DWaiting show(Activity act){
@@ -177,16 +161,32 @@ public class DWaiting extends DialogFragment{
         return dWaiting;
     }
 
-    @Override
-    public void dismiss() {
+    public boolean isShowing() {
+         return getDialog() != null && getDialog().isShowing();
+    }
+
+    /* Call this method after builder, carefully. */
+    //预防Activity异常退出,或者切换太快,引起的getSupportFragmentManager() 为null.
+    public DialogFragment show(){
+        if(isShowing()) dismiss();
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                if (!mAct.isFinishing() && !mAct.isDestroyed()) super.dismiss();
-            } else {
-                if (mAct != null && !mAct.isFinishing()) super.dismiss();
+            if (mAct != null && !mAct.isFinishing() && !mAct.isDestroyed()){
+                show(((AppCompatActivity) mAct).getSupportFragmentManager(), TAG);
             }
         }
-        catch (NullPointerException e){ Log4Android.w(this, "dismiss exception, null pointer."); }
-        catch (IllegalStateException e) { Log4Android.w(this, "dismiss exception, illegal state."); }
+        catch (Exception e){ Log4Android.w(this, "show exception: " + e.getMessage()); }
+        return this;
+    }
+
+    @Override
+    public void dismiss() {
+        if(!isShowing()) return;
+        try {
+            if (mAct != null && !mAct.isFinishing() && !mAct.isDestroyed()){
+//                    ((AppCompatActivity) mAct).getSupportFragmentManager().beginTransaction().hide(this).commit();
+                super.dismiss();
+            }
+        }
+        catch (Exception e){ Log4Android.w(this, "show exception: " + e.getMessage()); }
     }
 }

@@ -24,7 +24,7 @@
         android:layout_gravity="center"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="@color/tb_txt"
+        android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/tb_txt_title"
         android:textStyle="bold"
         tools:text="Title"
@@ -48,7 +48,7 @@
         android:layout_marginRight="@dimen/l_m_h"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="@color/tb_txt"
+        android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/tb_txt"
         tools:text="tbRightText"
         tools:textColor="@android:color/white"/>

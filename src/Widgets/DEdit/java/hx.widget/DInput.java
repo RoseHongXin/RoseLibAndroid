@@ -94,9 +94,9 @@ public class DInput extends DialogFragment{
     }
 
     public void _bt_editConfirm(){
-        String text = _et_edit.getText().toString();
+        String text = _et_edit.getText() == null ? "" : _et_edit.getText().toString();
         if(!TextUtils.isEmpty(text)) {
-            if(mFillAfterInput) _tv_anchor.setText(text);
+            if(mFillAfterInput && _tv_anchor != null) _tv_anchor.setText(text);
             if(mCb != null) mCb.onConfirm(text, this);
             if(mAutoDismiss) dismiss();
         }

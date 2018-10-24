@@ -16,6 +16,7 @@
 
     <string name="HX_hour">Hour</string>
     <string name="HX_minute">Minute</string>
+    <string name="HX_second">Second</string>
     <string name="HX_year">Year</string>
     <string name="HX_month">Month</string>
     <string name="HX_day">Day</string>
@@ -46,6 +47,8 @@
     <string name="HX_start">Start</string>
     <string name="HX_deadline">Deadline</string>
     <string name="HX_time_select">Time Select</string>
+    <string name="HX_startTime">Start Time</string>
+    <string name="HX_endTime">End Time</string>
     <string name="HX_open">Open</string>
     <string name="HX_close">Close</string>
     <string name="HX_about_us">About Us</string>

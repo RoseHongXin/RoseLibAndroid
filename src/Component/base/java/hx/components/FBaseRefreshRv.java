@@ -6,10 +6,9 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.powerbee.ammeter.kit.P2rlPageLoader;
-
 import java.util.List;
 
+import hx.kit.refresh.P2rlPageLoader;
 import hx.lib.R;
 import hx.widget.adapterview.VhBase;
 import hx.widget.adapterview.recyclerview.ApBase;
