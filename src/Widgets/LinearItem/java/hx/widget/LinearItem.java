@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -71,12 +73,12 @@ public class LinearItem extends FrameLayout {
     }
     public void iconL(@DrawableRes int icon) {
         this.iconL = icon;
-        _iv_itemLeft.setVisibility(VISIBLE);
+        if(_iv_itemLeft.getVisibility() != VISIBLE) _iv_itemLeft.setVisibility(VISIBLE);
         _iv_itemLeft.setImageResource(icon);
     }
     public void iconR(@DrawableRes int icon) {
         this.iconR = icon;
-        _iv_itemRight.setVisibility(VISIBLE);
+        if(_iv_itemRight.getVisibility() != VISIBLE) _iv_itemRight.setVisibility(VISIBLE);
         _iv_itemRight.setImageResource(icon);
     }
     public void iconSizeL(int size) {
@@ -116,7 +118,7 @@ public class LinearItem extends FrameLayout {
     }
     public void textL(String text) {
         this.textL = text;
-        _tv_itemLeft.setVisibility(VISIBLE);
+        if(_tv_itemLeft.getVisibility() != VISIBLE) _tv_itemLeft.setVisibility(VISIBLE);
         _tv_itemLeft.setText(text);
     }
     public String textR() {
@@ -124,14 +126,17 @@ public class LinearItem extends FrameLayout {
     }
     public void textR(String text) {
         this.textR = text;
-        _tv_itemRight.setVisibility(VISIBLE);
+        if(_tv_itemRight.getVisibility() != VISIBLE) _tv_itemRight.setVisibility(VISIBLE);
         _tv_itemRight.setText(text);
     }
     public void text(String text){
-        textL(text);
+        textR(text);
+    }
+    public String text(){
+        return textR();
     }
     public void icon(@DrawableRes int drawableRes){
-        iconL(drawableRes);
+        iconR(drawableRes);
     }
     public void color(@ColorInt int color) {
         colorL(color);
@@ -159,6 +164,26 @@ public class LinearItem extends FrameLayout {
         _tv_itemLeft = (TextView)findViewById(R.id._tv_linearItemLeft);
         _iv_itemRight = (ImageView)findViewById(R.id._iv_linearItemRight);
         _tv_itemRight = (TextView)findViewById(R.id._tv_linearItemRight);
+
+        _iv_itemLeft.setVisibility(GONE);
+        _tv_itemLeft.setVisibility(GONE);
+        _iv_itemRight.setVisibility(GONE);
+        _tv_itemRight.setVisibility(GONE);
+
+        _tv_itemLeft.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            @Override public void afterTextChanged(Editable s) {
+                if(_tv_itemLeft.getVisibility() != VISIBLE) _tv_itemLeft.setVisibility(VISIBLE);
+            }
+        });
+        _tv_itemRight.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            @Override public void afterTextChanged(Editable s) {
+                if(_tv_itemRight.getVisibility() != VISIBLE) _tv_itemRight.setVisibility(VISIBLE);
+            }
+        });
 
         TypedArray ta = ctx.obtainStyledAttributes(attrs, R.styleable.LinearItem);
 

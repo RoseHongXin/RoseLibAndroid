@@ -46,6 +46,7 @@ public class DDateTimeSelect extends DialogFragment{
     public static int MODE_HOUR_MINUTE = MASK_HOUR | MASK_MINUTE;
     public static int MODE_HOUR_MINUTE_SECOND = MASK_HOUR | MASK_MINUTE | MASK_SECOND;
     public static int MODE_FULL = MODE_YEAR_MONTH_DAY | MODE_HOUR_MINUTE_SECOND;
+    public static int MODE_EXCLUDE_SECOND = MODE_YEAR_MONTH_DAY | MODE_HOUR_MINUTE;
 
     private View _li_year;
     private View _li_month;
@@ -64,6 +65,7 @@ public class DDateTimeSelect extends DialogFragment{
     private Activity mAct;
     private int mMode = MODE_FULL;
     private String mFormat = "yyyy-MM-dd hh:mm:ss";
+    private boolean mFillAfterSelect = true;
     private TextView _tv_anchor;
     private int mYear, mMonthIdx;
     private int mMaxYear = 2020, mMinYear = 1990;
@@ -129,7 +131,7 @@ public class DDateTimeSelect extends DialogFragment{
             mCalendar.set(Calendar.MINUTE, minute);
             mCalendar.set(Calendar.SECOND, second);
             Date date = mCalendar.getTime();
-            if(_tv_anchor != null && !TextUtils.isEmpty(mFormat)) {
+            if(mFillAfterSelect && _tv_anchor != null && !TextUtils.isEmpty(mFormat)) {
                 String time = DateFormat.format(mFormat, date).toString();
                 _tv_anchor.setText(time);
                 _tv_anchor.setTag(date);
@@ -293,6 +295,10 @@ public class DDateTimeSelect extends DialogFragment{
     }
     public DDateTimeSelect anchor(TextView _tv_anchor){
         this._tv_anchor = _tv_anchor;
+        return this;
+    }
+    public DDateTimeSelect fillAfterSelect(boolean fillAfterSelect){
+        this.mFillAfterSelect = fillAfterSelect;
         return this;
     }
 

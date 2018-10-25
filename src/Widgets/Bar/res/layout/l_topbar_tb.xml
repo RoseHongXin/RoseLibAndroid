@@ -34,24 +34,26 @@
     <ImageView
         android:id="@id/_iv_tbRight"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:layout_marginRight="@dimen/l_m_h"
+        android:scaleType="centerInside"
+        android:paddingLeft="@dimen/l_p_h"
+        android:paddingRight="@dimen/l_p_h"
         tools:src="@android:drawable/ic_lock_lock"/>
-    <!--tools:src="@android:drawable/ic_menu_search"/>-->
 
     <TextView
         android:id="@id/_tv_tbRight"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/l_p_h"
+        android:paddingRight="@dimen/l_p_h"
+        android:gravity="center"
         android:layout_gravity="end"
-        android:layout_marginRight="@dimen/l_m_h"
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/tb_txt"
         tools:text="tbRightText"
         tools:textColor="@android:color/white"/>
-    <!--tools:text="button"/>-->
 
 </android.support.v7.widget.Toolbar>

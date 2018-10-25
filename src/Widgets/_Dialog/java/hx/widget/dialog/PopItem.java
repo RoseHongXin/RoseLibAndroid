@@ -61,7 +61,7 @@ public class PopItem extends PopupWindow {
                 TextView _tv = new TextView(mAct);
                 _tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, mAct.getResources().getDimension(R.dimen.txt_content));
                 _tv.setGravity(Gravity.CENTER);
-                _tv.setPadding(0, 20, 0, 20);
+                _tv.setPadding(36, 20, 36, 20);
                 ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
                 _tv.setLayoutParams(layoutParams);
                 return new VhItem(_tv);
@@ -91,9 +91,8 @@ public class PopItem extends PopupWindow {
             int x = (int) event.getX();
             if (event.getAction() == MotionEvent.ACTION_UP && (x < left || y < top || x > right || y > bottom)) {
                 dismiss();
-                return true;
             }
-            return false;
+            return true;
         });
     }
 
