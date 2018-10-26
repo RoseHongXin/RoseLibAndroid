@@ -12,3 +12,6 @@ ActivityManager am = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE)
 
             }, 100);
 ```
+
+
+> Switch的click事件返回是,onCheckChange事件已经回调了,所以isChecked()是切换后的状态
