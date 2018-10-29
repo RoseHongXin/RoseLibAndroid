@@ -5,10 +5,12 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.support.annotation.CallSuper;
 import android.support.annotation.IdRes;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.StringRes;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.ViewGroup;
 
 import butterknife.ButterKnife;
 
@@ -24,6 +26,10 @@ public class LhBase<D> extends RecyclerView.ViewHolder{
     protected Fragment mFra;
     protected D mData;
 
+    public LhBase(Activity act, ViewGroup _v_parent, @LayoutRes int layout){
+        this(act, act.getLayoutInflater().inflate(layout, _v_parent, false));
+    }
+
     public <F extends Fragment> LhBase(F fra, @IdRes int layoutIdRes){
         this(fra, fra.getActivity().findViewById(layoutIdRes));
     }
@@ -35,6 +41,7 @@ public class LhBase<D> extends RecyclerView.ViewHolder{
     public LhBase(Activity act, @IdRes int layoutIdRes){
         this(act, act.findViewById(layoutIdRes));
     }
+
     public LhBase(Activity act, View layout){
         this(layout);
         this.mAct = act;

@@ -28,6 +28,8 @@ public abstract class FBase extends Fragment {
     int mPageVisibleCount = 1;
     long mPageLastVisibleTime = 0;
 
+    private View _v_layout;
+
     @LayoutRes public abstract int sGetLayoutRes();
 
     public void expire(int expire){
@@ -54,9 +56,9 @@ public abstract class FBase extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View layout = inflater.inflate(sGetLayoutRes(), container, false);
-        ButterKnife.bind(this, layout);
-        return layout;
+        _v_layout = inflater.inflate(sGetLayoutRes(), container, false);
+        ButterKnife.bind(this, _v_layout);
+        return _v_layout;
     }
 
     @Override
@@ -99,7 +101,10 @@ public abstract class FBase extends Fragment {
         }
         if(refresh) refresh();
     }
+    protected void runOnMainThread(Runnable runnable){
+        _v_layout.post(runnable);
+    }
 
-    public void refresh(){};
+    public void refresh(){}
 
 }

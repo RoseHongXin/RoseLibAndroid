@@ -16,6 +16,7 @@
 
     <string name="HX_hour">Hour</string>
     <string name="HX_minute">Minute</string>
+    <string name="HX_second">Second</string>
     <string name="HX_year">Year</string>
     <string name="HX_month">Month</string>
     <string name="HX_day">Day</string>
@@ -46,6 +47,8 @@
     <string name="HX_start">Start</string>
     <string name="HX_deadline">Deadline</string>
     <string name="HX_time_select">Time Select</string>
+    <string name="HX_startTime">Start Time</string>
+    <string name="HX_endTime">End Time</string>
     <string name="HX_open">Open</string>
     <string name="HX_close">Close</string>
     <string name="HX_about_us">About Us</string>
@@ -58,7 +61,6 @@
     <string name="HX_on">On</string>
     <string name="HX_off">Off</string>
 
-
     <string name="HX_yourNicknameInputHint">Please input your nickname</string>
     <string name="HX_phoneInputHint">Please input your phone number</string>
     <string name="HX_phoneInputWrongHint">Please input correct phone number</string>
@@ -66,19 +68,35 @@
     <string name="HX_loginFailed">Login Failed</string>
     <string name="HX_cameraPermissionNotGranted">Camera unauthorized, please grant camera permission at the System Settings.</string>
     <string name="HX_accountLogoutConfirm">Logout The Account Now?</string>
+    <string name="HX_pleaseCheckNetConnectState">Please check network state!</string>
+    <string name="HX_pleaseWait">Please wait ......</string>
+
     <string name="HX_deleteConfirm">Delete Now?</string>
     <string name="HX_deleteConfirmWithParam">Delete [%1$s] ?</string>
 
 
-    <!--<string name="append">添加</string>-->
-    <!--<string name="save">保存</string>-->
-    <!--<string name="clear">清空</string>-->
+    <string name="HX_unknown">Unknown</string>
+    <string name="HX_add_new">Add New</string>
+    <string name="HX_unallot">Unallot</string>
+    <string name="HX_ungroup">Ungroup</string>
+    <string name="HX_delete">Delete</string>
+    <string name="HX_upload">Upload</string>
+    <string name="HX_upload_now">Upload Now</string>
+    <string name="HX_original_password">Original Password</string>
+    <string name="HX_new_password">New Password</string>
 
-    <!--<string name="logout">退出登录</string>-->
-    <!--<string name="logout_confirm">确认退出当前登录账号?</string>-->
-    <!--<string name="data_problem">页面数据错误，请重新操作！</string>-->
-    <!--<string name="text_copied_to_clipboard">文本已复制到剪切板</string>-->
 
+    <string name="HX_captchaInputHint">Please input captcha</string>
+    <string name="HX_captchaHasSent2Phone">Captcha has sent to your phone</string>
+    <string name="HX_originalPassInputHint">Please input original password</string>
+    <string name="HX_newPassInputHint">Please input new password</string>
+    <string name="HX_selectHint">Please select [%1$s]</string>
+    <string name="HX_dataRequesting">Data requesting ......</string>
+    <string name="HX_dataUploadFailed">Data upload failed</string>
 
+    <string name="HX_inputAlphabetNumberFilter">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="HX_inputHexFilter">0123456789abcdefABCDEF</string>
+
+    <string name="HX_logining">Logining ......</string>
 
 </resources>

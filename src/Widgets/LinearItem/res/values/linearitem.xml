@@ -11,13 +11,15 @@
 
     <style name="LinearItem">
         <item name="android:layout_width">match_parent</item>
-        <!--<item name="android:layout_height">?android:attr/listPreferredItemHeight</item>-->
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">@dimen/l_p_small</item>
-        <item name="android:paddingBottom">@dimen/l_p_small</item>
+        <item name="android:paddingTop">@dimen/l_p_middle</item>
+        <item name="android:paddingBottom">@dimen/l_p_middle</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:gravity">start|center_vertical</item>
-        <item name="android:background">@color/_bg</item>
+        <item name="android:layout_marginRight">@dimen/LinearItem_gapLeft</item>
+        <item name="android:layout_marginLeft">@dimen/LinearItem_gapLeft</item>
+        <item name="android:textColor">@color/txt_title</item>
+        <item name="android:scaleType">centerInside</item>
+        <!--<item name="android:visibility">gone</item>-->
     </style>
 
 

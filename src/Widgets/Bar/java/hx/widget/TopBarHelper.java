@@ -2,6 +2,7 @@ package hx.widget;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
@@ -61,6 +62,12 @@ public class TopBarHelper implements ITopBarOpt{
         }
         if(_tb_ != null) _tb_.setTitle("");
 
+    }
+
+    @Override
+    public void color(@ColorInt int color) {
+        if(_tv_tbTitle != null) _tv_tbTitle.setTextColor(color);
+        if(_tv_tbRight != null) _tv_tbRight.setTextColor(color);
     }
 
     @Override

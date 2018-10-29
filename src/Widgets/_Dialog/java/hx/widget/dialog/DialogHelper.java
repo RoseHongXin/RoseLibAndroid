@@ -1,10 +1,13 @@
 package hx.widget.dialog;
 
 import android.app.Dialog;
+import android.support.v7.app.AlertDialog;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 /**
  * Created by RoseHongXin on 2017/5/17 0017.
@@ -46,6 +49,19 @@ public class DialogHelper {
             lp.width = WindowManager.LayoutParams.MATCH_PARENT;   //设置宽度充满屏幕
             window.setAttributes(lp);
         }
+    }
+
+    public static AlertDialog dlgButtonCenter(AlertDialog.Builder builder){
+        AlertDialog dialog = builder.create();
+        dialog.setOnShowListener(d -> {
+            Button positiveBt = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+            LinearLayout.LayoutParams layoutParams  = (LinearLayout.LayoutParams) positiveBt.getLayoutParams();
+            layoutParams.width = LinearLayout.LayoutParams.MATCH_PARENT;
+            layoutParams.gravity = Gravity.CENTER;
+            positiveBt.setLayoutParams(layoutParams);
+        });
+
+        return dialog;
     }
 
 }

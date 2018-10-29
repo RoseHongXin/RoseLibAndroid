@@ -15,6 +15,8 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 
 public abstract class P2rlLoader {
 
+    private final static int TIME_UI_REFRESH_DELAY = 200;
+
     private PtrFrameLayout _p2rl_;
     private ViewGroup _vg_target;
     private Activity mAct;
@@ -64,6 +66,13 @@ public abstract class P2rlLoader {
 
     }
 
-    public abstract void onRefresh();
+    public void refreshIdle(){
+        if(_p2rl_ != null)  _p2rl_.postDelayed(() -> _p2rl_.refreshComplete(), TIME_UI_REFRESH_DELAY);
+    }
+    public void refresh(){
+        _p2rl_.postDelayed(() -> _p2rl_.autoRefresh(), TIME_UI_REFRESH_DELAY);
+    }
+
+    protected abstract void onRefresh();
 
 }

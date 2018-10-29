@@ -38,6 +38,7 @@ public class DHourMinute extends DialogFragment{
     private TextView _tv_anchor;
     private int mDefHour = 0, mDefMinute = 0;
 
+    @SuppressLint("DefaultLocale")
     public static String current(){
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
@@ -74,29 +75,6 @@ public class DHourMinute extends DialogFragment{
         }
         _whv_hour = (Wheel3DView) view.findViewById(R.id._whv_hour);
         _whv_minute = (Wheel3DView) view.findViewById(R.id._whv_minute);
-        CharSequence[] hourTexts = new String[24];
-        CharSequence[] minuteTexts = new String[60];
-        for(int i = 0; i < 24; i++){
-            hourTexts[i] = String.valueOf(i);
-        }
-        for(int i = 0; i < 60; i++){
-            minuteTexts[i] = String.valueOf(i);
-        }
-        _whv_hour.setEntries(hourTexts);
-        _whv_minute.setEntries(minuteTexts);
-        _whv_hour.setCurrentIndex(mDefHour);
-        _whv_minute.setCurrentIndex(mDefMinute);
-        view.findViewById(R.id._bt_confirm).setOnClickListener(v -> {
-            int hour = Integer.parseInt(_whv_hour.getCurrentItem().toString());
-            int minute = Integer.parseInt(_whv_minute.getCurrentItem().toString());
-            if(_tv_anchor != null) {
-                _tv_anchor.setText(String.format(_FORMAT, hour, minute));
-                int seconds = hour * 3600 + minute * 60;
-                _tv_anchor.setTag(seconds);
-            }
-            if(mCb != null) mCb.onSelect(hour, minute);
-            dismiss();
-        });
     }
 
     public DHourMinute host(Activity act){

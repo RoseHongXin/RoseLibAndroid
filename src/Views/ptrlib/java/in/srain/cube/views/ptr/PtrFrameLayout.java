@@ -2,9 +2,11 @@ package in.srain.cube.views.ptr;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
@@ -72,6 +74,8 @@ public class PtrFrameLayout extends ViewGroup {
     private int mPagingTouchSlop;
     private int mHeaderHeight;
     private int mFooterHeight;
+    private VelocityTracker mVelocityTracker;
+    private int mPagingTouchVelocity;
 
     private boolean mDisableWhenHorizontalMove = false;
     private int mFlag = 0x00;
@@ -128,19 +132,17 @@ public class PtrFrameLayout extends ViewGroup {
             mPtrIndicator.setRatioOfHeaderHeightToRefresh(ratio);
 
             mKeepHeaderWhenRefresh = arr.getBoolean(R.styleable.PtrFrameLayout_ptr_keep_header_when_refresh, mKeepHeaderWhenRefresh);
-
             mPullToRefresh = arr.getBoolean(R.styleable.PtrFrameLayout_ptr_pull_to_fresh, mPullToRefresh);
-
             mMode = getModeFromIndex(arr.getInt(R.styleable.PtrFrameLayout_ptr_mode, 4));
 
             arr.recycle();
         }
-
         mScrollChecker = new ScrollChecker();
-
         final ViewConfiguration conf = ViewConfiguration.get(getContext());
-//        mPagingTouchSlop = conf.getScaledTouchSlop() * 2;
+        mPagingTouchVelocity = conf.getScaledMinimumFlingVelocity();
+//        mPagingTouchSlop = conf.getScaledTouchSlop();
         mPagingTouchSlop = conf.getScaledTouchSlop() / 2;
+        mVelocityTracker = VelocityTracker.obtain();
     }
 
     private Mode getModeFromIndex(int index) {
@@ -400,6 +402,7 @@ public class PtrFrameLayout extends ViewGroup {
     public boolean onInterceptTouchEvent(MotionEvent e) {
         if (!isEnabled() || mContent == null || mHeaderView == null) {return super.onInterceptTouchEvent(e);}
         int action = e.getAction();
+        mVelocityTracker.addMovement(e);
         switch (action) {
             case MotionEvent.ACTION_DOWN:
                 mHasSendCancelEvent = false;
@@ -420,12 +423,14 @@ public class PtrFrameLayout extends ViewGroup {
                         && mPtrHandler instanceof PtrHandler2 && ((PtrHandler2) mPtrHandler).checkCanDoLoadMore(this, mContent, mFooterView) && (mMode.ordinal() & 2) > 0;
                 if (!canMoveUp && !canMoveDown && ((moveDown && !canHeaderMoveDown) || (moveUp && !canFooterMoveUp))) {
                     if (DEBUG) { PtrCLog.v(LOG_TAG, "onInterceptTouchEvent: block this ACTION_MOVE"); }
+                    mVelocityTracker.clear();
                     return super.onInterceptTouchEvent(e);
-//                    super.onInterceptTouchEvent(e);
-//                    return false;
                 }
-                if(Math.abs(offsetY) > mPagingTouchSlop){
+                mVelocityTracker.computeCurrentVelocity(1000);
+                if(Math.abs(offsetY) > mPagingTouchSlop && mVelocityTracker.getYVelocity() > mPagingTouchVelocity){
+//                if(Math.abs(offsetY) > mPagingTouchSlop){
                     if (DEBUG) { PtrCLog.v(LOG_TAG, "onInterceptTouchEvent: ACTION_MOVE dispatch onTouchEvent."); }
+                    mVelocityTracker.clear();
                     return true;
                 }
         }

@@ -1,5 +1,7 @@
 package hx.kit.async;
 
+import android.annotation.SuppressLint;
+
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.subjects.PublishSubject;
@@ -36,6 +38,7 @@ public class RxBus {
         return mBus;
     }
 
+    @SuppressLint("CheckResult")
     public <T> Observable<T> toObservable(final Class<T> eventType) {
 //        return mBus.filter(eventType::isInstance).cast(eventType);
         return mBus.ofType(eventType);

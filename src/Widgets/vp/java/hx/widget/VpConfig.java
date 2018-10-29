@@ -66,7 +66,6 @@ public class VpConfig {
     private void _create(){
         if(mOffScreenSize == 0) mOffScreenSize = 1;
         if(mPageCount == 0) mPageCount = mFras.size();
-
         _vp_.setAdapter(new FragmentStatePagerAdapter(mFraMgr) {
             @Override
             public Fragment getItem(int position) {
@@ -94,15 +93,23 @@ public class VpConfig {
             @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
             @Override public void onPageSelected(int position) {
                 mCurrentPagePosition = position;
+                onPageShow(mCurrentPagePosition);
             }
             @Override public void onPageScrollStateChanged(int state) { }
         });
         _vp_.setOffscreenPageLimit(mOffScreenSize);
         mCurrentPagePosition = 0;
         initiate(mPageCount);
+        onPageShow(mCurrentPagePosition);
     }
 
     protected void initiate(int pageCount){
         mInitiated = true;
+    }
+    protected void onPageShow(int idx){}
+
+    public Fragment getFra(int idx){
+        if(mFras == null || idx < 0 || idx > mFras.size()) return null;
+        return mFras.get(idx);
     }
 }
