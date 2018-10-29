@@ -39,6 +39,8 @@
         android:scaleType="centerInside"
         android:paddingLeft="@dimen/l_p_h"
         android:paddingRight="@dimen/l_p_h"
+        android:visibility="gone"
+        tools:visibility="visible"
         tools:src="@android:drawable/ic_lock_lock"/>
 
     <TextView
@@ -53,6 +55,8 @@
         android:maxLines="1"
         android:textColor="?android:textColorPrimary"
         android:textSize="@dimen/tb_txt"
+        android:visibility="gone"
+        tools:visibility="visible"
         tools:text="tbRightText"
         tools:textColor="@android:color/white"/>
 

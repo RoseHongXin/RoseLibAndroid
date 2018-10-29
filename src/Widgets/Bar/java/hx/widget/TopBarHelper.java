@@ -85,7 +85,7 @@ public class TopBarHelper implements ITopBarOpt{
     @Override
     public void icon(@DrawableRes int iconRes, View.OnClickListener listener){
         if(_iv_tbRight != null){
-            _iv_tbRight.setImageResource(iconRes);
+            icon(iconRes);
             _iv_tbRight.setOnClickListener(listener);
         }
 
@@ -93,16 +93,16 @@ public class TopBarHelper implements ITopBarOpt{
 
     @Override
     public void icon(int iconRes) {
-        if(_iv_tbRight != null && iconRes != 0){
-            _iv_tbRight.setImageResource(iconRes);
-            _tv_tbRight.setVisibility(View.GONE);
+        if(_iv_tbRight != null){
+            if(iconRes != 0) _iv_tbRight.setImageResource(iconRes);
+            _iv_tbRight.setVisibility(iconRes != 0 ? View.VISIBLE : View.GONE);
         }
     }
 
     @Override
     public void text(String text, View.OnClickListener listener){
         if(_tv_tbRight != null){
-            _tv_tbRight.setText(text);
+            text(text);
             _tv_tbRight.setOnClickListener(listener);
         }
 
@@ -114,9 +114,9 @@ public class TopBarHelper implements ITopBarOpt{
 
     @Override
     public void text(String text) {
-        if(_tv_tbRight != null && !TextUtils.isEmpty(text)){
+        if(_tv_tbRight != null){
             _tv_tbRight.setText(text);
-            _iv_tbRight.setVisibility(View.GONE);
+            _tv_tbRight.setVisibility(TextUtils.isEmpty(text) ? View.GONE : View.VISIBLE);
         }
     }
 
