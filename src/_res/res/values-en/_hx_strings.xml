@@ -98,5 +98,11 @@
     <string name="HX_inputHexFilter">0123456789abcdefABCDEF</string>
 
     <string name="HX_logining">Logining ......</string>
+    <string name="HX_logout">Logout</string>
+    <string name="HX_accountInputNullHint">Account field null.</string>
+    <string name="HX_pwdInputNullHint">Password field null.</string>
+    <string name="HX_logoutConfirm">Logout current account NOW ?</string>
+    <string name="HX_pageDataProblemReoperate">Data problem, please press back and reenter !</string>
+    <string name="HX_logoutHint">Logout hint</string>
 
 </resources>
