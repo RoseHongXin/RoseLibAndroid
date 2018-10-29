@@ -9,7 +9,7 @@
         </shape>
     </item>
     <item android:id="@android:id/progress">
-        <clip>
+        <!--<clip>-->
             <shape
                 android:shape="ring"
                 android:innerRadiusRatio="3"
@@ -21,8 +21,9 @@
                     android:startColor="@color/colorAccent"
                     android:centerY="0.50" />
             </shape>
-        </clip>
+        <!--</clip>-->
     </item>
+    <item android:id="@android:id/indeter"
 
 </layer-list>
 

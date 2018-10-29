@@ -140,7 +140,8 @@ public class PtrFrameLayout extends ViewGroup {
         mScrollChecker = new ScrollChecker();
         final ViewConfiguration conf = ViewConfiguration.get(getContext());
         mPagingTouchVelocity = conf.getScaledMinimumFlingVelocity();
-        mPagingTouchSlop = conf.getScaledTouchSlop();
+//        mPagingTouchSlop = conf.getScaledTouchSlop();
+        mPagingTouchSlop = conf.getScaledTouchSlop() / 2;
         mVelocityTracker = VelocityTracker.obtain();
     }
 
@@ -427,6 +428,7 @@ public class PtrFrameLayout extends ViewGroup {
                 }
                 mVelocityTracker.computeCurrentVelocity(1000);
                 if(Math.abs(offsetY) > mPagingTouchSlop && mVelocityTracker.getYVelocity() > mPagingTouchVelocity){
+//                if(Math.abs(offsetY) > mPagingTouchSlop){
                     if (DEBUG) { PtrCLog.v(LOG_TAG, "onInterceptTouchEvent: ACTION_MOVE dispatch onTouchEvent."); }
                     mVelocityTracker.clear();
                     return true;

@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
+import android.widget.EditText;
 
 import hx.lib.R;
 
@@ -72,6 +73,13 @@ public class DConfirmCancel {
 
     public View view(@IdRes int idRes){
         return mLayout.findViewById(idRes);
+    }
+    public String text(@IdRes int idRes){
+        View _et_ = mLayout.findViewById(idRes);
+        if(_et_ instanceof EditText && ((EditText) _et_).getText() != null){
+            return ((EditText)_et_).getText().toString();
+        }
+        return "";
     }
 
     public interface OnInitCallback {
