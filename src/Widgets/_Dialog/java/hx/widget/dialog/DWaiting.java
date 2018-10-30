@@ -117,6 +117,9 @@ public class DWaiting extends DialogFragment{
     public static DWaiting force(Activity act){
         return create(act, null, false);
     }
+    public static DWaiting create(Activity act, @StringRes int hint, boolean cancelable){
+        return create(act, act.getString(hint), cancelable);
+    }
     public static DWaiting create(Activity act, String hint, boolean cancelable){
         DWaiting dWaiting = new DWaiting();
         dWaiting.mHint = hint;
