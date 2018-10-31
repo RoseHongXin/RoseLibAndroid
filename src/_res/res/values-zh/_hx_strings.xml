@@ -96,5 +96,11 @@
     <string name="HX_inputHexFilter">0123456789abcdefABCDEF</string>
 
     <string name="HX_logining">登陆中••••••</string>
+    <string name="HX_logout">退出登录</string>
+    <string name="HX_accountInputNullHint">账号为空</string>
+    <string name="HX_pwdInputNullHint">密码为空</string>
+    <string name="HX_logoutConfirm">确认退出当前登录账号?</string>
+    <string name="HX_pageDataProblemReoperate">页面数据错误，请重新操作！</string>
+    <string name="HX_logoutHint">退出登陆提示</string>
 
 </resources>
