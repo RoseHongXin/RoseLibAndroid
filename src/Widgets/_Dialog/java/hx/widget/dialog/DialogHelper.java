@@ -9,6 +9,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import hx.lib.R;
+
 /**
  * Created by RoseHongXin on 2017/5/17 0017.
  */
@@ -59,6 +61,7 @@ public class DialogHelper {
             layoutParams.width = LinearLayout.LayoutParams.MATCH_PARENT;
             layoutParams.gravity = Gravity.CENTER;
             positiveBt.setLayoutParams(layoutParams);
+            positiveBt.setTextColor(positiveBt.getResources().getColor(R.color.colorAccent));
         });
 
         return dialog;
