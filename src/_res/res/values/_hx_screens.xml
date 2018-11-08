@@ -34,6 +34,14 @@
         <item name="android:paddingLeft">@dimen/l_p_h</item>
         <item name="android:paddingRight">@dimen/l_p_h</item>
     </style>
+    <style name="Fra.HPH" parent="Fra.H">
+        <item name="android:paddingLeft">@dimen/l_p_h</item>
+        <item name="android:paddingRight">@dimen/l_p_h</item>
+    </style>
+    <style name="Fra.HPV" parent="Fra.H">
+        <item name="android:paddingBottom">@dimen/l_p_v</item>
+        <item name="android:paddingTop">@dimen/l_p_v</item>
+    </style>
     <style name="Fra.HP">
         <item name="android:orientation">horizontal</item>
         <item name="android:gravity">center_vertical</item>

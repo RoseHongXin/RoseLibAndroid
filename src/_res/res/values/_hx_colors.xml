@@ -6,6 +6,7 @@
     <color name="colorAccent">#fe6000</color>
     <color name="textColorPrimary">#3C3C3C</color>
     <color name="textColorSecondary">#3C3C3C</color>
+    <color name="textColor">#3C3C3C</color>
     <color name="textColorHint">#9B9B9B</color>
     <color name="textColorEmphasize">#FE6000</color>
     <color name="windowBackground">#EFEFEF</color>
