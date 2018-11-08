@@ -22,6 +22,9 @@ SSL_ERROR_SYSCALL 错误:
     git config --global --unset http.proxy
 git remote add origin https://username:password@[url]
 clone 出现Permission denied (publickey)  用https://
+
+git remote add origin https://RoseHongXin:hong299110xin@github.com/RoseHongXin/RoseLibAndroid.git
+
 ```
 
 
@@ -55,9 +58,11 @@ jar uvf wearable.jar com\mediatek\wearableProfiles\WearableClientProfileManager.
 
 # adb wifi 方式调试
 ```
-adb tcpip 55555
+adb tcpip 5555
 adb connect 192.168.15.152  PC和设备在同一网段
 adb kill-server
+
+adb shell 进入shell模式
 ```
 
 # SHA1
