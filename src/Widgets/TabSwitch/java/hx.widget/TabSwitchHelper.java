@@ -94,6 +94,21 @@ public class TabSwitchHelper {
         return -1;
     }
 
+    public void switch2Idx(int idx){
+        if(mSwitchIds != null && mSwitchIds.length > idx && mSwitchs.get(mSwitchIds[idx]) != null){
+            TextView _tv_ = mSwitchs.get(mSwitchIds[idx]);
+            if(!_tv_.isSelected()) {
+                for (int id : mSwitchIds) {
+                    TextView _tv = mSwitchs.get(id);
+                    if (_tv != null) {
+                        _tv.setSelected(false);
+                    }
+                }
+                _tv_.setSelected(true);
+            }
+        }
+    }
+
     public void triggerSelectedCallback(){
         if(mSwitchs != null && mListener != null && mSwitchs.get(mSelectedId) != null) {
             mListener.onSelected(mSelectedId, idx(mSelectedId), mSwitchs.get(mSelectedId));

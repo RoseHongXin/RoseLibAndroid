@@ -138,7 +138,7 @@ public class PopItem extends PopupWindow {
     }
 
     public void show(){
-        showAsDropDown(_v_anchor, 0, _v_anchor.getHeight());
+        showAsDropDown(_v_anchor);
     }
 
     private class VhItem extends VhBase<String> implements View.OnClickListener {
