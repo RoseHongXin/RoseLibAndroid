@@ -2,7 +2,6 @@ package in.srain.cube.views.ptr;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -880,6 +879,18 @@ public class PtrFrameLayout extends ViewGroup {
         mPtrIndicator.onUIRefreshComplete();
         tryScrollBackToTopAfterComplete();
         tryToNotifyReset();
+    }
+
+    public void justShowRefreshHint(){
+        mStatus = PTR_STATUS_LOADING;
+        mFlag |= FLAG_AUTO_REFRESH_AT_ONCE;
+        if (mPtrUIHandlerHolder.hasHandler()) {
+            mPtrUIHandlerHolder.onUIRefreshBegin(this);
+            if (DEBUG) { PtrCLog.i(LOG_TAG, "PtrUIHandler: onUIRefreshBegin, mFlag %s (justShowRefreshHint)", mFlag); }
+        }
+        mPtrIndicator.setIsHeader(true);
+        mScrollChecker.tryToScrollTo(mPtrIndicator.getOffsetToRefresh(), mDurationToCloseHeader);
+        mStatus = PTR_STATUS_LOADING;
     }
 
     public void autoRefresh() {
