@@ -4,7 +4,7 @@
                 android:layout_height="60dp">
 
     <LinearLayout
-        android:id="@+id/ptr_classic_header_rotate_view_header_text"
+        android:id="@+id/_li_ptr_headerText"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -12,14 +12,14 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/ptr_classic_header_rotate_view_header_title"
+            android:id="@+id/_tv_ptr_headerTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="?android:textColorPrimary"
             android:textSize="12sp"/>
 
         <TextView
-            android:id="@+id/ptr_classic_header_rotate_view_header_last_update"
+            android:id="@+id/_tv_ptr_headerLastUpdate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
@@ -32,17 +32,17 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:layout_toLeftOf="@+id/ptr_classic_header_rotate_view_header_text">
+        android:layout_toLeftOf="@+id/_li_ptr_headerText">
 
         <ImageView
-            android:id="@+id/ptr_classic_header_rotate_view"
+            android:id="@+id/_iv_headerRotate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/ptr_rotate_arrow"/>
 
         <ProgressBar
-            android:id="@+id/ptr_classic_header_rotate_view_progressbar"
+            android:id="@+id/_pb_ptr_headerRotate"
             style="@android:style/Widget.Material.Light.ProgressBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

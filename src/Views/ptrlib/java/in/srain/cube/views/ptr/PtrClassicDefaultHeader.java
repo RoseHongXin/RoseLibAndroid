@@ -25,19 +25,20 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
     private final static String KEY_SharedPreferences = "cube_ptr_classic_last_update";
     @SuppressLint("SimpleDateFormat")
     private static SimpleDateFormat sDataFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    public TextView _tv_ptr_headerTitle;
+    public ImageView _iv_headerRotate;
+    private View _pb_ptr_headerRotate;
+    public TextView _tv_ptr_headerLastUpdate;
+
     private int mRotateAniTime = 150;
     protected RotateAnimation mFlipAnimation;
     protected RotateAnimation mReverseFlipAnimation;
-    public TextView mTitleTextView;
-    public ImageView mRotateView;
-    private View mProgressBar;
     private long mLastUpdateTime = -1;
-    public TextView mLastUpdateTextView;
     private String mLastUpdateTimeKey;
     private boolean mShouldShowLastUpdate;
 
     private LastUpdateTimeUpdater mLastUpdateTimeUpdater = new LastUpdateTimeUpdater();
-
 
     public PtrClassicDefaultHeader(Context context) {
         this(context, null);
@@ -51,20 +52,23 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
         initViews(context, attrs);
     }
 
+    @SuppressLint("CustomViewStyleable")
     protected void initViews(Context context, AttributeSet attrs) {
-        @SuppressLint("CustomViewStyleable") TypedArray arr = context.obtainStyledAttributes(attrs, R.styleable.PtrClassicHeader, 0, 0);
+        TypedArray arr = context.obtainStyledAttributes(attrs, R.styleable.PtrHint, 0, 0);
         if (arr != null) {
-            mRotateAniTime = arr.getInt(R.styleable.PtrClassicHeader_ptr_rotate_ani_time, mRotateAniTime);
+            mRotateAniTime = arr.getInt(R.styleable.PtrHint_ptr_rotate_ani_time, mRotateAniTime);
         }
-        buildAnimation();
-        View header = LayoutInflater.from(getContext()).inflate(R.layout.cube_ptr_classic_default_header, this);
-
-        mRotateView = header.findViewById(R.id.ptr_classic_header_rotate_view);
-
-        mTitleTextView = (TextView) header.findViewById(R.id.ptr_classic_header_rotate_view_header_title);
-        mLastUpdateTextView = (TextView) header.findViewById(R.id.ptr_classic_header_rotate_view_header_last_update);
-        mProgressBar = header.findViewById(R.id.ptr_classic_header_rotate_view_progressbar);
         if(arr != null) arr.recycle();
+
+        buildAnimation();
+        View _v_header = LayoutInflater.from(getContext()).inflate(R.layout.l_ptr_header_def, this);
+
+        _iv_headerRotate = _v_header.findViewById(R.id._iv_headerRotate);
+
+        _tv_ptr_headerTitle = (TextView) _v_header.findViewById(R.id._tv_ptr_headerTitle);
+        _tv_ptr_headerLastUpdate = (TextView) _v_header.findViewById(R.id._tv_ptr_headerLastUpdate);
+        _pb_ptr_headerRotate = _v_header.findViewById(R.id._pb_ptr_headerRotate);
+
         resetView();
     }
 
@@ -119,12 +123,12 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
 
     private void resetView() {
         hideRotateView();
-        mProgressBar.setVisibility(INVISIBLE);
+        _pb_ptr_headerRotate.setVisibility(INVISIBLE);
     }
 
     private void hideRotateView() {
-        mRotateView.clearAnimation();
-        mRotateView.setVisibility(INVISIBLE);
+        _iv_headerRotate.clearAnimation();
+        _iv_headerRotate.setVisibility(INVISIBLE);
     }
 
     @Override
@@ -141,14 +145,14 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
         tryUpdateLastUpdateTime();
         mLastUpdateTimeUpdater.start();
 
-        mProgressBar.setVisibility(INVISIBLE);
+        _pb_ptr_headerRotate.setVisibility(INVISIBLE);
 
-        mRotateView.setVisibility(VISIBLE);
-        mTitleTextView.setVisibility(VISIBLE);
+        _iv_headerRotate.setVisibility(VISIBLE);
+        _tv_ptr_headerTitle.setVisibility(VISIBLE);
         if (frame.isPullToRefresh()) {
-            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down_to_refresh));
+            _tv_ptr_headerTitle.setText(getResources().getString(R.string.cube_ptr_pull_down_to_refresh));
         } else {
-            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down));
+            _tv_ptr_headerTitle.setText(getResources().getString(R.string.cube_ptr_pull_down));
         }
     }
 
@@ -156,9 +160,9 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
     public void onUIRefreshBegin(PtrFrameLayout frame) {
         mShouldShowLastUpdate = false;
         hideRotateView();
-        mProgressBar.setVisibility(VISIBLE);
-        mTitleTextView.setVisibility(VISIBLE);
-        mTitleTextView.setText(R.string.cube_ptr_refreshing);
+        _pb_ptr_headerRotate.setVisibility(VISIBLE);
+        _tv_ptr_headerTitle.setVisibility(VISIBLE);
+        _tv_ptr_headerTitle.setText(R.string.cube_ptr_refreshing);
 
         tryUpdateLastUpdateTime();
         mLastUpdateTimeUpdater.stop();
@@ -170,10 +174,10 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
             return;
         }
         hideRotateView();
-        mProgressBar.setVisibility(INVISIBLE);
+        _pb_ptr_headerRotate.setVisibility(INVISIBLE);
 
-        mTitleTextView.setVisibility(VISIBLE);
-        mTitleTextView.setText(getResources().getString(R.string.cube_ptr_refresh_complete));
+        _tv_ptr_headerTitle.setVisibility(VISIBLE);
+        _tv_ptr_headerTitle.setText(getResources().getString(R.string.cube_ptr_refresh_complete));
 
         // update last update time
         SharedPreferences sharedPreferences = getContext().getSharedPreferences(KEY_SharedPreferences, 0);
@@ -185,14 +189,14 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
 
     private void tryUpdateLastUpdateTime() {
         if (TextUtils.isEmpty(mLastUpdateTimeKey) || !mShouldShowLastUpdate) {
-            mLastUpdateTextView.setVisibility(GONE);
+            _tv_ptr_headerLastUpdate.setVisibility(GONE);
         } else {
             String time = getLastUpdateTime();
             if (TextUtils.isEmpty(time)) {
-                mLastUpdateTextView.setVisibility(GONE);
+                _tv_ptr_headerLastUpdate.setVisibility(GONE);
             } else {
-                mLastUpdateTextView.setVisibility(VISIBLE);
-                mLastUpdateTextView.setText(time);
+                _tv_ptr_headerLastUpdate.setVisibility(VISIBLE);
+                _tv_ptr_headerLastUpdate.setText(time);
             }
         }
     }
@@ -246,17 +250,17 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
         if (currentPos < mOffsetToRefresh && lastPos >= mOffsetToRefresh) {
             if (isUnderTouch && status == PtrFrameLayout.PTR_STATUS_PREPARE) {
                 crossRotateLineFromBottomUnderTouch(frame);
-                if (mRotateView != null) {
-                    mRotateView.clearAnimation();
-                    mRotateView.startAnimation(mReverseFlipAnimation);
+                if (_iv_headerRotate != null) {
+                    _iv_headerRotate.clearAnimation();
+                    _iv_headerRotate.startAnimation(mReverseFlipAnimation);
                 }
             }
         } else if (currentPos > mOffsetToRefresh && lastPos <= mOffsetToRefresh) {
             if (isUnderTouch && status == PtrFrameLayout.PTR_STATUS_PREPARE) {
                 crossRotateLineFromTopUnderTouch(frame);
-                if (mRotateView != null) {
-                    mRotateView.clearAnimation();
-                    mRotateView.startAnimation(mFlipAnimation);
+                if (_iv_headerRotate != null) {
+                    _iv_headerRotate.clearAnimation();
+                    _iv_headerRotate.startAnimation(mFlipAnimation);
                 }
             }
         }
@@ -264,17 +268,17 @@ public class PtrClassicDefaultHeader extends FrameLayout implements PtrUIHandler
 
     private void crossRotateLineFromTopUnderTouch(PtrFrameLayout frame) {
         if (!frame.isPullToRefresh()) {
-            mTitleTextView.setVisibility(VISIBLE);
-            mTitleTextView.setText(R.string.cube_ptr_release_to_refresh);
+            _tv_ptr_headerTitle.setVisibility(VISIBLE);
+            _tv_ptr_headerTitle.setText(R.string.cube_ptr_release_to_refresh);
         }
     }
 
     private void crossRotateLineFromBottomUnderTouch(PtrFrameLayout frame) {
-        mTitleTextView.setVisibility(VISIBLE);
+        _tv_ptr_headerTitle.setVisibility(VISIBLE);
         if (frame.isPullToRefresh()) {
-            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down_to_refresh));
+            _tv_ptr_headerTitle.setText(getResources().getString(R.string.cube_ptr_pull_down_to_refresh));
         } else {
-            mTitleTextView.setText(getResources().getString(R.string.cube_ptr_pull_down));
+            _tv_ptr_headerTitle.setText(getResources().getString(R.string.cube_ptr_pull_down));
         }
     }
 
