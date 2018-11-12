@@ -7,8 +7,8 @@ import android.util.AttributeSet;
 
 public class PtrClassicFrameLayout extends PtrFrameLayout {
 
-    private PtrClassicDefaultHeader mPtrClassicHeader;
-    private PtrClassicDefaultFooter mPtrClassicFooter;
+    private PtrClassicDefaultHeader _l_header;
+    private PtrClassicDefaultFooter _l_footer;
 
     public PtrClassicFrameLayout(Context context) {
         super(context);
@@ -16,40 +16,42 @@ public class PtrClassicFrameLayout extends PtrFrameLayout {
     }
 
     public PtrClassicFrameLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        initViews();
+        this(context, attrs, 0);
     }
 
     public PtrClassicFrameLayout(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         initViews();
+        if(mTxtColor != 0){
+            textColor(mTxtColor);
+        }
     }
 
     private void initViews() {
-        mPtrClassicHeader = new PtrClassicDefaultHeader(getContext());
-        setHeaderView(mPtrClassicHeader);
-        addPtrUIHandler(mPtrClassicHeader);
-        mPtrClassicFooter = new PtrClassicDefaultFooter(getContext());
-        setFooterView(mPtrClassicFooter);
-        addPtrUIHandler(mPtrClassicFooter);
+        _l_header = new PtrClassicDefaultHeader(getContext());
+        setHeaderView(_l_header);
+        addPtrUIHandler(_l_header);
+        _l_footer = new PtrClassicDefaultFooter(getContext());
+        setFooterView(_l_footer);
+        addPtrUIHandler(_l_footer);
     }
 
     public PtrClassicDefaultHeader getHeader() {
-        return mPtrClassicHeader;
+        return _l_header;
     }
 
     public void textColor(@ColorInt int color){
-        mPtrClassicHeader.mTitleTextView.setTextColor(color);
-        mPtrClassicHeader.mLastUpdateTextView.setTextColor(color);
-        mPtrClassicFooter.mTitleTextView.setTextColor(color);
-        mPtrClassicFooter.mLastUpdateTextView.setTextColor(color);
+        _l_header._tv_ptr_headerTitle.setTextColor(color);
+        _l_header._tv_ptr_headerLastUpdate.setTextColor(color);
+        _l_footer._tv_ptr_footerTitle.setTextColor(color);
+        _l_footer._tv_ptr_footerLastUpdate.setTextColor(color);
     }
     public void headerIcon(@DrawableRes int header){
-        mPtrClassicHeader.mRotateView.setImageResource(header);
+        _l_header._iv_headerRotate.setImageResource(header);
     }
     public void icon(@DrawableRes int header, @DrawableRes int footer){
-        mPtrClassicHeader.mRotateView.setImageResource(header);
-        mPtrClassicFooter.mRotateView.setImageResource(footer);
+        _l_header._iv_headerRotate.setImageResource(header);
+        _l_footer._iv_footerRotate.setImageResource(footer);
     }
 
     /**
@@ -63,14 +65,14 @@ public class PtrClassicFrameLayout extends PtrFrameLayout {
     }
 
     public void setLastUpdateTimeHeaderKey(String key) {
-        if (mPtrClassicHeader != null) {
-            mPtrClassicHeader.setLastUpdateTimeKey(key);
+        if (_l_header != null) {
+            _l_header.setLastUpdateTimeKey(key);
         }
     }
 
     public void setLastUpdateTimeFooterKey(String key) {
-        if (mPtrClassicFooter != null) {
-            mPtrClassicFooter.setLastUpdateTimeKey(key);
+        if (_l_footer != null) {
+            _l_footer.setLastUpdateTimeKey(key);
         }
     }
 
@@ -85,14 +87,14 @@ public class PtrClassicFrameLayout extends PtrFrameLayout {
     }
 
     public void setLastUpdateTimeHeaderRelateObject(Object object) {
-        if (mPtrClassicHeader != null) {
-            mPtrClassicHeader.setLastUpdateTimeRelateObject(object);
+        if (_l_header != null) {
+            _l_header.setLastUpdateTimeRelateObject(object);
         }
     }
 
     public void setLastUpdateTimeFooterRelateObject(Object object) {
-        if (mPtrClassicFooter != null) {
-            mPtrClassicFooter.setLastUpdateTimeRelateObject(object);
+        if (_l_footer != null) {
+            _l_footer.setLastUpdateTimeRelateObject(object);
         }
     }
 }
