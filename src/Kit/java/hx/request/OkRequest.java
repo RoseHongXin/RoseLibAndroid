@@ -30,7 +30,6 @@ public class OkRequest extends RequestBase {
     public OkRequest(Context ctx) {
         super(ctx);
         mMainHandler = new Handler();
-        mMainHandler = new Handler();
         HttpLoggingInterceptor bodyLogger = new HttpLoggingInterceptor(message -> Log4Android.v(TAG, message));
         bodyLogger.setLevel(HttpLoggingInterceptor.Level.BODY);
         mOkHttpClient = mOkHttpBuilder.addInterceptor(bodyLogger).build();
