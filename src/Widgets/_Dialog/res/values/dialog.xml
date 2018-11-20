@@ -29,6 +29,13 @@
         <item name="android:windowExitAnimation">@anim/pop_top_right_out</item>
     </style>
 
+    <style name="dialog_bottom_up" parent="@android:style/Animation">
+        <item name="android:inAnimation">@anim/dlg_bottom_in</item>
+        <item name="android:outAnimation">@anim/dlg_bottom_out</item>
+        <item name="android:windowEnterAnimation">@anim/dlg_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/dlg_bottom_out</item>
+    </style>
+
     <style name="dialog.container">
         <item name="android:layout_height">wrap_content</item>
         <!--<item name="android:minHeight">128dp</item>-->
