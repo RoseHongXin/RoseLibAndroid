@@ -1,9 +1,8 @@
 package hx.view.softtouch;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.widget.NestedScrollView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
@@ -11,27 +10,22 @@ import android.view.MotionEvent;
  * Created by RoseHongXin on 2017/6/23 0023.
  */
 
-public class SoftRecyclerView extends RecyclerView {
+public class SoftScrollView extends NestedScrollView {
 
     private ViewTouchDelegate mSoftTouchDelegate;
 
-    public SoftRecyclerView(Context context) {
+    public SoftScrollView(Context context) {
         this(context, null);
     }
 
-    public SoftRecyclerView(Context context, @Nullable AttributeSet attrs) {
+    public SoftScrollView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SoftRecyclerView(Context context, @Nullable AttributeSet attrs, int defStyle) {
+    public SoftScrollView(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         mSoftTouchDelegate = new ViewTouchDelegate(this);
-        LayoutManager.Properties properties = RecyclerView.LayoutManager.getProperties(context, attrs, defStyle, 0);
-        direction(properties.orientation == RecyclerView.HORIZONTAL ? ViewTouchDelegate.HORIZONTAL : ViewTouchDelegate.VERTICAL);
-    }
-
-    public void direction(int orientation){
-        mSoftTouchDelegate.direction(orientation);
+        mSoftTouchDelegate.direction(ViewTouchDelegate.VERTICAL);
     }
 
     @Override

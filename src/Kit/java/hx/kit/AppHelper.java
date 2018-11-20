@@ -34,6 +34,21 @@ public class AppHelper {
          }
         return false;
     }
+    public static boolean isActForeground(Context ctx, String pkgName) {
+        ActivityManager am;
+        if(ctx == null || (am = (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE)) == null) return false;
+        if(Build.VERSION.SDK_INT  >= Build.VERSION_CODES.M) {
+            List<ActivityManager.AppTask> tasks = am.getAppTasks();
+            for(ActivityManager.AppTask task : tasks) {
+                ActivityManager.RecentTaskInfo info = task.getTaskInfo();
+                if(info.topActivity.getPackageName().equals(pkgName)) return true;
+            }
+        }else {
+            List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(1);
+            if(tasks != null && !tasks.isEmpty() && tasks.get(0).topActivity.getPackageName().equals(pkgName)) return true;
+        }
+        return false;
+    }
     public static boolean isAppForeground(Context ctx) {
         ActivityManager am;
         return ctx != null && (am = (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE)) != null && isAppForeground(ctx, am);
