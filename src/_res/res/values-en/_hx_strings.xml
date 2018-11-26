@@ -66,6 +66,7 @@
     <string name="HX_phoneInputWrongHint">Please input correct phone number</string>
     <string name="HX_passwordInputHint">Please input password</string>
     <string name="HX_loginFailed">Login Failed</string>
+    <string name="HX_loginTimeout">Login Timeout</string>
     <string name="HX_cameraPermissionNotGranted">Camera unauthorized, please grant camera permission at the System Settings.</string>
     <string name="HX_accountLogoutConfirm">Logout The Account Now?</string>
     <string name="HX_pleaseCheckNetConnectState">Please check network state!</string>
