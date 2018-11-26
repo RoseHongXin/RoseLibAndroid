@@ -66,6 +66,7 @@
     <string name="HX_phoneInputWrongHint">请输入正确的手机号</string>
     <string name="HX_passwordInputHint">请输入密码</string>
     <string name="HX_loginFailed">登陆失败!</string>
+    <string name="HX_loginTimeout">登陆超时!</string>
     <string name="HX_cameraPermissionNotGranted">未授予调用手机摄像头的权限,请到系统设置里授予摄像头权限.</string>
     <string name="HX_accountLogoutConfirm">确定退出当前账号?</string>
     <string name="HX_pleaseCheckNetConnectState">请检查网络连接状态！</string>
