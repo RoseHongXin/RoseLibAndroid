@@ -15,6 +15,7 @@ ext{
             supportPercnet: 'com.android.support:percent:' + props.dependencyVersion,
             recyclerviewv7: 'com.android.support:recyclerview-v7:' + props.dependencyVersion,
             butterknife: 'com.jakewharton:butterknife:8.8.1',
+            butterknifeCompiler: 'com.jakewharton:butterknife-compiler:8.8.1',
             fastjson: 'com.alibaba:fastjson:1.2.51',
             fastjsonAndroid: 'com.alibaba:fastjson:1.1.70.android',
             jacksonCore: 'com.fasterxml.jackson.core:jackson-core:2.9.6',

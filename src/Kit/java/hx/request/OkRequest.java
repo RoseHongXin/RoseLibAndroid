@@ -66,7 +66,7 @@ public class OkRequest extends RequestBase {
 //                                    return ((ParameterizedType)callback.getClass().getGenericInterfaces()[0]).getActualTypeArguments()[0];
                                 }
                             });
-                            mMainHandler.post(() -> {callback.onSuccess(resp);});
+                            mMainHandler.post(() -> {callback.onResp(resp);});
                         } catch (IOException e) {
                             e.printStackTrace();
                             mMainHandler.post(() -> {});
@@ -87,7 +87,7 @@ public class OkRequest extends RequestBase {
 
 
     public static class Callback<D>{
-        public void onSuccess(D resp){}
+        public void onResp(D resp){}
         public void onFailed(String exception){}
         public void onFinish(){}
     }
