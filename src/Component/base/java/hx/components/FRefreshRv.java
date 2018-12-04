@@ -34,7 +34,7 @@ public class FRefreshRv extends FBase {
     }
 
     @Override
-    public int sGetLayoutRes() {
+    public int sGetLayout() {
         return R.layout.f_base_refresh_rv;
     }
 

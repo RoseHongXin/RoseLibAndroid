@@ -1,4 +1,4 @@
-package com.tiankong.smartbracelet.utils;
+package com.tiankong.smartwearable.utils;
 
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;

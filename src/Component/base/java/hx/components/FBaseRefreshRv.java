@@ -28,7 +28,7 @@ public abstract class FBaseRefreshRv<Ap extends ApBase<Vh, D>, Vh extends VhBase
     private P2rlPageLoader mLoader;
 
     @Override
-    public int sGetLayoutRes() {
+    public int sGetLayout() {
         return R.layout.f_base_refresh_rv;
     }
 

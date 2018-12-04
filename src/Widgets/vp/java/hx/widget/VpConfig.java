@@ -112,4 +112,8 @@ public class VpConfig {
         if(mFras == null || idx < 0 || idx > mFras.size()) return null;
         return mFras.get(idx);
     }
+    public List<Fragment> getFras(){
+        return mFras;
+    }
+
 }

@@ -21,7 +21,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 public class RequestBase {
 
     protected final String TAG = "Api.Request";
-    protected static int TIME = 90;
+    protected static int TIME = 60;
 
     protected DialogFragment sDialog;
     protected Context sCtx;
@@ -32,15 +32,18 @@ public class RequestBase {
     protected RequestBase(Context ctx){
         this.sCtx = ctx;
         mOkHttpBuilder = new OkHttpClient.Builder()
-                .readTimeout(TIME, TimeUnit.SECONDS)
-                .writeTimeout(TIME, TimeUnit.SECONDS)
-                .connectTimeout(TIME, TimeUnit.SECONDS);
+                .readTimeout(time(), TimeUnit.SECONDS)
+                .writeTimeout(time(), TimeUnit.SECONDS)
+                .connectTimeout(time(), TimeUnit.SECONDS);
         mObjMapper = new ObjectMapper();
         mObjMapper.configure(JsonParser.Feature.IGNORE_UNDEFINED, true);
         mObjMapper.configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);
-        mObjMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         mObjMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         mObjMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
+        mObjMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+    }
+    protected int time(){
+        return TIME;
     }
 
 }

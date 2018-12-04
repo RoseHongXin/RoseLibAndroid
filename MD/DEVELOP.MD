@@ -68,4 +68,5 @@ adb shell 进入shell模式
 # SHA1
 ```
 keytool -list -v -keystore "%USERPROFILE%\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
+keytool -list -v -keystore "F:/AndroidPro/AndroidSigned" -alias smarthome -storepass dan199858 -keypass dan199858
 ```
