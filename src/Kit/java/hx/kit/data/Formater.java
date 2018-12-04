@@ -22,9 +22,14 @@ public class Formater {
     private static final String ID_FORMAT = "^[1-9][0-9]{5}(19[0-9]{2}|200[0-9]|2010)(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])[0-9]{3}[0-9xX]$";
     private static final Pattern SPECIAL_CHARS_PATTERN = Pattern.compile("[ _`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\n|\r|\t");
 
+    public static final String PHONE_MASK_FORMAT = "(\\d{3})\\d{4}(\\d{4})";
+
     public static boolean isMobile(String mobile){
 //        return Pattern.compile(MOBILE_FORMAT).matcher(mobile).matches();
         return MOBILE_PATTERN.matcher(mobile).matches();
+    }
+    public static String phoneMask(String phone){
+        return TextUtils.isEmpty(phone) ? phone : phone.replaceAll(PHONE_MASK_FORMAT, "$1****$2");
     }
 
     public static boolean isIdNo(String idNo){
