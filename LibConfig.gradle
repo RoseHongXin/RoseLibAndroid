@@ -2,10 +2,10 @@ ext{
     props = [
             compileSdkVersion: 28,
             buildToolsVersion: '28.0.3',
-            minSdkVersion:22,
-//            minSdkVersion:15,
-            targetSdkVersion:28,
-            dependencyVersion:'28.0.0'
+            minSdkVersion: 22,
+//            minSdkVersion: 20,
+            targetSdkVersion: 28,
+            dependencyVersion: '28.0.0'
     ]
     libraries = [
             supportv4: 'com.android.support:support-v4:' + props.dependencyVersion,
@@ -23,6 +23,7 @@ ext{
             jacksonDataBind: 'com.fasterxml.jackson.core:jackson-databind:2.9.6',
             rxjava: 'io.reactivex.rxjava2:rxjava:2.2.0',
             rxandroid: 'io.reactivex.rxjava2:rxandroid:2.0.2',
+            constraintlayout: 'com.android.support.constraint:constraint-layout:1.1.3',
     ]
     buildVars =[
             proguard: false
