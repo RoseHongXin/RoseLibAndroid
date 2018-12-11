@@ -108,4 +108,7 @@
     <string name="HX_pageDataProblemReoperate">页面数据错误，请重新操作！</string>
     <string name="HX_logoutHint">退出登陆提示</string>
 
+    <string name="HX_send">发送</string>
+
+
 </resources>

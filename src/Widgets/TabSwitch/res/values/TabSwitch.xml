@@ -2,8 +2,8 @@
 <resources>
 
     <dimen name="TabSwitch_corner">6dp</dimen>
-    <color name="TabSwitch_bg_default">@android:color/white</color>
-    <color name="TabSwitch_bg_check">@color/colorAccent</color>
+    <color name="TabSwitch_bg_default">?android:attr/colorPrimary</color>
+    <color name="TabSwitch_bg_check">?android:attr/colorAccent</color>
     <dimen name="TabSwitch_height">32dp</dimen>
     <dimen name="TabSwitch_border">1px</dimen>
     <dimen name="TabSwitch_border_bold">1dp</dimen>

@@ -30,11 +30,17 @@ public abstract class ApSingleSelectBase<Vh extends VhBase<D>, D> extends ApBase
         mSelectedPos = position;
         notifyItemChanged(position);
     }
-    public boolean selected(D dto){
-        return mSelectedData == dto;
+    public boolean selected(D dto, int position){
+        return mSelectedData == dto && mSelectedPos == position;
     }
     public D selected(){
         return mSelectedData;
     }
 
+    public void putSelected(D dto, int position){
+        if(!selected(dto, position)) click(dto, position);
+    }
+    public void removeSelected(D dto, int position){
+        if(selected(dto, position)) click(dto, position);
+    }
 }

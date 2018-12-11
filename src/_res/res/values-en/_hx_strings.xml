@@ -110,4 +110,7 @@
     <string name="HX_pageDataProblemReoperate">Data problem, please press back and reenter !</string>
     <string name="HX_logoutHint">Logout hint</string>
 
+    <string name="HX_send">Send</string>
+
+
 </resources>
