@@ -85,6 +85,7 @@
     <string name="HX_delete">Delete</string>
     <string name="HX_upload">Upload</string>
     <string name="HX_upload_now">Upload Now</string>
+    <string name="HX_uploading">Uploading ......</string>
     <string name="HX_original_password">Original Password</string>
     <string name="HX_new_password">New Password</string>
 
@@ -108,5 +109,8 @@
     <string name="HX_logoutConfirm">Logout current account NOW ?</string>
     <string name="HX_pageDataProblemReoperate">Data problem, please press back and reenter !</string>
     <string name="HX_logoutHint">Logout hint</string>
+
+    <string name="HX_send">Send</string>
+
 
 </resources>

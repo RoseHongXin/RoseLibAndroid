@@ -38,10 +38,14 @@ public class DMenuBU extends DialogFragment{
     private List<String> mTexts;
     private Activity mAct;
     private @ColorRes int mCancelBtnColor = -1;
-    private @ColorRes int mItemTextColor = -1;
+    private @ColorRes List<Integer> mItemTextColors;
 
     public static DMenuBU obtain() {
         return new DMenuBU();
+    }
+
+    public DMenuBU(){
+        mItemTextColors = new ArrayList<>();
     }
 
     @Nullable
@@ -90,7 +94,7 @@ public class DMenuBU extends DialogFragment{
         if(colors.length == 1) mCancelBtnColor = colors[0];
         else if(colors.length >= 2){
             mCancelBtnColor = colors[0];
-            mItemTextColor = colors[1];
+            for(int i = 1; i < colors.length; i++) mItemTextColors.add(colors[i]);
         }
         return this;
     }
@@ -121,13 +125,16 @@ public class DMenuBU extends DialogFragment{
                 mCb.onSelect(position, data);
                 dismiss();
             });
-            if(mItemTextColor != -1) _tv_menuItem.setTextColor(getResources().getColor(mItemTextColor));
         }
         @Override
         public void bind(String data, int position) {
             super.bind(data, position);
             _v_menuItemDivider.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
             _tv_menuItem.setText(data);
+            if(!mItemTextColors.isEmpty()) {
+                @ColorRes int colorRes = position < mItemTextColors.size() ? mItemTextColors.get(position) : mItemTextColors.get(mItemTextColors.size() - 1);
+                _tv_menuItem.setTextColor(getResources().getColor(colorRes));
+            }
         }
     }
     

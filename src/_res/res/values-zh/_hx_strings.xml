@@ -84,6 +84,7 @@
     <string name="HX_delete">删除</string>
     <string name="HX_upload">上传</string>
     <string name="HX_upload_now">立即上传</string>
+    <string name="HX_uploading">正在上传 ......</string>
     <string name="HX_original_password">原密码</string>
     <string name="HX_new_password">新密码</string>
 
@@ -106,5 +107,8 @@
     <string name="HX_logoutConfirm">确认退出当前登录账号?</string>
     <string name="HX_pageDataProblemReoperate">页面数据错误，请重新操作！</string>
     <string name="HX_logoutHint">退出登陆提示</string>
+
+    <string name="HX_send">发送</string>
+
 
 </resources>

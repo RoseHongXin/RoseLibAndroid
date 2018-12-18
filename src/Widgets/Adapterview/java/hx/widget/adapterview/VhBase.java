@@ -3,6 +3,7 @@ package hx.widget.adapterview;
 import android.app.Activity;
 import android.support.annotation.CallSuper;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.StringRes;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -39,5 +40,9 @@ public class VhBase<T>  extends RecyclerView.ViewHolder  {
 
     public T getData(){
         return data;
+    }
+
+    protected String getString(@StringRes int res, Object ... params){
+        return mAct == null ? "" : mAct.getString(res, params);
     }
 }
