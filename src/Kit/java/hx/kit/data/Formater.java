@@ -3,6 +3,8 @@ package hx.kit.data;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -85,6 +87,34 @@ public class Formater {
         String[] arr = str.split(separator);
         List<String> list = java.util.Arrays.asList(arr);
         return list;
+    }
+
+
+    //由出生日期获得年龄
+    public static int getAge(Date birthDay){
+        return birthDay == null ? 0 : getAge(birthDay.getTime());
+    }
+    //由出生日期获得年龄
+    public static int getAge(long birthDay){
+        Calendar cal = Calendar.getInstance();
+        int yearNow = cal.get(Calendar.YEAR);
+        int monthNow = cal.get(Calendar.MONTH);
+        int dayOfMonthNow = cal.get(Calendar.DAY_OF_MONTH);
+        cal.setTimeInMillis(birthDay);
+
+        int yearBirth = cal.get(Calendar.YEAR);
+        int monthBirth = cal.get(Calendar.MONTH);
+        int dayOfMonthBirth = cal.get(Calendar.DAY_OF_MONTH);
+
+        int age = yearNow - yearBirth;
+        if (monthNow <= monthBirth) {
+            if (monthNow == monthBirth) {
+                if (dayOfMonthNow < dayOfMonthBirth) age--;
+            }else{
+                age--;
+            }
+        }
+        return age;
     }
 
 }

@@ -32,3 +32,14 @@ float fromX = -(batWidth + barSpace + groupSpace / 2);
 //        xAxis.setSpaceMax(0);
 以上方法,都无效果 ????
 ```
+
+
+```
+一般某些聊天的SDK都依赖于libsqlite.so（环信、融云），不过由于这个包从来没有变化，使用的是系统默认提供的(/system/lib/)。在Android 6.x及以下的平台可以运行。
+Android7.x执行更严格的安全检查，禁止使用系统目录的内容。所以如果希望在7.x以上版本，需要把系统目录的libsqlite.so拷贝出来，也放在自己app对应指令目录下。
+---------------------
+作者：倾锋落颖花
+来源：CSDN
+原文：https://blog.csdn.net/java04/article/details/54617151
+版权声明：本文为博主原创文章，转载请附上博文链接！
+```
