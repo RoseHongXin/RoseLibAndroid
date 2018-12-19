@@ -40,6 +40,7 @@ public class PermissionImpl {
         return ActivityCompat.checkSelfPermission(act, permission) == PackageManager.PERMISSION_DENIED;
     }
     public static boolean checkIfGranted(Context ctx, String permission){
+        if(ctx == null) return false;
         return ContextCompat.checkSelfPermission(ctx, permission) == PackageManager.PERMISSION_GRANTED;
     }
     public static boolean checkIfGranted(Context ctx, String ... permissions){

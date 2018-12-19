@@ -27,7 +27,7 @@ public class SoftRecyclerView extends RecyclerView {
         super(context, attrs, defStyle);
         mSoftTouchDelegate = new ViewTouchDelegate(this);
         LayoutManager.Properties properties = RecyclerView.LayoutManager.getProperties(context, attrs, defStyle, 0);
-        direction(properties.orientation);
+        direction(properties.orientation == RecyclerView.HORIZONTAL ? ViewTouchDelegate.HORIZONTAL : ViewTouchDelegate.VERTICAL);
     }
 
     public void direction(int orientation){

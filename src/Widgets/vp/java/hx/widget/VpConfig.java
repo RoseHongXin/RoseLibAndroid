@@ -1,108 +1,99 @@
 package hx.widget;
 
-import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.ViewGroup;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
  * Created by rose on 16-8-23.
  */
 
-public class VpConfig {
+public class VpConfig extends IVpInterface{
 
-    private ViewPager _vp_;
-    private TabLayout _tl_;
-    private List<Fragment> mFras;
-    private List<Fragment> mFrasBak;
-    private FragmentManager mFraMgr;
-    private int mOffScreenSize;
-    private int mPageCount;
-    private int mCurrentPagePosition;
-    private boolean mInitiated = false;
+    private IVpInterface mVpInterface;
 
-    public VpConfig(){ }
-
-    public VpConfig view(ViewPager _vp_){
-        this._vp_ = _vp_;
-        return this;
+    public VpConfig() {
+        this(true);
     }
-    public <F extends Fragment> VpConfig fras(List<F> fras){
-        this.mFras = new ArrayList<>(fras);
-        this.mFrasBak = new ArrayList<>(mFras);
-        return this;
-    }
-    public <F extends Fragment> VpConfig fras(F ... fras){
-        return fras(Arrays.asList(fras));
-    }
-    public VpConfig manager(FragmentManager fraMgr){
-        this.mFraMgr = fraMgr;
-        return this;
-    }
-    public VpConfig offScreenSize(int size){
-        this.mOffScreenSize = size;
-        return this;
-    }public VpConfig pageCount(int count){
-        this.mPageCount = count;
-        if(mInitiated){
-            if(_vp_.getAdapter() != null)_vp_.getAdapter().notifyDataSetChanged();
-            initiate(count);
+    public VpConfig(boolean vp4Fra) {
+        if(vp4Fra) {
+            mVpInterface = new VpConfig4Fra(this);
+        }else {
+            mVpInterface = new VpConfig4Lh(this);
         }
+    }
+
+    @Override
+    public VpConfig view(ViewPager _vp_) {
+        mVpInterface.view(_vp_);
         return this;
     }
 
-    public VpConfig create(){
-        _create();
+    @Override
+    public VpConfig objects(Object ... fras) {
+        mVpInterface.objects(fras);
         return this;
     }
 
-    private void _create(){
-        if(mOffScreenSize == 0) mOffScreenSize = 1;
-        if(mPageCount == 0) mPageCount = mFras.size();
-
-        _vp_.setAdapter(new FragmentStatePagerAdapter(mFraMgr) {
-            @Override
-            public Fragment getItem(int position) {
-                return mFras.get(position);
-            }
-            @Override
-            public int getCount() {
-                return mPageCount;
-            }
-            @NonNull
-            @Override
-            public Object instantiateItem(ViewGroup container, int position) {
-                Fragment fragment = (Fragment)super.instantiateItem(container,position);
-                mFraMgr.beginTransaction().show(fragment).commit();
-                return fragment;
-            }
-            @Override
-            public void destroyItem(ViewGroup container, int position, Object object) {
-//                super.destroyItem(container, position, object);
-                Fragment fragment = mFras.get(position);
-                mFraMgr.beginTransaction().hide(fragment).commit();
-            }
-        });
-        _vp_.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) { }
-            @Override public void onPageSelected(int position) {
-                mCurrentPagePosition = position;
-            }
-            @Override public void onPageScrollStateChanged(int state) { }
-        });
-        _vp_.setOffscreenPageLimit(mOffScreenSize);
-        mCurrentPagePosition = 0;
-        initiate(mPageCount);
+    @Override
+    public VpConfig manager(FragmentManager fraMgr) {
+        mVpInterface.manager(fraMgr);
+        return this;
     }
 
-    protected void initiate(int pageCount){
-        mInitiated = true;
+    @Override
+    public VpConfig offScreenSize(int size) {
+        mVpInterface.offScreenSize(size);
+        return this;
     }
+
+    @Override
+    public VpConfig pageCount(int count) {
+        mVpInterface.pageCount(count);
+        return this;
+    }
+
+    @Override
+    public VpConfig create() {
+        mVpInterface.create();
+        return this;
+    }
+
+    @Override
+    protected void initiate(int pageCount) {
+    }
+
+    @Override
+    protected void onPageShow(int idx) {
+    }
+
+    @Override
+    protected Object getObject(int idx) {
+        mVpInterface.getObject(idx);
+        return this;
+    }
+
+    @Override
+    protected List<Object> getObjects() {
+        return mVpInterface.getObjects();
+    }
+
+    public Fragment getFra(int idx){
+        Object obj = mVpInterface.getObject(idx);
+        if(obj instanceof Fragment) return (Fragment) obj;
+        return null;
+    }
+    public List<Fragment> getFras(){
+        List<Object> objects = mVpInterface.getObjects();
+        List<Fragment> fras = new ArrayList<>();
+        for(Object obj : objects){
+            if(obj instanceof Fragment) fras.add((Fragment) obj);
+        }
+        return fras;
+    }
+
+
 }

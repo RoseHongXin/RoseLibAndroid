@@ -7,6 +7,7 @@
     <dimen name="Dialog_ItemSelect_height">160dp</dimen>
     <color name="dialog_menu_bg">#eeffffff</color>
 
+
     <style name="Dialog_Waiting" parent="Theme.AppCompat.Dialog">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
@@ -20,6 +21,21 @@
     </style>
 
     <style name="dialog"/>
+
+    <style name="dialog_pop_am" parent="@android:style/Animation">
+        <item name="android:inAnimation">@anim/pop_top_right_in</item>
+        <item name="android:outAnimation">@anim/pop_top_right_out</item>
+        <item name="android:windowEnterAnimation">@anim/pop_top_right_in</item>
+        <item name="android:windowExitAnimation">@anim/pop_top_right_out</item>
+    </style>
+
+    <style name="dialog_bottom_up" parent="@android:style/Animation">
+        <item name="android:inAnimation">@anim/dlg_bottom_in</item>
+        <item name="android:outAnimation">@anim/dlg_bottom_out</item>
+        <item name="android:windowEnterAnimation">@anim/dlg_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/dlg_bottom_out</item>
+    </style>
+
     <style name="dialog.container">
         <item name="android:layout_height">wrap_content</item>
         <!--<item name="android:minHeight">128dp</item>-->
@@ -46,13 +62,15 @@
         <item name="android:paddingLeft">@dimen/l_p_small</item>
         <item name="android:paddingRight">@dimen/l_p_small</item>
     </style>
-    <style name="dialog.tv_confirm">
-        <item name="android:id">@id/_bt_confirm</item>
+    <style name="dialog._4bt">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/bt_height</item>
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:gravity">center</item>
         <item name="android:text">@string/HX_confirm</item>
+    </style>
+    <style name="dialog.tv_confirm" parent="dialog._4bt">
+        <item name="android:id">@id/_bt_confirm</item>
     </style>
     <style name="dialog.tv_hint">
         <item name="android:layout_width">wrap_content</item>

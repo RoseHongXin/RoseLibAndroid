@@ -23,6 +23,7 @@ public abstract class ApBase<Vh extends VhBase<D>, D> extends RecyclerView.Adapt
     protected List<D> mData = new ArrayList<D>();
     public Activity mAct;
     public RecyclerView _rv_;
+    protected RecyclerView.LayoutManager mLayoutMgr;
 
     public abstract Vh getVh(Activity act);
     @CallSuper protected void bind(Vh holder, D data, int position){
@@ -32,9 +33,9 @@ public abstract class ApBase<Vh extends VhBase<D>, D> extends RecyclerView.Adapt
      public ApBase(Activity act, RecyclerView _rv_){
         this.mAct = act;
         this._rv_ = _rv_;
-         LinearLayoutManager layoutManager = new LinearLayoutManager(mAct);
-         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-         this._rv_.setLayoutManager(layoutManager);
+         mLayoutMgr = new LinearLayoutManager(mAct);
+         ((LinearLayoutManager)mLayoutMgr).setOrientation(LinearLayoutManager.VERTICAL);
+         this._rv_.setLayoutManager(mLayoutMgr);
          this._rv_.setAdapter(this);
     }
 

@@ -120,6 +120,18 @@
 -dontwarn com.fasterxml.jackson.databind.**
 -keep class com.fasterxml.jackson.databind.** { *; }
 
+#Umeng
+-dontshrink
+-dontoptimize
+-dontwarn com.google.android.maps.**
+-dontwarn android.webkit.WebView
+-dontwarn com.umeng.**
+-dontwarn com.tencent.weibo.sdk.**
+-dontwarn com.facebook.**
+-keep public class javax.**
+-keep public class android.webkit.**
+-dontwarn android.support.v4.**
+
 
 ##  HXAnroidLib
 -keep public class hx.components.**{*;}

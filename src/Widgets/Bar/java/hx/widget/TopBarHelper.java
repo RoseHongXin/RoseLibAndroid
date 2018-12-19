@@ -2,6 +2,7 @@ package hx.widget;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
@@ -64,6 +65,12 @@ public class TopBarHelper implements ITopBarOpt{
     }
 
     @Override
+    public void color(@ColorInt int color) {
+        if(_tv_tbTitle != null) _tv_tbTitle.setTextColor(color);
+        if(_tv_tbRight != null) _tv_tbRight.setTextColor(color);
+    }
+
+    @Override
     public String title() {
         String title = "";
         try {
@@ -78,7 +85,7 @@ public class TopBarHelper implements ITopBarOpt{
     @Override
     public void icon(@DrawableRes int iconRes, View.OnClickListener listener){
         if(_iv_tbRight != null){
-            _iv_tbRight.setImageResource(iconRes);
+            icon(iconRes);
             _iv_tbRight.setOnClickListener(listener);
         }
 
@@ -86,16 +93,16 @@ public class TopBarHelper implements ITopBarOpt{
 
     @Override
     public void icon(int iconRes) {
-        if(_iv_tbRight != null && iconRes != 0){
-            _iv_tbRight.setImageResource(iconRes);
-            _tv_tbRight.setVisibility(View.GONE);
+        if(_iv_tbRight != null){
+            if(iconRes != 0) _iv_tbRight.setImageResource(iconRes);
+            _iv_tbRight.setVisibility(iconRes != 0 ? View.VISIBLE : View.GONE);
         }
     }
 
     @Override
     public void text(String text, View.OnClickListener listener){
         if(_tv_tbRight != null){
-            _tv_tbRight.setText(text);
+            text(text);
             _tv_tbRight.setOnClickListener(listener);
         }
 
@@ -107,9 +114,9 @@ public class TopBarHelper implements ITopBarOpt{
 
     @Override
     public void text(String text) {
-        if(_tv_tbRight != null && !TextUtils.isEmpty(text)){
+        if(_tv_tbRight != null){
             _tv_tbRight.setText(text);
-            _iv_tbRight.setVisibility(View.GONE);
+            _tv_tbRight.setVisibility(TextUtils.isEmpty(text) ? View.GONE : View.VISIBLE);
         }
     }
 

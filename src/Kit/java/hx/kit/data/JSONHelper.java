@@ -2,16 +2,15 @@ package hx.kit.data;
 
 import android.text.TextUtils;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.DeserializationConfig;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.type.CollectionType;
 
@@ -34,11 +33,16 @@ public class JSONHelper {
         mObjMapper.configure(JsonParser.Feature.IGNORE_UNDEFINED, true);
         mObjMapper.configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);
         mObjMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_FIELD_NAMES, true);
+        mObjMapper.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
         mObjMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
         mObjMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+//        mObjMapper.configure(DeserializationFeature.UNWRAP_ROOT_VALUE, true);
+//        mObjMapper.configure(SerializationFeature.WRAP_ROOT_VALUE, true);
         mObjMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
-        SerializationConfig serializationConfig = mObjMapper.getSerializationConfig();
-        DeserializationConfig deserializationConfig = mObjMapper.getDeserializationConfig();
+//        mObjMapper.configure(MapperFeature.USE_BASE_TYPE_AS_DEFAULT_IMPL, true);
+//        mObjMapper.configure(MapperFeature.ALLOW_COERCION_OF_SCALARS, false);
+//        SerializationConfig serializationConfig = mObjMapper.getSerializationConfig();
+//        DeserializationConfig deserializationConfig = mObjMapper.getDeserializationConfig();
 
     }
     public static ObjectMapper mapper(){
@@ -57,17 +61,18 @@ public class JSONHelper {
         }
         return null;
     }
+
+    @Deprecated
     public static <D> D parse(Object obj, Class<D> clz){
         obj = obj == null ? "" : obj;
+        D d = null;
         try {
-//            mapper().readValue(toJSONStr(obj), clz);
-            return mapper().readValue(obj instanceof String ? (String) obj : toJSONStr(obj), clz);
-        } catch (JsonProcessingException e) {
+            d = mapper().readValue(obj instanceof String ? (String) obj : toJSONStr(obj), clz);
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            d = JSON.parseObject(obj instanceof String ? (String) obj : toJSONStr(obj), clz);
         }
-        return null;
+        return d;
     }
 
     public static <D> List<D> parseArray(Object obj, Class<D> clz){

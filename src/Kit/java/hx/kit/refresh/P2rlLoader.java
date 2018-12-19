@@ -1,6 +1,7 @@
 package hx.kit.refresh;
 
 import android.app.Activity;
+import android.support.annotation.ColorRes;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,14 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
 
 public abstract class P2rlLoader {
 
+    private final static int TIME_UI_REFRESH_DELAY = 200;
+
     private PtrFrameLayout _p2rl_;
     private ViewGroup _vg_target;
     private Activity mAct;
     private Fragment mFra;
     private PtrFrameLayout.Mode mMode = null;
+    private @ColorRes int mTxtColor = -1;
 
     public P2rlLoader host(Activity act){
         this.mAct = act;
@@ -42,6 +46,10 @@ public abstract class P2rlLoader {
         this.mMode = mode;
         return this;
     }
+    public P2rlLoader color(@ColorRes int color){
+        this.mTxtColor = color;
+        return this;
+    }
     public P2rlLoader create(){
         initPtrRefresh();
         return this;
@@ -49,6 +57,9 @@ public abstract class P2rlLoader {
 
 
     private void initPtrRefresh() {
+        if(_p2rl_ instanceof PtrClassicFrameLayout && mTxtColor != -1){
+            ((PtrClassicFrameLayout)_p2rl_).textColor(_p2rl_.getResources().getColor(mTxtColor));
+        }
         _p2rl_.setMode(mMode == null ? PtrFrameLayout.Mode.REFRESH : mMode);
         if(_p2rl_ instanceof PtrClassicFrameLayout) ((PtrClassicFrameLayout) _p2rl_).setLastUpdateTimeRelateObject(mAct == null ? (mFra == null ? new Object() : mFra) : mAct);
         _p2rl_.setPtrHandler(new PtrDefaultHandler() {
@@ -64,10 +75,11 @@ public abstract class P2rlLoader {
 
     }
 
+    public void refreshIdle(){
+        if(_p2rl_ != null)  _p2rl_.postDelayed(() -> _p2rl_.refreshComplete(), TIME_UI_REFRESH_DELAY);
+    }
     public void refresh(){
-        if(_p2rl_ != null){
-            _p2rl_.postDelayed(() -> _p2rl_.autoRefresh(), 200);
-        }
+        _p2rl_.postDelayed(() -> _p2rl_.autoRefresh(), TIME_UI_REFRESH_DELAY);
     }
 
     protected abstract void onRefresh();

@@ -2,16 +2,15 @@ package hx.widget;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -42,7 +41,10 @@ public class DInput extends DialogFragment{
 
     private TextView _tv_anchor;
     private Callback mCb;
-    private String mText, mHint, mBtTxt, mTitle;
+    private String mText;
+    private Object mBtTxt;
+    private Object mTitle;
+    private Object mHint;
     private int mInputType = -1;
     private FragmentManager mFraManager;
     private boolean mFillAfterInput;
@@ -57,12 +59,12 @@ public class DInput extends DialogFragment{
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.d_input, container, true);
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         _l_title = view.findViewById(R.id._l_title);
         _tv_title = (TextView) view.findViewById(R.id._tv_title);
@@ -83,20 +85,32 @@ public class DInput extends DialogFragment{
     @Override
     public void onResume() {
         super.onResume();
-        _l_title.setVisibility(TextUtils.isEmpty(mTitle) ? View.GONE : View.VISIBLE);
-        _tv_title.setText(mTitle);
-        _bt_editConfirm.setText(TextUtils.isEmpty(mBtTxt) ? getString(R.string.HX_confirm) : mBtTxt);
+        boolean hasTitle = mTitle != null && ((mTitle instanceof Integer && (int)mTitle != 0) || (mTitle instanceof String && !TextUtils.isEmpty((String)mTitle)));
+        _l_title.setVisibility(hasTitle ? View.VISIBLE : View.GONE);
+        if(hasTitle){
+            if(mTitle instanceof Integer) _tv_title.setText((int)mTitle);
+            if(mTitle instanceof String) _tv_title.setText((String)mTitle);
+        }
+        if(mBtTxt == null){
+            _bt_editConfirm.setText(R.string.HX_confirm);
+        }else {
+            if(mBtTxt instanceof Integer) _bt_editConfirm.setText((int)mBtTxt);
+            if(mBtTxt instanceof String) _bt_editConfirm.setText((String)mBtTxt);
+        }
         if(mInputType != -1) _et_edit.setInputType(mInputType);
         if(!TextUtils.isEmpty(mText)) _et_edit.setText(mText);
-        _et_edit.setHint(mHint);
-        _et_edit.setSelection(_et_edit.getText().length());
+        if(mHint != null) {
+            if(mHint instanceof Integer) _et_edit.setHint((int)mHint);
+            if(mHint instanceof String) _et_edit.setHint((String)mHint);
+        }
+        _et_edit.setSelection(_et_edit.getText() == null ? 0 : _et_edit.getText().length());
         _et_edit.requestFocus();
     }
 
     public void _bt_editConfirm(){
-        String text = _et_edit.getText().toString();
+        String text = _et_edit.getText() == null ? "" : _et_edit.getText().toString();
         if(!TextUtils.isEmpty(text)) {
-            if(mFillAfterInput) _tv_anchor.setText(text);
+            if(mFillAfterInput && _tv_anchor != null) _tv_anchor.setText(text);
             if(mCb != null) mCb.onConfirm(text, this);
             if(mAutoDismiss) dismiss();
         }
@@ -119,7 +133,7 @@ public class DInput extends DialogFragment{
             mDialog.mFraManager = ((AppCompatActivity)act).getSupportFragmentManager();
         }
 
-        public Builder title(String title){
+        public Builder title(Object title){
             mDialog.mTitle = title;
             return this;
         }
@@ -127,7 +141,7 @@ public class DInput extends DialogFragment{
             mDialog.mText = text;
             return this;
         }
-        public Builder hint(String hint){
+        public Builder hint(Object hint){
             mDialog.mHint = hint;
             return this;
         }

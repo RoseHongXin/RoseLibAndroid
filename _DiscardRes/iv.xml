@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="iv">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="iv.required">
+        <item name="android:layout_marginRight">2dp</item>
+        <item name="android:src">@mipmap/i_hint_horn</item>
+    </style>
+    <style name="iv.dropdown">
+        <item name="android:src">@mipmap/i_drop_down</item>
+        <item name="android:contentDescription">dropdown</item>
+    </style>
+    <style name="iv.go">
+        <item name="android:src">@mipmap/i_go</item>
+        <item name="android:contentDescription">go</item>
+    </style>
+
+    <style name="iv.eye">
+        <item name="android:layout_marginLeft">@dimen/l_margin_horizontal</item>
+        <item name="android:src">@mipmap/i_eye_invisible</item>
+    </style>
+
+</resources>

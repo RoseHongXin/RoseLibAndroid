@@ -11,11 +11,13 @@ import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+import hx.kit.log.Log4Android;
 import hx.widget.dialog.DWaiting;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * Created by RoseHongXin on 2018/8/1 0001.
@@ -28,8 +30,10 @@ public class OkRequest extends RequestBase {
     public OkRequest(Context ctx) {
         super(ctx);
         mMainHandler = new Handler();
+        HttpLoggingInterceptor bodyLogger = new HttpLoggingInterceptor(message -> Log4Android.v(TAG, message));
+        bodyLogger.setLevel(HttpLoggingInterceptor.Level.BODY);
+        mOkHttpClient = mOkHttpBuilder.addInterceptor(bodyLogger).build();
     }
-
 
     public <D> void request(Activity act, Request request, Callback<D> callback) {
         request(act, request, null, callback);
@@ -62,7 +66,7 @@ public class OkRequest extends RequestBase {
 //                                    return ((ParameterizedType)callback.getClass().getGenericInterfaces()[0]).getActualTypeArguments()[0];
                                 }
                             });
-                            mMainHandler.post(() -> {callback.onSuccess(resp);});
+                            mMainHandler.post(() -> {callback.onResp(resp);});
                         } catch (IOException e) {
                             e.printStackTrace();
                             mMainHandler.post(() -> {});
@@ -83,7 +87,7 @@ public class OkRequest extends RequestBase {
 
 
     public static class Callback<D>{
-        public void onSuccess(D resp){}
+        public void onResp(D resp){}
         public void onFailed(String exception){}
         public void onFinish(){}
     }

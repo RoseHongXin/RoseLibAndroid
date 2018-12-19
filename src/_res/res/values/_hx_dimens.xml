@@ -20,10 +20,10 @@
     <dimen name="l_p_h">16dp</dimen>
     <dimen name="l_p_h_middle">20dp</dimen>
     <dimen name="l_p_h_larger">24dp</dimen>
-    <dimen name="l_p_v">8dp</dimen>
-    <dimen name="l_p_v_middle">12dp</dimen>
-    <dimen name="l_p_v_larger">16dp</dimen>
-    <dimen name="l_p_middle">10dp</dimen>
+    <dimen name="l_p_v">10dp</dimen>
+    <dimen name="l_p_v_middle">14dp</dimen>
+    <dimen name="l_p_v_larger">18dp</dimen>
+    <dimen name="l_p_middle">12dp</dimen>
     <dimen name="l_p_small">6dp</dimen>
     <dimen name="l_p_little">4dp</dimen>
     <dimen name="l_p_min">2dp</dimen>

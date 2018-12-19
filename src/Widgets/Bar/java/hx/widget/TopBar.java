@@ -2,6 +2,7 @@ package hx.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.StringRes;
 import android.support.design.widget.AppBarLayout;
@@ -9,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -26,30 +26,35 @@ public class TopBar extends AppBarLayout implements ITopBarOpt{
     public TextView _tv_tbTitle;
     public ImageView _iv_tbRight;
     public TextView _tv_tbRight;
-    public @DrawableRes int mNavIcon;
+    public @DrawableRes
+    int mNavIcon;
 
     public TopBar(Context context) {
-        super(context);
+        this(context, null);
     }
 
     public TopBar(Context context, AttributeSet attrs) {
         super(context, attrs);
-        TypedArray ta =  context.obtainStyledAttributes(attrs, R.styleable.TopBar);
-        String title = ta.getString(R.styleable.TopBar_tb_title);
-        int navDrawable = ta.getResourceId(R.styleable.TopBar_tb_navigation, 0);
-        String text = ta.getString(R.styleable.TopBar_tb_text);
-        int icon = ta.getResourceId(R.styleable.TopBar_tb_icon, 0);
-        ta.recycle();
         LayoutInflater.from(context).inflate(R.layout.l_topbar_tb, this, true);
         mTopBarHelper = TopBarHelper.obtain(this);
         _tb_ = mTopBarHelper._tb_;
         _tv_tbTitle = mTopBarHelper._tv_tbTitle;
         _iv_tbRight = mTopBarHelper._iv_tbRight;
         _tv_tbRight = mTopBarHelper._tv_tbRight;
-        title(title);
-        navigation(navDrawable);
-        text(text);
-        icon(icon);
+        if(attrs != null) {
+            TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TopBar);
+            String title = ta.getString(R.styleable.TopBar_tb_title);
+            int navDrawable = ta.getResourceId(R.styleable.TopBar_tb_navigation, 0);
+            String text = ta.getString(R.styleable.TopBar_tb_text);
+            int icon = ta.getResourceId(R.styleable.TopBar_tb_icon, 0);
+            int color = ta.getColor(R.styleable.TopBar_tb_color, context.getResources().getColor(R.color.tb_txt));
+            ta.recycle();
+            title(title);
+            navigation(navDrawable);
+            text(text);
+            icon(icon);
+            color(color);
+        }
     }
 
     @Override
@@ -63,11 +68,17 @@ public class TopBar extends AppBarLayout implements ITopBarOpt{
     }
 
     @Override
+    public void color(@ColorInt int color) {
+        mTopBarHelper.color(color);
+    }
+
+    @Override
     public String title() {
         return mTopBarHelper.title();
     }
 
-    public void icon(@DrawableRes int iconRes, View.OnClickListener listener){
+    @Override
+    public void icon(@DrawableRes int iconRes, OnClickListener listener){
         mTopBarHelper.icon(iconRes, listener);
     }
 
@@ -76,10 +87,10 @@ public class TopBar extends AppBarLayout implements ITopBarOpt{
         mTopBarHelper.icon(iconRes);
     }
 
-    public void text(String text, View.OnClickListener listener){
+    public void text(String text, OnClickListener listener){
         mTopBarHelper.text(text, listener);
     }
-    public void text(@StringRes int strRes, View.OnClickListener listener){
+    public void text(@StringRes int strRes, OnClickListener listener){
         mTopBarHelper.text(strRes, listener);
     }
 

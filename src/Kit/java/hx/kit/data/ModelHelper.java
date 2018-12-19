@@ -33,6 +33,7 @@ public class ModelHelper {
             String sName = sensitive ? sf.getName() : sf.getName().toLowerCase();
             Class sType= sf.getType();
             for(Field df : dstFields){
+                df.setAccessible(true);
                 String dName = sensitive ? df.getName() : df.getName().toLowerCase();
                 Class dType= df.getType();
                 if(TextUtils.equals(dName, sName)){
@@ -95,13 +96,14 @@ public class ModelHelper {
             for (Field df : dstFields) {
                 String dName = sensitive ? df.getName() : df.getName().toLowerCase();
                 Class dType = df.getType();
-                for(Method m : srcMethods){
-                    String sName = sensitive ? m.getName() : m.getName().toLowerCase();
+                df.setAccessible(true);
+                for(Method sm : srcMethods){
+                    String sName = sensitive ? sm.getName() : sm.getName().toLowerCase();
                     sName = sName.substring(sName.lastIndexOf('$') + 1);
-                    Class sType = m.getReturnType();
+                    Class sType = sm.getReturnType();
                     if(TextUtils.equals(sName, dName)){
-                        m.setAccessible(true);
-                        Object value = m.invoke(src);
+                        sm.setAccessible(true);
+                        Object value = sm.invoke(src);
                         if(dType == sType) {
                             df.set(dst, value);
                         }else if(sType == String.class){
@@ -118,9 +120,7 @@ public class ModelHelper {
                     }
                 }
             }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return dst;

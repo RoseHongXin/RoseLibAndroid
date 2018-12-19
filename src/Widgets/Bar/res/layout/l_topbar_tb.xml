@@ -6,14 +6,15 @@
     android:id="@id/_tb_"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    tools:layout_height="48dp"
     android:background="?attr/colorPrimary"
+    android:elevation="0dp"
     app:layout_scrollFlags="scroll|enterAlways"
     app:popupTheme="@style/tb_menu_style"
-    android:elevation="0dp"
     app:title=""
     app:titleTextColor="@color/tb_txt"
     tools:background="@color/colorPrimary"
+    tools:layout_height="48dp"
+    tools:navigationIcon="@android:drawable/ic_lock_lock"
     tools:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <TextView
@@ -23,31 +24,40 @@
         android:layout_gravity="center"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="@color/tb_txt"
+        android:textColor="?android:textColorPrimary"
+        android:textSize="@dimen/tb_txt_title"
         android:textStyle="bold"
-        tools:textColor="@android:color/white"
-        android:textSize="@dimen/tb_txt_title"/>
-        <!--tools:text="title"/>-->
+        tools:text="Title"
+        tools:textColor="@color/tb_txt"/>
+    <!--tools:text="title"/>-->
 
     <ImageView
         android:id="@id/_iv_tbRight"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:layout_marginRight="@dimen/l_m_h"/>
-        <!--tools:src="@android:drawable/ic_menu_search"/>-->
+        android:scaleType="centerInside"
+        android:paddingLeft="@dimen/l_p_h"
+        android:paddingRight="@dimen/l_p_h"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:src="@android:drawable/ic_lock_lock"/>
 
     <TextView
         android:id="@id/_tv_tbRight"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/l_p_h"
+        android:paddingRight="@dimen/l_p_h"
+        android:gravity="center"
         android:layout_gravity="end"
-        android:layout_marginRight="@dimen/l_m_h"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textColor="@color/tb_txt"
-        tools:textColor="@android:color/white"
-        android:textSize="@dimen/tb_txt"/>
-        <!--tools:text="button"/>-->
+        android:textColor="?android:textColorPrimary"
+        android:textSize="@dimen/tb_txt"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:text="tbRightText"
+        tools:textColor="@android:color/white"/>
 
 </android.support.v7.widget.Toolbar>
