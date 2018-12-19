@@ -16,3 +16,4 @@ ActivityManager am = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE)
 
 > Switch的click事件返回是,onCheckChange事件已经回调了,所以isChecked()是切换后的状态
 > TextPaint 不需要考虑textWidth, textHeight只需要关注fontMetrics.bottom
+> WiFi状态WifiManager.WIFI_STATE_ENABLED之后,需要一个时间间隔才能读到ssid,否则会读到<unknown ssid>
