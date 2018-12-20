@@ -2,8 +2,11 @@ package hx.widget.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -19,6 +22,7 @@ import android.widget.TextView;
 
 import com.cncoderx.wheelview.Wheel3DView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import hx.lib.R;
@@ -32,6 +36,7 @@ public class DItemBUConfirm extends DialogFragment{
     private Wheel3DView _whv_items;
     private Callback mCb;
     private CharSequence[] mTexts;
+    private Drawable[] mIcons;
     private int[] mValues;
     private String mDefValue;
     private Activity mAct;
@@ -118,6 +123,20 @@ public class DItemBUConfirm extends DialogFragment{
     public DItemBUConfirm texts(String[] texts){
         this.mTexts = texts;
         return this;
+    }
+    public DItemBUConfirm icons(List<Drawable> icons){
+        Drawable[] drawables = new Drawable[icons.size()];
+        for(int i = 0; i < icons.size(); i++) drawables[i] = icons.get(i);
+        return icons(drawables);
+    }
+    public DItemBUConfirm icons(Drawable ... icons){
+        this.mIcons = icons;
+        return this;
+    }
+    public DItemBUConfirm icons(Context ctx, @DrawableRes int ... icons){
+        List<Drawable> drawables = new ArrayList<>();
+        for(int i : icons) drawables.add(ctx.getDrawable(i));
+        return icons(drawables);
     }
     public DItemBUConfirm textFormat(TextFormatCallback callback){
         this.mTextFormatCallback = callback;
