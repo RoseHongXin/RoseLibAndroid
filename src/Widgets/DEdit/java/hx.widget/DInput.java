@@ -76,7 +76,8 @@ public class DInput extends DialogFragment{
         DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
         Window window = dialog.getWindow();
         if(window != null) {
-            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+//            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         }
         dialog.setOnDismissListener(dialog1 -> ViewKit.hideInputMgr(_et_edit));
