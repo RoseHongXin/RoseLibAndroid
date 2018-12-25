@@ -5,7 +5,7 @@
     <style name="AdapterView.Item">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:background">@color/_bg</item>
+        <item name="android:background">@color/windowBackground</item>
     </style>
     <style name="AdapterView.Item.paddingV">
         <item name="contentPaddingBottom">@dimen/l_p_v</item>

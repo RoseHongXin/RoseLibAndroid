@@ -11,8 +11,9 @@
     <color name="textColorEmphasize">#FE6000</color>
     <color name="windowBackground">#EFEFEF</color>
     <!--<color name="navigationBarColor">@color/colorPrimaryDark</color>-->
+    <!--<color name="_bg">@android:color/white</color>-->
+    <color name="_bg">@color/windowBackground</color>
 
-    <color name="_bg">@android:color/white</color>
     <color name="_line">#9F9F9F</color>
     <color name="_disabled">#C1C1C1</color>
     <color name="_default">@color/_line</color>
