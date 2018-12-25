@@ -41,14 +41,14 @@ public class DialogHelper {
     private static void config(Dialog dialog, int gravity, int paddingLeft, int paddingTop, int paddingRight, int paddingBottom){
         Window window = dialog.getWindow();
         if (window != null) {
-            window.setGravity(gravity); //可设置dialog的位置
+            window.setGravity(gravity);
             window.getDecorView().setPadding(paddingLeft, paddingTop, paddingRight, paddingBottom);
             WindowManager.LayoutParams lp = window.getAttributes();
             DisplayMetrics metrics = new DisplayMetrics();
             window.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-//            lp.width = metrics.widthPixels;   //设置宽度充满屏幕
+            lp.width = metrics.widthPixels;
 //            lp.height = metrics.heightPixels / 3;
-            lp.width = WindowManager.LayoutParams.MATCH_PARENT;   //设置宽度充满屏幕
+//            lp.width = WindowManager.LayoutParams.MATCH_PARENT;
             window.setAttributes(lp);
         }
     }
