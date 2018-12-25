@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  */
 public class Formater {
 
-    private static final String EMAIL_FORMAT = "^([a-zA-Z0-9_\\.\\-])+(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})$";
+    private static final String EMAIL_FORMAT = "^[A-Za-z0-9_.-\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
     //    public static final String MOBILE_FORMAT = "^(13[0-9]|15[^4]|17[0,6,7,8]|18[0-9]|14[5,7])\\d{8}$";
     private static final Pattern MOBILE_PATTERN = Pattern.compile("1[3456789][0-9]{9}");
     public static final String PHONE_FORMAT = "0\\d{2,3}-?\\d{5,9}|0\\d{2,3}-?\\d{5,9}|\\d{8}";
