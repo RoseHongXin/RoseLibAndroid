@@ -3,6 +3,8 @@ package hx.kit.data;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -22,9 +24,14 @@ public class Formater {
     private static final String ID_FORMAT = "^[1-9][0-9]{5}(19[0-9]{2}|200[0-9]|2010)(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])[0-9]{3}[0-9xX]$";
     private static final Pattern SPECIAL_CHARS_PATTERN = Pattern.compile("[ _`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\n|\r|\t");
 
+    public static final String PHONE_MASK_FORMAT = "(\\d{3})\\d{4}(\\d{4})";
+
     public static boolean isMobile(String mobile){
 //        return Pattern.compile(MOBILE_FORMAT).matcher(mobile).matches();
         return MOBILE_PATTERN.matcher(mobile).matches();
+    }
+    public static String phoneMask(String phone){
+        return TextUtils.isEmpty(phone) ? phone : phone.replaceAll(PHONE_MASK_FORMAT, "$1****$2");
     }
 
     public static boolean isIdNo(String idNo){
@@ -80,6 +87,34 @@ public class Formater {
         String[] arr = str.split(separator);
         List<String> list = java.util.Arrays.asList(arr);
         return list;
+    }
+
+
+    //由出生日期获得年龄
+    public static int getAge(Date birthDay){
+        return birthDay == null ? 0 : getAge(birthDay.getTime());
+    }
+    //由出生日期获得年龄
+    public static int getAge(long birthDay){
+        Calendar cal = Calendar.getInstance();
+        int yearNow = cal.get(Calendar.YEAR);
+        int monthNow = cal.get(Calendar.MONTH);
+        int dayOfMonthNow = cal.get(Calendar.DAY_OF_MONTH);
+        cal.setTimeInMillis(birthDay);
+
+        int yearBirth = cal.get(Calendar.YEAR);
+        int monthBirth = cal.get(Calendar.MONTH);
+        int dayOfMonthBirth = cal.get(Calendar.DAY_OF_MONTH);
+
+        int age = yearNow - yearBirth;
+        if (monthNow <= monthBirth) {
+            if (monthNow == monthBirth) {
+                if (dayOfMonthNow < dayOfMonthBirth) age--;
+            }else{
+                age--;
+            }
+        }
+        return age;
     }
 
 }

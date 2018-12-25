@@ -4,7 +4,9 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.support.v4.view.ViewCompat;
+import android.view.MotionEvent;
 import android.view.ViewGroup;
+import android.view.animation.BounceInterpolator;
 import android.view.animation.DecelerateInterpolator;
 
 /**
@@ -13,7 +15,7 @@ import android.view.animation.DecelerateInterpolator;
 
 class ViewTouchDelegate extends SoftTouchDelegate{
 
-    private static final int ANIMATION_DURATION = 1600;
+    private static final int ANIMATION_DURATION = 1000;
     private static final int ANIMATION_DELAY = 50;
 
     private AnimatorSet mReleaseAnims;
@@ -69,13 +71,16 @@ class ViewTouchDelegate extends SoftTouchDelegate{
         ObjectAnimator rightAnim = ObjectAnimator.ofInt(_vg_, "right", _vg_.getRight(), mRectOriginal.right);
         mReleaseAnims = new AnimatorSet();
         mReleaseAnims.playTogether(leftAnim, rightAnim);
+        mReleaseAnims.setInterpolator(new BounceInterpolator());
         start();
     }
     private void startVerticalAnim(){
+        if(!mTouchStateImpl.isVerticalDrag()){ return; }
         ObjectAnimator topAnim = ObjectAnimator.ofInt(_vg_, "top", _vg_.getTop(), mRectOriginal.top);
         ObjectAnimator bottomAnim = ObjectAnimator.ofInt(_vg_, "bottom", _vg_.getBottom(), mRectOriginal.bottom);
         mReleaseAnims = new AnimatorSet();
         mReleaseAnims.playTogether(topAnim, bottomAnim);
+        mReleaseAnims.setInterpolator(new BounceInterpolator());
         start();
     }
 

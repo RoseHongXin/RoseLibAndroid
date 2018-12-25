@@ -11,11 +11,29 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-/**
- * Created by Rose on 11/3/2016.
- */
 
-public class BmCompress {
+/**
+ * 图片压缩
+ * Created by RoseHongXin on 2016/8/8.
+ */
+public class BitmapCompress {
+
+    public static Bitmap comp(String srcPath, int[] size) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        Bitmap bitmap = BitmapFactory.decodeFile(srcPath, options);
+        int newWidth = size[0];
+        int newHeight = size[1];
+        int widthScale = options.outWidth / size[0];
+        int heightScale = options.outHeight / size[1];
+        options.outWidth = newWidth;
+        options.outHeight = newHeight;
+        options.inJustDecodeBounds = false;
+        options.inPreferredConfig = Bitmap.Config.RGB_565;//降低图片从ARGB888到RGB565
+        options.inSampleSize = Math.max(widthScale, heightScale);
+        bitmap = BitmapFactory.decodeFile(srcPath, options);
+        return bitmap;
+    }
 
     private Bitmap byQuality(Bitmap image) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -125,4 +143,6 @@ public class BmCompress {
         bitmap = BitmapFactory.decodeStream(isBm,null, newOpts);
         return byQuality(bitmap);//压缩好比例大小后再进行质量压缩
     }
+
+
 }

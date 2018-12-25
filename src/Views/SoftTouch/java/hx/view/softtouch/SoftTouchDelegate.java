@@ -5,12 +5,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.LinearLayout;
 
 /**
  * Created by RoseHongXin on 2017/6/23 0023.
  */
 
 public class SoftTouchDelegate{
+
+    public static final int HORIZONTAL = 0;
+    public static final int VERTICAL = 1;
 
     public static final int LEFT = 0x11;
     public static final int RIGHT = 0x22;
@@ -89,10 +93,10 @@ public class SoftTouchDelegate{
                 int yDelta = (int) ((y - mLastY) * mTouchRatio + 0.5f);
                 int xDelta = (int) ((x - mLastX) * mTouchRatio + 0.5f);
 //                if (mOrientation == RecyclerView.HORIZONTAL && (mTouchThreshold == TOUCH_THRESHOLD_DISABLE || Math.abs(xDelta) > mTouchThreshold) && mTouchStateImpl.horizontalOffset(xDelta)) {
-                if (mOrientation == RecyclerView.HORIZONTAL && mTouchStateImpl.horizontalOffset(xDelta)) {
+                if (mOrientation == HORIZONTAL && mTouchStateImpl.horizontalOffset(xDelta)) {
                     mTouchListener.beforeTouchMove();
                     mTouchListener.horizontalTouch(mLastX, x, xDelta);
-                } else if (mOrientation == RecyclerView.VERTICAL && mTouchStateImpl.verticalOffset(yDelta)) {
+                } else if (mOrientation == VERTICAL && mTouchStateImpl.verticalOffset(yDelta)) {
                     mTouchListener.beforeTouchMove();
                     mTouchListener.verticalTouch(mLastY, y, yDelta);
                 }

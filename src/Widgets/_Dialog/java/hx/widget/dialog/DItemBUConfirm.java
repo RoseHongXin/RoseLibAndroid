@@ -2,8 +2,11 @@ package hx.widget.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -14,10 +17,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.cncoderx.wheelview.Wheel3DView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import hx.lib.R;
@@ -31,10 +36,12 @@ public class DItemBUConfirm extends DialogFragment{
     private Wheel3DView _whv_items;
     private Callback mCb;
     private CharSequence[] mTexts;
+    private Drawable[] mIcons;
     private int[] mValues;
     private String mDefValue;
     private Activity mAct;
     private TextView _tv_anchor;
+    private TextFormatCallback mTextFormatCallback;
 
     public static DItemBUConfirm obtain() {
         return new DItemBUConfirm();
@@ -43,20 +50,33 @@ public class DItemBUConfirm extends DialogFragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Dialog dialog = getDialog();
+        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
+        Window window = dialog.getWindow();
+        if(window != null) {
+            window.setWindowAnimations(R.style.dialog_bottom_up);
+            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.dimAmount = 0.0f;
+            window.setAttributes(params);
+        }
         return inflater.inflate(R.layout.d_item_bu_confirm, container, true);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Dialog dialog = getDialog();
-        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
-        Window window = dialog.getWindow();
-        if(window != null) {
-            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-        }
         _whv_items = (Wheel3DView) view.findViewById(R.id._whv_items);
-        _whv_items.setEntries(mTexts);
+        if(mTextFormatCallback == null) {
+            _whv_items.setEntries(mTexts);
+        }else{
+            CharSequence[] formattedTexts = new CharSequence[mTexts.length];
+            for(int i = 0; i < mTexts.length; i++){
+                CharSequence text = mTextFormatCallback.onFormat(mTexts[i]);
+                formattedTexts[i] = text;
+            }
+            _whv_items.setEntries(formattedTexts);
+        }
         int defIdx = -1;
         if(mDefValue != null){
             for(int i = 0; i < mTexts.length; i++){
@@ -104,6 +124,24 @@ public class DItemBUConfirm extends DialogFragment{
         this.mTexts = texts;
         return this;
     }
+    public DItemBUConfirm icons(List<Drawable> icons){
+        Drawable[] drawables = new Drawable[icons.size()];
+        for(int i = 0; i < icons.size(); i++) drawables[i] = icons.get(i);
+        return icons(drawables);
+    }
+    public DItemBUConfirm icons(Drawable ... icons){
+        this.mIcons = icons;
+        return this;
+    }
+    public DItemBUConfirm icons(Context ctx, @DrawableRes int ... icons){
+        List<Drawable> drawables = new ArrayList<>();
+        for(int i : icons) drawables.add(ctx.getDrawable(i));
+        return icons(drawables);
+    }
+    public DItemBUConfirm textFormat(TextFormatCallback callback){
+        this.mTextFormatCallback = callback;
+        return this;
+    }
     public DItemBUConfirm defaultValue(String value){
         mDefValue = value;
         return this;
@@ -130,5 +168,8 @@ public class DItemBUConfirm extends DialogFragment{
 
     public interface Callback{
         void onSelect(int idx, String text);
+    }
+    public interface TextFormatCallback{
+        CharSequence onFormat(CharSequence chars);
     }
 }

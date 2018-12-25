@@ -3,10 +3,13 @@ package hx.widget;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import hx.lib.R;
 
 /**
  * Created by RoseHongXin on 2017/9/12 0012.
@@ -72,7 +75,15 @@ public class TabSwitchHelper {
             tv.setSelected(true);
             int idx = idx(id);
             if(mFraContainerId != -1 && mFraMgr != null && mFras != null && idx != -1 && idx < mFras.length){
-                mFraMgr.beginTransaction().replace(mFraContainerId, mFras[idx]).commit();
+                int formerIdx = idx(mSelectedId);
+                Fragment formerFra = formerIdx >= 0 && formerIdx < mFras.length ? mFras[formerIdx] : null;
+                Fragment fra = mFras[idx];
+                FragmentTransaction transaction = mFraMgr.beginTransaction();
+                if(formerFra != null) transaction.hide(formerFra);
+                if(mFraMgr.findFragmentByTag(fra.getClass().getSimpleName()) == null){
+                    transaction.add(mFraContainerId, fra, fra.getClass().getSimpleName());
+                }
+                transaction.show(fra).commit();
             }
             if(mListener != null) mListener.onSelected(v.getId(), idx, tv);
             mSelectedId = id;

@@ -37,7 +37,7 @@ import hx.lib.R;
 public class DImagePicker {
 
     private static final int CAMERA_REQ_CODE = 5002;
-    private static final int IMAGE_REQ_CODE = 5001;
+    public static final int IMAGE_REQ_CODE = 5001;
 
     private Activity mAct;
     private Callback mCb;
@@ -70,6 +70,17 @@ public class DImagePicker {
     public DImagePicker fileProvider(String provider){
         mFileProvider = provider;
         return this;
+    }
+
+    public void fromGallery4OneImg(){
+        if(!PermissionImpl.checkIfGranted(mAct, Manifest.permission.READ_EXTERNAL_STORAGE)){
+            PermissionImpl.require(mAct, Manifest.permission.READ_EXTERNAL_STORAGE);
+            return;
+        }
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        mAct.startActivityForResult(Intent.createChooser(intent,"Select Picture"), IMAGE_REQ_CODE);
     }
 
     public DImagePicker show() {
@@ -135,6 +146,10 @@ public class DImagePicker {
             }
         }
         return paths;
+    }
+    public static String onActivityResult4OneImg(Context ctx, int requestCode, int resultCode, Intent data) {
+        List<String> paths = onActivityResult(ctx, requestCode, resultCode, data);
+        return paths.isEmpty() ? "" : paths.get(0);
     }
 
     /*

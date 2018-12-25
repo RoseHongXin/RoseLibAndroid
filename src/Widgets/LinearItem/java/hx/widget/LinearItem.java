@@ -202,8 +202,8 @@ public class LinearItem extends FrameLayout {
         textL = ta.getString(R.styleable.LinearItem_textLeft); if(!TextUtils.isEmpty(textL)) textL(textL);
         textR = ta.getString(R.styleable.LinearItem_textRight); if(!TextUtils.isEmpty(textR)) textR(textR);
 
-        colorL = ta.getColor(R.styleable.LinearItem_colorTextLeft, NOTHING_SET); if(colorL != NOTHING_SET) colorL(colorL);
-        colorR = ta.getColor(R.styleable.LinearItem_colorTextRight, NOTHING_SET); if(colorR != NOTHING_SET) colorR(colorR);
+        colorL = ta.getColor(R.styleable.LinearItem_colorTextLeft, getResources().getColor(R.color.textColorPrimary)); colorL(colorL);
+        colorR = ta.getColor(R.styleable.LinearItem_colorTextRight, getResources().getColor(R.color.textColorPrimary)); colorR(colorR);
         textSizeL = ta.getDimensionPixelSize(R.styleable.LinearItem_sizeTextLeft, NOTHING_SET); if(textSizeL != NOTHING_SET) textSizeL(textSizeL);
         textSizeR = ta.getDimensionPixelSize(R.styleable.LinearItem_sizeTextRight, NOTHING_SET); if(textSizeR != NOTHING_SET) textSizeR(textSizeR);
 

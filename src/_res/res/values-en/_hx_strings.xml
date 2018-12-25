@@ -11,8 +11,8 @@
     <string name="HX_confirm_finish_current_page">Exit current page now?</string>
     <string name="HX_finish_while_editing_confirm">Information\'s not saved, Exit now？</string>
     <string name="HX_click_again_to_home">Click again and switch to HOME!</string>
-    <string name="HX_socket_timeout">Request timeout</string>
-    <string name="HX_invalid_http_request">Request invalid</string>
+    <string name="HX_socketTimeout">Request timeout</string>
+    <string name="HX_invalidHttpRequest">Request invalid</string>
 
     <string name="HX_hour">Hour</string>
     <string name="HX_minute">Minute</string>
@@ -22,14 +22,14 @@
     <string name="HX_day">Day</string>
 
     <string name="HX_phone_number">Phone Number</string>
-    <string name="HX_phone_prefix_china">+86</string>
+    <string name="HX_phonePrefix4China">+86</string>
     <string name="HX_password">Password</string>
     <string name="HX_login">Login</string>
     <string name="HX_register">Register</string>
     <string name="HX_forget_password">Forget Password</string>
     <string name="HX_modify_password">Reset Password</string>
     <string name="HX_captcha">Captcha</string>
-    <string name="HX_obtain_captcha">Obtain Captcha</string>
+    <string name="HX_obtainCaptcha">Obtain Captcha</string>
     <string name="HX_show">Show</string>
     <string name="HX_hide">Hide</string>
     <string name="HX_jump_over">Jump Over</string>
@@ -40,6 +40,8 @@
     <string name="HX_personal_profile">Personal Profile</string>
     <string name="HX_add">Add</string>
     <string name="HX_nickname">Nickname</string>
+    <string name="HX_cellPhoneNum">Cell-Phone</string>
+    <string name="HX_email">Email</string>
     <string name="HX_address">Address</string>
     <string name="HX_refresh">Refresh</string>
     <string name="HX_sync">Synchronize</string>
@@ -66,6 +68,7 @@
     <string name="HX_phoneInputWrongHint">Please input correct phone number</string>
     <string name="HX_passwordInputHint">Please input password</string>
     <string name="HX_loginFailed">Login Failed</string>
+    <string name="HX_loginTimeout">Login Timeout</string>
     <string name="HX_cameraPermissionNotGranted">Camera unauthorized, please grant camera permission at the System Settings.</string>
     <string name="HX_accountLogoutConfirm">Logout The Account Now?</string>
     <string name="HX_pleaseCheckNetConnectState">Please check network state!</string>
@@ -82,6 +85,7 @@
     <string name="HX_delete">Delete</string>
     <string name="HX_upload">Upload</string>
     <string name="HX_upload_now">Upload Now</string>
+    <string name="HX_uploading">Uploading ......</string>
     <string name="HX_original_password">Original Password</string>
     <string name="HX_new_password">New Password</string>
 
@@ -92,6 +96,7 @@
     <string name="HX_newPassInputHint">Please input new password</string>
     <string name="HX_selectHint">Please select [%1$s]</string>
     <string name="HX_dataRequesting">Data requesting ......</string>
+    <string name="HX_dataRequestFailed">Data request failed</string>
     <string name="HX_dataUploadFailed">Data upload failed</string>
 
     <string name="HX_inputAlphabetNumberFilter">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
@@ -104,5 +109,8 @@
     <string name="HX_logoutConfirm">Logout current account NOW ?</string>
     <string name="HX_pageDataProblemReoperate">Data problem, please press back and reenter !</string>
     <string name="HX_logoutHint">Logout hint</string>
+
+    <string name="HX_send">Send</string>
+
 
 </resources>

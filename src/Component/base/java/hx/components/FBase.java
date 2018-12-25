@@ -30,7 +30,7 @@ public abstract class FBase extends Fragment {
 
     private View _v_layout;
 
-    @LayoutRes public abstract int sGetLayoutRes();
+    @LayoutRes public abstract int sGetLayout();
 
     public void expire(int expire){
         if(mExpireThreshold <= 0) this.mExpireThreshold = PAGE_DEFAULT_EXPIRE;
@@ -56,7 +56,7 @@ public abstract class FBase extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        _v_layout = inflater.inflate(sGetLayoutRes(), container, false);
+        _v_layout = inflater.inflate(sGetLayout(), container, false);
         ButterKnife.bind(this, _v_layout);
         return _v_layout;
     }
