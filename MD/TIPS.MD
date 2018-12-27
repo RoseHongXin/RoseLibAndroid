@@ -16,6 +16,9 @@ ActivityManager am = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE)
 
 > Switch的click事件返回是,onCheckChange事件已经回调了,所以isChecked()是切换后的状态
 > TextPaint 不需要考虑textWidth, textHeight只需要关注fontMetrics.bottom
+> 设置fullscreen的activity,通过设置windowBackground没有效果.
+> level-list.xml 必须从大到小排列.
+> Module 的proguard不能穿透到嵌套的Module中(即App引用Lib库,要额外的把proguard贴到App的proguard文件中)
 
 ###### MPAndroid
 ```
