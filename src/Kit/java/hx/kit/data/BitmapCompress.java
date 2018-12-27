@@ -29,6 +29,7 @@ public class BitmapCompress {
         options.outWidth = newWidth;
         options.outHeight = newHeight;
         options.inJustDecodeBounds = false;
+        options.inPreferredConfig = Bitmap.Config.RGB_565;//降低图片从ARGB888到RGB565
         options.inSampleSize = Math.max(widthScale, heightScale);
         bitmap = BitmapFactory.decodeFile(srcPath, options);
         return bitmap;
