@@ -5,15 +5,12 @@
             android:fillViewport="true"
             xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
+    <LinearLayout style="@style/dialog.container"
         android:paddingBottom="@dimen/l_p_v"
         android:paddingLeft="@dimen/l_p_h"
         android:paddingRight="@dimen/l_p_h"
-        android:paddingTop="@dimen/l_p_v">
+        android:paddingTop="@dimen/l_p_v"
+        android:gravity="start">
 
         <LinearLayout android:id="@+id/_l_title" style="@style/Fra" android:layout_width="wrap_content">
             <TextView
@@ -21,6 +18,7 @@
                 android:textColor="@color/colorAccent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="start"
                 android:textStyle="italic"
                 tools:text="标题"/>
             <View style="@style/line" android:background="@color/colorAccent"/>

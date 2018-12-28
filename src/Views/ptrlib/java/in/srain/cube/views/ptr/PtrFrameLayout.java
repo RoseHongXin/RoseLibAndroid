@@ -884,6 +884,7 @@ public class PtrFrameLayout extends ViewGroup {
     }
 
     public void justShowRefreshHint(){
+        mLoadingStartTime = System.currentTimeMillis();
         mStatus = PTR_STATUS_LOADING;
         mFlag |= FLAG_AUTO_REFRESH_AT_ONCE;
         if (mPtrUIHandlerHolder.hasHandler()) {
