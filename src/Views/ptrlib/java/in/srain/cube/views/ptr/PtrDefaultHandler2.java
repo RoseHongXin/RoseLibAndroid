@@ -6,7 +6,7 @@ import android.widget.ScrollView;
 
 public abstract class PtrDefaultHandler2 extends PtrDefaultHandler implements PtrHandler2 {
 
-    private boolean canChildScrollDown(View view) {
+    private boolean canChildScrollingDown(View view) {
         if (view instanceof AbsListView) {
             final AbsListView absListView = (AbsListView) view;
             return absListView.getChildCount() > 0
@@ -33,11 +33,11 @@ public abstract class PtrDefaultHandler2 extends PtrDefaultHandler implements Pt
      * @return
      */
     public boolean checkContentCanBePulledUp(PtrFrameLayout frame, View content, View header) {
-        return !canChildScrollDown(content);
+        return !canChildScrollingDown(content);
     }
 
     @Override
     public boolean checkCanDoLoadMore(PtrFrameLayout frame, View content, View footer) {
-        return canChildScrollDown(content) && footer != null;
+        return !canChildScrollingDown(content) && footer != null;
     }
 }

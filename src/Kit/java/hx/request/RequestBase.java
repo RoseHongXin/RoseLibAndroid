@@ -34,7 +34,8 @@ public class RequestBase {
         mOkHttpBuilder = new OkHttpClient.Builder()
                 .readTimeout(time(), TimeUnit.SECONDS)
                 .writeTimeout(time(), TimeUnit.SECONDS)
-                .connectTimeout(time(), TimeUnit.SECONDS);
+                .connectTimeout(time(), TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true);
         mObjMapper = new ObjectMapper();
         mObjMapper.configure(JsonParser.Feature.IGNORE_UNDEFINED, true);
         mObjMapper.configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);

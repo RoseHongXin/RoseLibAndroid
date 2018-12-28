@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.cncoderx.wheelview.Wheel3DView;
@@ -79,6 +80,16 @@ public class DDateTimeSelect extends DialogFragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Dialog dialog = getDialog();
+        dialog.setCancelable(true);
+        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
+        Window window = dialog.getWindow();
+        if(window != null) {
+            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.dimAmount = 0.2f;
+            window.setAttributes(params);
+        }
         return inflater.inflate(R.layout.d_full_datetime, container, true);
     }
 
@@ -86,13 +97,6 @@ public class DDateTimeSelect extends DialogFragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Dialog dialog = getDialog();
-        dialog.setCancelable(true);
-        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
-        Window window = dialog.getWindow();
-        if(window != null) {
-            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-        }
 
         _li_year = view.findViewById(R.id._li_year);
         _li_month = view.findViewById(R.id._li_month);

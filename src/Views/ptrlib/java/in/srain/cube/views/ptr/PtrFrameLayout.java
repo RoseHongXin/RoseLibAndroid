@@ -145,6 +145,7 @@ public class PtrFrameLayout extends ViewGroup {
 //        mPagingTouchSlop = conf.getScaledTouchSlop();
         mPagingTouchSlop = conf.getScaledTouchSlop() / 2;
         mVelocityTracker = VelocityTracker.obtain();
+        mVelocityTracker.computeCurrentVelocity(1000);
     }
 
     private Mode getModeFromIndex(int index) {
@@ -407,7 +408,10 @@ public class PtrFrameLayout extends ViewGroup {
         mVelocityTracker.addMovement(e);
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                if(isRefreshing()) return false;
+                if(isRefreshing()){
+                    if (DEBUG) { PtrCLog.v(LOG_TAG, "onInterceptTouchEvent: block this ACTION_DOWN"); }
+                    return false;
+                }
                 mHasSendCancelEvent = false;
                 mPtrIndicator.onPressDown(e.getX(), e.getY());
                 break;
@@ -415,25 +419,22 @@ public class PtrFrameLayout extends ViewGroup {
                 mLastMoveEvent = e;
                 mPtrIndicator.onMove(e.getX(), e.getY());
                 float offsetX = mPtrIndicator.getOffsetX();
-                float offsetY = mPtrIndicator.getOffsetY();
+                float offsetY = -mPtrIndicator.getOffsetY();        //mPtrIndicator 计算的是结束坐标减去开始坐标
 
-                boolean canMoveUp = mPtrIndicator.isHeader() && mPtrIndicator.hasLeftStartPosition(); // if the header is showing
-                boolean canMoveDown = _l_footer != null && !mPtrIndicator.isHeader() && mPtrIndicator.hasLeftStartPosition(); // if the footer is showing
+                boolean headerShowing = mPtrIndicator.isHeader() && mPtrIndicator.hasLeftStartPosition();
+                boolean footerShowing = _l_footer != null && !mPtrIndicator.isHeader() && mPtrIndicator.hasLeftStartPosition();
                 boolean canHeaderMoveDown = mPtrHandler.checkCanDoRefresh(this, mContent, _l_header) && (mMode.ordinal() & 1) > 0;
                 boolean canFooterMoveUp = mPtrHandler instanceof PtrHandler2 && ((PtrHandler2) mPtrHandler).checkCanDoLoadMore(this, mContent, _l_footer) && (mMode.ordinal() & 2) > 0;
-//                if((canMoveUp && canFooterMoveUp) || (canMoveDown && canHeaderMoveDown)){
-                if((canFooterMoveUp) || (canHeaderMoveDown)){
-                    mVelocityTracker.computeCurrentVelocity(1000);
-                    if(Math.abs(offsetY) > mPagingTouchSlop && mVelocityTracker.getYVelocity() > mPagingTouchVelocity){
+
+                if(((headerShowing || footerShowing) || (offsetY > 0 && canFooterMoveUp) || (offsetY < 0 && canHeaderMoveDown))) {
+                    if(Math.abs(offsetY) > mPagingTouchSlop) {
                         if (DEBUG) { PtrCLog.v(LOG_TAG, "onInterceptTouchEvent: ACTION_MOVE dispatch onTouchEvent."); }
-                        mVelocityTracker.clear();
                         return true;
+                    }else{
+                        if (DEBUG) { PtrCLog.v(LOG_TAG, "onInterceptTouchEvent: ACTION_MOVE touch fling."); }
                     }
-                }else{
-                    if (DEBUG) { PtrCLog.v(LOG_TAG, "onInterceptTouchEvent: block this ACTION_MOVE"); }
-                    mVelocityTracker.clear();
-                    return super.onInterceptTouchEvent(e);
                 }
+                if (DEBUG) { PtrCLog.v(LOG_TAG, "onInterceptTouchEvent: block this ACTION_MOVE"); }
         }
         return super.onInterceptTouchEvent(e);
     }
@@ -474,50 +475,37 @@ public class PtrFrameLayout extends ViewGroup {
                 float offsetX = mPtrIndicator.getOffsetX();
                 float offsetY = mPtrIndicator.getOffsetY();
 
+                boolean headerShowing = mPtrIndicator.isHeader() && mPtrIndicator.hasLeftStartPosition();
+                boolean footerShowing = _l_footer != null && !mPtrIndicator.isHeader() && mPtrIndicator.hasLeftStartPosition();
+                boolean canHeaderMoveDown = mPtrHandler.checkCanDoRefresh(this, mContent, _l_header) && (mMode.ordinal() & 1) > 0;
+                boolean canFooterMoveUp = mPtrHandler instanceof PtrHandler2 && ((PtrHandler2) mPtrHandler).checkCanDoLoadMore(this, mContent, _l_footer) && (mMode.ordinal() & 2) > 0;
                 boolean moveDown = offsetY > 0;
                 boolean moveUp = !moveDown;
-                boolean canMoveUp = mPtrIndicator.isHeader() && mPtrIndicator.hasLeftStartPosition(); // if the header is showing
-                boolean canMoveDown = _l_footer != null && !mPtrIndicator.isHeader() && mPtrIndicator.hasLeftStartPosition(); // if the footer is showing
-                boolean canHeaderMoveDown = mPtrHandler != null && mPtrHandler.checkCanDoRefresh(this, mContent, _l_header) && (mMode.ordinal() & 1) > 0;
-                boolean canFooterMoveUp = mPtrHandler != null && _l_footer != null // The footer view could be null, so need double check
-                        && mPtrHandler instanceof PtrHandler2 && ((PtrHandler2) mPtrHandler).checkCanDoLoadMore(this, mContent, _l_footer) && (mMode.ordinal() & 2) > 0;
 
                 if (DEBUG) {
-                    PtrCLog.v(LOG_TAG, "ACTION_MOVE: offsetY:%s, currentPos: %s, moveUp: %s, canMoveUp: %s, moveDown: %s: canMoveDown: %s canHeaderMoveDown: %s canFooterMoveUp: %s",
-                            offsetY, mPtrIndicator.getCurrentPosY(), moveUp, canMoveUp, moveDown, canMoveDown, canHeaderMoveDown, canFooterMoveUp);
+                    PtrCLog.v(LOG_TAG, "onTouchEvent ACTION_MOVE: offsetY:%s, currentPos: %s, moveUp: %s, canMoveUp: %s, moveDown: %s: canMoveDown: %s canHeaderMoveDown: %s canFooterMoveUp: %s",
+                            offsetY, mPtrIndicator.getCurrentPosY(), moveUp, headerShowing, moveDown, footerShowing, canHeaderMoveDown, canFooterMoveUp);
                 }
-
-                // if either the header and footer are not showing
-                if (!canMoveUp && !canMoveDown) {
-                    // disable move when header not reach top
+                if (!headerShowing && !footerShowing) {
                     if ((moveDown && !canHeaderMoveDown) || (moveUp && !canFooterMoveUp)) {
-//                        super.onInterceptTouchEvent(e);
-//                        return false;
                         if(DEBUG){ PtrCLog.i(LOG_TAG, "onTouchEvent: ignore this ACTION_MOVE."); }
                         super.onTouchEvent(e);
                         return false;
                     }
-                    // should show up header
                     if (moveDown) {
                         moveHeaderPos(offsetY);
-                        return true;
-                    }
-                    // should show up footer
-                    if (moveUp) {
+                    }else {
                         moveFooterPos(offsetY);
-                        return true;
                     }
-                }
-                // if header is showing, then no need to move footer
-                if (canMoveUp) {
-                    moveHeaderPos(offsetY);
                     return true;
                 }
-                // if footer is showing, then no need to move header
-                if (canMoveDown) {
+                if (headerShowing) {
+                    moveHeaderPos(offsetY);
+                    return true;
+                }else{
                     // When status is completed, disable pull up
                     if (mForceBackWhenComplete && mStatus == PTR_STATUS_COMPLETE) {
-//                        return super.onTouchEvent(e);
+                        return super.onTouchEvent(e);
                     } else {
                         moveFooterPos(offsetY);
                         return true;
@@ -525,7 +513,6 @@ public class PtrFrameLayout extends ViewGroup {
                 }
         }
         return super.onTouchEvent(e);
-//        return true;
     }
 
     private void moveFooterPos(float deltaY) {

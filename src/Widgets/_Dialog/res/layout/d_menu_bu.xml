@@ -20,5 +20,4 @@
         android:layout_marginTop="@dimen/l_m_v"
         android:text="@string/HX_cancel"/>
 
-
 </LinearLayout>

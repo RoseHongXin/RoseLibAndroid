@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -51,19 +52,22 @@ public class DMenuBU extends DialogFragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.d_menu_bu, container, true);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         Dialog dialog = getDialog();
         DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
         Window window = dialog.getWindow();
         if(window != null) {
             window.setWindowAnimations(R.style.dialog_menu_anim);
             window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.dimAmount = 0.0f;
+            window.setAttributes(params);
         }
+        return inflater.inflate(R.layout.d_menu_bu, container, true);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         _rv_menus = (RecyclerView) view.findViewById(R.id._rv_menus);
         ApItem adapter = new ApItem(mAct, _rv_menus);
         adapter.setData(mTexts);
