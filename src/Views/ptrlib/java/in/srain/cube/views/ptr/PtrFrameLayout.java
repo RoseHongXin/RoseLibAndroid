@@ -402,11 +402,12 @@ public class PtrFrameLayout extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent e) {
-        if (!isEnabled() || mContent == null || _l_header == null) {return super.onInterceptTouchEvent(e);}
+        if (!isEnabled() || mContent == null || _l_header == null || mPtrHandler == null) {return super.onInterceptTouchEvent(e);}
         int action = e.getAction();
         mVelocityTracker.addMovement(e);
         switch (action) {
             case MotionEvent.ACTION_DOWN:
+                if(isRefreshing()) return false;
                 mHasSendCancelEvent = false;
                 mPtrIndicator.onPressDown(e.getX(), e.getY());
                 break;
@@ -416,24 +417,22 @@ public class PtrFrameLayout extends ViewGroup {
                 float offsetX = mPtrIndicator.getOffsetX();
                 float offsetY = mPtrIndicator.getOffsetY();
 
-                boolean moveDown = offsetY > 0;
-                boolean moveUp = !moveDown;
                 boolean canMoveUp = mPtrIndicator.isHeader() && mPtrIndicator.hasLeftStartPosition(); // if the header is showing
                 boolean canMoveDown = _l_footer != null && !mPtrIndicator.isHeader() && mPtrIndicator.hasLeftStartPosition(); // if the footer is showing
-                boolean canHeaderMoveDown = mPtrHandler != null && mPtrHandler.checkCanDoRefresh(this, mContent, _l_header) && (mMode.ordinal() & 1) > 0;
-                boolean canFooterMoveUp = mPtrHandler != null && _l_footer != null // The footer view could be null, so need double check
-                        && mPtrHandler instanceof PtrHandler2 && ((PtrHandler2) mPtrHandler).checkCanDoLoadMore(this, mContent, _l_footer) && (mMode.ordinal() & 2) > 0;
-                if (!canMoveUp && !canMoveDown && ((moveDown && !canHeaderMoveDown) || (moveUp && !canFooterMoveUp))) {
+                boolean canHeaderMoveDown = mPtrHandler.checkCanDoRefresh(this, mContent, _l_header) && (mMode.ordinal() & 1) > 0;
+                boolean canFooterMoveUp = mPtrHandler instanceof PtrHandler2 && ((PtrHandler2) mPtrHandler).checkCanDoLoadMore(this, mContent, _l_footer) && (mMode.ordinal() & 2) > 0;
+//                if((canMoveUp && canFooterMoveUp) || (canMoveDown && canHeaderMoveDown)){
+                if((canFooterMoveUp) || (canHeaderMoveDown)){
+                    mVelocityTracker.computeCurrentVelocity(1000);
+                    if(Math.abs(offsetY) > mPagingTouchSlop && mVelocityTracker.getYVelocity() > mPagingTouchVelocity){
+                        if (DEBUG) { PtrCLog.v(LOG_TAG, "onInterceptTouchEvent: ACTION_MOVE dispatch onTouchEvent."); }
+                        mVelocityTracker.clear();
+                        return true;
+                    }
+                }else{
                     if (DEBUG) { PtrCLog.v(LOG_TAG, "onInterceptTouchEvent: block this ACTION_MOVE"); }
                     mVelocityTracker.clear();
                     return super.onInterceptTouchEvent(e);
-                }
-                mVelocityTracker.computeCurrentVelocity(1000);
-                if(Math.abs(offsetY) > mPagingTouchSlop && mVelocityTracker.getYVelocity() > mPagingTouchVelocity){
-//                if(Math.abs(offsetY) > mPagingTouchSlop){
-                    if (DEBUG) { PtrCLog.v(LOG_TAG, "onInterceptTouchEvent: ACTION_MOVE dispatch onTouchEvent."); }
-                    mVelocityTracker.clear();
-                    return true;
                 }
         }
         return super.onInterceptTouchEvent(e);
