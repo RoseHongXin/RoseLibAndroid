@@ -60,6 +60,18 @@ public class DInput extends DialogFragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Dialog dialog = getDialog();
+        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
+        Window window = dialog.getWindow();
+        if(window != null) {
+            window.setWindowAnimations(R.style.dialog_bottom_up);
+            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.dimAmount = 0.2f;
+            window.setAttributes(params);
+            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        }
+        dialog.setOnDismissListener(dialog1 -> ViewKit.hideInputMgr(_et_edit));
         return inflater.inflate(R.layout.d_input, container, true);
     }
 
@@ -72,15 +84,6 @@ public class DInput extends DialogFragment{
         _et_edit = (TextInputEditText)view.findViewById(R.id._et_edit);
         _bt_editConfirm = (Button) view.findViewById(R.id._bt_editConfirm);
         _bt_editConfirm.setOnClickListener(v -> _bt_editConfirm());
-        Dialog dialog = getDialog();
-        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
-        Window window = dialog.getWindow();
-        if(window != null) {
-//            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
-            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        }
-        dialog.setOnDismissListener(dialog1 -> ViewKit.hideInputMgr(_et_edit));
     }
 
     @Override
