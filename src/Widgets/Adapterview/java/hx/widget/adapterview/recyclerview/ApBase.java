@@ -71,11 +71,14 @@ public abstract class ApBase<Vh extends VhBase<D>, D> extends RecyclerView.Adapt
         notifyDataSetChanged();
     }
     public void addData(D data){
+        addData(data, getItemCount());
+    }
+    public void addData(D data, int position){
         if(mData == null) mData = new ArrayList<D>();
         if(data != null) {
-            mData.add(data);
-            notifyItemInserted(getItemCount());
-            notifyItemRangeInserted(getItemCount(), 1);
+            position = position >= 0 && position < getItemCount() ? position : getItemCount();
+            mData.add(position, data);
+            notifyItemInserted(position);
         }
     }
     public List<D> getData(){
@@ -93,7 +96,7 @@ public abstract class ApBase<Vh extends VhBase<D>, D> extends RecyclerView.Adapt
 
     public void remove(int position){
         try {
-            if (mData != null && mData.size() > position) mData.remove(position);
+            if (mData != null && mData.size() > position && position >= 0) mData.remove(position);
             notifyItemRemoved(position);
             if(mData != null && position != mData.size()){ // 如果移除的是最后一个，忽略
                 notifyItemRangeChanged(position, mData.size() - position);
