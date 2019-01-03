@@ -21,6 +21,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import hx.kit.log.Log4Android;
 import hx.kit.view.ViewKit;
 import hx.lib.R;
 import hx.widget.dialog.DialogHelper;
@@ -123,6 +124,16 @@ public class DInput extends DialogFragment{
     public DInput show(){
         show(mFraManager, TAG);
         return this;
+    }
+
+    @Override
+    public void dismiss() {
+        try {
+            if (getActivity() != null && !getActivity().isFinishing() && !getActivity().isDestroyed()){
+                super.dismiss();
+            }
+        }
+        catch (Exception e){ Log4Android.w(this, "show exception: " + e.getMessage()); }
     }
 
     public static class Builder{

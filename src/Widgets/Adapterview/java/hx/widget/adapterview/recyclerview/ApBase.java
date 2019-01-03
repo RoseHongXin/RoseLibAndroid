@@ -5,6 +5,7 @@ import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
@@ -22,12 +23,16 @@ public abstract class ApBase<Vh extends VhBase<D>, D> extends RecyclerView.Adapt
 
     protected List<D> mData = new ArrayList<D>();
     public Activity mAct;
+    public View _v_dataEmptyHint;
     public RecyclerView _rv_;
     protected RecyclerView.LayoutManager mLayoutMgr;
 
     public abstract Vh getVh(Activity act);
     @CallSuper protected void bind(Vh holder, D data, int position){
         holder.bind(data, position);
+    }
+    public void ifDataEmptyHintView(View _v_){
+        _v_dataEmptyHint = _v_;
     }
 
      public ApBase(Activity act, RecyclerView _rv_){
@@ -62,6 +67,9 @@ public abstract class ApBase<Vh extends VhBase<D>, D> extends RecyclerView.Adapt
         if(mData == null) mData = new ArrayList<D>();
         else mData.clear();
         if(data != null) mData.addAll(data);
+        if(_v_dataEmptyHint != null){
+            _v_dataEmptyHint.setVisibility(mData.isEmpty() ? View.VISIBLE : View.GONE);
+        }
         notifyDataSetChanged();
     }
 

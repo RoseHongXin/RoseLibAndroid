@@ -59,7 +59,7 @@ public class DMenuBU extends DialogFragment{
             window.setWindowAnimations(R.style.dialog_menu_anim);
             window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
             WindowManager.LayoutParams params = window.getAttributes();
-            params.dimAmount = 0.0f;
+            params.dimAmount = 0.2f;
             window.setAttributes(params);
         }
         return inflater.inflate(R.layout.d_menu_bu, container, true);

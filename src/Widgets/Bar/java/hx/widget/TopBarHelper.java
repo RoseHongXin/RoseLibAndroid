@@ -74,10 +74,8 @@ public class TopBarHelper implements ITopBarOpt{
     public String title() {
         String title = "";
         try {
-            if (_tv_tbTitle != null) {
-                title = _tv_tbTitle.getText().toString();
-            }
-            if (_tb_ != null) title = _tb_.getTitle().toString();
+            if (_tv_tbTitle != null) { title = _tv_tbTitle.getText().toString(); }
+            if (TextUtils.isEmpty(title) && _tb_ != null) title = _tb_.getTitle().toString();
         }catch (Exception e){}
         return title;
     }
