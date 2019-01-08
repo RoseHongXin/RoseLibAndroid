@@ -60,7 +60,7 @@ dependencies {
     api libraries.supportPercnet
     api libraries.recyclerviewv7
     api libraries.butterknife
-//    annotationProcessor libraries.butterknifeCompiler
+    annotationProcessor libraries.butterknifeCompiler
     api libraries.fastjson
 //    api libraries.fastjsonAndroid
     api libraries.rxjava

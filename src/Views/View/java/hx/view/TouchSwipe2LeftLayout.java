@@ -53,14 +53,16 @@ public class TouchSwipe2LeftLayout extends LinearLayout{
         mScroller = new Scroller(getContext(), new DecelerateInterpolator());
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         mClickSlop = mTouchSlop / 4;
+        mAnchorShowThreshold = mTouchSlop;
+        mAnchorHideThreshold = mTouchSlop;
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        _v_anchorLeft = getChildAt(0);
         _v_anchor = getChildAt(1);
         if(_v_anchor == null) return;
-        _v_anchorLeft = getChildAt(0);
         LinearLayout.LayoutParams layoutParams = (LayoutParams) _v_anchor.getLayoutParams();
         int width = 0;
         if(_v_anchor instanceof ViewGroup){
@@ -91,8 +93,6 @@ public class TouchSwipe2LeftLayout extends LinearLayout{
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mAnchorWidth = _v_anchor.getMeasuredWidth();
-        mAnchorShowThreshold = (int) (mAnchorWidth * 0.2f);
-        mAnchorHideThreshold = mAnchorShowThreshold / 2;
     }
 
     @Override
@@ -105,8 +105,8 @@ public class TouchSwipe2LeftLayout extends LinearLayout{
             case MotionEvent.ACTION_MOVE:
                 mMoveX = ev.getRawX();
                 if (Math.abs(mMoveX - mDownX) > mTouchSlop) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                    requestDisallowInterceptTouchEvent(true);
+//                    getParent().requestDisallowInterceptTouchEvent(true);
+//                    requestDisallowInterceptTouchEvent(true);
                     return true;
                 }
                 break;
