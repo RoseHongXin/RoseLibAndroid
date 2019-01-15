@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
@@ -50,11 +51,12 @@ public class TouchSwipe2LeftLayout extends LinearLayout{
 
     public TouchSwipe2LeftLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mScroller = new Scroller(getContext(), new DecelerateInterpolator());
-        mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        mScroller = new Scroller(getContext(), new LinearInterpolator());
+        mTouchSlop = (int) (ViewConfiguration.get(context).getScaledTouchSlop() * 0.75f);
         mClickSlop = mTouchSlop / 4;
         mAnchorShowThreshold = mTouchSlop;
         mAnchorHideThreshold = mTouchSlop;
+        setClickable(true);
     }
 
     @Override
@@ -112,6 +114,7 @@ public class TouchSwipe2LeftLayout extends LinearLayout{
                 break;
         }
         return super.onInterceptTouchEvent(ev);
+//        return true;
     }
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
@@ -139,6 +142,9 @@ public class TouchSwipe2LeftLayout extends LinearLayout{
                 float x = ev.getRawX();
                 float y = ev.getRawY();
                 float xDelta = x - mDownX;
+                if(ev.getAction() == MotionEvent.ACTION_UP && Math.abs(x - mDownX) < mTouchSlop && Math.abs(y - mDownY) < mTouchSlop){
+                    return super.onTouchEvent(ev);
+                }
                 if (xDelta < 0 && getScrollX() > mAnchorShowThreshold) {
                     smoothScrollTo(mAnchorWidth, 0);
                     mAnchorShow = true;
@@ -150,7 +156,6 @@ public class TouchSwipe2LeftLayout extends LinearLayout{
                 break;
         }
         return super.onTouchEvent(ev);
-//        return true;
     }
 
     public boolean touchInAnchorBound(MotionEvent ev) {

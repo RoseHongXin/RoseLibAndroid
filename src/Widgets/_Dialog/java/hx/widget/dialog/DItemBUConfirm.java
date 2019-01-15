@@ -55,9 +55,9 @@ public class DItemBUConfirm extends DialogFragment{
         Window window = dialog.getWindow();
         if(window != null) {
             window.setWindowAnimations(R.style.dialog_bottom_up);
-            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
+            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
             WindowManager.LayoutParams params = window.getAttributes();
-            params.dimAmount = 0.0f;
+            params.dimAmount = 0.2f;
             window.setAttributes(params);
         }
         return inflater.inflate(R.layout.d_item_bu_confirm, container, true);

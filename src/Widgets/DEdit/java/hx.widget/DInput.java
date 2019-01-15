@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StyleRes;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
@@ -40,6 +41,7 @@ public class DInput extends DialogFragment{
     private TextInputEditText _et_edit;
     private Button _bt_editConfirm;
 
+    private @StyleRes int mTheme = -1;
     private TextView _tv_anchor;
     private Callback mCb;
     private String mText;
@@ -61,12 +63,13 @@ public class DInput extends DialogFragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if(getContext() != null && mTheme != -1) getContext().setTheme(mTheme);
         Dialog dialog = getDialog();
         DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
         Window window = dialog.getWindow();
-        if(window != null) {
+        if (window != null) {
             window.setWindowAnimations(R.style.dialog_bottom_up);
-            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
+            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
             WindowManager.LayoutParams params = window.getAttributes();
             params.dimAmount = 0.2f;
             window.setAttributes(params);
@@ -182,6 +185,10 @@ public class DInput extends DialogFragment{
         }
         public Builder anchor(TextView _tv_anchor){
             mDialog._tv_anchor = _tv_anchor;
+            return this;
+        }
+        public Builder theme(@StyleRes int theme){
+            mDialog.mTheme = theme;
             return this;
         }
         public Builder fillAfterInput(boolean yes){

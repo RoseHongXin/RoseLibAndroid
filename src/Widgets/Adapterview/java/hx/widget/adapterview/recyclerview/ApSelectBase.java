@@ -14,7 +14,7 @@ import hx.widget.adapterview.VhBase;
  * Created by RoseHongXin on 2018/11/20 0020.
  */
 
-public abstract class ApMultiSelectBase<Vh extends VhBase<D>, D> extends ApBase<Vh, D> {
+public abstract class ApSelectBase<Vh extends VhBase<D>, D> extends ApBase<Vh, D> {
 
     public static final int SELECT_MODE_SINGLE = 1;
     public static final int SELECT_MODE_MULTI = 2;
@@ -23,7 +23,7 @@ public abstract class ApMultiSelectBase<Vh extends VhBase<D>, D> extends ApBase<
     private List<D> mSelectedData = null;
     private Set<Integer> mSelectedPos = null;
 
-    public ApMultiSelectBase(Activity act, RecyclerView _rv_) {
+    public ApSelectBase(Activity act, RecyclerView _rv_) {
         super(act, _rv_);
         mSelectedData = new ArrayList<>();
         mSelectedPos = new ArraySet<>();
@@ -53,6 +53,10 @@ public abstract class ApMultiSelectBase<Vh extends VhBase<D>, D> extends ApBase<
     }
     public List<D> selected(){
         return mSelectedData;
+    }
+
+    public D singleSelected(){
+        return mSelectedData.isEmpty() ? null : mSelectedData.get(0);
     }
 
     public void putSelected(D dto, int position){

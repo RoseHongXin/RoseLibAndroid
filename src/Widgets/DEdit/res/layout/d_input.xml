@@ -2,15 +2,20 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
             android:fillViewport="true"
             xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout style="@style/dialog.container"
-        android:paddingBottom="@dimen/l_p_v"
+    <LinearLayout
+        style="@style/dialog.container"
+        android:fillViewport="true"
+        android:background="@color/windowBackground"
+        android:layout_gravity="bottom"
+        android:gravity="start"
         android:paddingLeft="@dimen/l_p_h"
-        android:paddingRight="@dimen/l_p_h"
         android:paddingTop="@dimen/l_p_v"
-        android:gravity="start">
+        android:paddingRight="@dimen/l_p_h"
+        android:paddingBottom="@dimen/l_p_v">
 
         <LinearLayout android:id="@+id/_l_title" style="@style/Fra" android:layout_width="wrap_content">
             <TextView
