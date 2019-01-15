@@ -21,6 +21,7 @@ ActivityManager am = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE)
 > Module 的proguard不能穿透到嵌套的Module中(即App引用Lib库,要额外的把proguard贴到App的proguard文件中)
 > WiFi状态WifiManager.WIFI_STATE_ENABLED之后,需要一个时间间隔才能读到ssid,否则会读到<unknown ssid>
 > android:textColorTertiary 作用于EditText
+>> If you are using Kotlin, replace annotationProcessor with kapt.      ----be careful----
 
 ###### MPAndroid
 ```

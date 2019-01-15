@@ -53,9 +53,9 @@
     <string name="HX_endTime">End Time</string>
     <string name="HX_open">Open</string>
     <string name="HX_close">Close</string>
-    <string name="HX_about_us">About Us</string>
-    <string name="HX_software_licensing_agreement">Software Agreement</string>
-    <string name="HX_privacy_agreement">Privacy Agreement</string>
+    <string name="HX_aboutUs">About Us</string>
+    <string name="HX_softwareLicensingAgreement">Software Agreement</string>
+    <string name="HX_privacyAgreement">Privacy Agreement</string>
     <string name="HX_exit">Exit</string>
     <string name="HX_qrcode_scan">QrCode Scan</string>
     <string name="HX_scan">Scan</string>

@@ -53,9 +53,9 @@
     <string name="HX_endTime">截止时间</string>
     <string name="HX_open">开</string>
     <string name="HX_close">关</string>
-    <string name="HX_about_us">关于我们</string>
-    <string name="HX_software_licensing_agreement">软件许可及服务协议</string>
-    <string name="HX_privacy_agreement">隐私协议</string>
+    <string name="HX_aboutUs">关于我们</string>
+    <string name="HX_softwareLicensingAgreement">软件许可及服务协议</string>
+    <string name="HX_privacyAgreement">隐私协议</string>
     <string name="HX_exit">退出</string>
     <string name="HX_qrcode_scan">二维码扫描</string>
     <string name="HX_scan">扫描</string>

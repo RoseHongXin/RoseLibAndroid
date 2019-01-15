@@ -43,7 +43,7 @@ public class RequestBase {
         mObjMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
         mObjMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
     }
-    protected int time(){
+    public int time(){
         return TIME;
     }
 
