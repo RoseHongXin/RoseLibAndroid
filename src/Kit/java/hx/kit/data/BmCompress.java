@@ -2,7 +2,7 @@ package hx.kit.data;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.IntRange;
+import androidx.annotation.IntRange;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

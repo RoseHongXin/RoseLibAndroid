@@ -1,14 +1,16 @@
 package hx.kit.view;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.tabs.TabLayout;
+
 import java.lang.reflect.Field;
+
+import androidx.annotation.NonNull;
 
 
 /**

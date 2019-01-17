@@ -1,9 +1,10 @@
 package in.srain.cube.views.ptr;
 
 import android.content.Context;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 
 public class PtrClassicFrameLayout extends PtrFrameLayout {
 

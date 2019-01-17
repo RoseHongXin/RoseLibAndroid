@@ -14,8 +14,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.FileProvider;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -25,6 +23,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import androidx.core.content.FileProvider;
+import androidx.loader.content.CursorLoader;
 import hx.components.PermissionImpl;
 import hx.kit.log.Log4Android;
 import hx.lib.R;

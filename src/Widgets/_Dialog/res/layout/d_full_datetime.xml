@@ -3,7 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               style="@style/dialog.container">
 
-    <android.support.constraint.ConstraintLayout style="@style/Fra.H">
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/Fra.H">
         <LinearLayout
             android:id="@+id/_li_year"
             style="@style/Fra"
@@ -118,7 +118,7 @@
                 android:text="@string/HX_second"/>
         </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View style="@style/line" android:layout_marginTop="@dimen/l_m_v"/>
     <LinearLayout style="@style/Fra.H">

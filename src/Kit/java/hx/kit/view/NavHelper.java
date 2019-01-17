@@ -1,13 +1,10 @@
 package hx.kit.view;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
-import android.support.design.internal.BottomNavigationItemView;
-import android.support.design.internal.BottomNavigationMenuView;
-import android.support.design.widget.BottomNavigationView;
-import android.util.Log;
 
-import java.lang.reflect.Field;
+import com.google.android.material.bottomnavigation.BottomNavigationItemView;
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 /**
  * Created by RoseHongXin on 2017/8/18 0018.

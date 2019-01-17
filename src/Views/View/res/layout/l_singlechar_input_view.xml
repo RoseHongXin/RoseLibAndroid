@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                xmlns:app="http://schemas.android.com/apk/res-auto">
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+    >
 
     <LinearLayout style="@style/Fra.H" android:layout_gravity="center_vertical">
         <LinearLayout style="@style/SingleCharInputView.item_container" android:id="@+id/_li_captchaNo1">
@@ -31,7 +31,8 @@
             <View style="@style/SingleCharInputView.item_line"/>
         </LinearLayout>
     </LinearLayout>
-    <android.support.v7.widget.AppCompatEditText
+
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/_et_singleCharInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
