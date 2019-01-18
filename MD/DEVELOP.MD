@@ -59,7 +59,7 @@ uri方式打开activity还没测试.
 > * 获取sha1
     keytool -exportcert -list -v -alias <your-key-name> -keystore <path-to-production-keystore>
 
-# .java 2 .class   , jar包class修改.
+##### .java 2 .class   , jar包class修改.
 ```
 javac -encoding UTF-8 -nowarn -cp wearable.jar;android.jar com\mediatek\wearableProfiles\WearableClientProfileManager.java
 
@@ -67,7 +67,7 @@ jar uvf wearable.jar com\mediatek\wearableProfiles\WearableClientProfileManager.
 
 ```
 
-# adb wifi 方式调试
+##### adb wifi 方式调试
 ```
 adb tcpip 5555
 adb connect 192.168.15.152  PC和设备在同一网段
@@ -76,8 +76,25 @@ adb kill-server
 adb shell 进入shell模式
 ```
 
-# SHA1
+##### SHA1
 ```
 keytool -list -v -keystore "%USERPROFILE%\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
 keytool -list -v -keystore "F:/AndroidPro/AndroidSigned" -alias smarthome -storepass dan199858 -keypass dan199858
+```
+
+###### 退出App
+```java
+//            am.killBackgroundProcesses(packageName)   //1
+//            val forceStopPackage = am.javaClass.getDeclaredMethod("forceStopPackage", String :: class.java)
+//            forceStopPackage.isAccessible = true
+//            forceStopPackage.invoke(am, packageName)  //2
+//            android.os.Process.killProcess(android.os.Process.myPid())      //4
+//            System.exit(0)                            //3
+            ///////////////////5
+//            val startMain = Intent(Intent.ACTION_MAIN)
+//            startMain.addCategory(Intent.CATEGORY_HOME)
+//            startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//            startActivity(startMain)
+//            System.exit(0)
+            ///////////////////5
 ```
