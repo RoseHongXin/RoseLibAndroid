@@ -3,14 +3,14 @@
 
     <item android:state_selected="true">
         <shape>
-            <solid android:color="@color/TabSwitch_check"/>
-            <stroke android:width="@dimen/TabSwitch_border" android:color="@color/TabSwitch_check"/>
+            <solid android:color="?android:attr/colorControlActivated"/>
+            <stroke android:width="@dimen/TabSwitch_border" android:color="?android:attr/colorControlActivated"/>
         </shape>
     </item>
     <item>
         <shape>
-            <solid android:color="@color/TabSwitch_default"/>
-            <stroke android:width="@dimen/TabSwitch_border" android:color="@color/TabSwitch_check"/>
+            <solid android:color="?android:attr/colorControlNormal"/>
+            <stroke android:width="@dimen/TabSwitch_border" android:color="?android:attr/colorControlActivated"/>
         </shape>
     </item>
 

@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="TabSwitch_default">@color/colorPrimary</color>
-    <color name="TabSwitch_check">@android:color/white</color>
-
     <dimen name="TabSwitch_corner">6dp</dimen>
     <dimen name="TabSwitch_height">32dp</dimen>
     <dimen name="TabSwitch_border">1px</dimen>
