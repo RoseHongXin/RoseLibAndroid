@@ -2,8 +2,8 @@ ext{
     props = [
             compileSdkVersion: 28,
             buildToolsVersion: '28.0.3',
-//            minSdkVersion: 22,
-            minSdkVersion: 20,
+            minSdkVersion: 22,      //手环
+//            minSdkVersion: 20,    //电表,测试机
             targetSdkVersion: 28,
             dependencyVersion: '28.0.0'
     ]
