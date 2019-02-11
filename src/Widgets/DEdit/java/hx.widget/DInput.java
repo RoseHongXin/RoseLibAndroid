@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -21,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import hx.kit.log.Log4Android;
@@ -61,14 +63,6 @@ public class DInput extends DialogFragment {
         return new Builder(act);
     }
 
-    @NonNull
-    @Override
-    public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        Dialog dialog = super.onCreateDialog(savedInstanceState);
-        if(getContext() != null && mTheme != -1) getContext().setTheme(mTheme);
-        return dialog;
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -94,7 +88,7 @@ public class DInput extends DialogFragment {
         _l_title = view.findViewById(R.id._l_title);
         _tv_title = (TextView) view.findViewById(R.id._tv_title);
         _til_edit = (TextInputLayout)view.findViewById(R.id._til_edit);
-        _et_edit = (TextInputEditText)view.findViewById(R.id._et_edit);
+        _et_edit = view.findViewById(R.id._et_edit);
         _bt_editConfirm = (Button) view.findViewById(R.id._bt_editConfirm);
         _bt_editConfirm.setOnClickListener(v -> _bt_editConfirm());
     }

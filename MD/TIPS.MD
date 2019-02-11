@@ -14,14 +14,17 @@ ActivityManager am = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE)
 ```
 
 
-> Switch的click事件返回是,onCheckChange事件已经回调了,所以isChecked()是切换后的状态
-> TextPaint 不需要考虑textWidth, textHeight只需要关注fontMetrics.bottom
-> 设置fullscreen的activity,通过设置windowBackground没有效果.
-> level-list.xml 必须从大到小排列.
-> Module 的proguard不能穿透到嵌套的Module中(即App引用Lib库,要额外的把proguard贴到App的proguard文件中)
-> WiFi状态WifiManager.WIFI_STATE_ENABLED之后,需要一个时间间隔才能读到ssid,否则会读到<unknown ssid>
-> android:textColorTertiary 作用于EditText
->> If you are using Kotlin, replace annotationProcessor with kapt.      ----be careful----
+> Switch的click事件返回是,onCheckChange事件已经回调了,所以isChecked()是切换后的状态 <br>
+> TextPaint 不需要考虑textWidth, textHeight只需要关注fontMetrics.bottom <br>
+> 设置fullscreen的activity,通过设置windowBackground没有效果. <br>
+> level-list.xml 必须从大到小排列. <br>
+> Module 的proguard不能穿透到嵌套的Module中(即App引用Lib库,要额外的把proguard贴到App的proguard文件中) <br>
+> WiFi状态WifiManager.WIFI_STATE_ENABLED之后,需要一个时间间隔才能读到ssid,否则会读到<unknown ssid> <br>
+> android:textColorTertiary 作用于EditText <br>
+> If you are using Kotlin, replace annotationProcessor with kapt.----be careful---- <br>
+> android:colorControlActivated：表示CheckBox、EditText、Switch、Spinner、RadioButton等控件激活时候的色调，与之相同作用的一个属性：android:colorAccent。作用也是一样的。 <br>
+> android:colorControlNormal：表示CheckBox、EditText、Switch、Spinner、RadioButton等控件默认时的色调 <br>
+
 
 ###### MPAndroid
 ```
