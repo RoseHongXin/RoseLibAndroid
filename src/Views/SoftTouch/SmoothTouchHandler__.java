@@ -3,7 +3,7 @@ package hx.view.smoothtouch;
 import android.annotation.SuppressLint;
 import android.graphics.Rect;
 import androidx.annotation.NonNull;
-import android.support.v4.view.MotionEventCompat;
+import androidx.core.view.MotionEventCompat;
 import androidx.core.view.ViewCompat;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.recyclerview.widget.RecyclerView;
