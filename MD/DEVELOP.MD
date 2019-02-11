@@ -13,6 +13,9 @@ ${gradle} gradle.properties  配置gradle路径, 环境变量配置  GRADLE_USER
  gradlew compileDebug --stacktrace -info
  gradlew compileDebug --stacktrace -debug
 
+ gradlew processDebugManifest --stacktrace   当出现Manifest merger failed with multiple errors, see logs,可以看到详细信息
+
+
 
 ```
 重新点击Desktop icon 或者通知栏通知, 显示上次退出要home的页面bug修复(launchMode和从哪里启动有关[ES安装后启动就有问题,点击桌面图标就是OK的]).

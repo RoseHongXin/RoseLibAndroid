@@ -4,7 +4,7 @@
                     style="@style/Fra.P"
                     tools:background="@android:color/transparent">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/_rv_menus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         android:background="@drawable/sh_round_corner_bg_white"
         android:textColor="@color/txt_content"
         android:layout_marginTop="@dimen/l_m_v"
+        android:layout_marginBottom="@dimen/l_m_v"
         android:text="@string/HX_cancel"/>
-
 
 </LinearLayout>

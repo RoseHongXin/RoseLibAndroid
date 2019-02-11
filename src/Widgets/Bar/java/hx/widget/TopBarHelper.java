@@ -2,11 +2,11 @@ package hx.widget;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.StringRes;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -74,10 +74,8 @@ public class TopBarHelper implements ITopBarOpt{
     public String title() {
         String title = "";
         try {
-            if (_tv_tbTitle != null) {
-                title = _tv_tbTitle.getText().toString();
-            }
-            if (_tb_ != null) title = _tb_.getTitle().toString();
+            if (_tv_tbTitle != null) { title = _tv_tbTitle.getText().toString(); }
+            if (TextUtils.isEmpty(title) && _tb_ != null) title = _tb_.getTitle().toString();
         }catch (Exception e){}
         return title;
     }

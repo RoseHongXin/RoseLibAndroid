@@ -3,13 +3,14 @@ package hx.view.percent;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.percent.PercentLayoutHelper;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+
+import androidx.percentlayout.widget.PercentLayoutHelper;
 
 /**
  * Created by zhy on 15/6/30.

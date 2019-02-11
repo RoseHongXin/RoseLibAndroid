@@ -5,16 +5,17 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.cncoderx.wheelview.Wheel3DView;
@@ -59,6 +60,16 @@ public class DHourMinute extends DialogFragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Dialog dialog = getDialog();
+        dialog.setCancelable(true);
+        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
+        Window window = dialog.getWindow();
+        if(window != null) {
+            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.dimAmount = 0.2f;
+            window.setAttributes(params);
+        }
         return inflater.inflate(R.layout.d_hour_minute, container, true);
     }
 
@@ -66,15 +77,31 @@ public class DHourMinute extends DialogFragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Dialog dialog = getDialog();
-        dialog.setCancelable(true);
-        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
-        Window window = dialog.getWindow();
-        if(window != null) {
-            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-        }
         _whv_hour = (Wheel3DView) view.findViewById(R.id._whv_hour);
         _whv_minute = (Wheel3DView) view.findViewById(R.id._whv_minute);
+        CharSequence[] hourTexts = new String[24];
+        CharSequence[] minuteTexts = new String[60];
+        for(int i = 0; i < 24; i++){
+            hourTexts[i] = String.valueOf(i);
+        }
+        for(int i = 0; i < 60; i++){
+            minuteTexts[i] = String.valueOf(i);
+        }
+        _whv_hour.setEntries(hourTexts);
+        _whv_minute.setEntries(minuteTexts);
+        _whv_hour.setCurrentIndex(mDefHour);
+        _whv_minute.setCurrentIndex(mDefMinute);
+        view.findViewById(R.id._bt_confirm).setOnClickListener(v -> {
+            int hour = Integer.parseInt(_whv_hour.getCurrentItem().toString());
+            int minute = Integer.parseInt(_whv_minute.getCurrentItem().toString());
+            if(_tv_anchor != null) {
+                _tv_anchor.setText(String.format(_FORMAT, hour, minute));
+                int seconds = hour * 3600 + minute * 60;
+                _tv_anchor.setTag(seconds);
+            }
+            if(mCb != null) mCb.onSelect(hour, minute);
+            dismiss();
+        });
     }
 
     public DHourMinute host(Activity act){

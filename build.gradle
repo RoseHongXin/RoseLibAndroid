@@ -23,6 +23,10 @@ android {
             if(buildVars.proguard) proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -60,7 +64,7 @@ dependencies {
     api libraries.supportPercnet
     api libraries.recyclerviewv7
     api libraries.butterknife
-//    annotationProcessor libraries.butterknifeCompiler
+    annotationProcessor libraries.butterknifeCompiler
     api libraries.fastjson
 //    api libraries.fastjsonAndroid
     api libraries.rxjava

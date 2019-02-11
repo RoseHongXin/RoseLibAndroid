@@ -1,7 +1,7 @@
 package hx.widget.adapterview.listview;
 
 import android.app.Activity;
-import android.support.annotation.CallSuper;
+import androidx.annotation.CallSuper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;

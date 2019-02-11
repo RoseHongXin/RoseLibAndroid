@@ -1,15 +1,16 @@
 package hx.widget.adapterview.recyclerview;
 
 import android.app.Activity;
-import android.support.annotation.CallSuper;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import hx.widget.adapterview.VhBase;
 
 /**
@@ -22,19 +23,24 @@ public abstract class ApBase<Vh extends VhBase<D>, D> extends RecyclerView.Adapt
 
     protected List<D> mData = new ArrayList<D>();
     public Activity mAct;
+    public View _v_dataEmptyHint;
     public RecyclerView _rv_;
     protected RecyclerView.LayoutManager mLayoutMgr;
 
     public abstract Vh getVh(Activity act);
-    @CallSuper protected void bind(Vh holder, D data, int position){
+    @CallSuper
+    protected void bind(Vh holder, D data, int position){
         holder.bind(data, position);
+    }
+    public void ifDataEmptyHintView(View _v_){
+        _v_dataEmptyHint = _v_;
     }
 
      public ApBase(Activity act, RecyclerView _rv_){
         this.mAct = act;
         this._rv_ = _rv_;
          mLayoutMgr = new LinearLayoutManager(mAct);
-         ((LinearLayoutManager)mLayoutMgr).setOrientation(LinearLayoutManager.VERTICAL);
+         ((LinearLayoutManager)mLayoutMgr).setOrientation(RecyclerView.VERTICAL);
          this._rv_.setLayoutManager(mLayoutMgr);
          this._rv_.setAdapter(this);
     }
@@ -62,6 +68,9 @@ public abstract class ApBase<Vh extends VhBase<D>, D> extends RecyclerView.Adapt
         if(mData == null) mData = new ArrayList<D>();
         else mData.clear();
         if(data != null) mData.addAll(data);
+        if(_v_dataEmptyHint != null){
+            _v_dataEmptyHint.setVisibility(mData.isEmpty() ? View.VISIBLE : View.GONE);
+        }
         notifyDataSetChanged();
     }
 
@@ -71,11 +80,14 @@ public abstract class ApBase<Vh extends VhBase<D>, D> extends RecyclerView.Adapt
         notifyDataSetChanged();
     }
     public void addData(D data){
+        addData(data, getItemCount());
+    }
+    public void addData(D data, int position){
         if(mData == null) mData = new ArrayList<D>();
         if(data != null) {
-            mData.add(data);
-            notifyItemInserted(getItemCount());
-            notifyItemRangeInserted(getItemCount(), 1);
+            position = position >= 0 && position < getItemCount() ? position : getItemCount();
+            mData.add(position, data);
+            notifyItemInserted(position);
         }
     }
     public List<D> getData(){
@@ -93,7 +105,7 @@ public abstract class ApBase<Vh extends VhBase<D>, D> extends RecyclerView.Adapt
 
     public void remove(int position){
         try {
-            if (mData != null && mData.size() > position) mData.remove(position);
+            if (mData != null && mData.size() > position && position >= 0) mData.remove(position);
             notifyItemRemoved(position);
             if(mData != null && position != mData.size()){ // 如果移除的是最后一个，忽略
                 notifyItemRangeChanged(position, mData.size() - position);

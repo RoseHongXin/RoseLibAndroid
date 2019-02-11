@@ -2,7 +2,7 @@ package hx.kit.refresh;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -73,15 +73,19 @@ public abstract class P2rlPageLoader<Ap extends ApBase<Vh, D>, Vh extends VhBase
                 Observable<List<D>> observable = request(mPageIdx + 1);
                 if(observable != null) {
                     observable
-                            .doOnComplete(() -> _p2rl_.refreshComplete())
-                            .subscribe(datas -> {
-                                if (datas != null && !datas.isEmpty()) {
+                            .map(datas -> {
+                                if (!datas.isEmpty()) {
                                     mPageIdx++;
                                     mAdapter.addData(datas);
                                 }
-                            }, throwable -> {
-                                _p2rl_.refreshComplete();
-                            });
+                                return datas;
+                            })
+                            .doOnComplete(() -> refreshIdle())
+                            .doOnError(throwable -> {
+                                throwable.printStackTrace();
+                                refreshIdle();
+                            })
+                            .subscribe();
                 }
             }
             @Override public void onRefreshBegin(PtrFrameLayout frame) {
@@ -89,13 +93,16 @@ public abstract class P2rlPageLoader<Ap extends ApBase<Vh, D>, Vh extends VhBase
                 Observable<List<D>> observable = request(mPageIdx);
                 if(observable != null) {
                     observable
-                            .doOnComplete(() -> _p2rl_.refreshComplete())
-                            .subscribe(datas -> {
+                            .map(datas -> {
                                 mAdapter.setData(datas);
-                            }, throwable -> {
-                                _p2rl_.refreshComplete();
-                                mAdapter.setData(new ArrayList<>());
-                            });
+                                return datas;
+                            })
+                            .doOnComplete(() -> refreshIdle())
+                            .doOnError(throwable -> {
+                                throwable.printStackTrace();
+                                refreshIdle();
+                            })
+                            .subscribe();
                 }
             }
             @Override
@@ -108,6 +115,10 @@ public abstract class P2rlPageLoader<Ap extends ApBase<Vh, D>, Vh extends VhBase
 
     public P2rlPageLoader refresh(){
         _p2rl_.postDelayed(() -> _p2rl_.autoRefresh(), LAZY_INIT_REFRESH_DELAY);
+        return this;
+    }
+    public P2rlPageLoader refreshIdle(){
+        _p2rl_.postDelayed(() -> _p2rl_.refreshComplete(), LAZY_INIT_REFRESH_DELAY);
         return this;
     }
 

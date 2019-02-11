@@ -1,13 +1,14 @@
 package hx.view;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
@@ -50,17 +51,20 @@ public class TouchSwipe2LeftLayout extends LinearLayout{
 
     public TouchSwipe2LeftLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        mScroller = new Scroller(getContext(), new DecelerateInterpolator());
-        mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        mScroller = new Scroller(getContext(), new LinearInterpolator());
+        mTouchSlop = (int) (ViewConfiguration.get(context).getScaledTouchSlop() * 0.75f);
         mClickSlop = mTouchSlop / 4;
+        mAnchorShowThreshold = mTouchSlop;
+        mAnchorHideThreshold = mTouchSlop;
+        setClickable(true);
     }
 
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        _v_anchorLeft = getChildAt(0);
         _v_anchor = getChildAt(1);
         if(_v_anchor == null) return;
-        _v_anchorLeft = getChildAt(0);
         LinearLayout.LayoutParams layoutParams = (LayoutParams) _v_anchor.getLayoutParams();
         int width = 0;
         if(_v_anchor instanceof ViewGroup){
@@ -91,8 +95,6 @@ public class TouchSwipe2LeftLayout extends LinearLayout{
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mAnchorWidth = _v_anchor.getMeasuredWidth();
-        mAnchorShowThreshold = (int) (mAnchorWidth * 0.2f);
-        mAnchorHideThreshold = mAnchorShowThreshold / 2;
     }
 
     @Override
@@ -105,13 +107,14 @@ public class TouchSwipe2LeftLayout extends LinearLayout{
             case MotionEvent.ACTION_MOVE:
                 mMoveX = ev.getRawX();
                 if (Math.abs(mMoveX - mDownX) > mTouchSlop) {
-                    getParent().requestDisallowInterceptTouchEvent(true);
-                    requestDisallowInterceptTouchEvent(true);
+//                    getParent().requestDisallowInterceptTouchEvent(true);
+//                    requestDisallowInterceptTouchEvent(true);
                     return true;
                 }
                 break;
         }
         return super.onInterceptTouchEvent(ev);
+//        return true;
     }
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
@@ -139,6 +142,9 @@ public class TouchSwipe2LeftLayout extends LinearLayout{
                 float x = ev.getRawX();
                 float y = ev.getRawY();
                 float xDelta = x - mDownX;
+                if(ev.getAction() == MotionEvent.ACTION_UP && Math.abs(x - mDownX) < mTouchSlop && Math.abs(y - mDownY) < mTouchSlop){
+                    return super.onTouchEvent(ev);
+                }
                 if (xDelta < 0 && getScrollX() > mAnchorShowThreshold) {
                     smoothScrollTo(mAnchorWidth, 0);
                     mAnchorShow = true;
@@ -150,7 +156,6 @@ public class TouchSwipe2LeftLayout extends LinearLayout{
                 break;
         }
         return super.onTouchEvent(ev);
-//        return true;
     }
 
     public boolean touchInAnchorBound(MotionEvent ev) {

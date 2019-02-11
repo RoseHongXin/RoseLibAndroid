@@ -1,6 +1,6 @@
 package hx.widget;
 
-import android.support.annotation.IdRes;
+import androidx.annotation.IdRes;
 import android.widget.TextView;
 
 /**

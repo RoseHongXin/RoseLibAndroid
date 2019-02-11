@@ -1,11 +1,11 @@
 package hx.kit.refresh;
 
 import android.app.Activity;
-import android.support.annotation.ColorRes;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.ColorRes;
+import androidx.fragment.app.Fragment;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
