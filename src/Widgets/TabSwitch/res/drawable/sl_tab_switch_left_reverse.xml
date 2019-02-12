@@ -3,15 +3,15 @@
     <item android:state_selected="true">
         <shape>
             <corners android:topLeftRadius="@dimen/TabSwitch_corner" android:bottomLeftRadius="@dimen/TabSwitch_corner"/>
-            <solid android:color="@color/TabSwitch_bg_default"/>
-            <stroke android:width="@dimen/TabSwitch_border" android:color="@color/TabSwitch_bg_default"/>
+            <solid android:color="?android:attr/colorControlNormal"/>
+            <stroke android:width="@dimen/TabSwitch_border" android:color="?android:attr/colorControlNormal"/>
         </shape>
     </item>
     <item >
         <shape>
             <corners android:topLeftRadius="@dimen/TabSwitch_corner" android:bottomLeftRadius="@dimen/TabSwitch_corner"/>
-            <solid android:color="@color/TabSwitch_bg_check"/>
-            <stroke android:width="@dimen/TabSwitch_border" android:color="@color/TabSwitch_bg_default"/>
+            <solid android:color="?android:attr/colorControlActivated"/>
+            <stroke android:width="@dimen/TabSwitch_border" android:color="?android:attr/colorControlNormal"/>
         </shape>
     </item>
 

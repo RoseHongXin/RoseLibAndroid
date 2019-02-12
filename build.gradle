@@ -57,13 +57,21 @@ android {
 
 dependencies {
 //    api fileTree(include: ['*.jar'], dir: 'libs')
-//    api 'androidx.core:core:1.0.1'
-    api libraries.supportv4
-    api libraries.appcompatv7
-    api libraries.cardviewv7
-    api libraries.design
-    api libraries.supportPercnet
-    api libraries.recyclerviewv7
+//    api libraries.supportv4
+//    api libraries.appcompatv7
+//    api libraries.cardviewv7
+//    api libraries.design
+//    api libraries.supportPercnet
+//    api libraries.recyclerviewv7
+    api 'androidx.core:core:1.0.1'
+    api 'androidx.recyclerview:recyclerview:1.0.0'
+    api 'androidx.cardview:cardview:1.0.0'
+    api 'androidx.fragment:fragment:1.1.0-alpha04'
+    api 'com.google.android.material:material:1.1.0-alpha03'
+    api 'androidx.appcompat:appcompat:1.1.0-alpha02'
+    api 'androidx.percentlayout:percentlayout:1.0.0'
+    api libraries.constraintlayout
+
     api libraries.butterknife
     annotationProcessor libraries.butterknifeCompiler
     api libraries.fastjson
@@ -73,14 +81,10 @@ dependencies {
     api libraries.jacksonCore
     api libraries.jacksonAnnotations
     api libraries.jacksonDataBind
-    api libraries.constraintlayout
     api 'com.cncoderx.wheelview:library:1.1.0'
     api 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
     api "com.squareup.okhttp3:okhttp:" + ver.okhttp3
     api "com.squareup.okhttp3:logging-interceptor:" + ver.okhttp3
-
-    //    api 'com.android.support:percent:28.0.0'
-
 }
 
 void getDirs(List<String> list, dirs, String key){
