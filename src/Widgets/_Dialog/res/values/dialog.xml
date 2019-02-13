@@ -69,8 +69,8 @@
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:gravity">center</item>
         <item name="android:text">@string/HX_confirm</item>
-        <item name="android:paddingTop">@dimen/l_p_v</item>
-        <item name="android:paddingBottom">@dimen/l_p_v</item>
+        <item name="android:paddingTop">@dimen/l_p_v_middle</item>
+        <item name="android:paddingBottom">@dimen/l_p_v_middle</item>
     </style>
     <style name="dialog.tv_confirm" parent="dialog._4bt">
         <item name="android:id">@id/_bt_confirm</item>

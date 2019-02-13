@@ -36,12 +36,12 @@ import hx.lib.R;
 @SuppressLint("DefaultLocale")
 public class DDateTimeSelect extends DialogFragment{
 
-    public static final int MASK_YEAR =   Integer.parseInt("100000", 2);
-    public static final int MASK_MONTH =  Integer.parseInt("010000", 2);
-    public static final int MASK_DAY =    Integer.parseInt("001000", 2);
-    public static final int MASK_HOUR =   Integer.parseInt("000100", 2);
-    public static final int MASK_MINUTE = Integer.parseInt("000010", 2);
-    public static final int MASK_SECOND = Integer.parseInt("000001", 2);
+    public static final int MASK_YEAR       = 1 << 6;
+    public static final int MASK_MONTH      = 1 << 5;
+    public static final int MASK_DAY        = 1 << 4;
+    public static final int MASK_HOUR       = 1 << 3;
+    public static final int MASK_MINUTE     = 1 << 2;
+    public static final int MASK_SECOND     = 1 << 0;
 
     public static int MODE_YEAR_MONTH_DAY = MASK_YEAR | MASK_MONTH | MASK_DAY;
     public static int MODE_HOUR_MINUTE = MASK_HOUR | MASK_MINUTE;
