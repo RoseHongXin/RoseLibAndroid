@@ -167,7 +167,7 @@ public class DItemBUConfirm extends DialogFragment{
     }
 
     public interface Callback{
-        void onSelect(int idx, String text);
+        void onSelect(int value, String text);
     }
     public interface TextFormatCallback{
         CharSequence onFormat(CharSequence chars);

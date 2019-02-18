@@ -80,6 +80,7 @@ adb shell 进入shell模式
 ```
 keytool -list -v -keystore "%USERPROFILE%\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
 keytool -list -v -keystore "F:/AndroidPro/AndroidSigned" -alias smarthome -storepass dan199858 -keypass dan199858
+keytool -list -v -keystore "F:/AndroidPro/AndroidSigned" -alias smartwearable -storepass dan199858 -keypass hongxin
 ```
 
 ###### 退出App

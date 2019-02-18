@@ -1,5 +1,7 @@
 package hx.view.softtouch;
 
+
+
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;

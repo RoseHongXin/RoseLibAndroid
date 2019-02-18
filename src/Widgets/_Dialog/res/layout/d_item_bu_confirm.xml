@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               style="@style/Fra.P"
               tools:background="@android:color/transparent">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/sh_round_corner_bg_white"
+        android:background="@drawable/sh_round_corner_bg_def"
         android:gravity="center">
-
-        <com.cncoderx.wheelview.Wheel3DView
-            android:id="@+id/_whv_items"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        <com.cncoderx.wheelview.Wheel3DView android:id="@+id/_whv_items" style="@style/dialog.item_wv"/>
     </LinearLayout>
 
     <Button
@@ -22,9 +19,9 @@
         android:layout_height="@dimen/bt_height"
         android:layout_marginTop="@dimen/l_m_v"
         android:layout_marginBottom="@dimen/l_m_v"
-        android:background="@drawable/sh_round_corner_bg_white"
+        android:background="@drawable/sh_round_corner_bg_def"
         android:text="@string/HX_confirm"
-        android:textColor="@color/colorAccent"
+        android:textColor="?android:attr/colorAccent"
         android:textSize="@dimen/txt_content"/>
 
 </LinearLayout>

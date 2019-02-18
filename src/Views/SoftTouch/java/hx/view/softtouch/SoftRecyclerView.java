@@ -1,11 +1,12 @@
 package hx.view.softtouch;
 
 import android.content.Context;
-import android.graphics.Rect;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by RoseHongXin on 2017/6/23 0023.

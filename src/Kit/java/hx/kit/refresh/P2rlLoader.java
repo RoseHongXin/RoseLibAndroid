@@ -80,6 +80,9 @@ public abstract class P2rlLoader {
     public void refreshIdle(){
         if(_p2rl_ != null)  _p2rl_.postDelayed(() -> _p2rl_.refreshComplete(), TIME_UI_REFRESH_DELAY);
     }
+    public void idle(){
+        _p2rl_.refreshComplete();
+    }
     public void refresh(){
         _p2rl_.postDelayed(() -> _p2rl_.autoRefresh(), TIME_UI_REFRESH_DELAY);
     }
