@@ -6,6 +6,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StyleRes;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
@@ -21,6 +22,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
+import hx.kit.log.Log4Android;
 import hx.kit.view.ViewKit;
 import hx.lib.R;
 import hx.widget.dialog.DialogHelper;
@@ -39,6 +41,7 @@ public class DInput extends DialogFragment{
     private TextInputEditText _et_edit;
     private Button _bt_editConfirm;
 
+    private @StyleRes int mTheme = -1;
     private TextView _tv_anchor;
     private Callback mCb;
     private String mText;
@@ -60,6 +63,19 @@ public class DInput extends DialogFragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if(getContext() != null && mTheme != -1) getContext().setTheme(mTheme);
+        Dialog dialog = getDialog();
+        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
+        Window window = dialog.getWindow();
+        if (window != null) {
+            window.setWindowAnimations(R.style.dialog_bottom_up);
+            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.dimAmount = 0.2f;
+            window.setAttributes(params);
+            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        }
+        dialog.setOnDismissListener(dialog1 -> ViewKit.hideInputMgr(_et_edit));
         return inflater.inflate(R.layout.d_input, container, true);
     }
 
@@ -72,14 +88,6 @@ public class DInput extends DialogFragment{
         _et_edit = (TextInputEditText)view.findViewById(R.id._et_edit);
         _bt_editConfirm = (Button) view.findViewById(R.id._bt_editConfirm);
         _bt_editConfirm.setOnClickListener(v -> _bt_editConfirm());
-        Dialog dialog = getDialog();
-        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
-        Window window = dialog.getWindow();
-        if(window != null) {
-            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        }
-        dialog.setOnDismissListener(dialog1 -> ViewKit.hideInputMgr(_et_edit));
     }
 
     @Override
@@ -119,6 +127,16 @@ public class DInput extends DialogFragment{
     public DInput show(){
         show(mFraManager, TAG);
         return this;
+    }
+
+    @Override
+    public void dismiss() {
+        try {
+            if (getActivity() != null && !getActivity().isFinishing() && !getActivity().isDestroyed()){
+                super.dismiss();
+            }
+        }
+        catch (Exception e){ Log4Android.w(this, "show exception: " + e.getMessage()); }
     }
 
     public static class Builder{
@@ -167,6 +185,10 @@ public class DInput extends DialogFragment{
         }
         public Builder anchor(TextView _tv_anchor){
             mDialog._tv_anchor = _tv_anchor;
+            return this;
+        }
+        public Builder theme(@StyleRes int theme){
+            mDialog.mTheme = theme;
             return this;
         }
         public Builder fillAfterInput(boolean yes){

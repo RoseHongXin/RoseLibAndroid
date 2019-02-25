@@ -14,10 +14,18 @@ ${gradle} gradle.properties  配置gradle路径, 环境变量配置  GRADLE_USER
  gradlew compileDebug --stacktrace -debug
 
 
+```
+重新点击Desktop icon 或者通知栏通知, 显示上次退出要home的页面bug修复(launchMode和从哪里启动有关[ES安装后启动就有问题,点击桌面图标就是OK的]).
+Intent notifyIntent = new Intent(this, AMain.class);
+        notifyIntent.setAction(Intent.ACTION_MAIN);
+        notifyIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP | Intent.FLAG_ACTIVITY_RETAIN_IN_RECENTS | Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY);
+        PendingIntent notifyPendingIntent = PendingIntent.getActivity(this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+```
 
 ##### Git操作:
 ```
-SSL_ERROR_SYSCALL 错误:
+SSL_ERROR_SYSCALL 错误
     Git支持三种协议：git://、ssh://和http://，本来push的时候应该走ssh隧道的，设置了http代理走了http的代理，于是就提交不了
     git config --global --unset http.proxy
 git remote add origin https://username:password@[url]

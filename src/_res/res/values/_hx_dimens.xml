@@ -15,7 +15,7 @@
     <dimen name="bt_p_v">6dp</dimen>
     <dimen name="bt_txt">20sp</dimen>
     <dimen name="bt_corner">@dimen/l_corner</dimen>
-    <dimen name="bt_border">1dp</dimen>
+    <dimen name="bt_border">1px</dimen>
 
     <dimen name="l_p_h">16dp</dimen>
     <dimen name="l_p_h_middle">20dp</dimen>

@@ -71,6 +71,13 @@ public class DYearMonthDay extends DialogFragment{
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Dialog dialog = getDialog();
+        dialog.setCancelable(true);
+        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
+        Window window = dialog.getWindow();
+        if(window != null) {
+            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
+        }
         return inflater.inflate(R.layout.d_year_month_day, container, true);
     }
 
@@ -78,13 +85,6 @@ public class DYearMonthDay extends DialogFragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Dialog dialog = getDialog();
-        dialog.setCancelable(true);
-        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
-        Window window = dialog.getWindow();
-        if(window != null) {
-            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-        }
         _whv_year = (Wheel3DView) view.findViewById(R.id._whv_year);
         _whv_month = (Wheel3DView) view.findViewById(R.id._whv_month);
         _whv_day = (Wheel3DView) view.findViewById(R.id._whv_day);

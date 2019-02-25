@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -38,28 +39,35 @@ public class DMenuBU extends DialogFragment{
     private List<String> mTexts;
     private Activity mAct;
     private @ColorRes int mCancelBtnColor = -1;
-    private @ColorRes int mItemTextColor = -1;
+    private @ColorRes List<Integer> mItemTextColors;
 
     public static DMenuBU obtain() {
         return new DMenuBU();
     }
 
+    public DMenuBU(){
+        mItemTextColors = new ArrayList<>();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.d_menu_bu, container, true);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
         Dialog dialog = getDialog();
         DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
         Window window = dialog.getWindow();
         if(window != null) {
             window.setWindowAnimations(R.style.dialog_menu_anim);
             window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.dimAmount = 0.2f;
+            window.setAttributes(params);
         }
+        return inflater.inflate(R.layout.d_menu_bu, container, true);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         _rv_menus = (RecyclerView) view.findViewById(R.id._rv_menus);
         ApItem adapter = new ApItem(mAct, _rv_menus);
         adapter.setData(mTexts);
@@ -90,7 +98,7 @@ public class DMenuBU extends DialogFragment{
         if(colors.length == 1) mCancelBtnColor = colors[0];
         else if(colors.length >= 2){
             mCancelBtnColor = colors[0];
-            mItemTextColor = colors[1];
+            for(int i = 1; i < colors.length; i++) mItemTextColors.add(colors[i]);
         }
         return this;
     }
@@ -121,13 +129,16 @@ public class DMenuBU extends DialogFragment{
                 mCb.onSelect(position, data);
                 dismiss();
             });
-            if(mItemTextColor != -1) _tv_menuItem.setTextColor(getResources().getColor(mItemTextColor));
         }
         @Override
         public void bind(String data, int position) {
             super.bind(data, position);
             _v_menuItemDivider.setVisibility(position == 0 ? View.GONE : View.VISIBLE);
             _tv_menuItem.setText(data);
+            if(!mItemTextColors.isEmpty()) {
+                @ColorRes int colorRes = position < mItemTextColors.size() ? mItemTextColors.get(position) : mItemTextColors.get(mItemTextColors.size() - 1);
+                _tv_menuItem.setTextColor(getResources().getColor(colorRes));
+            }
         }
     }
     

@@ -34,7 +34,8 @@ public class RequestBase {
         mOkHttpBuilder = new OkHttpClient.Builder()
                 .readTimeout(time(), TimeUnit.SECONDS)
                 .writeTimeout(time(), TimeUnit.SECONDS)
-                .connectTimeout(time(), TimeUnit.SECONDS);
+                .connectTimeout(time(), TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true);
         mObjMapper = new ObjectMapper();
         mObjMapper.configure(JsonParser.Feature.IGNORE_UNDEFINED, true);
         mObjMapper.configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);
@@ -42,7 +43,7 @@ public class RequestBase {
         mObjMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
         mObjMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
     }
-    protected int time(){
+    public int time(){
         return TIME;
     }
 

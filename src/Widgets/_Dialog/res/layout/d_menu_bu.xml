@@ -18,7 +18,7 @@
         android:background="@drawable/sh_round_corner_bg_white"
         android:textColor="@color/txt_content"
         android:layout_marginTop="@dimen/l_m_v"
+        android:layout_marginBottom="@dimen/l_m_v"
         android:text="@string/HX_cancel"/>
-
 
 </LinearLayout>

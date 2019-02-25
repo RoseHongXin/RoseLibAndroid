@@ -25,6 +25,8 @@ public abstract class P2rlLoader {
     private PtrFrameLayout.Mode mMode = null;
     private @ColorRes int mTxtColor = -1;
 
+    public P2rlLoader(){}
+
     public P2rlLoader host(Activity act){
         this.mAct = act;
         return this;

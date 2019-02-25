@@ -3,6 +3,8 @@ package hx.kit.data;
 import android.text.TextUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
@@ -13,7 +15,7 @@ import java.util.regex.Pattern;
  */
 public class Formater {
 
-    private static final String EMAIL_FORMAT = "^([a-zA-Z0-9_\\.\\-])+(([a-zA-Z0-9\\-])+\\.)+([a-zA-Z0-9]{2,4})$";
+    private static final String EMAIL_FORMAT = "^[A-Za-z0-9_.-\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
     //    public static final String MOBILE_FORMAT = "^(13[0-9]|15[^4]|17[0,6,7,8]|18[0-9]|14[5,7])\\d{8}$";
     private static final Pattern MOBILE_PATTERN = Pattern.compile("1[3456789][0-9]{9}");
     public static final String PHONE_FORMAT = "0\\d{2,3}-?\\d{5,9}|0\\d{2,3}-?\\d{5,9}|\\d{8}";
@@ -85,6 +87,34 @@ public class Formater {
         String[] arr = str.split(separator);
         List<String> list = java.util.Arrays.asList(arr);
         return list;
+    }
+
+
+    //由出生日期获得年龄
+    public static int getAge(Date birthDay){
+        return birthDay == null ? 0 : getAge(birthDay.getTime());
+    }
+    //由出生日期获得年龄
+    public static int getAge(long birthDay){
+        Calendar cal = Calendar.getInstance();
+        int yearNow = cal.get(Calendar.YEAR);
+        int monthNow = cal.get(Calendar.MONTH);
+        int dayOfMonthNow = cal.get(Calendar.DAY_OF_MONTH);
+        cal.setTimeInMillis(birthDay);
+
+        int yearBirth = cal.get(Calendar.YEAR);
+        int monthBirth = cal.get(Calendar.MONTH);
+        int dayOfMonthBirth = cal.get(Calendar.DAY_OF_MONTH);
+
+        int age = yearNow - yearBirth;
+        if (monthNow <= monthBirth) {
+            if (monthNow == monthBirth) {
+                if (dayOfMonthNow < dayOfMonthBirth) age--;
+            }else{
+                age--;
+            }
+        }
+        return age;
     }
 
 }

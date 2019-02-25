@@ -40,7 +40,7 @@
         <item name="android:layout_height">wrap_content</item>
         <!--<item name="android:minHeight">128dp</item>-->
         <item name="android:layout_width">match_parent</item>
-        <item name="android:background">@color/_bg</item>
+        <!--<item name="android:background">@color/windowBackground</item>-->
         <item name="android:orientation">vertical</item>
         <item name="android:gravity">center</item>
     </style>
@@ -64,10 +64,13 @@
     </style>
     <style name="dialog._4bt">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/bt_height</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/bt_height</item>
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:gravity">center</item>
         <item name="android:text">@string/HX_confirm</item>
+        <item name="android:paddingTop">@dimen/l_p_v</item>
+        <item name="android:paddingBottom">@dimen/l_p_v</item>
     </style>
     <style name="dialog.tv_confirm" parent="dialog._4bt">
         <item name="android:id">@id/_bt_confirm</item>
