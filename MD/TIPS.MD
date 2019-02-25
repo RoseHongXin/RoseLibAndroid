@@ -48,3 +48,6 @@ float fromX = -(batWidth + barSpace + groupSpace / 2);
 Android7.x执行更严格的安全检查，禁止使用系统目录的内容。所以如果希望在7.x以上版本，需要把系统目录的libsqlite.so拷贝出来，也放在自己app对应指令目录下。
 ---------------------
 ```
+
+#### 其他
+- 169.254.X.X是 Windows操作系统 在 DHCP 信息租用失败时自动给客户机分配的IP地址.
