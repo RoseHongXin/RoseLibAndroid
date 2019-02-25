@@ -1,9 +1,9 @@
 package hx.widget;
 
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
-
 import java.util.List;
+
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by rose on 16-8-23.

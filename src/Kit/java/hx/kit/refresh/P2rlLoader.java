@@ -1,11 +1,11 @@
 package hx.kit.refresh;
 
 import android.app.Activity;
-import android.support.annotation.ColorRes;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.ColorRes;
+import androidx.fragment.app.Fragment;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
@@ -79,6 +79,9 @@ public abstract class P2rlLoader {
 
     public void refreshIdle(){
         if(_p2rl_ != null)  _p2rl_.postDelayed(() -> _p2rl_.refreshComplete(), TIME_UI_REFRESH_DELAY);
+    }
+    public void idle(){
+        _p2rl_.refreshComplete();
     }
     public void refresh(){
         _p2rl_.postDelayed(() -> _p2rl_.autoRefresh(), TIME_UI_REFRESH_DELAY);

@@ -2,9 +2,9 @@ package hx.widget.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
+import androidx.appcompat.app.AlertDialog;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;

@@ -1,13 +1,13 @@
 package hx.widget.adapterview.recyclerview;
 
 import android.app.Activity;
-import android.support.v4.util.ArraySet;
-import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import androidx.collection.ArraySet;
+import androidx.recyclerview.widget.RecyclerView;
 import hx.widget.adapterview.VhBase;
 
 /**

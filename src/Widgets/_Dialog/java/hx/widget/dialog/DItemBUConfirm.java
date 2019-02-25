@@ -6,11 +6,11 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -167,7 +167,7 @@ public class DItemBUConfirm extends DialogFragment{
     }
 
     public interface Callback{
-        void onSelect(int idx, String text);
+        void onSelect(int value, String text);
     }
     public interface TextFormatCallback{
         CharSequence onFormat(CharSequence chars);

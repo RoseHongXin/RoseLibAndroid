@@ -4,14 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StyleRes;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,8 +12,19 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StyleRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ContextThemeWrapper;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
 import hx.kit.log.Log4Android;
 import hx.kit.view.ViewKit;
 import hx.lib.R;
@@ -31,7 +34,7 @@ import hx.widget.dialog.DialogHelper;
  * Created by RoseHongXin on 2017/8/1 0001.
  */
 
-public class DInput extends DialogFragment{
+public class DInput extends DialogFragment {
 
     private final static String TAG = "DInput";
 
@@ -85,7 +88,7 @@ public class DInput extends DialogFragment{
         _l_title = view.findViewById(R.id._l_title);
         _tv_title = (TextView) view.findViewById(R.id._tv_title);
         _til_edit = (TextInputLayout)view.findViewById(R.id._til_edit);
-        _et_edit = (TextInputEditText)view.findViewById(R.id._et_edit);
+        _et_edit = view.findViewById(R.id._et_edit);
         _bt_editConfirm = (Button) view.findViewById(R.id._bt_editConfirm);
         _bt_editConfirm.setOnClickListener(v -> _bt_editConfirm());
     }

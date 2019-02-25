@@ -66,11 +66,11 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:minHeight">@dimen/bt_height</item>
-        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColor">?android:attr/colorAccent</item>
         <item name="android:gravity">center</item>
         <item name="android:text">@string/HX_confirm</item>
-        <item name="android:paddingTop">@dimen/l_p_v</item>
-        <item name="android:paddingBottom">@dimen/l_p_v</item>
+        <item name="android:paddingTop">@dimen/l_p_v_middle</item>
+        <item name="android:paddingBottom">@dimen/l_p_v_middle</item>
     </style>
     <style name="dialog.tv_confirm" parent="dialog._4bt">
         <item name="android:id">@id/_bt_confirm</item>
@@ -112,6 +112,12 @@
     <style name="dialog.menu_anim">
         <item name="android:windowEnterAnimation">@anim/slide_in_from_bottom</item>
         <item name="android:windowExitAnimation">@anim/slide_out_to_bottom</item>
+    </style>
+    <style name="dialog.item_wv">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="unselectedColor">?android:attr/textColorPrimary</item>
+        <item name="selectedColor">?android:attr/colorAccent</item>
     </style>
 
 </resources>

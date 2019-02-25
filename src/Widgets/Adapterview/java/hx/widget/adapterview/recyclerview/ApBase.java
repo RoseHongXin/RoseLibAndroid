@@ -1,16 +1,16 @@
 package hx.widget.adapterview.recyclerview;
 
 import android.app.Activity;
-import android.support.annotation.CallSuper;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import hx.widget.adapterview.VhBase;
 
 /**
@@ -28,7 +28,8 @@ public abstract class ApBase<Vh extends VhBase<D>, D> extends RecyclerView.Adapt
     protected RecyclerView.LayoutManager mLayoutMgr;
 
     public abstract Vh getVh(Activity act);
-    @CallSuper protected void bind(Vh holder, D data, int position){
+    @CallSuper
+    protected void bind(Vh holder, D data, int position){
         holder.bind(data, position);
     }
     public void ifDataEmptyHintView(View _v_){
@@ -39,7 +40,7 @@ public abstract class ApBase<Vh extends VhBase<D>, D> extends RecyclerView.Adapt
         this.mAct = act;
         this._rv_ = _rv_;
          mLayoutMgr = new LinearLayoutManager(mAct);
-         ((LinearLayoutManager)mLayoutMgr).setOrientation(LinearLayoutManager.VERTICAL);
+         ((LinearLayoutManager)mLayoutMgr).setOrientation(RecyclerView.VERTICAL);
          this._rv_.setLayoutManager(mLayoutMgr);
          this._rv_.setAdapter(this);
     }

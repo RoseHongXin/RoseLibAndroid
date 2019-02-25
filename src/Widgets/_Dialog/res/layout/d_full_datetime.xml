@@ -3,7 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               style="@style/dialog.container">
 
-    <android.support.constraint.ConstraintLayout style="@style/Fra.H">
+    <androidx.constraintlayout.widget.ConstraintLayout style="@style/Fra.H">
         <LinearLayout
             android:id="@+id/_li_year"
             style="@style/Fra"
@@ -12,15 +12,8 @@
             app:layout_constraintEnd_toStartOf="@+id/_li_month"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent">
-
-            <com.cncoderx.wheelview.Wheel3DView
-                android:id="@+id/_whv_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                style="@style/dialog.tv_hint"
-                android:text="@string/HX_year"/>
+            <com.cncoderx.wheelview.Wheel3DView android:id="@+id/_whv_year" style="@style/dialog.item_wv"/>
+            <TextView style="@style/dialog.tv_hint" android:text="@string/HX_year"/>
         </LinearLayout>
 
         <LinearLayout
@@ -31,15 +24,8 @@
             app:layout_constraintEnd_toStartOf="@+id/_li_day"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/_li_year">
-
-            <com.cncoderx.wheelview.Wheel3DView
-                android:id="@+id/_whv_month"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                style="@style/dialog.tv_hint"
-                android:text="@string/HX_month"/>
+            <com.cncoderx.wheelview.Wheel3DView android:id="@+id/_whv_month" style="@style/dialog.item_wv"/>
+            <TextView style="@style/dialog.tv_hint" android:text="@string/HX_month"/>
         </LinearLayout>
 
         <LinearLayout
@@ -50,15 +36,8 @@
             app:layout_constraintEnd_toStartOf="@+id/_li_hour"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/_li_month">
-
-            <com.cncoderx.wheelview.Wheel3DView
-                android:id="@+id/_whv_day"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                style="@style/dialog.tv_hint"
-                android:text="@string/HX_day"/>
+            <com.cncoderx.wheelview.Wheel3DView android:id="@+id/_whv_day" style="@style/dialog.item_wv"/>
+            <TextView style="@style/dialog.tv_hint" android:text="@string/HX_day"/>
         </LinearLayout>
 
         <LinearLayout
@@ -69,15 +48,8 @@
             app:layout_constraintEnd_toStartOf="@+id/_li_minute"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/_li_day">
-
-            <com.cncoderx.wheelview.Wheel3DView
-                android:id="@+id/_whv_hour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                style="@style/dialog.tv_hint"
-                android:text="@string/HX_hour"/>
+            <com.cncoderx.wheelview.Wheel3DView android:id="@+id/_whv_hour" style="@style/dialog.item_wv"/>
+            <TextView style="@style/dialog.tv_hint" android:text="@string/HX_hour"/>
         </LinearLayout>
 
         <LinearLayout
@@ -88,15 +60,8 @@
             app:layout_constraintEnd_toStartOf="@+id/_li_second"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/_li_hour">
-
-            <com.cncoderx.wheelview.Wheel3DView
-                android:id="@+id/_whv_minute"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                style="@style/dialog.tv_hint"
-                android:text="@string/HX_minute"/>
+            <com.cncoderx.wheelview.Wheel3DView android:id="@+id/_whv_minute" style="@style/dialog.item_wv"/>
+            <TextView style="@style/dialog.tv_hint" android:text="@string/HX_minute"/>
         </LinearLayout>
 
         <LinearLayout
@@ -107,18 +72,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/_li_minute">
-
-            <com.cncoderx.wheelview.Wheel3DView
-                android:id="@+id/_whv_second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
-            <TextView
-                style="@style/dialog.tv_hint"
-                android:text="@string/HX_second"/>
+            <com.cncoderx.wheelview.Wheel3DView android:id="@+id/_whv_second" style="@style/dialog.item_wv"/>
+            <TextView style="@style/dialog.tv_hint" android:text="@string/HX_second"/>
         </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <View style="@style/line" android:layout_marginTop="@dimen/l_m_v"/>
     <LinearLayout style="@style/Fra.H">

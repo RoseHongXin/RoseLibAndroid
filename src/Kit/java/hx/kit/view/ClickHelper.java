@@ -2,10 +2,10 @@ package hx.kit.view;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import hx.lib.R;
 
 

@@ -1,7 +1,7 @@
 package hx.request;
 
 import android.content.Context;
-import android.support.v4.app.DialogFragment;
+import androidx.fragment.app.DialogFragment;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

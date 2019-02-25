@@ -1,14 +1,16 @@
 package hx.widget.adapterview;
 
 import android.app.Activity;
-import android.support.annotation.CallSuper;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.StringRes;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import androidx.annotation.CallSuper;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.StringRes;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.ButterKnife;
 import hx.widget.adapterview.recyclerview.ApBase;
+
+//import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by rose on 16-9-9.

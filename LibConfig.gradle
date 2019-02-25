@@ -3,7 +3,7 @@ ext{
             compileSdkVersion: 28,
             buildToolsVersion: '28.0.3',
 //            minSdkVersion: 22,    //手环,手表,极控
-//            minSdkVersion: 20,    //电表
+//            minSdkVersion: 20,    //电表, 杭州智能家居
             minSdkVersion: 15,    //测试机
             targetSdkVersion: 28,
             dependencyVersion: '28.0.0'
@@ -14,9 +14,9 @@ ext{
             cardviewv7: 'com.android.support:cardview-v7:' + props.dependencyVersion,
             design: 'com.android.support:design:' + props.dependencyVersion,
             supportPercnet: 'com.android.support:percent:' + props.dependencyVersion,
-            recyclerviewv7: 'com.android.support:recyclerview-v7:' + props.dependencyVersion,
-            butterknife: 'com.jakewharton:butterknife:8.8.1',
-            butterknifeCompiler: 'com.jakewharton:butterknife-compiler:8.8.1',
+            recyclerview: 'androidx.recyclerview:recyclerview:1.0.0',
+            butterknife: 'com.jakewharton:butterknife:10.0.0',
+            butterknifeCompiler: 'com.jakewharton:butterknife-compiler:10.0.0',
             fastjson: 'com.alibaba:fastjson:1.2.51',
             fastjsonAndroid: 'com.alibaba:fastjson:1.1.70.android',
             jacksonCore: 'com.fasterxml.jackson.core:jackson-core:2.9.6',
@@ -24,7 +24,13 @@ ext{
             jacksonDataBind: 'com.fasterxml.jackson.core:jackson-databind:2.9.6',
             rxjava: 'io.reactivex.rxjava2:rxjava:2.2.0',
             rxandroid: 'io.reactivex.rxjava2:rxandroid:2.0.2',
-            constraintlayout: 'com.android.support.constraint:constraint-layout:1.1.3',
+            constraintlayout: 'androidx.constraintlayout:constraintlayout:1.1.2',
+    ]
+
+    ver = [
+            retrofit: "2.4.0",
+            glide: "4.8.0",
+            okhttp3: "3.11.0"
     ]
     buildVars =[
             proguard: false

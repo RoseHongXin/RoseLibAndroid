@@ -1,13 +1,15 @@
 package hx.view.softtouch;
 
+
+
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.support.v4.view.ViewCompat;
-import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.DecelerateInterpolator;
+
+import androidx.core.view.ViewCompat;
 
 /**
  * Created by RoseHongXin on 2017/6/23 0023.

@@ -815,6 +815,13 @@ public class PtrFrameLayout extends ViewGroup {
             if (DEBUG) {
                 PtrCLog.d(LOG_TAG, "performRefreshComplete at once");
             }
+
+            //////////////////////////////////////////////////
+            //自己加的代码, 解决当当前页面被其他页面覆盖时, autoRefresh后, header无法回弹的问题
+            mPtrIndicator.onRelease();
+            PtrCLog.d(LOG_TAG, "--------------------refresh complete onRelease()");
+            //////////////////////////////////////////////////
+
             performRefreshComplete();
         } else {
             postDelayed(mPerformRefreshCompleteDelay, delay);
@@ -866,7 +873,8 @@ public class PtrFrameLayout extends ViewGroup {
             mPtrUIHandlerHolder.onUIRefreshComplete(this, mPtrIndicator.isHeader());
         }
         mPtrIndicator.onUIRefreshComplete();
-        tryScrollBackToTopAfterComplete();
+//        tryScrollBackToTopAfterComplete();
+        tryScrollBackToTop();
         tryToNotifyReset();
     }
 

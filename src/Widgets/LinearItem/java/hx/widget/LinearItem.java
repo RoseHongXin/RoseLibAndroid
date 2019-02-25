@@ -2,8 +2,8 @@ package hx.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;

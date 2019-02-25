@@ -1,8 +1,8 @@
 package hx.kit.view;
 
 import android.app.Activity;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.widget.SearchView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;

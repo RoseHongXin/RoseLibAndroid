@@ -11,6 +11,7 @@
         <item name="android:paddingBottom">@dimen/bt_p_v</item>
         <item name="android:textSize">@dimen/txt_content</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
     </style>
     <style name="_Btn.stroke" parent="_Btn">
         <item name="android:layout_width">match_parent</item>

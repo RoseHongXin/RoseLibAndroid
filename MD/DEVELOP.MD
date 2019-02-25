@@ -13,6 +13,9 @@ ${gradle} gradle.properties  配置gradle路径, 环境变量配置  GRADLE_USER
  gradlew compileDebug --stacktrace -info
  gradlew compileDebug --stacktrace -debug
 
+ gradlew processDebugManifest --stacktrace   当出现Manifest merger failed with multiple errors, see logs,可以看到详细信息
+
+
 
 ```
 重新点击Desktop icon 或者通知栏通知, 显示上次退出要home的页面bug修复(launchMode和从哪里启动有关[ES安装后启动就有问题,点击桌面图标就是OK的]).
@@ -56,7 +59,7 @@ uri方式打开activity还没测试.
 > * 获取sha1
     keytool -exportcert -list -v -alias <your-key-name> -keystore <path-to-production-keystore>
 
-# .java 2 .class   , jar包class修改.
+##### .java 2 .class   , jar包class修改.
 ```
 javac -encoding UTF-8 -nowarn -cp wearable.jar;android.jar com\mediatek\wearableProfiles\WearableClientProfileManager.java
 
@@ -64,7 +67,7 @@ jar uvf wearable.jar com\mediatek\wearableProfiles\WearableClientProfileManager.
 
 ```
 
-# adb wifi 方式调试
+##### adb wifi 方式调试
 ```
 adb tcpip 5555
 adb connect 192.168.15.152  PC和设备在同一网段
@@ -73,8 +76,26 @@ adb kill-server
 adb shell 进入shell模式
 ```
 
-# SHA1
+##### SHA1
 ```
 keytool -list -v -keystore "%USERPROFILE%\.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
 keytool -list -v -keystore "F:/AndroidPro/AndroidSigned" -alias smarthome -storepass dan199858 -keypass dan199858
+keytool -list -v -keystore "F:/AndroidPro/AndroidSigned" -alias smartwearable -storepass dan199858 -keypass hongxin
+```
+
+###### 退出App
+```java
+//            am.killBackgroundProcesses(packageName)   //1
+//            val forceStopPackage = am.javaClass.getDeclaredMethod("forceStopPackage", String :: class.java)
+//            forceStopPackage.isAccessible = true
+//            forceStopPackage.invoke(am, packageName)  //2
+//            android.os.Process.killProcess(android.os.Process.myPid())      //4
+//            System.exit(0)                            //3
+            ///////////////////5
+//            val startMain = Intent(Intent.ACTION_MAIN)
+//            startMain.addCategory(Intent.CATEGORY_HOME)
+//            startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+//            startActivity(startMain)
+//            System.exit(0)
+            ///////////////////5
 ```
