@@ -32,15 +32,29 @@ public class DialogPool {
                 .setNeutralButton(R.string.HX_confirm, listener))
                 .show();
     }
-    public static void confirm(@NonNull Activity act, @StringRes int msg, DialogInterface.OnClickListener listener) {
-        if(act.isFinishing() || act.isDestroyed()) return;
-        confirm(act, act.getString(msg), listener);
+    public static void confirm(@NonNull Activity act, Object msg, DialogInterface.OnClickListener listener){
+        confirm(act, msg, -1, listener);
     }
-    public static void confirm(@NonNull Activity act, String msg, DialogInterface.OnClickListener listener){
+    public static void confirm(@NonNull Activity act, Object msg, Object positiveBt, DialogInterface.OnClickListener listener){
+        if(act.isFinishing() || act.isDestroyed()) return;
+        String message = "";
+        if(msg instanceof String) {
+            message = (String) msg;
+        }else if(msg instanceof Integer) {
+            int resId = (int)msg;
+            if(resId != -1) message = act.getString(resId);
+        }
+        String btTxt = act.getString(R.string.HX_confirm);
+        if(positiveBt instanceof String){
+            btTxt = (String) positiveBt;
+        }else if(positiveBt instanceof Integer){
+            int resId = (int) positiveBt;
+            if(resId != -1) btTxt = act.getString(resId);
+        }
         new AlertDialog.Builder(act)
-                .setTitle(msg)
+                .setTitle(message)
                 .setCancelable(false)
-                .setPositiveButton(R.string.HX_confirm, listener)
+                .setPositiveButton(btTxt, listener)
                 .setNegativeButton(R.string.HX_cancel, null)
                 .create()
                 .show();

@@ -819,7 +819,7 @@ public class PtrFrameLayout extends ViewGroup {
             //////////////////////////////////////////////////
             //自己加的代码, 解决当当前页面被其他页面覆盖时, autoRefresh后, header无法回弹的问题
             mPtrIndicator.onRelease();
-            PtrCLog.d(LOG_TAG, "--------------------refresh complete onRelease()");
+//            if(DEBUG){ PtrCLog.d(LOG_TAG, "--------------------refresh complete onRelease()");}
             //////////////////////////////////////////////////
 
             performRefreshComplete();

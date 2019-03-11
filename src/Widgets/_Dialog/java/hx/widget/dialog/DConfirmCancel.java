@@ -25,7 +25,7 @@ public class DConfirmCancel {
 
     private OnInitCallback mInitCb;
     private OnClickCallback mOnClickListener;
-    private String mPositiveBtText;
+    private Object mPositiveBtText;
 
     public static DConfirmCancel builder(){
         return new DConfirmCancel();
@@ -39,7 +39,7 @@ public class DConfirmCancel {
         this.mAct = act;
         return this;
     }
-    public DConfirmCancel bt(String positiveBtText){
+    public DConfirmCancel bt(Object positiveBtText){
         this.mPositiveBtText = positiveBtText;
         return this;
     }
@@ -55,10 +55,17 @@ public class DConfirmCancel {
     public Dialog create(){
         mLayout = mAct.getLayoutInflater().inflate(mLayoutRes, null);
         if(mInitCb != null) mInitCb.onInit(DConfirmCancel.this);
+        String btTxt = mAct.getString(R.string.HX_confirm);
+        if(mPositiveBtText instanceof String) {
+            btTxt = (String) mPositiveBtText;
+        }else if (mPositiveBtText instanceof Integer){
+            int resId = (int) mPositiveBtText;
+            if(resId != -1) btTxt = mAct.getString(resId);
+        }
         AlertDialog dialog =  new AlertDialog.Builder(mAct)
                 .setCancelable(false)
                 .setView(mLayout)
-                .setPositiveButton(TextUtils.isEmpty(mPositiveBtText) ? mAct.getString(R.string.HX_confirm) : mPositiveBtText, null)
+                .setPositiveButton(btTxt, null)
                 .setNegativeButton(R.string.HX_cancel, null)
                 .create();
         Window window = dialog.getWindow();

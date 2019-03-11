@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.concurrent.TimeUnit;
 
 import hx.kit.log.Log4Android;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -35,7 +36,8 @@ public class RequestBase {
                 .readTimeout(time(), TimeUnit.SECONDS)
                 .writeTimeout(time(), TimeUnit.SECONDS)
                 .connectTimeout(time(), TimeUnit.SECONDS)
-                .retryOnConnectionFailure(true);
+//                .addInterceptor(Interceptor)  //可以处理connectionFailure的retry次数
+                .retryOnConnectionFailure(false);
         mObjMapper = new ObjectMapper();
         mObjMapper.configure(JsonParser.Feature.IGNORE_UNDEFINED, true);
         mObjMapper.configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);
