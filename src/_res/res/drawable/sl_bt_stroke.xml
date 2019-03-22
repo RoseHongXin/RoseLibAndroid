@@ -4,7 +4,7 @@
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/bt_corner"/>
-            <stroke android:color="@color/colorPrimary" android:width="@dimen/bt_border"/>
+            <stroke android:width="@dimen/bt_border" android:color="?android:attr/colorPrimary"/>
             <solid android:color="@android:color/transparent"/>
         </shape>
     </item>
@@ -12,7 +12,7 @@
     <item android:state_enabled="false">
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/bt_corner"/>
-            <stroke android:color="@color/_disabled" android:width="@dimen/bt_border"/>
+            <stroke android:width="@dimen/bt_border" android:color="@color/_disabled"/>
             <solid android:color="@android:color/transparent"/>
         </shape>
     </item>
@@ -21,7 +21,7 @@
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/bt_corner"/>
             <!--<stroke android:color="@color/_default" android:width="@dimen/bt_border"/>-->
-            <stroke android:color="@color/colorPrimary" android:width="@dimen/bt_border"/>
+            <stroke android:width="@dimen/bt_border" android:color="?android:attr/colorPrimary"/>
             <solid android:color="@android:color/transparent"/>
         </shape>
     </item>
