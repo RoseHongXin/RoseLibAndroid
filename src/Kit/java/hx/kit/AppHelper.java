@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
 
 import java.util.List;
 
@@ -17,8 +16,8 @@ import java.util.List;
 public class AppHelper {
 
      public static boolean isActForeground(Activity act) {
-         ActivityManager am;
-         if(act == null || (am = (ActivityManager) act.getSystemService(Context.ACTIVITY_SERVICE)) == null || !isAppForeground(act, am)) return false;
+         if(!isAppForeground(act)) return false;
+         ActivityManager am = (ActivityManager) act.getSystemService(Context.ACTIVITY_SERVICE);
          int taskId = act.getTaskId();
          String actName = act.getClass().getName();
          String packageName = act.getPackageName();
@@ -50,15 +49,15 @@ public class AppHelper {
         return false;
     }
     public static boolean isAppForeground(Context ctx) {
-        ActivityManager am;
-        return ctx != null && (am = (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE)) != null && isAppForeground(ctx, am);
+        return ctx != null && isAppForeground(ctx, ctx.getPackageName());
     }
-    private static boolean isAppForeground(@NonNull Context ctx, @NonNull ActivityManager activityManager){
-        List<ActivityManager.RunningAppProcessInfo> processes = activityManager.getRunningAppProcesses();
+    public static boolean isAppForeground(Context ctx, String pkgName){
+        ActivityManager am = ctx == null ? null : (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
+        if(am == null) return false;
+        List<ActivityManager.RunningAppProcessInfo> processes = am.getRunningAppProcesses();
         if(processes == null || processes.isEmpty()) return false;
-        String packageName = ctx.getPackageName();
         for(ActivityManager.RunningAppProcessInfo process : processes){
-            if(process.processName.equals(packageName) && process.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) return true;
+            if(process.processName.equals(pkgName) && process.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) return true;
         }
         return false;
     }
