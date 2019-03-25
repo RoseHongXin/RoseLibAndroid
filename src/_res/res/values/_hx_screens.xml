@@ -101,30 +101,4 @@
         <item name="android:paddingTop">@dimen/l_p_v</item>
     </style>
 
-    <style name="PageContainer">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">start|center_horizontal</item>
-        <item name="android:background">@color/windowBackground</item>
-        <item name="android:windowBackground">@color/windowBackground</item>
-        <item name="android:orientation">vertical</item>
-    </style>
-    <style name="PageContainer.Match" parent="PageContainer">
-        <item name="android:layout_height">match_parent</item>
-    </style>
-    <style name="PageContainer.Padding.Vertical" parent="PageContainer.Match">
-        <item name="android:paddingBottom">@dimen/l_p_v</item>
-        <item name="android:paddingTop">@dimen/l_p_v</item>
-    </style>
-    <style name="PageContainer.Padding.Horizontal" parent="PageContainer">
-        <item name="android:paddingLeft">@dimen/l_p_h</item>
-        <item name="android:paddingRight">@dimen/l_p_h</item>
-    </style>
-    <style name="PageContainer.Padding" parent="PageContainer.Match">
-        <item name="android:paddingLeft">@dimen/l_p_h</item>
-        <item name="android:paddingRight">@dimen/l_p_h</item>
-        <item name="android:paddingBottom">@dimen/l_p_v</item>
-        <item name="android:paddingTop">@dimen/l_p_v</item>
-    </style>
-
 </resources>
