@@ -2,8 +2,6 @@ package hx.kit;
 
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.usage.UsageStats;
-import android.app.usage.UsageStatsManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +10,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import java.util.List;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 /**
  * Created by RoseHongXin on 2017/6/15 0015.
