@@ -28,9 +28,9 @@ ext{
     ]
 
     ver = [
-            retrofit: "2.4.0",
-            glide: "4.8.0",
-            okhttp3: "3.11.0"
+            retrofit: "2.5.0",
+            glide: "4.9.0",
+            okhttp3: "3.14.0"
     ]
     buildVars =[
             proguard: false

@@ -37,7 +37,7 @@ public class RequestBase {
                 .writeTimeout(time(), TimeUnit.SECONDS)
                 .connectTimeout(time(), TimeUnit.SECONDS)
 //                .addInterceptor(Interceptor)  //可以处理connectionFailure的retry次数
-                .retryOnConnectionFailure(false);
+                .retryOnConnectionFailure(true);
         mObjMapper = new ObjectMapper();
         mObjMapper.configure(JsonParser.Feature.IGNORE_UNDEFINED, true);
         mObjMapper.configure(JsonGenerator.Feature.IGNORE_UNKNOWN, true);
