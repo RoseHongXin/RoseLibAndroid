@@ -1,19 +1,3 @@
-```
-ActivityManager am = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
-//            if(am != null) am.killBackgroundProcesses(getPackageName());
-//            try {
-//                Method forceStopPackage = am.getClass().getDeclaredMethod("forceStopPackage", String.class);
-//                forceStopPackage.setAccessible(true);
-//                forceStopPackage.invoke(am, getPackageName());
-//            }catch (Exception e){}
-            new Handler().postDelayed(() -> {
-                System.exit(0);
-                android.os.Process.killProcess(android.os.Process.myPid());
-
-            }, 100);
-```
-
-
 > Switch的click事件返回是,onCheckChange事件已经回调了,所以isChecked()是切换后的状态 <br>
 > TextPaint 不需要考虑textWidth, textHeight只需要关注fontMetrics.bottom <br>
 > 设置fullscreen的activity,通过设置windowBackground没有效果. <br>
@@ -24,6 +8,10 @@ ActivityManager am = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE)
 > If you are using Kotlin, replace annotationProcessor with kapt.----be careful---- <br>
 > android:colorControlActivated：表示CheckBox、EditText、Switch、Spinner、RadioButton等控件激活时候的色调，与之相同作用的一个属性：android:colorAccent。作用也是一样的。 <br>
 > android:colorControlNormal：表示CheckBox、EditText、Switch、Spinner、RadioButton等控件默认时的色调 <br>
+
+----
+
+> proguard-android.txt 在SDK/tools路径下
 
 
 ###### MPAndroid

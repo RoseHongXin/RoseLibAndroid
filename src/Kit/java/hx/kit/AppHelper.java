@@ -2,10 +2,12 @@ package hx.kit;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import java.util.List;
 
@@ -34,8 +36,8 @@ public class AppHelper {
         return false;
     }
     public static boolean isActForeground(Context ctx, String pkgName) {
-        ActivityManager am;
-        if(ctx == null || (am = (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE)) == null) return false;
+        ActivityManager am = ctx == null ? null : (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
+        if(am == null) return false;
         if(Build.VERSION.SDK_INT  >= Build.VERSION_CODES.M) {
             List<ActivityManager.AppTask> tasks = am.getAppTasks();
             for(ActivityManager.AppTask task : tasks) {
@@ -73,6 +75,37 @@ public class AppHelper {
         return false;
     }
 
+    public static boolean ifSwipeApp2Foreground(Context ctx, String pkgName){
+        ActivityManager am = ctx == null ? null : (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
+        if(am == null) return false;
+        List<ActivityManager.RunningAppProcessInfo> processes = am.getRunningAppProcesses();
+        if(processes == null || processes.isEmpty()) return false;
+        ActivityManager.RunningAppProcessInfo targetProc = null;
+        for(ActivityManager.RunningAppProcessInfo process : processes){
+            if(process.processName.equals(pkgName)) {
+                targetProc = process;
+                break;
+            }
+        }
+        if(targetProc != null) {
+            List<ActivityManager.AppTask> appTasks = am.getAppTasks();
+            if(appTasks == null || appTasks.isEmpty()) return false;
+            for(ActivityManager.AppTask task : appTasks){
+                ActivityManager.RecentTaskInfo taskInfo = task.getTaskInfo();
+                ComponentName componentName = taskInfo.topActivity;
+                if(componentName == null) componentName = taskInfo.baseActivity;
+                if(componentName == null) componentName = taskInfo.origActivity;
+                if(componentName != null){
+                    if(TextUtils.equals(componentName.getPackageName(), pkgName)){
+                        task.moveToFront();
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public static void start(Activity act, Class<? extends Activity> targetAct){
         start(act, targetAct, 0, null);
     }
@@ -97,3 +130,32 @@ public class AppHelper {
 
 
 }
+
+/*
+if(android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.LOLLIPOP){
+             ActivityManager am = ctx == null ? null : (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
+             if(am == null) return false;
+             List<ActivityManager.RunningAppProcessInfo> processes = am.getRunningAppProcesses();
+             if(processes == null || processes.isEmpty()) return false;
+             for(ActivityManager.RunningAppProcessInfo process : processes){
+                 if(process.processName.equals(pkgName) && process.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) return true;
+             }
+             return false;
+         }
+
+        UsageStatsManager usage = (UsageStatsManager) ctx.getSystemService(Context.USAGE_STATS_SERVICE);
+        long time = System.currentTimeMillis();
+        List<UsageStats> stats = usage.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, time - 1000*1000, time);
+        if (stats != null) {
+            SortedMap<Long, UsageStats> runningTask = new TreeMap<Long,UsageStats>();
+            for (UsageStats usageStats : stats) {
+                runningTask.put(usageStats.getLastTimeUsed(), usageStats);
+            }
+            if (runningTask.isEmpty()) {
+                return false;
+            }
+            String thePkgName =  runningTask.get(runningTask.lastKey()).getPackageName();
+            return TextUtils.equals(thePkgName, pkgName);
+        }
+        return false;
+ */
