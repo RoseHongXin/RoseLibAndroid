@@ -26,8 +26,11 @@ public class SpHelper {
         return mSp.getString(key, "");
     }
     public static int getInt(String key){
+        return getInt(key, 0);
+    }
+    public static int getInt(String key, int def){
         if(mSp == null) return 0;
-        return mSp.getInt(key, 0);
+        return mSp.getInt(key, def);
     }
     public static boolean getBoolean(String key, boolean def){
         if(mSp == null) return def;
