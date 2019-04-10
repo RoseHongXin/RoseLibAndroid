@@ -116,20 +116,28 @@ public class LinearItem extends FrameLayout {
     public String textL() {
         return textL;
     }
-    public void textL(String text) {
-        this.textL = text;
+    public void textL(Object text) {
+        if(text instanceof String){
+            textL = (String) text;
+        }else if(text instanceof Integer){
+            textL = getResources().getString((int)text);
+        }
         if(_tv_itemLeft.getVisibility() != VISIBLE) _tv_itemLeft.setVisibility(VISIBLE);
-        _tv_itemLeft.setText(text);
+        _tv_itemLeft.setText(textL);
     }
     public String textR() {
         return textR;
     }
-    public void textR(String text) {
-        this.textR = text;
+    public void textR(Object text) {
+        if(text instanceof String){
+            textR = (String) text;
+        }else if(text instanceof Integer){
+            textR = getResources().getString((int)text);
+        }
         if(_tv_itemRight.getVisibility() != VISIBLE) _tv_itemRight.setVisibility(VISIBLE);
-        _tv_itemRight.setText(text);
+        _tv_itemRight.setText(textR);
     }
-    public void text(String text){
+    public void text(Object text){
         textR(text);
     }
     public String text(){

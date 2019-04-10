@@ -2,6 +2,8 @@ package hx.widget.dialog;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.os.Build;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
@@ -24,7 +26,11 @@ public class DialogPool {
         toast(act, act.getString(msg), listener);
     }
     public static void toast(@NonNull Activity act, String msg, DialogInterface.OnClickListener listener){
-        if(act.isFinishing() || act.isDestroyed()) return;
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+//            if(act.isFinishing() || act.isDestroyed()) return;
+//        }else{
+//            if(act.isFinishing()) return;
+//        }
         DialogHelper.dlgButtonCenter(
                 new AlertDialog.Builder(act)
                 .setTitle(msg)
@@ -36,7 +42,11 @@ public class DialogPool {
         confirm(act, msg, -1, listener);
     }
     public static void confirm(@NonNull Activity act, Object msg, Object positiveBt, DialogInterface.OnClickListener listener){
-        if(act.isFinishing() || act.isDestroyed()) return;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if(act.isFinishing() || act.isDestroyed()) return;
+        }else{
+            if(act.isFinishing()) return;
+        }
         String message = "";
         if(msg instanceof String) {
             message = (String) msg;
