@@ -29,7 +29,7 @@ ext{
 
     ver = [
             retrofit: "2.5.0",
-            glide: "4.8.0",
+            glide: "4.9.0",
             okhttp3: "3.14.0"
     ]
     buildVars =[

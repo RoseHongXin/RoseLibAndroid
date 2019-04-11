@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="half_blank">&#160;&#160;</string>
+    <string name="punctuation_english_comma">,</string>
+    <string name="punctuation_chinese_comma">，</string>
+
+    <string name="date_format">yyyy-MM-dd</string>
+    <string name="date_format_detail">yyyy-MM-dd HH:mm</string>
+
+    <string name="back_press_exit_note">再按一次，退出程序!</string>
+    <string name="back_press_to_home_note">再按一次，回到桌面!</string>
+    <string name="socket_timeout">请求超时</string>
+    <string name="data_problem">页面数据错误，请重新操作！</string>
+
+    <string name="please_select_province">请选择省份</string>
+    <string name="please_select_city">请选择城市</string>
+    <string name="please_select_county">请选择区县</string>
+
+    <string name="text_copied_to_clipboard">文本已复制到剪切板</string>
+    <string name="confirm_finish_current_page">确定退出当前页面?</string>
+
+    <string name="yuan_int">%1$d元</string>
+    <string name="yuan_float">%1$.2f元</string>
+
+    <string name="band">已绑定</string>
+    <string name="unband">未绑定</string>
+
+
+
+</resources>
