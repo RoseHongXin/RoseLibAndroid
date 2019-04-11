@@ -150,6 +150,10 @@ public class DItemBUConfirm extends DialogFragment{
         this._tv_anchor = _tv_anchor;
         return this;
     }
+    public DItemBUConfirm values(int[] values){
+        this.mValues = values;
+        return this;
+    }
     public DItemBUConfirm range(int[] texts, String format){
         mTexts = new String[texts[1] - texts[0] + 1];
         mValues = new int[mTexts.length];
