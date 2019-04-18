@@ -1,8 +1,10 @@
 package hx.widget.dialog;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
+import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
@@ -42,31 +44,39 @@ public class DialogPool {
         confirm(act, msg, -1, listener);
     }
     public static void confirm(@NonNull Activity act, Object msg, Object positiveBt, DialogInterface.OnClickListener listener){
+        confirm(act, new Object[]{null, msg, positiveBt}, listener);
+    }
+    public static void confirm(@NonNull Activity act, Object[] texts, DialogInterface.OnClickListener listener){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             if(act.isFinishing() || act.isDestroyed()) return;
         }else{
             if(act.isFinishing()) return;
         }
-        String message = "";
-        if(msg instanceof String) {
-            message = (String) msg;
-        }else if(msg instanceof Integer) {
-            int resId = (int)msg;
-            if(resId != -1) message = act.getString(resId);
-        }
-        String btTxt = act.getString(R.string.HX_confirm);
-        if(positiveBt instanceof String){
-            btTxt = (String) positiveBt;
-        }else if(positiveBt instanceof Integer){
-            int resId = (int) positiveBt;
-            if(resId != -1) btTxt = act.getString(resId);
-        }
-        new AlertDialog.Builder(act)
-                .setTitle(message)
+        String title = text(act, texts != null && texts.length > 0 ? texts[0] : null);
+        String msg = text(act, texts != null && texts.length > 1 ? texts[1] : null);
+        String positiveBt = text(act, texts != null && texts.length > 2 ? texts[2] : null);
+        String btTxt = TextUtils.isEmpty(positiveBt) ? act.getString(R.string.HX_confirm) : positiveBt;
+        AlertDialog.Builder builder = new AlertDialog.Builder(act)
                 .setCancelable(false)
                 .setPositiveButton(btTxt, listener)
-                .setNegativeButton(R.string.HX_cancel, null)
-                .create()
-                .show();
+                .setNegativeButton(R.string.HX_cancel, null);
+        if(TextUtils.isEmpty(title)){
+            builder.setTitle(msg);
+        }else{
+            builder.setTitle(title).setMessage(msg);
+        }
+        builder.create().show();
+    }
+
+    private static String text(Context ctx, Object text){
+        if(text == null) return "";
+        String txtStr = "";
+        if(text instanceof String) {
+            txtStr = (String) text;
+        }else if(text instanceof Integer) {
+            int resId = (int)text;
+            if(resId != -1) txtStr = ctx.getString(resId);
+        }
+        return txtStr;
     }
 }
