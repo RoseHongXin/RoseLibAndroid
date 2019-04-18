@@ -13,6 +13,8 @@
 
 > proguard-android.txt 在SDK/tools路径下
 
+####### byte类型,如果向上强制转换的时候,高位填的是1 , 在做字节运算的时候,需要特别注意. byte & 0xFF
+
 
 ###### MPAndroid
 ```
