@@ -77,6 +77,7 @@ class VpConfig4Fra  extends IVpInterface{
         if(mOffScreenSize == 0) mOffScreenSize = 1;
         if(mPageCount == 0) mPageCount = mFras.size();
         _vp_.setAdapter(new FragmentStatePagerAdapter(mFraMgr) {
+            @NonNull
             @Override
             public Fragment getItem(int position) {
                 return mFras.get(position);
@@ -87,16 +88,24 @@ class VpConfig4Fra  extends IVpInterface{
             }
             @NonNull
             @Override
-            public Object instantiateItem(ViewGroup container, int position) {
+            public Object instantiateItem(@NonNull ViewGroup container, int position) {
                 Fragment fragment = (Fragment)super.instantiateItem(container,position);
-                mFraMgr.beginTransaction().show(fragment).commit();
+                try{
+                    mFraMgr.beginTransaction().show(fragment).commit();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
                 return fragment;
             }
             @Override
-            public void destroyItem(ViewGroup container, int position, Object object) {
+            public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
 //                super.destroyItem(container, position, object);
                 Fragment fragment = mFras.get(position);
-                mFraMgr.beginTransaction().hide(fragment).commit();
+                try{
+                    mFraMgr.beginTransaction().hide(fragment).commit();
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
         _vp_.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
