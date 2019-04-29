@@ -29,9 +29,9 @@ public class DialogPool {
     }
     public static void toast(@NonNull Activity act, String msg, DialogInterface.OnClickListener listener){
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-//            if(act.isFinishing() || act.isDestroyed()) return;
+//            if(host.isFinishing() || host.isDestroyed()) return;
 //        }else{
-//            if(act.isFinishing()) return;
+//            if(host.isFinishing()) return;
 //        }
         DialogHelper.dlgButtonCenter(
                 new AlertDialog.Builder(act)
