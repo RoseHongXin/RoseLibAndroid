@@ -1,6 +1,6 @@
 package hx.kit.data;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -10,18 +10,33 @@ import java.security.NoSuchAlgorithmException;
 
 public final class Encrypter {
 
-    public static String md5(String str) {
+    public static String md5(String text) {
+        if(text == null) text = "";
         byte[] hash;
         try {
-            hash = MessageDigest.getInstance("MD5").digest(str.getBytes("UTF-8"));
+            hash = MessageDigest.getInstance("MD5").digest(text.getBytes(StandardCharsets.UTF_8));
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Huh, MD5 should be supported?", e);
-        } catch (UnsupportedEncodingException e) {
-            throw new RuntimeException("Huh, UTF-8 should be supported?", e);
         }
+        return byts2Hex(hash);
+    }
 
-        StringBuilder hex = new StringBuilder(hash.length * 2);
-        for (byte b : hash) {
+    public static String sha256(String text){
+        if(text == null) text = "";
+        byte[] hash;
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            digest.update(text.getBytes(StandardCharsets.UTF_8));
+            hash = digest.digest();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Huh, SHA-256 should be supported?", e);
+        }
+        return byts2Hex(hash);
+    }
+
+    private static String byts2Hex(byte[] byts){
+        StringBuilder hex = new StringBuilder(byts.length * 2);
+        for (byte b : byts) {
             if ((b & 0xFF) < 0x10) hex.append("0");
             hex.append(Integer.toHexString(b & 0xFF));
         }
