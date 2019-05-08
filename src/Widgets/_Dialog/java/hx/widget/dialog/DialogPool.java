@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
-
 import hx.lib.R;
 
 /**
@@ -28,11 +27,12 @@ public class DialogPool {
         toast(act, act.getString(msg), listener);
     }
     public static void toast(@NonNull Activity act, String msg, DialogInterface.OnClickListener listener){
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-//            if(host.isFinishing() || host.isDestroyed()) return;
-//        }else{
-//            if(host.isFinishing()) return;
-//        }
+        if(act == null) return;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if(act.isFinishing() || act.isDestroyed()) return;
+        }else{
+            if(act.isFinishing()) return;
+        }
         DialogHelper.dlgButtonCenter(
                 new AlertDialog.Builder(act)
                 .setTitle(msg)
@@ -47,6 +47,7 @@ public class DialogPool {
         confirm(act, new Object[]{null, msg, positiveBt}, listener);
     }
     public static void confirm(@NonNull Activity act, Object[] texts, DialogInterface.OnClickListener listener){
+        if(act == null) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             if(act.isFinishing() || act.isDestroyed()) return;
         }else{
