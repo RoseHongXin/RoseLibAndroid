@@ -26,6 +26,7 @@ public class DConfirmCancel {
     private OnInitCallback mInitCb;
     private OnClickCallback mOnClickListener;
     private Object mPositiveBtText;
+    private Object mTitle;
 
     public static DConfirmCancel builder(){
         return new DConfirmCancel();
@@ -41,6 +42,10 @@ public class DConfirmCancel {
     }
     public DConfirmCancel bt(Object positiveBtText){
         this.mPositiveBtText = positiveBtText;
+        return this;
+    }
+    public DConfirmCancel title(Object title){
+        this.mTitle = title;
         return this;
     }
     public DConfirmCancel click(OnClickCallback listener){
@@ -62,8 +67,15 @@ public class DConfirmCancel {
             int resId = (int) mPositiveBtText;
             if(resId != -1) btTxt = mAct.getString(resId);
         }
+        String title = "";
+        if(mTitle instanceof String){ title = (String) mTitle; }
+        else if(mTitle instanceof Integer){
+            int resId = (int) mTitle;
+            if(resId != -1) title = mAct.getString(resId);
+        }
         AlertDialog dialog =  new AlertDialog.Builder(mAct)
                 .setCancelable(false)
+                .setTitle(title)
                 .setView(mLayout)
                 .setPositiveButton(btTxt, null)
                 .setNegativeButton(R.string.HX_cancel, null)

@@ -67,6 +67,10 @@ public class DItemBUConfirm extends DialogFragment{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         _whv_items = (Wheel3DView) view.findViewById(R.id._whv_items);
+        if(mTexts == null){
+            _whv_items.setEntries();
+            return;
+        }
         if(mTextFormatCallback == null) {
             _whv_items.setEntries(mTexts);
         }else{
@@ -148,6 +152,10 @@ public class DItemBUConfirm extends DialogFragment{
     }
     public DItemBUConfirm anchor(TextView _tv_anchor){
         this._tv_anchor = _tv_anchor;
+        return this;
+    }
+    public DItemBUConfirm values(int[] values){
+        this.mValues = values;
         return this;
     }
     public DItemBUConfirm range(int[] texts, String format){
