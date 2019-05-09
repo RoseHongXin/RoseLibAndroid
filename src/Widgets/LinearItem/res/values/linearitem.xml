@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="LinearItem_height_default">48dp</dimen>
-
-    <dimen name="LinearItem_p_h">@dimen/l_p_h</dimen>
-    <dimen name="LinearItem_p_v">@dimen/l_p_v</dimen>
-    <dimen name="LinearItem_gap">@dimen/l_p_small</dimen>
     <dimen name="LinearItem_gapLeft">@dimen/l_p_min</dimen>
-    <dimen name="LinearItem_gapRight">@dimen/l_p_min</dimen>
 
     <style name="LinearItem">
         <item name="android:layout_width">match_parent</item>

@@ -21,96 +21,26 @@
     <string name="HX_month">Month</string>
     <string name="HX_day">Day</string>
 
-    <string name="HX_phone_number">Phone Number</string>
-    <string name="HX_phonePrefix4China">+86</string>
     <string name="HX_password">Password</string>
-    <string name="HX_login">Login</string>
-    <string name="HX_register">Register</string>
-    <string name="HX_forget_password">Forget Password</string>
     <string name="HX_modify_password">Reset Password</string>
-    <string name="HX_captcha">Captcha</string>
-    <string name="HX_obtainCaptcha">Obtain Captcha</string>
-    <string name="HX_show">Show</string>
-    <string name="HX_hide">Hide</string>
-    <string name="HX_jump_over">Jump Over</string>
-    <string name="HX_gender">Gender</string>
-    <string name="HX_male">Male</string>
-    <string name="HX_female">Female</string>
     <string name="HX_avatar">Avatar</string>
-    <string name="HX_personal_profile">Personal Profile</string>
-    <string name="HX_add">Add</string>
-    <string name="HX_nickname">Nickname</string>
-    <string name="HX_cellPhoneNum">Cell-Phone</string>
-    <string name="HX_email">Email</string>
-    <string name="HX_address">Address</string>
-    <string name="HX_refresh">Refresh</string>
-    <string name="HX_sync">Synchronize</string>
 
-    <string name="HX_start">Start</string>
-    <string name="HX_deadline">Deadline</string>
-    <string name="HX_time_select">Time Select</string>
     <string name="HX_startTime">Start Time</string>
     <string name="HX_endTime">End Time</string>
-    <string name="HX_open">Open</string>
-    <string name="HX_close">Close</string>
-    <string name="HX_aboutUs">About Us</string>
-    <string name="HX_softwareLicensingAgreement">Software Agreement</string>
-    <string name="HX_privacyAgreement">Privacy Agreement</string>
-    <string name="HX_exit">Exit</string>
-    <string name="HX_qrcode_scan">QrCode Scan</string>
-    <string name="HX_scan">Scan</string>
-    <string name="HX_edit">Edit</string>
-    <string name="HX_on">On</string>
-    <string name="HX_off">Off</string>
 
-    <string name="HX_yourNicknameInputHint">Please input your nickname</string>
-    <string name="HX_phoneInputHint">Please input your phone number</string>
-    <string name="HX_phoneInputWrongHint">Please input correct phone number</string>
-    <string name="HX_passwordInputHint">Please input password</string>
     <string name="HX_loginFailed">Login Failed</string>
-    <string name="HX_loginTimeout">Login Timeout</string>
-    <string name="HX_cameraPermissionNotGranted">Camera unauthorized, please grant camera permission at the System Settings.</string>
-    <string name="HX_accountLogoutConfirm">Logout The Account Now?</string>
     <string name="HX_pleaseCheckNetConnectState">Please check network state!</string>
     <string name="HX_pleaseWait">Please wait ......</string>
 
-    <string name="HX_deleteConfirm">Delete Now?</string>
-    <string name="HX_deleteConfirmWithParam">Delete [%1$s] ?</string>
 
-
-    <string name="HX_unknown">Unknown</string>
-    <string name="HX_add_new">Add New</string>
-    <string name="HX_unallot">Unallot</string>
-    <string name="HX_ungroup">Ungroup</string>
     <string name="HX_delete">Delete</string>
     <string name="HX_upload">Upload</string>
     <string name="HX_upload_now">Upload Now</string>
-    <string name="HX_uploading">Uploading ......</string>
-    <string name="HX_original_password">Original Password</string>
-    <string name="HX_new_password">New Password</string>
 
 
-    <string name="HX_captchaInputHint">Please input captcha</string>
-    <string name="HX_captchaHasSent2Phone">Captcha has sent to your phone</string>
-    <string name="HX_originalPassInputHint">Please input original password</string>
-    <string name="HX_newPassInputHint">Please input new password</string>
-    <string name="HX_selectHint">Please select [%1$s]</string>
-    <string name="HX_dataRequesting">Data requesting ......</string>
-    <string name="HX_dataRequestFailed">Data request failed</string>
     <string name="HX_dataUploadFailed">Data upload failed</string>
 
-    <string name="HX_inputAlphabetNumberFilter">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
-    <string name="HX_inputHexFilter">0123456789abcdefABCDEF</string>
-
     <string name="HX_logining">Logining ......</string>
-    <string name="HX_logout">Logout</string>
-    <string name="HX_accountInputNullHint">Account field null.</string>
-    <string name="HX_pwdInputNullHint">Password field null.</string>
-    <string name="HX_logoutConfirm">Logout current account NOW ?</string>
-    <string name="HX_pageDataProblemReoperate">Data problem, please press back and reenter !</string>
-    <string name="HX_logoutHint">Logout hint</string>
-
-    <string name="HX_send">Send</string>
 
 
 </resources>

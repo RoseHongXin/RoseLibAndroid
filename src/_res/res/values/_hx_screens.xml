@@ -10,34 +10,12 @@
     <style name="Fra.Full">
         <item name="android:layout_height">match_parent</item>
     </style>
-    <style name="Fra.Full.H">
-        <item name="android:orientation">horizontal</item>
-        <item name="android:gravity">center_vertical</item>
-    </style>
-    <style name="Fra.Full.M">
-        <item name="android:layout_marginLeft">@dimen/l_m_h</item>
-        <item name="android:layout_marginRight">@dimen/l_m_h</item>
-        <item name="android:layout_marginBottom">@dimen/l_m_v</item>
-        <item name="android:layout_marginTop">@dimen/l_m_v</item>
-    </style>
-    <style name="Fra.Full.P">
-        <item name="android:paddingLeft">@dimen/l_p_h</item>
-        <item name="android:paddingRight">@dimen/l_p_h</item>
-        <item name="android:paddingTop">@dimen/l_p_v</item>
-        <item name="android:paddingBottom">@dimen/l_p_v</item>
-    </style>
+
     <style name="Fra.H">
         <item name="android:orientation">horizontal</item>
         <item name="android:gravity">center_vertical</item>
     </style>
-    <style name="Fra.PH">
-        <item name="android:paddingLeft">@dimen/l_p_h</item>
-        <item name="android:paddingRight">@dimen/l_p_h</item>
-    </style>
-    <style name="Fra.HPH" parent="Fra.H">
-        <item name="android:paddingLeft">@dimen/l_p_h</item>
-        <item name="android:paddingRight">@dimen/l_p_h</item>
-    </style>
+
     <style name="Fra.HPV" parent="Fra.H">
         <item name="android:paddingBottom">@dimen/l_p_v</item>
         <item name="android:paddingTop">@dimen/l_p_v</item>
@@ -50,21 +28,7 @@
         <item name="android:paddingBottom">@dimen/l_p_v</item>
         <item name="android:paddingTop">@dimen/l_p_v</item>
     </style>
-    <style name="Fra.HMH" parent="Fra.H">
-        <item name="android:layout_marginLeft">@dimen/l_m_h</item>
-        <item name="android:layout_marginRight">@dimen/l_m_h</item>
-    </style>
-    <style name="Fra.HMV" parent="Fra.H">
-        <item name="android:layout_marginTop">@dimen/l_m_v</item>
-        <item name="android:layout_marginBottom">@dimen/l_m_v</item>
-    </style>
-    <style name="Fra.HM">
-        <item name="android:orientation">horizontal</item>
-        <item name="android:layout_marginTop">@dimen/l_m_v</item>
-        <item name="android:layout_marginBottom">@dimen/l_m_v</item>
-        <item name="android:layout_marginLeft">@dimen/l_m_h</item>
-        <item name="android:layout_marginRight">@dimen/l_m_h</item>
-    </style>
+
     <style name="Fra.PV">
         <item name="android:paddingBottom">@dimen/l_p_v</item>
         <item name="android:paddingTop">@dimen/l_p_v</item>
@@ -79,10 +43,7 @@
         <item name="android:layout_marginLeft">@dimen/l_m_h</item>
         <item name="android:layout_marginRight">@dimen/l_m_h</item>
     </style>
-    <style name="Fra.MV">
-        <item name="android:layout_marginBottom">@dimen/l_m_v</item>
-        <item name="android:layout_marginTop">@dimen/l_m_v</item>
-    </style>
+
     <style name="Fra.M">
         <item name="android:layout_marginLeft">@dimen/l_m_h</item>
         <item name="android:layout_marginRight">@dimen/l_m_h</item>

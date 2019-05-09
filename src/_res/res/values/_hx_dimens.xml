@@ -8,12 +8,10 @@
     <dimen name="txt_small">14sp</dimen>
     <dimen name="txt_min">12sp</dimen>
     <!--<dimen name="txt_et">?android:textSize</dimen>-->
-    <dimen name="txt_et">13sp</dimen>
 
     <dimen name="bt_height">32dp</dimen>
     <dimen name="bt_p_h">12dp</dimen>
     <dimen name="bt_p_v">6dp</dimen>
-    <dimen name="bt_txt">20sp</dimen>
     <dimen name="bt_corner">@dimen/l_corner</dimen>
     <dimen name="bt_border">1px</dimen>
 
@@ -37,17 +35,6 @@
     <dimen name="l_m_small">8dp</dimen>
     <dimen name="l_m_min">4dp</dimen>
 
-    <dimen name="tab_height">48dp</dimen>
-    <dimen name="tab_p_v">2dp</dimen>
-    <dimen name="tab_icon_txt_gap">2dp</dimen>
-    <dimen name="tab_txt">20sp</dimen>
-
-    <dimen name="iv_pic_size">128dp</dimen>
-    <dimen name="iv_pic_width">128dp</dimen>
-    <dimen name="iv_pic_height">96dp</dimen>
-
-    <dimen name="LineItem_height">48dp</dimen>
-    <dimen name="LineItem_name_maxWidth">128dp</dimen>
     <dimen name="LineItem_name_minWidth">72dp</dimen>
 
 </resources>

@@ -21,94 +21,25 @@
     <string name="HX_month">月</string>
     <string name="HX_day">日</string>
 
-    <string name="HX_phone_number">手机号</string>
-    <string name="HX_phonePrefix4China">+86</string>
     <string name="HX_password">密码</string>
-    <string name="HX_login">登陆</string>
-    <string name="HX_register">注册</string>
-    <string name="HX_forget_password">忘记密码</string>
     <string name="HX_modify_password">修改密码</string>
-    <string name="HX_captcha">验证码</string>
-    <string name="HX_obtainCaptcha">获取验证码</string>
-    <string name="HX_show">显示</string>
-    <string name="HX_hide">隐藏</string>
-    <string name="HX_jump_over">跳过</string>
-    <string name="HX_gender">性别</string>
-    <string name="HX_male">男</string>
-    <string name="HX_female">女</string>
     <string name="HX_avatar">头像</string>
-    <string name="HX_personal_profile">个人信息</string>
-    <string name="HX_add">添加</string>
-    <string name="HX_nickname">昵称</string>
-    <string name="HX_cellPhoneNum">手机号</string>
-    <string name="HX_email">邮箱</string>
-    <string name="HX_address">地址</string>
-    <string name="HX_refresh">刷新</string>
-    <string name="HX_sync">同步</string>
 
-    <string name="HX_start">开始</string>
-    <string name="HX_deadline">截止</string>
-    <string name="HX_time_select">时间选择</string>
     <string name="HX_startTime">开始时间</string>
     <string name="HX_endTime">截止时间</string>
-    <string name="HX_open">开</string>
-    <string name="HX_close">关</string>
-    <string name="HX_aboutUs">关于我们</string>
-    <string name="HX_softwareLicensingAgreement">软件许可及服务协议</string>
-    <string name="HX_privacyAgreement">隐私协议</string>
-    <string name="HX_exit">退出</string>
-    <string name="HX_qrcode_scan">二维码扫描</string>
-    <string name="HX_scan">扫描</string>
-    <string name="HX_edit">编辑</string>
-    <string name="HX_on">开</string>
-    <string name="HX_off">关</string>
 
 
-    <string name="HX_yourNicknameInputHint">请输入你的昵称</string>
-    <string name="HX_phoneInputHint">请输入手机号</string>
-    <string name="HX_phoneInputWrongHint">请输入正确的手机号</string>
-    <string name="HX_passwordInputHint">请输入密码</string>
     <string name="HX_loginFailed">登陆失败!</string>
-    <string name="HX_loginTimeout">登陆超时!</string>
-    <string name="HX_cameraPermissionNotGranted">未授予调用手机摄像头的权限,请到系统设置里授予摄像头权限.</string>
-    <string name="HX_accountLogoutConfirm">确定退出当前账号?</string>
     <string name="HX_pleaseCheckNetConnectState">请检查网络连接状态！</string>
     <string name="HX_pleaseWait">请稍后......</string>
 
-    <string name="HX_deleteConfirm">确定删除?</string>
-    <string name="HX_deleteConfirmWithParam">确定删除 [%1$s] ?</string>
-
-    <string name="HX_unknown">未知</string>
-    <string name="HX_add_new">新增</string>
-    <string name="HX_unallot">未分配</string>
-    <string name="HX_ungroup">未分组</string>
     <string name="HX_delete">删除</string>
     <string name="HX_upload">上传</string>
     <string name="HX_upload_now">立即上传</string>
-    <string name="HX_uploading">正在上传 ......</string>
-    <string name="HX_original_password">原密码</string>
-    <string name="HX_new_password">新密码</string>
 
-    <string name="HX_captchaInputHint">请输入验证码</string>
-    <string name="HX_captchaHasSent2Phone">验证码已发送到手机,请注意查收!</string>
-    <string name="HX_originalPassInputHint">请输入原密码</string>
-    <string name="HX_newPassInputHint">请输入新密码</string>
-    <string name="HX_selectHint">请选择[%1$s]</string>
-    <string name="HX_dataRequesting">数据获取中 ......</string>
-    <string name="HX_dataRequestFailed">获取数据失败</string>
     <string name="HX_dataUploadFailed">数据提交失败</string>
 
-    <string name="HX_inputAlphabetNumberFilter">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
-    <string name="HX_inputHexFilter">0123456789abcdefABCDEF</string>
-
     <string name="HX_logining">登陆中••••••</string>
-    <string name="HX_logout">退出登录</string>
-    <string name="HX_accountInputNullHint">账号为空</string>
-    <string name="HX_pwdInputNullHint">密码为空</string>
-    <string name="HX_logoutConfirm">确认退出当前登录账号?</string>
-    <string name="HX_pageDataProblemReoperate">页面数据错误，请重新操作！</string>
-    <string name="HX_logoutHint">退出登陆提示</string>
-    <string name="HX_send">发送</string>
 
 
     <!--<string name="append">添加</string>-->

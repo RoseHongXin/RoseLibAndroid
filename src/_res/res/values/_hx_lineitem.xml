@@ -2,13 +2,6 @@
 <resources>
 
     <style name="LineItem"/>
-    <style name="LineItem.img_prompt">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/l_m_h_larger</item>
-        <item name="android:layout_marginBottom">@dimen/l_m_h_larger</item>
-        <item name="android:layout_gravity">center_horizontal</item>
-    </style>
 
     <style name="LineItem.Container">
         <item name="android:layout_width">match_parent</item>
@@ -19,11 +12,7 @@
         <item name="android:orientation">horizontal</item>
         <item name="android:gravity">start|center_vertical</item>
     </style>
-    <style name="LineItem.iv_title">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginRight">@dimen/l_m_h</item>
-    </style>
+
     <style name="LineItem.tv_name">
         <item name="android:gravity">center_vertical|start|left</item>
         <item name="android:layout_width">wrap_content</item>
@@ -41,17 +30,6 @@
         <item name="android:textColor">@color/txt_title</item>
         <item name="android:layout_gravity">end|center_vertical</item>
     </style>
-    <style name="LineItem.iv_value" parent="LineItem.tv_value">
-        <item name="android:layout_width">wrap_content</item>
-    </style>
-    <style name="LineItem.et" parent="et">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:drawablePadding">@dimen/l_m_h</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:inputType">text</item>
-    </style>
-
 
 
 </resources>

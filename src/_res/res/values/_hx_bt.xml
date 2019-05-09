@@ -18,15 +18,8 @@
         <item name="android:background">@drawable/sl_bt_stroke</item>
         <item name="android:textColor">@color/bt_stroke_txt</item>
     </style>
-    <style name="_Btn.stroke.reverse" parent="_Btn">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:background">@drawable/sl_bt_stroke_reverse</item>
-        <item name="android:textColor">@color/bt_stroke_reverse_txt</item>
-    </style>
+
     <style name="_Btn.stroke.FixHeight">
-        <item name="android:layout_height">@dimen/bt_height</item>
-    </style>
-    <style name="_Btn.stroke.reverse.FixHeight">
         <item name="android:layout_height">@dimen/bt_height</item>
     </style>
 
