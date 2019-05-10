@@ -15,13 +15,12 @@
 
 > proguard-android.txt 在SDK/tools路径下
 > Activity嵌套Fragment时,如果多个Fragment含有相同的View和id,做LhBase或之类的集合时,要用View为参数,否则Fragment保存现场会有问题,显示最有一个操作的UI
-
-<<<<<<< HEAD
+> okhttp3: "3.11.0",
+> //计步轨迹Googlemap计算距离向下兼容,某些低版本手机,有些jar没有
 ####### byte类型,如果向上强制转换的时候,高位填的是1 , 在做字节运算的时候,需要特别注意. byte & 0xFF
-=======
+
 ----
-> okhttp3: "3.11.0",  //计步轨迹Googlemap计算距离向下兼容,某些低版本手机,有些jar没有
->>>>>>> f15c459ec2ffb1efb84dd844ba6262d6afe82c42
+
 
 
 ###### MPAndroid
