@@ -30,7 +30,7 @@
     </style>
 
     <style name="tv.warning" parent="tv">
-        <item name="android:textColor">@color/txt_warning</item>
+        <item name="android:textColor">@android:color/holo_red_light</item>
         <item name="android:textSize">@dimen/txt_small</item>
         <item name="android:gravity">start|left</item>
         <item name="android:paddingLeft">@dimen/l_p_h</item>

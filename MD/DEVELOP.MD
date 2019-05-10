@@ -7,47 +7,14 @@ ${gradle} gradle.properties  配置gradle路径, 环境变量配置  GRADLE_USER
 
 ```
 
-> * 其他
- app:compileDebugJavaWithJavac这个错误,看是不是资源文件有重复,drawable和mipmap
- gradlew compileDebug --stacktrace
- gradlew compileDebug --stacktrace -info
- gradlew compileDebug --stacktrace -debug
+#### G编译
+```
+app:compileDebugJavaWithJavac这个错误,看是不是资源文件有重复,drawable和mipmap
+gradlew compileDebug --stacktrace gradlew compileDebug --stacktrace -info gradlew compileDebug --stacktrace -debug
 
  gradlew processDebugManifest --stacktrace   当出现Manifest merger failed with multiple errors, see logs,可以看到详细信息
-
-
-
+ gradlew:app:dependencies 查看依赖
 ```
-重新点击Desktop icon 或者通知栏通知, 显示上次退出要home的页面bug修复(launchMode和从哪里启动有关[ES安装后启动就有问题,点击桌面图标就是OK的]).
-Intent notifyIntent = new Intent(this, AMain.class);
-        notifyIntent.setAction(Intent.ACTION_MAIN);
-        notifyIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP | Intent.FLAG_ACTIVITY_RETAIN_IN_RECENTS | Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY);
-        PendingIntent notifyPendingIntent = PendingIntent.getActivity(this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-```
-
-
-
-
-
-#### lambda在低版本手机(比如华为4.4pad),通过this::****调用父类的方法,会报错(找不到方法?).
-
-*  fastjson,  1.2.49 toJSONString  可能有bug.
-
-#### activity给第三方app调用
-```
-manifest.xml intent-filter必须指定Category(一般指定android.intent.category.DEFAULT即可)
-是否指定exported=true,没有实际效果(或许是测试包的原因)
-通过setComponent("pkgName", "pkgName.clzName")一样可以打开activity.
-uri方式打开activity还没测试.
-```
-
-> * 注意点
-    Switch 的onClick事件, 回调的是selected参数, setSelected给该view的checked赋值
-    非焦点view,还是正常的isChecked/setChecked操作状态!
-
-> * 获取sha1
-    keytool -exportcert -list -v -alias <your-key-name> -keystore <path-to-production-keystore>
 
 ##### .java 2 .class   , jar包class修改.
 ```
@@ -73,19 +40,4 @@ keytool -list -v -keystore "F:/AndroidPro/AndroidSigned" -alias smarthome -store
 keytool -list -v -keystore "F:/AndroidPro/AndroidSigned" -alias smartwearable -storepass dan199858 -keypass hongxin
 ```
 
-###### 退出App
-```java
-//            am.killBackgroundProcesses(packageName)   //1
-//            val forceStopPackage = am.javaClass.getDeclaredMethod("forceStopPackage", String :: class.java)
-//            forceStopPackage.isAccessible = true
-//            forceStopPackage.invoke(am, packageName)  //2
-//            android.os.Process.killProcess(android.os.Process.myPid())      //4
-//            System.exit(0)                            //3
-            ///////////////////5
-//            val startMain = Intent(Intent.ACTION_MAIN)
-//            startMain.addCategory(Intent.CATEGORY_HOME)
-//            startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            startActivity(startMain)
-//            System.exit(0)
-            ///////////////////5
-```
+- 169.254.X.X是 Windows操作系统 在 DHCP 信息租用失败时自动给客户机分配的IP地址.

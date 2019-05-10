@@ -36,7 +36,7 @@ public class DConfirmCancel {
         return this;
     }
 
-    public DConfirmCancel act(Activity act){
+    public DConfirmCancel host(Activity act){
         this.mAct = act;
         return this;
     }

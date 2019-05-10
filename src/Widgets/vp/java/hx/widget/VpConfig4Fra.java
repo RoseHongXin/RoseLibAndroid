@@ -76,7 +76,7 @@ class VpConfig4Fra  extends IVpInterface{
     private void _create(){
         if(mOffScreenSize == 0) mOffScreenSize = 1;
         if(mPageCount == 0) mPageCount = mFras.size();
-        _vp_.setAdapter(new FragmentStatePagerAdapter(mFraMgr) {
+        _vp_.setAdapter(new FragmentStatePagerAdapter(mFraMgr, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
             @NonNull
             @Override
             public Fragment getItem(int position) {
