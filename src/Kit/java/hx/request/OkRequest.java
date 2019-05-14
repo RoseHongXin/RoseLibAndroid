@@ -11,9 +11,12 @@ import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+import androidx.annotation.NonNull;
 import hx.kit.log.Log4Android;
+import hx.lib.R;
 import hx.widget.dialog.DWaiting;
 import okhttp3.Call;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
@@ -44,7 +47,7 @@ public class OkRequest extends RequestBase {
         }
         mOkHttpClient.newCall(request).enqueue(new okhttp3.Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
                 mMainHandler.post(() -> {
                     callback.onFailed(e.getMessage());
                     callback.onFinish();
@@ -52,7 +55,7 @@ public class OkRequest extends RequestBase {
                 });
             }
             @Override
-            public void onResponse(Call call, Response response)  {
+            public void onResponse(@NonNull Call call, @NonNull Response response)  {
                 if(response.isSuccessful()){
                     ResponseBody body = response.body();
                     if(body == null){
@@ -75,6 +78,12 @@ public class OkRequest extends RequestBase {
                         body.close();
                     }
                 }else{
+                    mMainHandler.post(() -> {
+                        String message = response.message();
+                        if(response.code() == 404) { message = sCtx.getString(R.string.HX_invalidHttpRequest); }
+                        else if(response.code() >= 500 && response.code() <= 505){ message = sCtx.getString(R.string.HX_serverInternalError); }
+                        callback.onFailed(message);
+                    });
                 }
                 mMainHandler.post(() -> {
                     callback.onFinish();
