@@ -65,7 +65,7 @@
     <string name="HX_serverInternalError">服务器内部错误</string>
     <string name="HX_socketTimeout">请求超时</string>
     <string name="HX_invalidHttpRequest">请求无效</string>
-    <string name="HX_pageDataProblemReoperate">页面数据错误，请重新操作！</string>
+    <string name="HX_requestDataDeserializeError">数据解析错误！</string>
     <string name="HX_cameraPermissionNotGranted">未授予调用手机摄像头的权限,请到系统设置里授予摄像头权限.</string>
 
     <string name="HX_uploading">正在上传 ......</string>

@@ -65,6 +65,7 @@
     <string name="HX_serverInternalError">Server internal error</string>
     <string name="HX_socketTimeout">Request timeout</string>
     <string name="HX_invalidHttpRequest">Request invalid</string>
+    <string name="HX_requestDataDeserializeError">Data deserialize error!</string>
     <string name="HX_cameraPermissionNotGranted">Camera permission unauthorized.</string>
 
     <string name="HX_uploading">Uploading ......</string>
