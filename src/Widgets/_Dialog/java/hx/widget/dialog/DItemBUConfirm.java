@@ -104,7 +104,7 @@ public class DItemBUConfirm extends DialogFragment{
             }
             if(mCb != null) {
                 if(mValues == null) mCb.onSelect(idx, text);
-                else mCb.onSelect(mValues[idx], text);
+                else mCb.onSelect(idx < mValues.length ? mValues[idx] : 0, text);
             }
             dismiss();
         });
