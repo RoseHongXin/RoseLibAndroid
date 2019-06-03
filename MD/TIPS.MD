@@ -10,6 +10,10 @@
 > android:colorControlNormal：表示CheckBox、EditText、Switch、Spinner、RadioButton等控件默认时的色调 <br>
 * Switch的onClick事件,回调的是selected参数,setSelected给该view的checked赋值<br>
   非焦点view,还是正常的isChecked/setChecked操作状态!
+> EditText 默认使用的Theme颜色是 textColorPrimary
+> ToolBar 菜单字体颜色由theme控制, ThemeOverlay.AppCompat.Dark.ActionBar, 全局控制可由toolBarStyle属性设置
+> Menu 相关theme配置 android:actionMenuTextAppearance actionOverflowMenuStyle
+> Dialog theme  alertDialogTheme, dialogTheme
   
 ----
 
