@@ -115,7 +115,7 @@ public class DItemBUConfirm extends DialogFragment{
             _tv_title.setVisibility(View.VISIBLE);
             if(mTitle instanceof String) _tv_title.setText((String)mTitle);
             else if(mTitle instanceof Integer) _tv_title.setText((Integer) mTitle);
-            else _tv_title.setVisibility(View.GONE);
+            else _tv_title.setVisibility(View.INVISIBLE);
         }
     }
 

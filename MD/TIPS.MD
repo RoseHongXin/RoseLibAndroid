@@ -22,6 +22,7 @@
 > okhttp3: "3.11.0",
 > //计步轨迹Googlemap计算距离向下兼容,某些低版本手机,有些jar没有
 >> okhttp3, retryOnConnectionFailure(false),如果服务端被kill了,再次请求,会报一个[java.net.SocketException: sendto failed: ECONNRESET (Connection reset by peer)],只有设置成true,才不会出现这种报错!
+>> okhttp  builder.addHeader("Connection", "close");  避免unexpected end of stream on ** 这个错误
 ####### byte类型,如果向上强制转换的时候,高位填的是1 , 在做字节运算的时候,需要特别注意. byte & 0xFF
 
 ----
