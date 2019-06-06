@@ -25,7 +25,7 @@ public abstract class FBaseRefreshRv<Ap extends ApBase<Vh, D>, Vh extends VhBase
     protected PtrClassicFrameLayout _p2rl_;
     private RecyclerView _rv_;
 
-    private P2rlPageLoader mLoader;
+    protected P2rlPageLoader mP2rlLoader;
 
     @Override
     public int sGetLayout() {
@@ -38,7 +38,7 @@ public abstract class FBaseRefreshRv<Ap extends ApBase<Vh, D>, Vh extends VhBase
         _p2rl_ = view.findViewById(R.id._p2rl_);
         _rv_ = view.findViewById(R.id._rv_);
         ApBase adapter = getAdapter(_rv_);
-        mLoader = new P2rlPageLoader() {
+        mP2rlLoader = new P2rlPageLoader() {
             @Override
             public Observable<List<D>> request(int pageIdx) {
                 return getApi(pageIdx);
@@ -48,7 +48,7 @@ public abstract class FBaseRefreshRv<Ap extends ApBase<Vh, D>, Vh extends VhBase
                 return adapter;
             }
         };
-        mLoader.target(_rv_)
+        mP2rlLoader.target(_rv_)
                 .anchor(_p2rl_)
                 .host(getActivity())
                 .create();
