@@ -84,6 +84,10 @@
     <string name="HX_logining">登陆中 ......</string>
     <string name="HX_loginFailed">登陆失败!</string>
     <string name="HX_loginTimeout">登陆超时!</string>
+    <string name="HX_phoneInputHint">请输入手机号</string>
+    <string name="HX_passwordInputHint">请输入密码</string>
+    <string name="HX_phoneInputWrongHint">请输入正确的手机号</string>
+    <string name="HX_captchaInputHint">请输入验证码</string>
     <!--<string name="HX_accountInputNullHint">账号为空</string>-->
     <!--<string name="HX_pwdInputNullHint">密码为空</string>-->
     <!--<string name="HX_logoutConfirm">确认退出当前登录账号?</string>-->
