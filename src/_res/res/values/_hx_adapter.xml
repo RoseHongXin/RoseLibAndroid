@@ -1,40 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="RvItem">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_vertical</item>
-    </style>
-    <style name="RvItem.PH">
-        <item name="android:paddingLeft">@dimen/l_p_h</item>
-        <item name="android:paddingRight">@dimen/l_p_h</item>
-    </style>
-    <style name="RvItem.PV">
-        <item name="android:paddingTop">@dimen/l_p_v</item>
-        <item name="android:paddingBottom">@dimen/l_p_v</item>
-    </style>
-    <style name="RvItem.P">
-        <item name="android:paddingLeft">@dimen/l_p_h</item>
-        <item name="android:paddingRight">@dimen/l_p_h</item>
-        <item name="android:paddingTop">@dimen/l_p_v</item>
-        <item name="android:paddingBottom">@dimen/l_p_v</item>
-    </style>
-    <style name="RvItem.Corner">
-        <item name="cardCornerRadius">@dimen/l_corner</item>
-        <item name="cardUseCompatPadding">true</item>
-        <!--<item name="contentPaddingLeft">@dimen/l_p_h</item>-->
-        <!--<item name="contentPaddingRight">@dimen/l_p_h</item>-->
-        <!--<item name="contentPaddingBottom">@dimen/l_p_v</item>-->
-        <!--<item name="contentPaddingTop">@dimen/l_p_v</item>-->
-        <item name="contentPaddingLeft">@dimen/l_p_small</item>
-        <item name="contentPaddingRight">@dimen/l_p_small</item>
-        <item name="contentPaddingBottom">@dimen/l_p_small</item>
-        <item name="contentPaddingTop">@dimen/l_p_small</item>
-        <item name="android:layout_marginRight">@dimen/l_m_h</item>
-        <item name="android:layout_marginLeft">@dimen/l_m_h</item>
-        <item name="android:layout_marginTop">@dimen/l_m_v</item>
-        <item name="android:layout_marginBottom">@dimen/l_m_v</item>
-    </style>
-
 </resources>

@@ -1,7 +1,6 @@
 package hx.widget.adapterview.listview;
 
 import android.app.Activity;
-import androidx.annotation.CallSuper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -10,6 +9,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.CallSuper;
 import hx.widget.adapterview.IItemClickListener;
 import hx.widget.adapterview.VhBase;
 
@@ -23,7 +23,7 @@ public abstract class ApBase<Vh extends VhBase<T>, T> extends BaseAdapter {
 
     private List<T> mDatas = new ArrayList<T>();
     protected Activity mAct;
-    protected ListView _lv;
+    protected ListView _lv_;
     protected IItemClickListener<T> mClickListener;
 
     public abstract Vh getVh(Activity act);
@@ -35,10 +35,10 @@ public abstract class ApBase<Vh extends VhBase<T>, T> extends BaseAdapter {
         this.mClickListener = clickListener;
     }
 
-    public ApBase(Activity act, ListView lv){
+    public ApBase(Activity act, ListView _lv_){
         this.mAct = act;
-        this._lv = lv;
-        lv.setAdapter(this);
+        this._lv_ = _lv_;
+        if(_lv_ != null) _lv_.setAdapter(this);
     }
 
     @Override
@@ -72,13 +72,13 @@ public abstract class ApBase<Vh extends VhBase<T>, T> extends BaseAdapter {
         if(mDatas == null) mDatas = new ArrayList<T>();
         else mDatas.clear();
         mDatas = new ArrayList<>();
-        mDatas.addAll(datas);
+        if(datas != null) mDatas.addAll(datas);
         notifyDataSetChanged();
     }
 
     public void addData(List<T> datas){
         if(mDatas == null) mDatas = new ArrayList<T>();
-        mDatas.addAll(datas);
+        if(datas != null) mDatas.addAll(datas);
         notifyDataSetChanged();
     }
     public List<T> getData(){

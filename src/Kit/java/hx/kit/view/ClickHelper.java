@@ -35,7 +35,7 @@ public class ClickHelper {
                     cb.onClick(dialogInterface, i);
                 })
                 .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> dialogInterface.dismiss())
-                .setMessage(R.string.HX_confirm_finish_current_page)
+                .setMessage(R.string.HX_confirm2finishCurrentPage)
                 .create()
                 .show();
     }
@@ -47,7 +47,7 @@ public class ClickHelper {
                     act.finish();
                 })
                 .setNegativeButton(android.R.string.cancel, (dialogInterface, i) -> dialogInterface.dismiss())
-                .setMessage(R.string.HX_finish_while_editing_confirm)
+                .setMessage(R.string.HX_confirm2finishWhileEditing)
                 .create()
                 .show();
     }
@@ -66,7 +66,7 @@ public class ClickHelper {
     }
 
     public static void doubleClick2Home(Activity act) {
-        doubleClick(act, act.getString(R.string.HX_click_again_to_home), v -> act.moveTaskToBack(true));
+        doubleClick(act, act.getString(R.string.HX_clickAgain2home), v -> act.moveTaskToBack(true));
     }
 
 

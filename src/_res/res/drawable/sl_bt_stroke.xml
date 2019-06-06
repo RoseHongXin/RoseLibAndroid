@@ -4,7 +4,7 @@
     <item android:state_pressed="true">
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/bt_corner"/>
-            <stroke android:width="@dimen/bt_border" android:color="?android:attr/colorPrimary"/>
+            <stroke android:width="4dp" android:color="?android:attr/colorButtonNormal"/>
             <solid android:color="@android:color/transparent"/>
         </shape>
     </item>
@@ -20,8 +20,7 @@
     <item>
         <shape android:shape="rectangle">
             <corners android:radius="@dimen/bt_corner"/>
-            <!--<stroke android:color="@color/_default" android:width="@dimen/bt_border"/>-->
-            <stroke android:width="@dimen/bt_border" android:color="?android:attr/colorPrimary"/>
+            <stroke android:width="@dimen/bt_border" android:color="?android:attr/colorButtonNormal"/>
             <solid android:color="@android:color/transparent"/>
         </shape>
     </item>

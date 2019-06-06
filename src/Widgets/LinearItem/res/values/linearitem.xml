@@ -34,6 +34,8 @@
         <attr name="sizeIconRight" format="reference|dimension"/>
         <attr name="textLeft" format="string"/>
         <attr name="textRight" format="string"/>
+        <attr name="hintLeft" format="string"/>
+        <attr name="hintRight" format="string"/>
         <attr name="sizeTextLeft" format="reference|dimension"/>
         <attr name="sizeTextRight" format="reference|dimension"/>
         <attr name="colorTextLeft" format="reference|color"/>

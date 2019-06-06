@@ -171,7 +171,7 @@ public class DInput extends DialogFragment {
             mDialog.mCb = cb;
             return this;
         }
-        public Builder bt(String btTxt){
+        public Builder bt(Object btTxt){
             mDialog.mBtTxt = btTxt;
             return this;
         }

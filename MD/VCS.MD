@@ -10,6 +10,8 @@ git remote add origin https://RoseHongXin:hong299110xin@github.com/RoseHongXin/R
 
 git checkout ./--fileName   舍弃本地修改[全部/指定文件]
 
+出现443错误, git config --global http.proxy //  git config --global --unset http.proxy  看是否能解决
+
 ```
 
 ##### Svn操作:

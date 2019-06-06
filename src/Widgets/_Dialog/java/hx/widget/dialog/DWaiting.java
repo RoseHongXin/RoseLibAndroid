@@ -161,9 +161,9 @@ public class DWaiting extends DialogFragment{
         dWaiting.show();
         return dWaiting;
 
-//        if(act.isFinishing() || act.isDestroyed()) return;
+//        if(host.isFinishing() || host.isDestroyed()) return;
 //        DialogHelper.dlgButtonCenter(
-//                new AlertDialog.Builder(act)
+//                new AlertDialog.Builder(host)
 //                        .setTitle(hint)
 //                        .setCancelable(false)
 //                        .setNeutralButton(R.string.HX_confirm, null))
