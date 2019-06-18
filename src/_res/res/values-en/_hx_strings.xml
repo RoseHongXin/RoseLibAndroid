@@ -85,17 +85,9 @@
     <string name="HX_passwordInputHint">Please input password</string>
     <string name="HX_phoneInputWrongHint">Please input correct phone number</string>
     <string name="HX_captchaInputHint">Please input captcha</string>
-    <!--<string name="HX_accountInputNullHint">账号为空</string>-->
-    <!--<string name="HX_pwdInputNullHint">密码为空</string>-->
-    <!--<string name="HX_logoutConfirm">确认退出当前登录账号?</string>-->
-    <!--<string name="HX_captchaInputHint">请输入验证码</string>-->
-    <!--<string name="HX_captchaHasSent2Phone">验证码已发送到手机,请注意查收!</string>-->
-    <!--<string name="HX_originalPassInputHint">请输入原密码</string>-->
-    <!--<string name="HX_newPassInputHint">请输入新密码</string>-->
-    <!--<string name="HX_yourNicknameInputHint">请输入你的昵称</string>-->
-    <!--<string name="HX_phoneInputHint">请输入手机号</string>-->
-    <!--<string name="HX_phoneInputWrongHint">请输入正确的手机号</string>-->
-    <!--<string name="HX_passwordInputHint">请输入密码</string>-->
-    <!--<string name="HX_accountLogoutConfirm">确定退出当前账号?</string>-->
+    <string name="HX_originalPassInputHint">Please input your original password</string>
+    <string name="HX_newPassInputHint">Please input your new password</string>
+    <string name="HX_passAlterSuccess">Password alter success!</string>
+
 
 </resources>
