@@ -72,8 +72,10 @@ public class OkRequest extends RequestBase {
                             mMainHandler.post(() -> {callback.onResp(resp);});
                         } catch (IOException e) {
                             e.printStackTrace();
-                            mMainHandler.post(() -> {});
-                            callback.onFailed(e.getMessage());
+                            mMainHandler.post(() -> {
+                                callback.onFailed(e.getMessage());
+                            });
+
                         }
                         body.close();
                     }
