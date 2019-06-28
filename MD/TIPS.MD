@@ -10,6 +10,10 @@
 > android:colorControlNormal：表示CheckBox、EditText、Switch、Spinner、RadioButton等控件默认时的色调 <br>
 * Switch的onClick事件,回调的是selected参数,setSelected给该view的checked赋值<br>
   非焦点view,还是正常的isChecked/setChecked操作状态!
+> EditText 默认使用的Theme颜色是 textColorPrimary
+> ToolBar 菜单字体颜色由theme控制, ThemeOverlay.AppCompat.Dark.ActionBar, 全局控制可由toolBarStyle属性设置
+> Menu 相关theme配置 android:actionMenuTextAppearance actionOverflowMenuStyle
+> Dialog theme  alertDialogTheme, dialogTheme
   
 ----
 
@@ -17,6 +21,8 @@
 > Activity嵌套Fragment时,如果多个Fragment含有相同的View和id,做LhBase或之类的集合时,要用View为参数,否则Fragment保存现场会有问题,显示最有一个操作的UI
 > okhttp3: "3.11.0",
 > //计步轨迹Googlemap计算距离向下兼容,某些低版本手机,有些jar没有
+>> okhttp3, retryOnConnectionFailure(false),如果服务端被kill了,再次请求,会报一个[java.net.SocketException: sendto failed: ECONNRESET (Connection reset by peer)],只有设置成true,才不会出现这种报错!
+>> okhttp  builder.addHeader("Connection", "close");  避免unexpected end of stream on ** 这个错误
 ####### byte类型,如果向上强制转换的时候,高位填的是1 , 在做字节运算的时候,需要特别注意. byte & 0xFF
 
 ----

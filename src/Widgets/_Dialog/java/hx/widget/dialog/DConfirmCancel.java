@@ -2,14 +2,13 @@ package hx.widget.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
-import androidx.annotation.IdRes;
-import androidx.annotation.LayoutRes;
-import androidx.appcompat.app.AlertDialog;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
+import androidx.appcompat.app.AlertDialog;
 import hx.lib.R;
 
 /**

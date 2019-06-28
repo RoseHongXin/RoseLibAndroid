@@ -2,13 +2,13 @@ package hx.kit.refresh;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import androidx.fragment.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
+import hx.components.IRetrofitApi;
 import hx.widget.adapterview.VhBase;
 import hx.widget.adapterview.recyclerview.ApBase;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
@@ -16,6 +16,7 @@ import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrDefaultHandler2;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import io.reactivex.Observable;
+import io.reactivex.ObservableTransformer;
 
 /**
  * Created by RoseHongXin on 2017/10/30 0030.
@@ -34,6 +35,10 @@ public abstract class P2rlPageLoader<Ap extends ApBase<Vh, D>, Vh extends VhBase
     private PtrFrameLayout.Mode mMode = null;
 
     private int mPageIdx = 0;
+    private IRetrofitApi mRetrofitHostStub = new IRetrofitApi() {
+        @Override public void API_REQUEST(Observable observable) { }
+        @Override public void API_DISPOSE() { }
+    };
 
 
     public P2rlPageLoader host(Activity act){
@@ -72,7 +77,7 @@ public abstract class P2rlPageLoader<Ap extends ApBase<Vh, D>, Vh extends VhBase
             public void onLoadMoreBegin(PtrFrameLayout frame) {
                 Observable<List<D>> observable = request(mPageIdx + 1);
                 if(observable != null) {
-                    observable
+                    ObservableTransformer transformer = (ObservableTransformer<List<D>, List<D>>) upstream -> upstream
                             .map(datas -> {
                                 if (!datas.isEmpty()) {
                                     mPageIdx++;
@@ -84,15 +89,20 @@ public abstract class P2rlPageLoader<Ap extends ApBase<Vh, D>, Vh extends VhBase
                             .doOnError(throwable -> {
                                 throwable.printStackTrace();
                                 refreshIdle();
-                            })
-                            .subscribe();
+                            });
+                    IRetrofitApi host = retrofitHost();
+                    if(host == null){
+                        observable.compose(transformer).subscribe();
+                    }else{
+                        host.API_REQUEST(observable.compose(transformer));
+                    }
                 }
             }
             @Override public void onRefreshBegin(PtrFrameLayout frame) {
                 mPageIdx = 0;
                 Observable<List<D>> observable = request(mPageIdx);
                 if(observable != null) {
-                    observable
+                    ObservableTransformer transformer = (ObservableTransformer<List<D>, List<D>>) upstream -> upstream
                             .map(datas -> {
                                 mAdapter.setData(datas);
                                 return datas;
@@ -101,8 +111,13 @@ public abstract class P2rlPageLoader<Ap extends ApBase<Vh, D>, Vh extends VhBase
                             .doOnError(throwable -> {
                                 throwable.printStackTrace();
                                 refreshIdle();
-                            })
-                            .subscribe();
+                            });
+                    IRetrofitApi host = retrofitHost();
+                    if(host == null){
+                        observable.compose(transformer).subscribe();
+                    }else{
+                        host.API_REQUEST(observable.compose(transformer));
+                    }
                 }
             }
             @Override
@@ -110,7 +125,12 @@ public abstract class P2rlPageLoader<Ap extends ApBase<Vh, D>, Vh extends VhBase
                 return PtrDefaultHandler.checkContentCanBePulledDown(frame, _vg_target, header);
             }
         });
+    }
 
+    private IRetrofitApi retrofitHost(){
+        if(mAct != null && mAct instanceof IRetrofitApi) return (IRetrofitApi) mAct;
+        else if(mFra != null && mFra instanceof IRetrofitApi) return (IRetrofitApi) mFra;
+        return null;
     }
 
     public P2rlPageLoader refresh(){

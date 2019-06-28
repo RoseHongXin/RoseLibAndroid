@@ -189,8 +189,9 @@ public class DWaiting extends DialogFragment{
     public DialogFragment show(){
         if(isShowing()) dismiss();
         try {
-            if (mAct != null && !mAct.isFinishing() && !mAct.isDestroyed()){
-                show(((AppCompatActivity) mAct).getSupportFragmentManager(), TAG);
+            Activity act = getActivity();
+            if (act != null && !act.isFinishing() && !act.isDestroyed()){
+                show(((AppCompatActivity) act).getSupportFragmentManager(), TAG);
             }
         }
         catch (Exception e){ Log4Android.w(this, "show exception: " + e.getMessage()); }
@@ -201,7 +202,8 @@ public class DWaiting extends DialogFragment{
     public void dismiss() {
         if(!isShowing()) return;
         try {
-            if (mAct != null && !mAct.isFinishing() && !mAct.isDestroyed()){
+            Activity act = getActivity();
+            if (act != null && !act.isFinishing() && !act.isDestroyed()){
 //                    ((AppCompatActivity) mAct).getSupportFragmentManager().beginTransaction().hide(this).commit();
                 super.dismiss();
             }

@@ -6,11 +6,6 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -25,6 +20,11 @@ import com.cncoderx.wheelview.Wheel3DView;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import hx.lib.R;
 
 /**
@@ -33,7 +33,9 @@ import hx.lib.R;
 
 public class DItemBUConfirm extends DialogFragment{
 
+    private TextView _tv_title;
     private Wheel3DView _whv_items;
+    private Object mTitle = null;
     private Callback mCb;
     private CharSequence[] mTexts;
     private Drawable[] mIcons;
@@ -66,6 +68,7 @@ public class DItemBUConfirm extends DialogFragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        _tv_title = view.findViewById(R.id._tv_title);
         _whv_items = (Wheel3DView) view.findViewById(R.id._whv_items);
         if(mTexts == null){
             _whv_items.setEntries();
@@ -104,10 +107,16 @@ public class DItemBUConfirm extends DialogFragment{
             }
             if(mCb != null) {
                 if(mValues == null) mCb.onSelect(idx, text);
-                else mCb.onSelect(mValues[idx], text);
+                else mCb.onSelect(idx < mValues.length ? mValues[idx] : 0, text);
             }
             dismiss();
         });
+        if(mTitle != null){
+            _tv_title.setVisibility(View.VISIBLE);
+            if(mTitle instanceof String) _tv_title.setText((String)mTitle);
+            else if(mTitle instanceof Integer) _tv_title.setText((Integer) mTitle);
+            else _tv_title.setVisibility(View.INVISIBLE);
+        }
     }
 
     public DItemBUConfirm host(Activity act){
@@ -117,6 +126,10 @@ public class DItemBUConfirm extends DialogFragment{
 
     public DItemBUConfirm callback(Callback cb){
         mCb = cb;
+        return this;
+    }
+    public DItemBUConfirm title(Object title){
+        mTitle = title;
         return this;
     }
     public DItemBUConfirm texts(List<String> texts){
@@ -165,6 +178,17 @@ public class DItemBUConfirm extends DialogFragment{
             int v = texts[0] + i;
             mValues[i] = v;
             mTexts[i] = String.format(format, v);
+        }
+        return this;
+    }
+    public DItemBUConfirm range(int from, int to, String format) {
+        mTexts = new String[to - from + 1];
+        mValues = new int[mTexts.length];
+        int idx = 0;
+        for(int i = from; i <= to; i++){
+            mTexts[idx] = String.format(format, i);
+            mValues[idx] = i;
+            idx++;
         }
         return this;
     }

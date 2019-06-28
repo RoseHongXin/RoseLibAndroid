@@ -5,27 +5,23 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
-import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
 import hx.kit.refresh.P2rlLoader;
 import hx.lib.R;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
+import io.reactivex.Observable;
 
 /**
  * Created by RoseHongXin on 2017/11/1 0001.
  */
 
-public abstract class FBaseRefresh extends Fragment {
+public abstract class FBaseRefresh extends FBase {
 
     private PtrClassicFrameLayout _p2rl_;
     private NestedScrollView _nsv_container;
-
-    protected abstract @LayoutRes
-    int sGetLayout();
 
     @Nullable
     @Override
@@ -44,7 +40,11 @@ public abstract class FBaseRefresh extends Fragment {
         new P2rlLoader() {
             @Override
             protected void onRefresh() {
-                FBaseRefresh.this.onRefresh();
+                if(getApi() != null){
+                    API_REQUEST(getApi());
+                }else {
+                    FBaseRefresh.this.onRefresh();
+                }
             }
         }
         .target(_nsv_container)
@@ -59,8 +59,9 @@ public abstract class FBaseRefresh extends Fragment {
     protected void refreshIdle(){
         _p2rl_.post(() -> _p2rl_.refreshComplete());
     }
-    protected void onRefresh(){
-
+    protected void onRefresh(){}
+    protected Observable getApi(){
+        return null;
     }
 
 }

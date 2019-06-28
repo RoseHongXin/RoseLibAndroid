@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.ArrayRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
@@ -13,22 +16,25 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
-
-import static hx.components.IConstants.PAGE_DEFAULT_EXPIRE;
-import static hx.components.IConstants.PAGE_NO_EXPIRE;
+import io.reactivex.Observable;
+import io.reactivex.disposables.Disposable;
 
 
 /**
  * Created by rose on 16-8-11.
  */
 
-public abstract class FBase extends Fragment {
+public abstract class FBase extends Fragment implements IRetrofitApi{
+
+    private final static int PAGE_DEFAULT_EXPIRE = 3 * 60 * 1000;
+    private final static int PAGE_NO_EXPIRE = -1;
 
     int mExpireThreshold = PAGE_NO_EXPIRE;
     int mPageVisibleCount = 1;
     long mPageLastVisibleTime = 0;
 
     private View _v_layout;
+    private List<Disposable> mDisposables = new ArrayList<>();
 
     @LayoutRes public abstract int sGetLayout();
 
@@ -62,14 +68,15 @@ public abstract class FBase extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         checkIfNeedRefreshPage();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        API_DISPOSE();
     }
 
     @Override
@@ -106,5 +113,17 @@ public abstract class FBase extends Fragment {
     }
 
     public void refresh(){}
+
+    @Override
+    public void API_REQUEST(Observable observable){
+        Disposable disposable = observable.subscribe();
+        mDisposables.add(disposable);
+    }
+    @Override
+    public void API_DISPOSE(){
+        for(Disposable disposable : mDisposables){
+            if(disposable != null && !disposable.isDisposed()) disposable.dispose();
+        }
+    }
 
 }

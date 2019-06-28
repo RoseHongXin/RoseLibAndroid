@@ -92,7 +92,7 @@ public abstract class DlgBase extends DialogFragment {
     }
 
     public DlgBase show(){
-        if(mFraManager != null) {
+        if(mAct != null && !mAct.isDestroyed() && !mAct.isFinishing() && mFraManager != null) {
             show(mFraManager, this.getClass().getSimpleName());
         }
         return this;

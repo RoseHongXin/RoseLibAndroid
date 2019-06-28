@@ -36,6 +36,7 @@ public class LinearItem extends FrameLayout {
     private int iconSizeL, iconSizeR;
     private int textSizeL, textSizeR;
     private String textL, textR;
+    private String hintL, hintR;
     private int gapL, gapR, paddingH, paddingV;
 
     public ImageView _iv_left() {
@@ -143,6 +144,25 @@ public class LinearItem extends FrameLayout {
     public String text(){
         return textR();
     }
+    public void hintL(Object text) {
+        if(text instanceof String){
+            hintL = (String) text;
+        }else if(text instanceof Integer){
+            hintL = getResources().getString((int)text);
+        }
+        if(_tv_itemLeft.getVisibility() != VISIBLE) _tv_itemLeft.setVisibility(VISIBLE);
+        _tv_itemLeft.setHint(hintL);
+    }
+    public void hintR(Object text) {
+        if(text instanceof String){
+            hintR = (String) text;
+        }else if(text instanceof Integer){
+            hintR = getResources().getString((int)text);
+        }
+        if(_tv_itemRight.getVisibility() != VISIBLE) _tv_itemRight.setVisibility(VISIBLE);
+        _tv_itemRight.setHint(hintR);
+    }
+
     public void icon(@DrawableRes int drawableRes){
         iconR(drawableRes);
     }
@@ -206,9 +226,10 @@ public class LinearItem extends FrameLayout {
         iconSizeL = ta.getDimensionPixelSize(R.styleable.LinearItem_sizeIconLeft, NOTHING_SET); if(iconSizeL != NOTHING_SET) iconSizeL(iconSizeL);
         iconSizeR = ta.getDimensionPixelSize(R.styleable.LinearItem_sizeIconRight, NOTHING_SET); if(iconSizeR != NOTHING_SET) iconSizeR(iconSizeR);
 
-
         textL = ta.getString(R.styleable.LinearItem_textLeft); if(!TextUtils.isEmpty(textL)) textL(textL);
         textR = ta.getString(R.styleable.LinearItem_textRight); if(!TextUtils.isEmpty(textR)) textR(textR);
+        hintL = ta.getString(R.styleable.LinearItem_hintLeft); if(!TextUtils.isEmpty(hintL)) hintL(hintL);
+        hintR = ta.getString(R.styleable.LinearItem_hintRight); if(!TextUtils.isEmpty(hintR)) hintR(hintR);
 
         colorL = ta.getColor(R.styleable.LinearItem_colorTextLeft, getResources().getColor(R.color.textColorPrimary)); colorL(colorL);
         colorR = ta.getColor(R.styleable.LinearItem_colorTextRight, getResources().getColor(R.color.textColorPrimary)); colorR(colorR);
