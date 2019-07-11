@@ -102,7 +102,7 @@ public class SingleCharInputView extends RelativeLayout {
 
     public void triggerInvalidFeedback(){
 //        Animation scaleAnim = new ScaleAnimation(0.8f, 1.2f, 0.8f, 1.2f);
-        Animation rotateAnim = new RotateAnimation(-10, 10, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        Animation rotateAnim = new RotateAnimation(-30, 30, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
 //        scaleAnim.setDuration(2);
         rotateAnim.setDuration(2);
         rotateAnim.setRepeatMode(Animation.RESTART);
