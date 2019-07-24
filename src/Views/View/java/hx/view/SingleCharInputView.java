@@ -1,5 +1,8 @@
 package hx.view;
 
+import android.animation.Keyframe;
+import android.animation.ObjectAnimator;
+import android.animation.PropertyValuesHolder;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
@@ -12,10 +15,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
-import android.view.animation.TranslateAnimation;
+import android.view.animation.ScaleAnimation;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -100,27 +101,68 @@ public class SingleCharInputView extends RelativeLayout {
         }
     }
 
+    private void startShakeByPropertyAnim(View view, float scaleSmall, float scaleLarge, float shakeDegrees, long duration) {
+        if (view == null) { return; }
+        //先变小后变大
+        PropertyValuesHolder scaleXValuesHolder = PropertyValuesHolder.ofKeyframe(View.SCALE_X,
+                Keyframe.ofFloat(0f, 1.0f),
+                Keyframe.ofFloat(0.25f, scaleSmall),
+                Keyframe.ofFloat(0.5f, scaleLarge),
+                Keyframe.ofFloat(0.75f, scaleLarge),
+                Keyframe.ofFloat(1.0f, 1.0f)
+        );
+        PropertyValuesHolder scaleYValuesHolder = PropertyValuesHolder.ofKeyframe(View.SCALE_Y,
+                Keyframe.ofFloat(0f, 1.0f),
+                Keyframe.ofFloat(0.25f, scaleSmall),
+                Keyframe.ofFloat(0.5f, scaleLarge),
+                Keyframe.ofFloat(0.75f, scaleLarge),
+                Keyframe.ofFloat(1.0f, 1.0f)
+        );
+        //先往左再往右
+        PropertyValuesHolder rotateValuesHolder = PropertyValuesHolder.ofKeyframe(View.ROTATION,
+                Keyframe.ofFloat(0f, 0f),
+                Keyframe.ofFloat(0.1f, -shakeDegrees),
+                Keyframe.ofFloat(0.2f, shakeDegrees),
+                Keyframe.ofFloat(0.3f, -shakeDegrees),
+                Keyframe.ofFloat(0.4f, shakeDegrees),
+                Keyframe.ofFloat(0.5f, -shakeDegrees),
+                Keyframe.ofFloat(0.6f, shakeDegrees),
+                Keyframe.ofFloat(0.7f, -shakeDegrees),
+                Keyframe.ofFloat(0.8f, shakeDegrees),
+                Keyframe.ofFloat(0.9f, -shakeDegrees),
+                Keyframe.ofFloat(1.0f, 0f)
+        );
+        ObjectAnimator objectAnimator = ObjectAnimator.ofPropertyValuesHolder(view, scaleXValuesHolder, scaleYValuesHolder, rotateValuesHolder);
+        objectAnimator.setDuration(duration);
+        objectAnimator.start();
+    }
+
+    private void startShakeByViewAnim(View view, float scaleSmall, float scaleLarge, float shakeDegrees, long duration) {
+        if (view == null) { return; }
+        //由小变大
+        Animation scaleAnim = new ScaleAnimation(scaleSmall, scaleLarge, scaleSmall, scaleLarge);
+        //从左向右
+        Animation rotateAnim = new RotateAnimation(-shakeDegrees, shakeDegrees, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+
+        scaleAnim.setDuration(duration);
+        rotateAnim.setDuration(duration / 10);
+        rotateAnim.setRepeatMode(Animation.REVERSE);
+        rotateAnim.setRepeatCount(10);
+
+        AnimationSet smallAnimationSet = new AnimationSet(false);
+        smallAnimationSet.addAnimation(scaleAnim);
+        smallAnimationSet.addAnimation(rotateAnim);
+
+        view.startAnimation(smallAnimationSet);
+    }
+
     public void triggerInvalidFeedback(){
-//        Animation scaleAnim = new ScaleAnimation(0.8f, 1.2f, 0.8f, 1.2f);
-        Animation rotateAnim = new RotateAnimation(-10, 10, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-//        scaleAnim.setDuration(2);
-        rotateAnim.setDuration(2);
-        rotateAnim.setRepeatMode(Animation.RESTART);
-        rotateAnim.setRepeatCount(4);
-        rotateAnim.setInterpolator(new DecelerateInterpolator());
-        AnimationSet animSet = new AnimationSet(true);
-
-        TranslateAnimation translateAnimation = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 0.8f,
-                Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 0f);
-        translateAnimation.setDuration(8);
-        translateAnimation.setRepeatMode(Animation.REVERSE);
-        translateAnimation.setInterpolator(new BounceInterpolator());
-
-//        animSet.addAnimation(scaleAnim);
-//        animSet.addAnimation(rotateAnim);
-        animSet.addAnimation(translateAnimation);
         for(int i = 0; i < mRequiredCharCount; i++) {
-            if (TextUtils.isEmpty(_tv_captchaNumbers[i].getText())) _li_captchaContainers[i].startAnimation(animSet);
+            if (TextUtils.isEmpty(_tv_captchaNumbers[i].getText())) {
+                View _v_ =_li_captchaContainers[i];
+//                startShakeByViewAnim(_v_, 0.8f, 1.2f, 30, 1000);
+                startShakeByPropertyAnim(_v_, 0.8f, 1.2f, 8, 1500);
+            }
         }
         try {
             Vibrator vibrator = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);

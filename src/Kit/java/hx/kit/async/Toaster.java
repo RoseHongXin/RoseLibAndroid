@@ -12,11 +12,7 @@ import android.widget.Toast;
 
 import hx.lib.R;
 
-/**
- * @author Guo Bo
- * 
- */
-public class Noter extends Handler {
+public class Toaster extends Handler {
 
 	private static Context mCtx;
 
