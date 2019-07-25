@@ -1,5 +1,6 @@
 package hx.kit.data;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import androidx.annotation.IntRange;
@@ -17,6 +18,8 @@ import java.io.IOException;
 
 public class BmCompress {
 
+    private static final String COMPRESS_DIR = "/ImageCompressed";
+
     private Bitmap byQuality(Bitmap image) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -30,7 +33,7 @@ public class BmCompress {
         Bitmap bitmap = BitmapFactory.decodeStream(isBm,null,null);
         return bitmap;
     }
-    public static String byQuality(String srcPath, @IntRange(from = 0, to = 100) int quality) {
+    public static String byQuality(Context ctx, String srcPath, @IntRange(from = 0, to = 100) int quality) {
         BitmapFactory.Options newOpts = new BitmapFactory.Options();
         newOpts.inJustDecodeBounds = false;
         Bitmap bm = BitmapFactory.decodeFile(srcPath, newOpts);
@@ -42,7 +45,9 @@ public class BmCompress {
 //            quality -= 10;
 //        }
         File in = new File(srcPath);
-        String parent = in.getParent();
+        File cacheDir = new File(ctx.getCacheDir() + COMPRESS_DIR);
+        if(!cacheDir.exists()) cacheDir.mkdir();
+        String parent = cacheDir.getPath();
         String srcName = in.getName();
         String outName = srcName.substring(0, srcName.indexOf(".")) + "_compressed";
         File out = new File(parent + "/" + outName + srcName.substring(srcName.indexOf(".")));
@@ -124,5 +129,15 @@ public class BmCompress {
         isBm = new ByteArrayInputStream(baos.toByteArray());
         bitmap = BitmapFactory.decodeStream(isBm,null, newOpts);
         return byQuality(bitmap);//压缩好比例大小后再进行质量压缩
+    }
+
+    //清空文件夹下的所有文件
+    public static void clearDir(Context ctx) {
+        File cacheDir = new File(ctx.getCacheDir() + COMPRESS_DIR);
+        if(cacheDir.exists()){
+            for (File file : cacheDir.listFiles()) {
+                if (file.isFile()) file.delete();
+            }
+        }
     }
 }
