@@ -14,9 +14,8 @@ import java.lang.reflect.Type;
 import androidx.annotation.NonNull;
 import hx.kit.log.Log4Android;
 import hx.lib.R;
-import hx.widget.dialog.DWaiting;
+import hx.widget.dialog.DLoading;
 import okhttp3.Call;
-import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
@@ -43,7 +42,7 @@ public class OkRequest extends RequestBase {
     }
     public <D> void request(Activity act, Request request, String hint, Callback<D> callback) {
         if(act != null) {
-            sDialog = TextUtils.isEmpty(hint) ? DWaiting.show(act) : DWaiting.show(act, hint);
+            sDialog = TextUtils.isEmpty(hint) ? DLoading.show(act) : DLoading.show(act, hint);
         }
         mOkHttpClient.newCall(request).enqueue(new okhttp3.Callback() {
             @Override
