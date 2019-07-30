@@ -201,7 +201,7 @@ public class DInput extends DialogFragment {
     }
 
     public interface Callback {
-        void onConfirm(String text, DInput dialog);
+        void onConfirm(String str, DInput dialog);
     }
 
 }
