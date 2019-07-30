@@ -54,7 +54,7 @@ public class DLoading extends DialogFragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         TAG = String.valueOf(this.getClass().hashCode());
-        return inflater.inflate(R.layout.d_waiting, container, true);
+        return inflater.inflate(R.layout.d_loading, container, true);
     }
 
     @Override
@@ -167,7 +167,7 @@ public class DLoading extends DialogFragment{
     }
 
     public boolean isShowing() {
-         return getDialog() != null && getDialog().isShowing();
+        return getDialog() != null && getDialog().isShowing();
     }
 
     /* Call this method after builder, carefully. */
