@@ -32,9 +32,9 @@ import hx.lib.R;
  *
  */
 
-public class DWaiting extends DialogFragment{
+public class DLoading extends DialogFragment{
 
-    private String TAG = "DWaiting";
+    private String TAG = "DLoading";
 
     private TextView _tv_hint;
     private ProgressBar _pb_roomInfo;
@@ -74,7 +74,7 @@ public class DWaiting extends DialogFragment{
         dialog.setOnKeyListener((d, keyCode, event) -> {
             if(keyCode == KeyEvent.KEYCODE_BACK){
                 d.dismiss();
-                DWaiting.this.dismiss();
+                DLoading.this.dismiss();
             }
             return true;
         });
@@ -109,57 +109,57 @@ public class DWaiting extends DialogFragment{
         return _tv_hint != null && _tv_hint.getText() != null ? _tv_hint.getText().toString() : "";
     }
 
-    public static DWaiting create(@NonNull Activity act){
+    public static DLoading create(@NonNull Activity act){
         return create(act, null);
     }
-    public static DWaiting create(@NonNull Activity act, String hint){
+    public static DLoading create(@NonNull Activity act, String hint){
         return create(act, hint, true);
     }
 
-    public static DWaiting force(@NonNull Activity act, String hint){
+    public static DLoading force(@NonNull Activity act, String hint){
         return create(act, hint, false);
     }
-    public static DWaiting force(@NonNull Activity act){
+    public static DLoading force(@NonNull Activity act){
         return create(act, null, false);
     }
-    public static DWaiting create(@NonNull Activity act, @StringRes int hint, boolean cancelable){
+    public static DLoading create(@NonNull Activity act, @StringRes int hint, boolean cancelable){
         return create(act, act.getString(hint), cancelable);
     }
-    public static DWaiting create(@NonNull Activity act, String hint, boolean cancelable){
-        DWaiting dWaiting = new DWaiting();
-        dWaiting.mHint = hint;
-        dWaiting.mCancelable = cancelable;
-        dWaiting.mAct = act;
-        return dWaiting;
+    public static DLoading create(@NonNull Activity act, String hint, boolean cancelable){
+        DLoading dlg = new DLoading();
+        dlg.mHint = hint;
+        dlg.mCancelable = cancelable;
+        dlg.mAct = act;
+        return dlg;
     }
 
-    public static DWaiting show(@NonNull Activity act){
+    public static DLoading show(@NonNull Activity act){
         return _show(act, null, true);
     }
-    public static DWaiting show(@NonNull Activity act, @StringRes int hint){
+    public static DLoading show(@NonNull Activity act, @StringRes int hint){
         return show(act, act.getString(hint));
     }
-    public static DWaiting show(@NonNull Activity act, String hint){
+    public static DLoading show(@NonNull Activity act, String hint){
         return _show(act, hint, true);
     }
-    public static DWaiting showForce(@NonNull Activity act){
+    public static DLoading showForce(@NonNull Activity act){
         return _show(act, null, false);
     }
-    public static DWaiting showForce(@NonNull Activity act, @StringRes int hint){
+    public static DLoading showForce(@NonNull Activity act, @StringRes int hint){
         return show(act, act.getString(hint));
     }
-    public static DWaiting showForce(@NonNull Activity act, String hint){
+    public static DLoading showForce(@NonNull Activity act, String hint){
         return _show(act, hint, false);
     }
-    public static DWaiting showToast(@NonNull Activity act, @StringRes int hint){
+    public static DLoading showToast(@NonNull Activity act, @StringRes int hint){
         return showToast(act, act.getString(hint));
     }
-    public static DWaiting showToast(@NonNull Activity act, String hint){
-        DWaiting dWaiting = create(act, hint, true);
-        dWaiting.mToast = true;
-        dWaiting.TAG = act.getClass().getSimpleName();
-        dWaiting.show();
-        return dWaiting;
+    public static DLoading showToast(@NonNull Activity act, String hint){
+        DLoading dlg = create(act, hint, true);
+        dlg.mToast = true;
+        dlg.TAG = act.getClass().getSimpleName();
+        dlg.show();
+        return dlg;
 
 //        if(host.isFinishing() || host.isDestroyed()) return;
 //        DialogHelper.dlgButtonCenter(
@@ -170,14 +170,14 @@ public class DWaiting extends DialogFragment{
 //                .show();
     }
 
-    private static DWaiting _show(@NonNull Activity act, String hint, boolean cancelable){
-        DWaiting dWaiting = new DWaiting();
-        dWaiting.mAct = act;
-        dWaiting.mHint = hint;
-        dWaiting.mCancelable = cancelable;
-        dWaiting.TAG = act.getClass().getSimpleName();
-        dWaiting.show();
-        return dWaiting;
+    private static DLoading _show(@NonNull Activity act, String hint, boolean cancelable){
+        DLoading dlg = new DLoading();
+        dlg.mAct = act;
+        dlg.mHint = hint;
+        dlg.mCancelable = cancelable;
+        dlg.TAG = act.getClass().getSimpleName();
+        dlg.show();
+        return dlg;
     }
 
     public boolean isShowing() {
