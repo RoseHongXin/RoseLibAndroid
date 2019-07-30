@@ -3,11 +3,6 @@ package hx.widget.dialog;
 import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.fragment.app.DialogFragment;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
@@ -18,6 +13,11 @@ import android.view.Window;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import hx.kit.log.Log4Android;
 import hx.lib.R;
 
@@ -34,10 +34,10 @@ import hx.lib.R;
 
 public class DLoading extends DialogFragment{
 
-    private String TAG = "DLoading";
+    private String TAG = "DlgLoading";
 
     private TextView _tv_hint;
-    private ProgressBar _pb_roomInfo;
+    private ProgressBar _pb_loading;
     private boolean mCancelable;
     private boolean mToast = false;
     private String mHint;
@@ -54,13 +54,14 @@ public class DLoading extends DialogFragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         TAG = String.valueOf(this.getClass().hashCode());
-        return inflater.inflate(R.layout.d_waiting, container, true);
+        return inflater.inflate(R.layout.d_loading, container, true);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Dialog dialog = getDialog();
+        if (dialog == null) return;
         Window window;
 //        if(mCancelable && (window = dialog.getWindow()) != null){
         if((window = dialog.getWindow()) != null){
@@ -79,7 +80,7 @@ public class DLoading extends DialogFragment{
             return true;
         });
         _tv_hint = (TextView) view.findViewById(R.id._tv_hint);
-        _pb_roomInfo = (ProgressBar) view.findViewById(R.id._pb_roomInfo);
+        _pb_loading = (ProgressBar) view.findViewById(R.id._pb_loading);
 
         if(!TextUtils.isEmpty(mHint)) {
             _tv_hint.setVisibility(View.VISIBLE);
@@ -87,7 +88,7 @@ public class DLoading extends DialogFragment{
         }
         setCancelable(mCancelable);
         if(mToast){
-            _pb_roomInfo.setVisibility(View.GONE);
+            _pb_loading.setVisibility(View.GONE);
             view.postDelayed(this::dismiss, 2000);
         }
     }
@@ -112,76 +113,61 @@ public class DLoading extends DialogFragment{
     public static DLoading create(@NonNull Activity act){
         return create(act, null);
     }
-    public static DLoading create(@NonNull Activity act, String hint){
+    public static DLoading create(@NonNull Activity act, Object hint){
         return create(act, hint, true);
     }
 
-    public static DLoading force(@NonNull Activity act, String hint){
+    public static DLoading force(@NonNull Activity act, Object hint){
         return create(act, hint, false);
     }
     public static DLoading force(@NonNull Activity act){
         return create(act, null, false);
     }
-    public static DLoading create(@NonNull Activity act, @StringRes int hint, boolean cancelable){
-        return create(act, act.getString(hint), cancelable);
-    }
-    public static DLoading create(@NonNull Activity act, String hint, boolean cancelable){
+    public static DLoading create(@NonNull Activity act, Object hint, boolean cancelable){
         DLoading dlg = new DLoading();
-        dlg.mHint = hint;
+        if (hint != null) {
+            String text = "";
+            if (hint instanceof Integer){
+                text = act.getString((Integer) hint);
+            }else if(hint instanceof String){
+                text = (String) hint;
+            }
+            dlg.mHint = text;
+
+        }
         dlg.mCancelable = cancelable;
         dlg.mAct = act;
+        dlg.TAG = act.getClass().getSimpleName();
         return dlg;
     }
 
     public static DLoading show(@NonNull Activity act){
         return _show(act, null, true);
     }
-    public static DLoading show(@NonNull Activity act, @StringRes int hint){
-        return show(act, act.getString(hint));
-    }
-    public static DLoading show(@NonNull Activity act, String hint){
+    public static DLoading show(@NonNull Activity act, Object hint){
         return _show(act, hint, true);
     }
     public static DLoading showForce(@NonNull Activity act){
         return _show(act, null, false);
     }
-    public static DLoading showForce(@NonNull Activity act, @StringRes int hint){
-        return show(act, act.getString(hint));
-    }
-    public static DLoading showForce(@NonNull Activity act, String hint){
+    public static DLoading showForce(@NonNull Activity act, Object hint){
         return _show(act, hint, false);
     }
-    public static DLoading showToast(@NonNull Activity act, @StringRes int hint){
-        return showToast(act, act.getString(hint));
-    }
-    public static DLoading showToast(@NonNull Activity act, String hint){
+    public static DLoading showToast(@NonNull Activity act, Object hint){
         DLoading dlg = create(act, hint, true);
         dlg.mToast = true;
-        dlg.TAG = act.getClass().getSimpleName();
         dlg.show();
         return dlg;
-
-//        if(host.isFinishing() || host.isDestroyed()) return;
-//        DialogHelper.dlgButtonCenter(
-//                new AlertDialog.Builder(host)
-//                        .setTitle(hint)
-//                        .setCancelable(false)
-//                        .setNeutralButton(R.string.HX_confirm, null))
-//                .show();
     }
 
-    private static DLoading _show(@NonNull Activity act, String hint, boolean cancelable){
-        DLoading dlg = new DLoading();
-        dlg.mAct = act;
-        dlg.mHint = hint;
-        dlg.mCancelable = cancelable;
-        dlg.TAG = act.getClass().getSimpleName();
+    private static DLoading _show(@NonNull Activity act, Object hint, boolean cancelable){
+        DLoading dlg = create(act, hint, cancelable);
         dlg.show();
         return dlg;
     }
 
     public boolean isShowing() {
-         return getDialog() != null && getDialog().isShowing();
+        return getDialog() != null && getDialog().isShowing();
     }
 
     /* Call this method after builder, carefully. */
