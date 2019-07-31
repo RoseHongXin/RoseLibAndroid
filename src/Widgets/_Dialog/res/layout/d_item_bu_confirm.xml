@@ -14,7 +14,7 @@
         android:textSize="@dimen/txt_title"
         android:textColor="?android:attr/colorPrimary"
         android:background="@drawable/sh_round_corner_bg_def"
-        android:visibility="invisible"
+        android:visibility="gone"
         tools:visibility="visible"
         tools:text="Title"/>
     <LinearLayout
