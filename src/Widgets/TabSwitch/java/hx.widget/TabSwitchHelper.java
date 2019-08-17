@@ -1,12 +1,9 @@
 package hx.widget;
 
-import android.text.TextUtils;
 import android.util.SparseArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.lang.reflect.Field;
 
 import androidx.annotation.IdRes;
 import androidx.fragment.app.Fragment;
@@ -34,28 +31,6 @@ public class TabSwitchHelper {
         mDefaultSelectIdx = -1;
     }
 
-    private void setFocus4All(){
-        for(int i = 0; i < mSwitchs.size(); i++){
-            TextView _v_ = mSwitchs.valueAt(i);
-            //PFLAG_FOCUSED 0x00000002
-//            _v_.isFocused()
-            _v_.setEllipsize(TextUtils.TruncateAt.MARQUEE);
-            _v_.setMarqueeRepeatLimit(-1);
-            _v_.setSingleLine(true);
-            _v_.setHorizontallyScrolling(true);
-            _v_.setFocusable(true);
-            try{
-                Field privateFlagsField = _v_.getClass().getDeclaredField("mPrivateFlags");
-                int privateFlags = privateFlagsField.getInt(_v_);
-                privateFlagsField.setAccessible(true);
-                privateFlagsField.setInt(_v_, privateFlags | 0x00000002);
-                privateFlagsField.setAccessible(false);
-            }catch (Exception e){
-            }
-            _v_.invalidate();
-        }
-    }
-
     public TabSwitchHelper switchs(ViewGroup _vg){
         int count = _vg.getChildCount();
         mSwitchIds = new int[count];
@@ -64,7 +39,6 @@ public class TabSwitchHelper {
             mSwitchs.put(tv.getId(), tv);
             mSwitchIds[i] = tv.getId();
         }
-        setFocus4All();
         return this;
     }
     public TabSwitchHelper switchs(TextView ... _tvs){
@@ -74,7 +48,6 @@ public class TabSwitchHelper {
             mSwitchs.put(tv.getId(), tv);
             mSwitchIds[i] = tv.getId();
         }
-        setFocus4All();
         return this;
     }
     public TabSwitchHelper fras(@IdRes int id, FragmentManager fraMgr, Fragment ... fras){
