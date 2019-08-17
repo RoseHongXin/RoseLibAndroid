@@ -2,6 +2,7 @@ package hx.widget.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
@@ -56,6 +57,9 @@ public class DialogHelper {
     }
 
     public static AlertDialog dlgButtonCenter(AlertDialog.Builder builder){
+        return dlgButtonCenter(builder, null);
+    }
+    public static AlertDialog dlgButtonCenter(AlertDialog.Builder builder, DialogInterface.OnShowListener onShowListener){
         AlertDialog dialog = builder.create();
         dialog.setOnShowListener(d -> {
             Button positiveBt = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
@@ -64,21 +68,16 @@ public class DialogHelper {
             layoutParams.gravity = Gravity.CENTER;
             positiveBt.setLayoutParams(layoutParams);
             positiveBt.setTextColor(positiveBt.getResources().getColor(R.color.colorAccent));
+            if(onShowListener != null) onShowListener.onShow(dialog);
         });
-
         return dialog;
     }
     public static void dlgBtnFlat(AlertDialog dialog, AlertDialog.OnShowListener onShowListener){
-        DisplayMetrics metrics = new DisplayMetrics();
-        Window window = dialog.getWindow();
-        if(window != null) {
-            window.getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        }
         dialog.setOnShowListener(dlg -> {
             dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setVisibility(View.GONE);
             Button _bt_positive = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
             View _v_container = (View) _bt_positive.getParent();
-            int width = metrics.widthPixels / 2 - _v_container.getPaddingLeft() - _v_container.getPaddingRight();
+            int width = _v_container.getMeasuredWidth() / 2 - _v_container.getPaddingLeft() - _v_container.getPaddingRight();
             LinearLayout.LayoutParams layoutParams  = (LinearLayout.LayoutParams) _bt_positive.getLayoutParams();
             layoutParams.width = width;
             layoutParams.gravity = Gravity.END|Gravity.CENTER_VERTICAL;

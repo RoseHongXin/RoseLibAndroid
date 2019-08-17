@@ -2,18 +2,16 @@ package hx.widget;
 
 import android.app.Activity;
 import android.content.Context;
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.content.res.ColorStateList;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import hx.lib.R;
 
 /**
@@ -49,8 +47,13 @@ public class TopBarHelper implements ITopBarOpt{
     }
 
     public static TopBarHelper obtain(Object obj){
-        if(obj instanceof Activity) return new TopBarHelper((Activity)obj);
-        else return new TopBarHelper((View)obj);
+        TopBarHelper helper;
+        if(obj instanceof Activity) helper = new TopBarHelper((Activity)obj);
+        else helper = new TopBarHelper((View)obj);
+        if(helper._tv_tbTitle != null) {
+            helper._tv_tbTitle.setSelected(true);
+        }
+        return helper;
     }
 
     @Override
@@ -63,7 +66,6 @@ public class TopBarHelper implements ITopBarOpt{
             _tv_tbTitle.setText(title);
         }
         if(_tb_ != null) _tb_.setTitle("");
-
     }
 
     @Override

@@ -2,8 +2,6 @@ package hx.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -16,6 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
 import hx.lib.R;
 
 /**
@@ -236,6 +236,21 @@ public class LinearItem extends FrameLayout {
         textSizeL = ta.getDimensionPixelSize(R.styleable.LinearItem_sizeTextLeft, NOTHING_SET); if(textSizeL != NOTHING_SET) textSizeL(textSizeL);
         textSizeR = ta.getDimensionPixelSize(R.styleable.LinearItem_sizeTextRight, NOTHING_SET); if(textSizeR != NOTHING_SET) textSizeR(textSizeR);
 
+        int itemPadding = ta.getDimensionPixelSize(R.styleable.LinearItem_itemPadding, NOTHING_SET);
+        if(itemPadding != NOTHING_SET) {
+            int paddingL = _iv_itemLeft.getPaddingLeft();
+            int paddingR = _iv_itemLeft.getPaddingRight();
+            _iv_itemLeft.setPadding(paddingL, itemPadding, paddingR, itemPadding);
+            paddingL = _tv_itemLeft.getPaddingLeft();
+            paddingR = _tv_itemLeft.getPaddingRight();
+            _tv_itemLeft.setPadding(paddingL, itemPadding, paddingR, itemPadding);
+            paddingL = _iv_itemRight.getPaddingLeft();
+            paddingR = _iv_itemRight.getPaddingRight();
+            _iv_itemRight.setPadding(paddingL, itemPadding, paddingR, itemPadding);
+            paddingL = _tv_itemRight.getPaddingLeft();
+            paddingR = _tv_itemRight.getPaddingRight();
+            _tv_itemRight.setPadding(paddingL, itemPadding, paddingR, itemPadding);
+        }
         ta.recycle();
     }
 

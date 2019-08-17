@@ -10,15 +10,8 @@
         android:layout_gravity="center_vertical|start"
         android:gravity="center_vertical|start"
         android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/_iv_linearItemLeft"
-            style="@style/LinearItem"/>
-
-        <TextView
-            android:id="@+id/_tv_linearItemLeft"
-            style="@style/LinearItem"
-            android:gravity="start"/>
+        <ImageView android:id="@+id/_iv_linearItemLeft" style="@style/LinearItem"/>
+        <TextView android:id="@+id/_tv_linearItemLeft" style="@style/LinearItem" android:gravity="start"/>
     </LinearLayout>
 
     <LinearLayout
@@ -27,15 +20,8 @@
         android:layout_gravity="center_vertical|end"
         android:gravity="center_vertical|end"
         android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/_tv_linearItemRight"
-            style="@style/LinearItem"
-            android:gravity="end"/>
-
-        <ImageView
-            android:id="@+id/_iv_linearItemRight"
-            style="@style/LinearItem"/>
+        <TextView android:id="@+id/_tv_linearItemRight" style="@style/LinearItem" android:gravity="end"/>
+        <ImageView android:id="@+id/_iv_linearItemRight" style="@style/LinearItem"/>
     </LinearLayout>
 
 </merge>

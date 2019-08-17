@@ -73,8 +73,7 @@ public class DLoading extends DialogFragment{
             window.setLayout(width, height);
         }
         dialog.setOnKeyListener((d, keyCode, event) -> {
-            if(keyCode == KeyEvent.KEYCODE_BACK){
-                d.dismiss();
+            if(keyCode == KeyEvent.KEYCODE_BACK && mCancelable){
                 DLoading.this.dismiss();
             }
             return true;

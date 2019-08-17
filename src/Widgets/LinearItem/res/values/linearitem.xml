@@ -41,6 +41,7 @@
         <attr name="colorTextLeft" format="reference|color"/>
         <attr name="colorTextRight" format="reference|color"/>
         <attr name="clickRectRight" format="boolean"/>
+        <attr name="itemPadding" format="reference|dimension"/>
     </declare-styleable>
 
 </resources>

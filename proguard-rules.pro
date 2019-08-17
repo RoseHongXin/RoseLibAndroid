@@ -2,6 +2,11 @@
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*  # 混淆时所采用的算法
 -keepattributes InnerClasses,LineNumberTable,Exceptions
 
+####
+-keep public class android.view.** { *;}
+-keep public class * extends android.view.View { *;}
+####
+
 #####################ButterKnife#####################
 -keep class butterknife.** { *; }
 -dontwarn butterknife.internal.**

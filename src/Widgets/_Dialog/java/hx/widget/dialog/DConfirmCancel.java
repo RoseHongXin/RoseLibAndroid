@@ -83,14 +83,19 @@ public class DConfirmCancel {
         if(window != null) {
             window.requestFeature(Window.FEATURE_NO_TITLE);
         }
-        dialog.setOnShowListener(d -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
-            mOnClickListener.onClick(DConfirmCancel.this, dialog);
-        }));
+        DialogHelper.dlgBtnFlat(dialog, dlg -> {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+                mOnClickListener.onClick(DConfirmCancel.this, dialog);
+            });
+        });
         return dialog;
     }
 
-    public View view(@IdRes int idRes){
-        return mLayout.findViewById(idRes);
+    public View layout(){
+        return mLayout;
+    }
+    public <V extends View> V view(@IdRes int idRes){
+        return (V)mLayout.findViewById(idRes);
     }
     public String text(@IdRes int idRes){
         View _et_ = mLayout.findViewById(idRes);
