@@ -14,53 +14,58 @@
     app:titleTextColor="@color/tb_txt"
     tools:background="@color/colorPrimary"
     tools:layout_height="48dp"
-    tools:navigationIcon="@android:drawable/ic_lock_lock"
+    tools:navigationIcon="@android:drawable/ic_input_get"
     tools:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-    <TextView
-        android:id="@id/_tv_tbTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:ellipsize="marquee"
-        android:marqueeRepeatLimit="-1"
-        android:singleLine="true"
-        android:scrollHorizontally="true"
-        android:focusable="true"
-        android:textColor="?android:textColorPrimary"
-        android:textSize="@dimen/tb_txt_title"
-        android:textStyle="bold"
-        tools:text="Title"
-        tools:textColor="@color/tb_txt"/>
-    <!--tools:text="title"/>-->
+    <LinearLayout style="@style/Fra.H">
+        <TextView
+            android:id="@id/_tv_tbTitle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="-1"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
+            android:focusable="true"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="@dimen/tb_txt_title"
+            android:textStyle="bold"
+            android:gravity="center"
+            tools:text="Title"
+            tools:textColor="@color/tb_txt"/>
+        <!--tools:text="title"/>-->
 
-    <ImageView
-        android:id="@id/_iv_tbRight"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:scaleType="centerInside"
-        android:paddingLeft="@dimen/l_p_h"
-        android:paddingRight="@dimen/l_p_h"
-        android:visibility="gone"
-        tools:visibility="visible"
-        tools:src="@android:drawable/ic_lock_lock"/>
+        <TextView
+            android:id="@id/_tv_tbRight"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="@dimen/l_p_small"
+            android:paddingRight="@dimen/l_p_small"
+            android:gravity="center"
+            android:layout_gravity="end"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="@dimen/tb_txt"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:text="tbRightText"
+            tools:textColor="@android:color/white"/>
 
-    <TextView
-        android:id="@id/_tv_tbRight"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:paddingLeft="@dimen/l_p_h"
-        android:paddingRight="@dimen/l_p_h"
-        android:gravity="center"
-        android:layout_gravity="end"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="?android:textColorPrimary"
-        android:textSize="@dimen/tb_txt"
-        android:visibility="gone"
-        tools:visibility="visible"
-        tools:text="tbRightText"
-        tools:textColor="@android:color/white"/>
+        <ImageView
+            android:id="@id/_iv_tbRight"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:scaleType="centerInside"
+            android:paddingLeft="@dimen/l_p_small"
+            android:paddingRight="@dimen/l_p_small"
+            android:visibility="gone"
+            tools:visibility="visible"
+            tools:src="@android:drawable/ic_lock_lock"/>
+    </LinearLayout>
+
 
 </androidx.appcompat.widget.Toolbar>
