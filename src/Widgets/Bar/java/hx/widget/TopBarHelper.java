@@ -2,8 +2,10 @@ package hx.widget;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -63,9 +65,16 @@ public class TopBarHelper implements ITopBarOpt{
     @Override
     public void title(String title){
         if(_tv_tbTitle != null){
+            TextPaint paint = _tv_tbTitle.getPaint();
+            float txtWidth = title != null ? paint.measureText(title) : 0;
+            if(txtWidth > mCtx.getResources().getDisplayMetrics().widthPixels / 2){
+                ViewGroup.LayoutParams layoutParams = _tv_tbTitle.getLayoutParams();
+                layoutParams.width = mCtx.getResources().getDisplayMetrics().widthPixels / 2;
+                _tv_tbTitle.setLayoutParams(layoutParams);
+            }
             _tv_tbTitle.setText(title);
+            if(_tb_ != null) _tb_.setTitle("");
         }
-        if(_tb_ != null) _tb_.setTitle("");
     }
 
     @Override
@@ -180,7 +189,4 @@ public class TopBarHelper implements ITopBarOpt{
         _iv_tbRight.setVisibility(visibility);
         _tv_tbRight.setVisibility(visibility);
     }
-
-
-
 }
