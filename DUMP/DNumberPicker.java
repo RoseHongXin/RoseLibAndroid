@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 
@@ -52,10 +53,14 @@ public class DNumberPicker extends DialogFragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Dialog dialog = getDialog();
-        dialog.setCancelable(true);
-        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
-        Window window = dialog.getWindow();
-        if(window != null) {
+        Window window = dialog != null ? dialog.getWindow() : null;
+        if(window != null){
+            dialog.setCancelable(false);
+            DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
+            window.setWindowAnimations(R.style.dialog_bottom_up);
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.dimAmount = 0.2f;
+            window.setAttributes(params);
             window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
         }
         return inflater.inflate(R.layout.d_numberpicker, container, true);
@@ -64,22 +69,21 @@ public class DNumberPicker extends DialogFragment{
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         _whv_items = (Wheel3DView)view.findViewById(R.id._whv_items);
         _np_ = (NumberPicker) view.findViewById(R.id._np_);
         if(mMode == MODE_WHEEL){
             _np_.setVisibility(View.GONE);
             _whv_items.setVisibility(View.VISIBLE);
-            int num = mRange[0];
+            int base = mRange[0];
             int idx = 0;
             int max = mRange[1];
             int defNumIdx = 0;
             CharSequence[] texts = new CharSequence[(mRange[1] - mRange[0] + 1)];
-            while (num <= max){
-                texts[idx] = String.valueOf(num);
-                if(num == mDefNum) defNumIdx = idx;
+            while (base <= max){
+                texts[idx] = String.valueOf(base);
+                if(base == mDefNum) defNumIdx = idx;
                 idx++;
-                num++;
+                base++;
             }
             _whv_items.setEntries(texts);
             if(defNumIdx != 0) _whv_items.setCurrentIndex(defNumIdx);
