@@ -12,6 +12,7 @@ ${gradle} gradle.properties  配置gradle路径, 环境变量配置  GRADLE_USER
 app:compileDebugJavaWithJavac这个错误,看是不是资源文件有重复,drawable和mipmap
 gradlew compileDebug --stacktrace gradlew compileDebug --stacktrace -info gradlew compileDebug --stacktrace -debug
 gradlew processDebugManifest --stacktrace   当出现Manifest merger failed with multiple errors, see logs,可以看到详细信息
+gradlew compileDebugJavaWithJavac
 gradlew:app:dependencies 查看依赖
 ```
 > shrinkResources 不能用于library
