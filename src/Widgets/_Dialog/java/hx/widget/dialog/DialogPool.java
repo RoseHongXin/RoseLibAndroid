@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.icu.text.StringSearch;
 import android.os.Build;
+import android.text.TextPaint;
 import android.text.TextUtils;
 import android.widget.TextView;
 
@@ -53,6 +54,10 @@ public class DialogPool {
                 dialog -> {
                     int count = textNewLineCharacterCount(msg);
                     TextView _tv_ = ((AlertDialog)dialog).findViewById(R.id.alertTitle);
+                    if(count == 0 && _tv_ != null){
+                        TextPaint paint = _tv_.getPaint();
+                        count = (int) (paint.measureText(msg) / (_tv_.getWidth() - _tv_.getPaddingLeft() - _tv_.getPaddingRight()) + 0.5f);
+                    }
                     if(_tv_ != null){ _tv_.setLines(_tv_.getLineCount() + count); }
                 })
                 .show();
@@ -83,6 +88,10 @@ public class DialogPool {
             dlg.setOnShowListener(dialog -> {
                 int count = textNewLineCharacterCount(msg);
                 TextView _tv_ = ((AlertDialog)dialog).findViewById(R.id.alertTitle);
+                if(count == 0 && _tv_ != null){
+                    TextPaint paint = _tv_.getPaint();
+                    count = (int) (paint.measureText(msg) / (_tv_.getWidth() - _tv_.getPaddingLeft() - _tv_.getPaddingRight()) + 0.5f);
+                }
                 if(_tv_ != null){ _tv_.setLines(_tv_.getLineCount() + count); }
             });
             dlg.show();
