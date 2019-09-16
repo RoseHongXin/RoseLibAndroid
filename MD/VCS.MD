@@ -12,6 +12,8 @@ git checkout ./--fileName   舍弃本地修改[全部/指定文件]
 
 出现443错误, git config --global http.proxy //  git config --global --unset http.proxy  看是否能解决
 
+git clone --depth=1   xxx   慢,只拉最近一次commit,会快很多(完整的commit历史不会被拉下来)
+
 ```
 
 ##### Svn操作:
