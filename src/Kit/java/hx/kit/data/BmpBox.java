@@ -27,7 +27,9 @@ public class BmpBox {
         Bitmap bm = BitmapFactory.decodeFile(srcPath, newOpts);
         File in = new File(srcPath);
         String srcName = in.getName();
-        return byQuality(ctx, bm, quality, srcName.substring(0, srcName.indexOf(".")), srcName.substring(srcName.indexOf(".")));
+        String tempName = srcName.contains(".") ? srcName.substring(0, srcName.lastIndexOf(".")) : srcName;
+        String extension = srcName.contains(".") ? srcName.substring(srcName.lastIndexOf(".")) : "jpg";
+        return byQuality(ctx, bm, quality, tempName, extension);
     }
     private static String byQuality(Context ctx, Bitmap bm, @IntRange(from = 0, to = 100) int quality, String tempName, String extension) {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();

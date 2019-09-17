@@ -38,6 +38,11 @@
     <style name="_Btn.solid.FixHeight">
         <item name="android:layout_height">@dimen/bt_height</item>
     </style>
+    <style name="_Btn.solid.reverse" parent="_Btn">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@drawable/sl_bt_solid_reverse</item>
+        <item name="android:textColor">@color/bt_solid_txt</item>
+    </style>
 
     <style name="Btn" parent="_Btn.solid"/>
     <style name="Btn.FixHeight" parent="_Btn.solid.FixHeight"/>
