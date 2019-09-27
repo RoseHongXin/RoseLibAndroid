@@ -25,6 +25,7 @@
 >> okhttp  builder.addHeader("Connection", "close");  避免unexpected end of stream on ** 这个错误
 ####### byte类型,如果向上强制转换的时候,高位填的是1 , 在做字节运算的时候,需要特别注意. byte & 0xFF
 >> realm dao如果有写构造方法,一定要指明一个空参构造方法,否则无法编译
+>> realm RealmSchema.RealmObjectSchema.addField  小写类型是nullable,大写类型是required.要注意
 
 ----
 
