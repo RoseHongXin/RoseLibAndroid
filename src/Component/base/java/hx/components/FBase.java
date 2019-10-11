@@ -114,6 +114,12 @@ public abstract class FBase extends Fragment implements IRetrofitApi{
 
     public void refresh(){}
 
+    protected boolean sIfIsFirstVisible(){
+        boolean yes = mPageVisibleCount == 1;
+        if(yes) {mPageVisibleCount++;}
+        return yes;
+    }
+
     @Override
     public void API_REQUEST(Observable observable){
         Disposable disposable = observable.subscribe();
