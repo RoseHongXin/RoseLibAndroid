@@ -86,4 +86,10 @@ public abstract class ApSelectBase<Vh extends VhBase<D>, D> extends ApBase<Vh, D
             notifyItemChanged(pos);
         }
     }
+
+    @Override
+    public void clear(){
+        clearSelect();
+        super.clear();
+    }
 }
