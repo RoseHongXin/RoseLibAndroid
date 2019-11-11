@@ -2,7 +2,9 @@ package hx.kit;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -141,5 +143,17 @@ public class AppInfo {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static String getManifestArg(Context ctx, String key){
+        try {
+            ApplicationInfo appInfo = ctx.getPackageManager().getApplicationInfo(ctx.getPackageName(), PackageManager.GET_META_DATA);
+            return appInfo.metaData.getString(key);
+        } catch (NameNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 }

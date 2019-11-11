@@ -53,6 +53,7 @@ public abstract class FBaseRefresh extends FBase {
         .create();
     }
 
+    @Override
     public void refresh(){
         _p2rl_.postDelayed(() -> _p2rl_.autoRefresh(), 100);
     }

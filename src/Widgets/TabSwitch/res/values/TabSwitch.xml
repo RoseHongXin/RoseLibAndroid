@@ -11,6 +11,11 @@
         <item name="android:layout_height">@dimen/TabSwitch_height</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/sl_tab_switch</item>
+        <!--<item name="android:ellipsize">marquee</item>-->
+        <!--<item name="android:marqueeRepeatLimit">-1</item>-->
+        <!--<item name="android:scrollHorizontally">true</item>-->
+        <!--<item name="android:focusable">true</item>-->
+        <!--<item name="android:singleLine">true</item>-->
     </style>
 
     <style name="TabSwitch_tv_reverse">

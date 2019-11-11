@@ -5,27 +5,31 @@ package hx.kit.async;
 
 import android.content.Context;
 import android.os.Handler;
-import android.os.Message;
 import android.text.TextUtils;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import hx.lib.R;
 
 public class Toaster extends Handler {
 
 	private static Context mCtx;
+	private static Toaster _sInstance;
+
+	private Toaster(){ }
 
 	public static void init(Context ctx) {
 		mCtx = ctx;
+		_sInstance = new Toaster();
 	}
 
-	public static void toast(int resId) {
+	public static Toaster instance(){
+		return _sInstance;
+	}
+
+	public static void show(int resId) {
 		if (mCtx == null || 0 == resId) return;
-		toast(mCtx.getString(resId));
+		show(mCtx.getString(resId));
 	}
 
-	public static void toast(String str) {
+	public static void show(String str) {
 		if(mCtx == null || TextUtils.isEmpty(str)) return;
 		Toast.makeText(mCtx, str, Toast.LENGTH_SHORT).show();
 	}

@@ -41,7 +41,9 @@ public class LhBase<D> extends RecyclerView.ViewHolder{
     public LhBase(Activity act, @IdRes int layoutIdRes){
         this(act, act.findViewById(layoutIdRes));
     }
-
+    public LhBase(Activity act){
+        this(act, act.findViewById(android.R.id.content));
+    }
     public LhBase(Activity act, View layout){
         this(layout);
         this.mAct = act;

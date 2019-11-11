@@ -58,3 +58,5 @@
 #### this lib
 -keep public class hx.** { *;}
 -keep public class in.srain.cube.** { *;}
+#-keep public class android.view.** { *;}
+#-keep public class * extends android.view.View { *;}

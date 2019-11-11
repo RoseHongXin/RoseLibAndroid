@@ -3,8 +3,11 @@ package hx.widget.dialog;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.icu.text.StringSearch;
 import android.os.Build;
+import android.text.TextPaint;
 import android.text.TextUtils;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
@@ -16,6 +19,16 @@ import hx.lib.R;
  */
 
 public class DialogPool {
+
+    private static int textNewLineCharacterCount(String text){
+        if(TextUtils.isEmpty(text)) return 0;
+        char[] chars = text.toCharArray();
+        int count = 0;
+        for(char ch : chars){
+            if(ch == '\n') count++;
+        }
+        return count;
+    }
 
     public static void toast(@NonNull Activity act, @StringRes int msg) {
         toast(act, act.getString(msg));
@@ -35,9 +48,18 @@ public class DialogPool {
         }
         DialogHelper.dlgButtonCenter(
                 new AlertDialog.Builder(act)
-                .setTitle(msg)
-                .setCancelable(false)
-                .setNeutralButton(R.string.HX_confirm, listener))
+                        .setTitle(msg)
+                        .setCancelable(false)
+                        .setNeutralButton(R.string.HX_confirm, listener),
+                dialog -> {
+                    int count = textNewLineCharacterCount(msg);
+                    TextView _tv_ = ((AlertDialog)dialog).findViewById(R.id.alertTitle);
+                    if(count == 0 && _tv_ != null){
+                        TextPaint paint = _tv_.getPaint();
+                        count = (int) (paint.measureText(msg) / (_tv_.getWidth() - _tv_.getPaddingLeft() - _tv_.getPaddingRight()) + 0.5f);
+                    }
+                    if(_tv_ != null){ _tv_.setLines(_tv_.getLineCount() + count); }
+                })
                 .show();
     }
     public static void confirm(@NonNull Activity act, Object msg, DialogInterface.OnClickListener listener){
@@ -62,11 +84,21 @@ public class DialogPool {
                 .setPositiveButton(btTxt, listener)
                 .setNegativeButton(R.string.HX_cancel, null);
         if(TextUtils.isEmpty(title)){
-            builder.setTitle(msg);
+            AlertDialog dlg = builder.setTitle(msg).create();
+            dlg.setOnShowListener(dialog -> {
+                int count = textNewLineCharacterCount(msg);
+                TextView _tv_ = ((AlertDialog)dialog).findViewById(R.id.alertTitle);
+                if(count == 0 && _tv_ != null){
+                    TextPaint paint = _tv_.getPaint();
+                    count = (int) (paint.measureText(msg) / (_tv_.getWidth() - _tv_.getPaddingLeft() - _tv_.getPaddingRight()) + 0.5f);
+                }
+                if(_tv_ != null){ _tv_.setLines(_tv_.getLineCount() + count); }
+            });
+            dlg.show();
         }else{
-            builder.setTitle(title).setMessage(msg);
+            builder.setTitle(title).setMessage(msg)
+                    .create().show();
         }
-        builder.create().show();
     }
 
     private static String text(Context ctx, Object text){

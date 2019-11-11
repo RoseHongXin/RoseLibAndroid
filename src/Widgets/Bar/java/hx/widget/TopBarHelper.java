@@ -2,18 +2,18 @@ package hx.widget;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import android.content.res.ColorStateList;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
 import hx.lib.R;
 
 /**
@@ -49,8 +49,13 @@ public class TopBarHelper implements ITopBarOpt{
     }
 
     public static TopBarHelper obtain(Object obj){
-        if(obj instanceof Activity) return new TopBarHelper((Activity)obj);
-        else return new TopBarHelper((View)obj);
+        TopBarHelper helper;
+        if(obj instanceof Activity) helper = new TopBarHelper((Activity)obj);
+        else helper = new TopBarHelper((View)obj);
+        if(helper._tv_tbTitle != null) {
+            helper._tv_tbTitle.setSelected(true);
+        }
+        return helper;
     }
 
     @Override
@@ -60,10 +65,16 @@ public class TopBarHelper implements ITopBarOpt{
     @Override
     public void title(String title){
         if(_tv_tbTitle != null){
+            TextPaint paint = _tv_tbTitle.getPaint();
+            float txtWidth = title != null ? paint.measureText(title) : 0;
+            if(txtWidth > mCtx.getResources().getDisplayMetrics().widthPixels / 2){
+                ViewGroup.LayoutParams layoutParams = _tv_tbTitle.getLayoutParams();
+                layoutParams.width = mCtx.getResources().getDisplayMetrics().widthPixels / 2;
+                _tv_tbTitle.setLayoutParams(layoutParams);
+            }
             _tv_tbTitle.setText(title);
+            if(_tb_ != null) _tb_.setTitle("");
         }
-        if(_tb_ != null) _tb_.setTitle("");
-
     }
 
     @Override
@@ -178,7 +189,4 @@ public class TopBarHelper implements ITopBarOpt{
         _iv_tbRight.setVisibility(visibility);
         _tv_tbRight.setVisibility(visibility);
     }
-
-
-
 }

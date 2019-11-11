@@ -17,7 +17,7 @@ public class Formater {
 
     private static final String EMAIL_FORMAT = "^[A-Za-z0-9_.-\\u4e00-\\u9fa5]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$";
     //    public static final String MOBILE_FORMAT = "^(13[0-9]|15[^4]|17[0,6,7,8]|18[0-9]|14[5,7])\\d{8}$";
-    private static final Pattern MOBILE_PATTERN = Pattern.compile("1[3456789][0-9]{9}");
+    private static final Pattern MOBILE_PATTERN = Pattern.compile("^1[3456789][0-9]\\d{8}$");
     public static final String PHONE_FORMAT = "0\\d{2,3}-?\\d{5,9}|0\\d{2,3}-?\\d{5,9}|\\d{8}";
     public static final String QQ_FORMAT = "\\d{5,11}";
 
@@ -25,6 +25,9 @@ public class Formater {
     private static final Pattern SPECIAL_CHARS_PATTERN = Pattern.compile("[ _`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]|\n|\r|\t");
 
     public static final String PHONE_MASK_FORMAT = "(\\d{3})\\d{4}(\\d{4})";
+
+    public static final Pattern MALAYSIA_MOBILE_PATTERN = Pattern.compile("^(006)?-?01[0-9]-?\\d{7}$");
+
 
     public static boolean isMobile(String mobile){
 //        return Pattern.compile(MOBILE_FORMAT).matcher(mobile).matches();
