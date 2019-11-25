@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="HX_inputAlphabetNumberFilter" translatable="false">0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="HX_inputHexFilter" translatable="false">0123456789abcdefABCDEF</string>
+
+</resources>
