@@ -99,8 +99,9 @@ public class DItemBUConfirm extends DialogFragment{
         if(mShow4Select){
             if(window != null) window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
             return null;
+        }else{
+            if(window != null) window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
         }
-        if(window != null) window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
         return inflater.inflate(R.layout.d_item_bu_confirm, container, true);
     }
 

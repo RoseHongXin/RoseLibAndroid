@@ -36,6 +36,7 @@ public abstract class DlgBase extends DialogFragment {
 
     protected FragmentManager mFraManager;
     protected Activity mAct;
+    protected View _v_layout;
 
     protected abstract @LayoutRes int sGetLayout();
 
@@ -55,7 +56,8 @@ public abstract class DlgBase extends DialogFragment {
             window.setAttributes(params);
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         }
-        return inflater.inflate(sGetLayout(), container, true);
+        _v_layout = inflater.inflate(sGetLayout(), container, true);
+        return _v_layout;
     }
 
     @Override
