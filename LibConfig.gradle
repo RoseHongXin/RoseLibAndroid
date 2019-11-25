@@ -3,8 +3,8 @@ ext{
             compileSdkVersion: 28,
             buildToolsVersion: '28.0.3',
 //            minSdkVersion: 22,    //手环,手表,极控杭州智能家居,电表租客端
-            minSdkVersion: 20,    //电表, 智能Pos机, 上海交大涂鸦
-//            minSdkVersion: 15,    //测试机
+//            minSdkVersion: 20,    //电表, 智能Pos机, 上海交大涂鸦
+            minSdkVersion: 15,    //测试机
             targetSdkVersion: 28,
             dependencyVersion: '28.0.0'
     ]
@@ -24,5 +24,30 @@ ext{
     ]
     buildVars =[
             proguard: true
+    ]
+    RoseLibDependencies = [
+        'androidx.core:core:1.1.0',
+        'androidx.recyclerview:recyclerview:1.0.0',
+        'androidx.cardview:cardview:1.0.0',
+        'androidx.fragment:fragment:1.2.0-rc01',
+        'com.google.android.material:material:1.2.0-alpha01',
+        'androidx.appcompat:appcompat:1.1.0',
+        'androidx.percentlayout:percentlayout:1.0.0',
+        'androidx.constraintlayout:constraintlayout:1.1.3',
+        'androidx.viewpager:viewpager:1.0.0',
+
+        'com.fasterxml.jackson.core:jackson-core:' + ver.jackson,
+        'com.fasterxml.jackson.core:jackson-annotations:' + ver.jackson,
+        'com.fasterxml.jackson.core:jackson-databind:' + ver.jackson,
+        'com.alibaba:fastjson:' + ver.fastjson,
+        'io.reactivex.rxjava2:rxjava:' + ver.rxjava,
+        'io.reactivex.rxjava2:rxandroid:' + ver.rxandroid,
+        'com.jakewharton:butterknife:' + ver.butterknife,
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:' + ver.butterknife
+        'com.jakewharton.rxbinding2:rxbinding:2.1.1',
+        "com.squareup.okhttp3:okhttp:" + ver.okhttp3,
+        "com.squareup.okhttp3:logging-interceptor:" + ver.okhttp3,
+
+        'com.cncoderx.wheelview:library:1.2.2'  //https://github.com/CNCoderX/WheelView
     ]
 }
