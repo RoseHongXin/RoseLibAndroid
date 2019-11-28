@@ -1,11 +1,12 @@
 ext{
+    //29:android10, 28:android9, dependency28都用androidx了.
     props = [
-            compileSdkVersion: 28,
-            buildToolsVersion: '28.0.3',
+            compileSdkVersion: 29,
+            buildToolsVersion: '29.0.2',
+            targetSdkVersion: 29,
 //            minSdkVersion: 22,    //手环,手表,极控杭州智能家居,电表租客端
             minSdkVersion: 20,    //电表, 智能Pos机, 上海交大涂鸦
 //            minSdkVersion: 15,    //测试机
-            targetSdkVersion: 28,
             dependencyVersion: '28.0.0'
     ]
     libraries = [
@@ -27,10 +28,10 @@ ext{
     ]
     RoseLibDependencies = [
         'androidx.core:core:1.1.0',
-        'androidx.recyclerview:recyclerview:1.0.0',
+        'androidx.recyclerview:recyclerview:1.1.0',
         'androidx.cardview:cardview:1.0.0',
-        'androidx.fragment:fragment:1.2.0-rc01',
-        'com.google.android.material:material:1.2.0-alpha01',
+        'androidx.fragment:fragment:1.2.0-rc02',
+        'com.google.android.material:material:1.2.0-alpha02',
         'androidx.appcompat:appcompat:1.1.0',
         'androidx.percentlayout:percentlayout:1.0.0',
         'androidx.constraintlayout:constraintlayout:1.1.3',
