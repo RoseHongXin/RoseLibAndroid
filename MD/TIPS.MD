@@ -14,6 +14,9 @@
 > ToolBar 菜单字体颜色由theme控制, ThemeOverlay.AppCompat.Dark.ActionBar, 全局控制可由toolBarStyle属性设置
 > Menu 相关theme配置 android:actionMenuTextAppearance actionOverflowMenuStyle
 > Dialog theme  alertDialogTheme, dialogTheme
+>
+>* WebView 在5.1及其以下 用androidx.appcompat:appcompat:1.1.0 有Error inflating class android.webkit.WebView 这bug
+>* 需要downgrade到appcompat:1.0.2, 或者自定义WebView, https://stackoverflow.com/questions/41025200/android-view-inflateexception-error-inflating-class-android-webkit-webview
   
 ----
 

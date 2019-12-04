@@ -3,8 +3,6 @@ package hx.widget.dialog;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import androidx.annotation.DrawableRes;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -19,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.DrawableRes;
+import androidx.recyclerview.widget.RecyclerView;
 import hx.lib.R;
 import hx.widget.adapterview.VhBase;
 import hx.widget.adapterview.recyclerview.ApBase;
@@ -138,6 +138,7 @@ public class PopItem extends PopupWindow {
     }
 
     public void show(){
+        if(mAct == null || mAct.isFinishing() || mAct.isDestroyed()) { return; }
         showAsDropDown(_v_anchor);
     }
 

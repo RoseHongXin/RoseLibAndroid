@@ -23,6 +23,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
 import androidx.loader.content.CursorLoader;
 import hx.components.PermissionImpl;
@@ -73,6 +74,9 @@ public class DImagePicker {
     }
 
     public void fromGallery4OneImg(){
+        startChooser(false);
+    }
+    private void startChooser(boolean multiSelect){
         if(!PermissionImpl.checkIfGranted(mAct, Manifest.permission.READ_EXTERNAL_STORAGE)){
             PermissionImpl.require(mAct, Manifest.permission.READ_EXTERNAL_STORAGE);
             return;
@@ -80,6 +84,7 @@ public class DImagePicker {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("image/*");
+        if(multiSelect) intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         mAct.startActivityForResult(Intent.createChooser(intent,"Select Picture"), IMAGE_REQ_CODE);
     }
 
@@ -89,15 +94,7 @@ public class DImagePicker {
                 .texts(mAct.getString(R.string.HX_gallery), mAct.getString(R.string.HX_camera))
                 .callback((idx, text) -> {
                     if (idx == 0) {
-                        if(!PermissionImpl.checkIfGranted(mAct, Manifest.permission.READ_EXTERNAL_STORAGE)){
-                            PermissionImpl.require(mAct, Manifest.permission.READ_EXTERNAL_STORAGE);
-                            return;
-                        }
-                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                        intent.addCategory(Intent.CATEGORY_OPENABLE);
-                        intent.setType("image/*");
-                        if(mMultiSelect) intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                        mAct.startActivityForResult(Intent.createChooser(intent,"Select Picture"), IMAGE_REQ_CODE);
+                        startChooser(mMultiSelect);
                     } else if (idx == 1) {
                         if(!PermissionImpl.checkIfGranted(mAct, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
                             PermissionImpl.require(mAct, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE);
@@ -110,18 +107,18 @@ public class DImagePicker {
                         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUriFromCamera);
                         mAct.startActivityForResult(intent, CAMERA_REQ_CODE);
                         mAct.getApplication().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
-                            @Override public void onActivityCreated(Activity activity, Bundle savedInstanceState) {}
-                            @Override public void onActivityStarted(Activity activity) {}
-                            @Override public void onActivityResumed(Activity activity) {
+                            @Override public void onActivityCreated(@NonNull Activity activity, Bundle savedInstanceState) {}
+                            @Override public void onActivityStarted(@NonNull Activity activity) {}
+                            @Override public void onActivityResumed(@NonNull Activity activity) {
                                 if (activity == mAct) {
                                     mCb.onPicture(img.getAbsolutePath());
                                     mAct.getApplication().unregisterActivityLifecycleCallbacks(this);
                                 }
                             }
-                            @Override public void onActivityPaused(Activity activity) {}
-                            @Override public void onActivityStopped(Activity activity) {}
-                            @Override public void onActivitySaveInstanceState(Activity activity, Bundle outState) {}
-                            @Override public void onActivityDestroyed(Activity activity) {}
+                            @Override public void onActivityPaused(@NonNull Activity activity) {}
+                            @Override public void onActivityStopped(@NonNull Activity activity) {}
+                            @Override public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {}
+                            @Override public void onActivityDestroyed(@NonNull Activity activity) {}
                         });
                     }
                 })
