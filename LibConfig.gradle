@@ -14,13 +14,13 @@ ext{
     ]
 
     ver = [
-            retrofit: "2.5.0",
-            glide: "4.9.0",
-            okhttp3: "3.14.1",
-            butterknife: '10.1.0',
-            fastjson: '1.2.58',
-            jackson: '2.9.8',
-            rxjava: '2.2.8',
+            retrofit: "2.7.0",
+            glide: "4.10.0",
+            okhttp3: "4.2.2",   //3.14.1
+            butterknife: '10.2.0',
+            fastjson: '1.2.62',
+            jackson: '2.10.1',
+            rxjava: '2.2.16',
             rxandroid: '2.1.1'
     ]
     buildVars =[
