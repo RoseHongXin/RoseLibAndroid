@@ -17,6 +17,8 @@
 >
 >* WebView 在5.1及其以下 用androidx.appcompat:appcompat:1.1.0 有Error inflating class android.webkit.WebView 这bug
 >* 需要downgrade到appcompat:1.0.2, 或者自定义WebView, https://stackoverflow.com/questions/41025200/android-view-inflateexception-error-inflating-class-android-webkit-webview
+
+>* TelephonyManager可以get获取的设备表示类参数,在android10/sdk29后,都无法获取,throw SecurityException
   
 ----
 
