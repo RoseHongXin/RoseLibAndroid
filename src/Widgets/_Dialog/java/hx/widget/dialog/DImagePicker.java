@@ -134,12 +134,12 @@ public class DImagePicker {
                 for (int i = 0, count = clipData.getItemCount(); i < count; i++) {
                     ClipData.Item item = clipData.getItemAt(i);
                     Uri uri = item.getUri();
-                    paths.add(getRealPathFromUri(ctx, uri));
+                    paths.add(Uri2Path(ctx, uri));
                 }
             }
             if(data.getData() != null){
                 Uri uri = data.getData();
-                paths.add(getRealPathFromUri(ctx, uri));
+                paths.add(Uri2Path(ctx, uri));
             }
         }
         return paths;
@@ -181,12 +181,22 @@ public class DImagePicker {
         return uri;
     }
 
-    public static String getRealPathFromUri(Context context, Uri uri) {
+    public static String Uri2Path(Context context, Uri uri) {
         int sdkVersion = Build.VERSION.SDK_INT;
         if (sdkVersion < 11) return getRealPathFromUri_BelowApi11(context, uri);
         else if (sdkVersion < Build.VERSION_CODES.KITKAT) return getRealPathFromUri_Api11To18(context, uri);
 //        else if (sdkVersion < Build.VERSION_CODES.M) return getRealPathFromUri_Api11To18(context, uri);
         else return getRealPathFromUri_AboveApi19(context, uri);
+    }
+
+    public static List<String> Uri2Path(Context context, List<Uri> uris) {
+        int sdkVersion = Build.VERSION.SDK_INT;
+        List<String> paths = new ArrayList<>();
+        for(Uri uri : uris){
+            String path = Uri2Path(context, uri);
+            paths.add(path);
+        }
+        return paths;
     }
 
 
