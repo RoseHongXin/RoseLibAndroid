@@ -69,7 +69,7 @@ public class DDateTimeSelect extends DialogFragment{
     private boolean mFillAfterSelect = true;
     private TextView _tv_anchor;
     private int mYear, mMonthIdx;
-    private int mMaxYear = 2020, mMinYear = 1990;
+    private int mMaxYear = 2040, mMinYear = 1990;
     private Calendar mCalendar = Calendar.getInstance();
     private int[] mDefValues;
 
