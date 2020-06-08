@@ -41,7 +41,7 @@ public abstract class FBaseRefresh extends FBase {
             @Override
             protected void onRefresh() {
                 if(getApi() != null){
-                    API_REQUEST(getApi());
+                    API_REQUEST(getApi().doOnTerminate(() -> refreshIdle()));
                 }else {
                     FBaseRefresh.this.onRefresh();
                 }
