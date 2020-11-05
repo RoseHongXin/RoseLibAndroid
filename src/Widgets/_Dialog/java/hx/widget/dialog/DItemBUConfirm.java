@@ -78,7 +78,7 @@ public class DItemBUConfirm extends DialogFragment{
             String title = DialogHelper.getText(mAct, mTitle);
             if(!TextUtils.isEmpty(title)) builder.setTitle(title);
             AlertDialog dialog = builder.create();
-            DialogHelper.dlgBtnFlat(dialog, null);
+            DialogHelper.BtnFlat(dialog, null);
             return dialog;
         }
         return super.onCreateDialog(savedInstanceState);
@@ -90,7 +90,7 @@ public class DItemBUConfirm extends DialogFragment{
         Dialog dialog = getDialog();
         Window window = dialog != null ? dialog.getWindow() : null;
         if (window != null) {
-            DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
+            DialogHelper.NoPadding(dialog, Gravity.BOTTOM);
             window.setWindowAnimations(R.style.dialog_bottom_up);
             WindowManager.LayoutParams params = window.getAttributes();
             params.dimAmount = 0.2f;

@@ -53,7 +53,7 @@ public class DMenuBU extends DialogFragment{
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Dialog dialog = getDialog();
-        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
+        DialogHelper.NoPadding(dialog, Gravity.BOTTOM);
         Window window = dialog.getWindow();
         if(window != null) {
             window.setWindowAnimations(R.style.dialog_menu_anim);

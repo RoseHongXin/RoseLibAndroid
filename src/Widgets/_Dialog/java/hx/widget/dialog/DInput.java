@@ -65,7 +65,7 @@ public class DInput extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if(getContext() != null && mTheme != -1) getContext().setTheme(mTheme);
         Dialog dialog = getDialog();
-        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
+        DialogHelper.NoPadding(dialog, Gravity.BOTTOM);
         Window window = dialog.getWindow();
         if (window != null) {
             window.setWindowAnimations(R.style.dialog_bottom_up);

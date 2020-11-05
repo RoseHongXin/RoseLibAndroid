@@ -35,7 +35,7 @@ public class SharedPreferenceStub {
         if(mSp != null) mSp.edit().putString(key, data).apply();
     }
     public <T> void set(String key, T t){
-        String data = JSONHelper.toJSONStr(t);
+        String data = JACKSON.toString(t);
         if(mSp != null) mSp.edit().putString(key, data).apply();
     }
     public void set(String key, boolean b){

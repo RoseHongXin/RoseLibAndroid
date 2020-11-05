@@ -73,7 +73,7 @@ public class DYearMonthDay extends DialogFragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Dialog dialog = getDialog();
         dialog.setCancelable(true);
-        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
+        DialogHelper.NoPadding(dialog, Gravity.BOTTOM);
         Window window = dialog.getWindow();
         if(window != null) {
             window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
