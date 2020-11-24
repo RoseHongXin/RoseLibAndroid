@@ -5,24 +5,17 @@ import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.*;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import hx.kit.log.Log4Android;
 import hx.kit.view.ViewKit;
 import hx.lib.R;
@@ -75,7 +68,9 @@ public class DInput extends DialogFragment {
             window.setAttributes(params);
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         }
-        dialog.setOnDismissListener(dialog1 -> ViewKit.hideInputMgr(_et_edit));
+        dialog.setCanceledOnTouchOutside(true);
+        dialog.setOnCancelListener(dlg -> dismiss());
+        dialog.setOnDismissListener(dlg -> ViewKit.hideInputMgr(_et_edit));
         return inflater.inflate(R.layout.d_input, container, true);
     }
 
