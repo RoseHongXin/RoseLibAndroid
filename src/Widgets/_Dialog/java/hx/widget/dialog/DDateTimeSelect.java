@@ -246,8 +246,10 @@ public class DDateTimeSelect extends DialogFragment{
     }
     public DDateTimeSelect defDate(String time){
         if(TextUtils.isEmpty(time)) return defDate(new Date());
+        String fmt = mFormat;
+        if(TextUtils.isEmpty(fmt)){ fmt = "yyyy-MM-dd hh:mm:ss"; }
         if(time.contains("-")) {
-            SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd hh:mm:ss", Locale.getDefault());
+            SimpleDateFormat format = new SimpleDateFormat(fmt, Locale.getDefault());
             Date date;
             try {
                 date = format.parse(time);

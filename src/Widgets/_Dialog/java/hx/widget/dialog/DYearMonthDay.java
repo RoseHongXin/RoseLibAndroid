@@ -32,6 +32,7 @@ import hx.lib.R;
  * Created by Rose on 3/2/2017.
  */
 
+@Deprecated
 public class DYearMonthDay extends DialogFragment{
 
     public final static String DATE_FORMAT = "yyyy-MM-dd";

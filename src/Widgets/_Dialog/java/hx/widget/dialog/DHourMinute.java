@@ -28,6 +28,7 @@ import hx.lib.R;
  * Created by Rose on 3/2/2017.
  */
 
+@Deprecated
 public class DHourMinute extends DialogFragment{
 
     private static final String _FORMAT = "%1$02d:%2$02d";
