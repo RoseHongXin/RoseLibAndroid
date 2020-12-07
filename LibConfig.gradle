@@ -14,8 +14,8 @@ ext{
     ]
 
     ver = [
-            retrofit: "2.7.0",
-            glide: "4.10.0",
+            retrofit: "2.9.0",
+            glide: "4.11.0",
 //            okhttp3: "4.2.2",   //3.14.1
             okhttp3: "3.14.1",    //测试机
             butterknife: '10.2.0',

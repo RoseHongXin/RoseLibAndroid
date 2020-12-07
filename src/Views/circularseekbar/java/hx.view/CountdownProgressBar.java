@@ -100,7 +100,7 @@ public class CountdownProgressBar extends View {
 			mProgressArcRectF.right = mCenterX + mRadius;
 
 			mProgressPaint.setStrokeWidth(mRadius * 0.1f);
-			mTextSize = (int) (mProgressArcRectF.width() / 4);
+			mTextSize = (int) (mProgressArcRectF.width() / 3);
 			mTextPaint.setTextSize(mTextSize);
 		}
 	}

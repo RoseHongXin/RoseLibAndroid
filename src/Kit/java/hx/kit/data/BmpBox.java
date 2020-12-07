@@ -25,6 +25,7 @@ public class BmpBox {
         BitmapFactory.Options newOpts = new BitmapFactory.Options();
         newOpts.inJustDecodeBounds = false;
         Bitmap bm = BitmapFactory.decodeFile(srcPath, newOpts);
+        if(bm == null) return srcPath;
         File in = new File(srcPath);
         String srcName = in.getName();
         String tempName = srcName.contains(".") ? srcName.substring(0, srcName.lastIndexOf(".")) : srcName;

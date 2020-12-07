@@ -2,22 +2,22 @@
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*  # 混淆时所采用的算法
 -keepattributes InnerClasses,LineNumberTable,Exceptions
 
-######################ButterKnife#####################
-#-keep class butterknife.** { *; }
-#-dontwarn butterknife.internal.**
-#-keep class **$$ViewBinder { *; }
-#-keepclasseswithmembernames class * {
-#    @butterknife.* <fields>;
-#}
-#-keepclasseswithmembernames class * {
-#    @butterknife.* <methods>;
-#}
-######################ButterKnife#####################
+#####################ButterKnife#####################
+-keep class butterknife.** { *; }
+-dontwarn butterknife.internal.**
+-keep class **$$ViewBinder { *; }
+-keepclasseswithmembernames class * {
+    @butterknife.* <fields>;
+}
+-keepclasseswithmembernames class * {
+    @butterknife.* <methods>;
+}
+#####################ButterKnife#####################
 
-######################Fastjson#####################
-#-dontwarn com.alibaba.fastjson.**
-#-keepclasseswithmembernames class com.alibaba.fastjson.** { *;}
-######################Fastjson#####################
+#####################Fastjson#####################
+-dontwarn com.alibaba.fastjson.**
+-keepclasseswithmembernames class com.alibaba.fastjson.** { *;}
+#####################Fastjson#####################
 
 #####################Jackson#####################
 -keep @com.fasterxml.jackson.annotation.JsonIgnoreProperties class * { *; }
@@ -32,6 +32,22 @@
 # General
 -keepattributes SourceFile,LineNumberTable,*Annotation*,EnclosingMethod,Signature,Exceptions,InnerClasses
 #####################Jackson#####################
+
+#####################Glide#####################
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep class * extends com.bumptech.glide.module.AppGlideModule {
+ <init>(...);
+}
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+  **[] $VALUES;
+  public *;
+}
+-keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
+  *** rewind();
+}
+# for DexGuard only
+-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+#####################Glide#####################
 
 #####################OkHttp3#####################
 # JSR 305 annotations are for embedding nullability information.
@@ -86,19 +102,15 @@
 
 #####################RxJava && RxAndroid#####################
 -dontwarn java.util.concurrent.Flow*
-
-#-dontwarn sun.misc.**
-#-keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
-#    long producerIndex;
-#    long consumerIndex;
-#}
-#-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
-#    rx.internal.util.atomic.LinkedQueueNode producerNode;
-#}
-#-keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
-#    rx.internal.util.atomic.LinkedQueueNode consumerNode;
-#}
 #####################RxJava && RxAndroid#####################
+
+
+##################### Gson #####################
+-keepattributes Annotation
+-keep class sun.misc.Unsafe { *; }
+-keep class com.idea.fifaalarmclock.entity.*
+-keep class com.google.gson.stream.* { *; }
+##################### Gson #####################
 
 #### this lib
 -keep public class hx.** { *;}
