@@ -18,9 +18,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class JACKSON {
-    
+
     private final ObjectMapper mObjMapper;
-    
+
     private static JACKSON mHelper;
     private JACKSON(){
         mObjMapper = new ObjectMapper();
@@ -88,6 +88,8 @@ public class JACKSON {
             }
 
         } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return "";
