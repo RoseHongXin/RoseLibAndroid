@@ -46,7 +46,7 @@ public abstract class DlgBase extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if(getContext() != null && mTheme != -1) getContext().setTheme(mTheme);
         Dialog dialog = getDialog();
-        DialogHelper.padding(dialog, mGravity, mPadding, mPadding);
+        DialogHelper.Padding(dialog, mGravity, mPadding, mPadding);
         Window window = dialog.getWindow();
         if (window != null) {
             window.setWindowAnimations(mAnimStyle);

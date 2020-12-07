@@ -28,6 +28,7 @@ import hx.lib.R;
  * Created by Rose on 3/2/2017.
  */
 
+@Deprecated
 public class DHourMinute extends DialogFragment{
 
     private static final String _FORMAT = "%1$02d:%2$02d";
@@ -62,7 +63,7 @@ public class DHourMinute extends DialogFragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Dialog dialog = getDialog();
         dialog.setCancelable(true);
-        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
+        DialogHelper.NoPadding(dialog, Gravity.BOTTOM);
         Window window = dialog.getWindow();
         if(window != null) {
             window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));

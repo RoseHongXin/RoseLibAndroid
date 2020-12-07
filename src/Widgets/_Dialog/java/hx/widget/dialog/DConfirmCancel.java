@@ -83,7 +83,7 @@ public class DConfirmCancel {
         if(window != null) {
             window.requestFeature(Window.FEATURE_NO_TITLE);
         }
-        DialogHelper.dlgBtnFlat(dialog, dlg -> {
+        DialogHelper.BtnFlat(dialog, dlg -> {
             dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
                 mOnClickListener.onClick(DConfirmCancel.this, dialog);
             });

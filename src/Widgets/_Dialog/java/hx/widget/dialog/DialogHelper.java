@@ -10,7 +10,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
 import androidx.appcompat.app.AlertDialog;
 import hx.lib.R;
 
@@ -20,28 +19,28 @@ import hx.lib.R;
 
 public class DialogHelper {
 
-    public static void erasePadding(Dialog dialog){
-        config(dialog, Gravity.BOTTOM, 0, 0, 0, 0);
+    public static void NoPadding(Dialog dialog){
+        Conf(dialog, Gravity.BOTTOM, 0, 0, 0, 0);
     }
-    public static void erasePadding(Dialog dialog, int gravity){
-        config(dialog, gravity, 0, 0, 0, 0);
-    }
-
-    public static void padding(Dialog dialog, int gravity){
-        config(dialog, gravity, 24, 24, 24, 24);
-    }
-    public static void padding(Dialog dialog){
-        config(dialog, Gravity.CENTER, 24, 24, 24, 24);
+    public static void NoPadding(Dialog dialog, int gravity){
+        Conf(dialog, gravity, 0, 0, 0, 0);
     }
 
-    public static void padding(Dialog dialog, int paddingHorizontal, int paddingVertical){
-        config(dialog, Gravity.CENTER, paddingHorizontal, paddingVertical, paddingHorizontal, paddingVertical);
+    public static void Padding(Dialog dialog, int gravity){
+        Conf(dialog, gravity, 24, 24, 24, 24);
     }
-    public static void padding(Dialog dialog, int gravity, int paddingHorizontal, int paddingVertical){
-        config(dialog, gravity, paddingHorizontal, paddingVertical, paddingHorizontal, paddingVertical);
+    public static void Padding(Dialog dialog){
+        Conf(dialog, Gravity.CENTER, 24, 24, 24, 24);
     }
 
-    private static void config(Dialog dialog, int gravity, int paddingLeft, int paddingTop, int paddingRight, int paddingBottom){
+    public static void Padding(Dialog dialog, int paddingHorizontal, int paddingVertical){
+        Conf(dialog, Gravity.CENTER, paddingHorizontal, paddingVertical, paddingHorizontal, paddingVertical);
+    }
+    public static void Padding(Dialog dialog, int gravity, int paddingHorizontal, int paddingVertical){
+        Conf(dialog, gravity, paddingHorizontal, paddingVertical, paddingHorizontal, paddingVertical);
+    }
+
+    private static void Conf(Dialog dialog, int gravity, int paddingLeft, int paddingTop, int paddingRight, int paddingBottom){
         Window window = dialog.getWindow();
         if (window != null) {
             window.setGravity(gravity);
@@ -56,10 +55,10 @@ public class DialogHelper {
         }
     }
 
-    public static AlertDialog dlgButtonCenter(AlertDialog.Builder builder){
-        return dlgButtonCenter(builder, null);
+    public static AlertDialog BtnCenter(AlertDialog.Builder builder){
+        return BtnCenter(builder, null);
     }
-    public static AlertDialog dlgButtonCenter(AlertDialog.Builder builder, DialogInterface.OnShowListener onShowListener){
+    public static AlertDialog BtnCenter(AlertDialog.Builder builder, DialogInterface.OnShowListener onShowListener){
         AlertDialog dialog = builder.create();
         dialog.setOnShowListener(d -> {
             Button positiveBt = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
@@ -72,7 +71,7 @@ public class DialogHelper {
         });
         return dialog;
     }
-    public static void dlgBtnFlat(AlertDialog dialog, AlertDialog.OnShowListener onShowListener){
+    public static AlertDialog BtnFlat(AlertDialog dialog, AlertDialog.OnShowListener onShowListener){
         dialog.setOnShowListener(dlg -> {
             dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setVisibility(View.GONE);
             Button _bt_positive = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
@@ -89,6 +88,7 @@ public class DialogHelper {
             _bt_negative.setLayoutParams(layoutParams);
             if(onShowListener != null) onShowListener.onShow(dlg);
         });
+        return dialog;
     }
 
     static String getText(Context ctx, Object text){

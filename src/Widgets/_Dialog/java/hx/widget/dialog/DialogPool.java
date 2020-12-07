@@ -7,7 +7,6 @@ import android.os.Build;
 import android.text.TextPaint;
 import android.text.TextUtils;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import hx.lib.R;
@@ -28,10 +27,10 @@ public class DialogPool {
         return count;
     }
 
-    public static void toast(@NonNull Activity act, Object msg){
-        toast(act, msg, null);
+    public static void Toast(@NonNull Activity act, Object msg){
+        Toast(act, msg, null);
     }
-    public static void toast(@NonNull Activity act, Object msg, DialogInterface.OnClickListener listener){
+    public static void Toast(@NonNull Activity act, Object msg, DialogInterface.OnClickListener listener){
         if(act == null) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             if(act.isFinishing() || act.isDestroyed()) return;
@@ -39,7 +38,7 @@ public class DialogPool {
             if(act.isFinishing()) return;
         }
         final String decoMsg = text(act, msg);
-        DialogHelper.dlgButtonCenter(
+        DialogHelper.BtnCenter(
                 new AlertDialog.Builder(act)
                         .setTitle(decoMsg)
                         .setCancelable(false)
@@ -55,13 +54,13 @@ public class DialogPool {
                 })
                 .show();
     }
-    public static void confirm(@NonNull Activity act, Object msg, DialogInterface.OnClickListener listener){
-        confirm(act, msg, -1, listener);
+    public static void Confirm(@NonNull Activity act, Object msg, DialogInterface.OnClickListener listener){
+        Confirm(act, msg, -1, listener);
     }
-    public static void confirm(@NonNull Activity act, Object msg, Object positiveBt, DialogInterface.OnClickListener listener){
-        confirm(act, new Object[]{null, msg, positiveBt}, listener);
+    public static void Confirm(@NonNull Activity act, Object msg, Object positiveBt, DialogInterface.OnClickListener listener){
+        Confirm(act, new Object[]{null, msg, positiveBt}, listener);
     }
-    public static void confirm(@NonNull Activity act, Object[] texts, DialogInterface.OnClickListener listener){
+    public static void Confirm(@NonNull Activity act, Object[] texts, DialogInterface.OnClickListener listener){
         if(act == null) return;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             if(act.isFinishing() || act.isDestroyed()) return;
@@ -76,22 +75,25 @@ public class DialogPool {
                 .setCancelable(false)
                 .setPositiveButton(btTxt, listener)
                 .setNegativeButton(R.string.HX_cancel, null);
+        AlertDialog dlg;
         if(TextUtils.isEmpty(title)){
-            AlertDialog dlg = builder.setTitle(msg).create();
-            dlg.setOnShowListener(dialog -> {
-                int count = textNewLineCharacterCount(msg);
-                TextView _tv_ = ((AlertDialog)dialog).findViewById(R.id.alertTitle);
-                if(count == 0 && _tv_ != null){
-                    TextPaint paint = _tv_.getPaint();
-                    count = (int) (paint.measureText(msg) / (_tv_.getWidth() - _tv_.getPaddingLeft() - _tv_.getPaddingRight()) + 0.5f);
-                }
-                if(_tv_ != null){ _tv_.setLines(_tv_.getLineCount() + count); }
-            });
-            dlg.show();
+            dlg = builder.setTitle(msg).create();
+            DialogHelper.BtnFlat(dlg, dialog -> loadTitle(msg, dlg));
         }else{
-            builder.setTitle(title).setMessage(msg)
-                    .create().show();
+            dlg = builder.setTitle(title).setMessage(msg).create();
+            DialogHelper.BtnFlat(dlg, dialog -> loadTitle(title, dlg));
         }
+        dlg.show();
+    }
+
+    private static void loadTitle(String msg, AlertDialog dialog){
+        int count = textNewLineCharacterCount(msg);
+        TextView _tv_ = ((AlertDialog)dialog).findViewById(R.id.alertTitle);
+        if(count == 0 && _tv_ != null){
+            TextPaint paint = _tv_.getPaint();
+            count = (int) (paint.measureText(msg) / (_tv_.getWidth() - _tv_.getPaddingLeft() - _tv_.getPaddingRight()) + 0.5f);
+        }
+        if(_tv_ != null){ _tv_.setLines(_tv_.getLineCount() + count); }
     }
 
     private static String text(Context ctx, Object text){

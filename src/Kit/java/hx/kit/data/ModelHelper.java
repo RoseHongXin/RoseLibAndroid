@@ -1,19 +1,13 @@
 package hx.kit.data;
 
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
-
+import androidx.annotation.NonNull;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -114,7 +108,7 @@ public class ModelHelper {
 //                            if(pt != null){
 //                                Type t = pt.getActualTypeArguments()[0];
 //                            }
-                            df.set(dst, JSONHelper.parse((String)value, dType));
+                            df.set(dst, JACKSON.parseObject((String)value, dType));
                         }
                         break;
                     }

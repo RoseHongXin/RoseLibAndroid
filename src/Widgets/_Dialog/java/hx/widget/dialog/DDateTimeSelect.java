@@ -82,7 +82,7 @@ public class DDateTimeSelect extends DialogFragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Dialog dialog = getDialog();
         dialog.setCancelable(true);
-        DialogHelper.erasePadding(dialog, Gravity.BOTTOM);
+        DialogHelper.NoPadding(dialog, Gravity.BOTTOM);
         Window window = dialog.getWindow();
         if(window != null) {
             window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
@@ -246,8 +246,10 @@ public class DDateTimeSelect extends DialogFragment{
     }
     public DDateTimeSelect defDate(String time){
         if(TextUtils.isEmpty(time)) return defDate(new Date());
+        String fmt = mFormat;
+        if(TextUtils.isEmpty(fmt)){ fmt = "yyyy-MM-dd hh:mm:ss"; }
         if(time.contains("-")) {
-            SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd hh:mm:ss", Locale.getDefault());
+            SimpleDateFormat format = new SimpleDateFormat(fmt, Locale.getDefault());
             Date date;
             try {
                 date = format.parse(time);
