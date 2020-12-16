@@ -6,7 +6,7 @@ SSL_ERROR_SYSCALL 错误
 git remote add origin https://username:password@[url]
 clone 出现Permission denied (publickey)  用https://
 
-git remote add origin https://RoseHongXin:hong299110xin@github.com/RoseHongXin/RoseLibAndroid.git
+git remote add origin https://RoseHongXin:hong299110huang@github.com/RoseHongXin/RoseLibAndroid.git
 
 git checkout ./--fileName   舍弃本地修改[全部/指定文件]
 
@@ -14,6 +14,7 @@ git checkout ./--fileName   舍弃本地修改[全部/指定文件]
 
 git clone --depth=1   xxx   慢,只拉最近一次commit,会快很多(完整的commit历史不会被拉下来)
 
+git配置可直接修改 .git/config 文件
 ```
 
 ##### Svn操作:

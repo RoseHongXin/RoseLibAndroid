@@ -46,7 +46,7 @@
   *** rewind();
 }
 # for DexGuard only
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 #####################Glide#####################
 
 #####################OkHttp3#####################
@@ -113,7 +113,7 @@
 ##################### Gson #####################
 
 #### this lib
--keep public class hx.** { *;}
+-keep public class rose.** { *;}
 -keep public class in.srain.cube.** { *;}
 #-keep public class android.view.** { *;}
 #-keep public class * extends android.view.View { *;}
