@@ -8,9 +8,9 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import rose.android.jlib.widget.dialog.DLoading;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import rose.android.jlib.widget.dialog.DLoading;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,14 +18,14 @@ import java.util.concurrent.TimeUnit;
 public abstract class Request {
 
     protected final String TAG = "Api.Request";
-    protected static int TIME = 60;
+    protected final int TIME = 60;
 
     protected DLoading sDialog;
-    protected Context sCtx;
-    protected String sUrl;
-    private OkHttpClient mOkHttpClient;
-    private OkHttpClient.Builder mOkHttpBuilder;
-    protected ObjectMapper mObjMapper;
+    protected final Context sCtx;
+    protected final String sUrl;
+    private final OkHttpClient mOkHttpClient;
+    private final OkHttpClient.Builder mOkHttpBuilder;
+    protected final ObjectMapper mObjMapper;
 
     protected abstract Interceptor getInterceptor();
     protected abstract OkHttpClient onInit(OkHttpClient.Builder builder);
@@ -49,8 +49,8 @@ public abstract class Request {
         mObjMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         mObjMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
         mObjMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
-        mOkHttpBuilder
-                .addInterceptor(getInterceptor());
+        Interceptor interceptor = getInterceptor();
+        if (interceptor != null) { mOkHttpBuilder.addInterceptor(interceptor); }
         mOkHttpClient = onInit(mOkHttpBuilder);
     }
 
