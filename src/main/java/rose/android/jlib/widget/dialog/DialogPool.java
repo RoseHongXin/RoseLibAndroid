@@ -27,18 +27,18 @@ public class DialogPool {
         return count;
     }
 
-    public static void Toast(@NonNull Activity act, Object msg){
-        Toast(act, msg, null);
+    public static AlertDialog Toast(@NonNull Activity act, Object msg){
+        return Toast(act, msg, null);
     }
-    public static void Toast(@NonNull Activity act, Object msg, DialogInterface.OnClickListener listener){
-        if(act == null) return;
+    public static AlertDialog Toast(@NonNull Activity act, Object msg, DialogInterface.OnClickListener listener){
+        if(act == null) return null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            if(act.isFinishing() || act.isDestroyed()) return;
+            if(act.isFinishing() || act.isDestroyed()) return null;
         }else{
-            if(act.isFinishing()) return;
+            if(act.isFinishing()) return null;
         }
         final String decoMsg = text(act, msg);
-        DialogHelper.BtnCenter(
+        AlertDialog dlg = DialogHelper.BtnCenter(
                 new AlertDialog.Builder(act)
                         .setTitle(decoMsg)
                         .setCancelable(false)
@@ -51,21 +51,22 @@ public class DialogPool {
                         count = (int) (paint.measureText(decoMsg) / (_tv_.getWidth() - _tv_.getPaddingLeft() - _tv_.getPaddingRight()) + 0.5f);
                     }
                     if(_tv_ != null){ _tv_.setLines(_tv_.getLineCount() + count); }
-                })
-                .show();
+                });
+        dlg.show();
+        return dlg;
     }
-    public static void Confirm(@NonNull Activity act, Object msg, DialogInterface.OnClickListener listener){
-        Confirm(act, msg, -1, listener);
+    public static AlertDialog Confirm(@NonNull Activity act, Object msg, DialogInterface.OnClickListener listener){
+        return Confirm(act, msg, -1, listener);
     }
-    public static void Confirm(@NonNull Activity act, Object msg, Object positiveBt, DialogInterface.OnClickListener listener){
-        Confirm(act, new Object[]{null, msg, positiveBt}, listener);
+    public static AlertDialog Confirm(@NonNull Activity act, Object msg, Object positiveBt, DialogInterface.OnClickListener listener){
+        return Confirm(act, new Object[]{null, msg, positiveBt}, listener);
     }
-    public static void Confirm(@NonNull Activity act, Object[] texts, DialogInterface.OnClickListener listener){
-        if(act == null) return;
+    public static AlertDialog Confirm(@NonNull Activity act, Object[] texts, DialogInterface.OnClickListener listener){
+        if(act == null) return null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            if(act.isFinishing() || act.isDestroyed()) return;
+            if(act.isFinishing() || act.isDestroyed()) return null;
         }else{
-            if(act.isFinishing()) return;
+            if(act.isFinishing()) return null;
         }
         String title = text(act, texts != null && texts.length > 0 ? texts[0] : null);
         String msg = text(act, texts != null && texts.length > 1 ? texts[1] : null);
@@ -84,6 +85,7 @@ public class DialogPool {
             DialogHelper.BtnFlat(dlg, dialog -> loadTitle(title, dlg));
         }
         dlg.show();
+        return dlg;
     }
 
     private static void loadTitle(String msg, AlertDialog dialog){
