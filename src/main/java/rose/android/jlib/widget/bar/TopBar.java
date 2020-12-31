@@ -20,6 +20,7 @@ import hx.lib.R;
  * Created by RoseHongXin on 2018/1/26 0026.
  */
 
+@Deprecated
 public class TopBar extends AppBarLayout implements ITopBarOpt{
 
     public TopBarHelper mTopBarHelper;

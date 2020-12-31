@@ -2,31 +2,27 @@ package rose.android.jlib.widget.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import androidx.annotation.ColorRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import androidx.annotation.ColorRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.RecyclerView;
+import hx.lib.R;
+import rose.android.jlib.widget.adapterview.VhBase;
+import rose.android.jlib.widget.adapterview.recyclerview.ApBase;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import hx.lib.R;
-import rose.android.jlib.widget.adapterview.VhBase;
-import rose.android.jlib.widget.adapterview.recyclerview.ApBase;
 
 /**
  * Created by Rose on 3/2/2017.
@@ -49,19 +45,18 @@ public class DMenuBU extends DialogFragment{
         mItemTextColors = new ArrayList<>();
     }
 
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        setStyle(STYLE_NO_FRAME, R.style.Dialog_Menu);
+        return super.onCreateDialog(savedInstanceState);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Dialog dialog = getDialog();
         DialogHelper.NoPadding(dialog, Gravity.BOTTOM);
-        Window window = dialog.getWindow();
-        if(window != null) {
-            window.setWindowAnimations(R.style.dialog_menu_anim);
-            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-            WindowManager.LayoutParams params = window.getAttributes();
-            params.dimAmount = 0.2f;
-            window.setAttributes(params);
-        }
         return inflater.inflate(R.layout.d_menu_bu, container, true);
     }
 

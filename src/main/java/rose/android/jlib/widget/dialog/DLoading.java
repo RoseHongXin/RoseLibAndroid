@@ -41,7 +41,7 @@ public class DLoading extends DialogFragment{
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        setStyle(STYLE_NO_FRAME, R.style.Dialog_Waiting);
+        setStyle(STYLE_NO_FRAME, R.style.Dialog_Loading);
         return super.onCreateDialog(savedInstanceState);
     }
 
