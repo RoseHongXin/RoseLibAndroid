@@ -12,6 +12,18 @@
         <item name="android:background">@color/_line</item>
     </style>
 
+    <style name="RoseDlgAlert" parent="Theme.AppCompat.Dialog.Alert">
+        <!--android:windowTitleStyle 和title有關, windowBackground和部分自定義style有關聯-->
+        <!--windowBackground, colorButtonNormal, colorPressedHighlight和部分自定義style有關聯-->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorPrimary</item>
+        <item name="textColorAlertDialogListItem">@color/textColorPrimary</item>
+    </style>
+
     <!--<style name="skb" parent="Base.Widget.AppCompat.SeekBar">-->
         <!--<item name="android:max">100</item>-->
         <!--<item name="android:layout_width">match_parent</item>-->

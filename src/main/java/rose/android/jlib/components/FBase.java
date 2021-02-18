@@ -5,34 +5,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import androidx.annotation.ArrayRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
+import androidx.annotation.*;
 import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
  * Created by rose on 16-8-11.
  */
 
-public abstract class FBase extends Fragment implements IRetrofitApi{
+public abstract class FBase extends Fragment implements IRetrofitApi {
 
     private final static int PAGE_DEFAULT_EXPIRE = 3 * 60 * 1000;
     private final static int PAGE_NO_EXPIRE = -1;
 
     int mExpireThreshold = PAGE_NO_EXPIRE;
-    int mPageVisibleCount = 1;
-    long mPageLastVisibleTime = 0;
+    int mPageLoadCnt = 1;
+    long mPageLastLoadTime = 0;
 
+    private boolean mPageLoaded = false;
     private View _v_layout;
     private List<Disposable> mDisposables = new ArrayList<>();
 
@@ -70,8 +66,26 @@ public abstract class FBase extends Fragment implements IRetrofitApi{
     @Override
     public void onResume() {
         super.onResume();
+        mPageLoaded = true;
         checkIfNeedRefreshPage();
     }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mPageLoaded = false;
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        checkIfNeedRefreshPage();
+    }
+//    @Override
+//    public void setUserVisibleHint(boolean mIsVisibleToUser) {
+//        super.setUserVisibleHint(mIsVisibleToUser);
+//        checkIfNeedRefreshPage();
+//    }
 
     @Override
     public void onDestroy() {
@@ -79,47 +93,36 @@ public abstract class FBase extends Fragment implements IRetrofitApi{
         API_DISPOSE();
     }
 
-    @Override
-    public void setUserVisibleHint(boolean mIsVisibleToUser) {
-        super.setUserVisibleHint(mIsVisibleToUser);
-        checkIfNeedRefreshPage();
-    }
-
     protected void checkIfNeedRefreshPage(){
-        //解决fragment嵌套,父fragment的visible属性不能下放到子fragment的情况.
-        boolean curFraVisible = getUserVisibleHint();
-        boolean parentFraVisible = getParentFragment() == null || getParentFragment().getUserVisibleHint();
+        if(mExpireThreshold == PAGE_NO_EXPIRE) { return; }
+//        //解决fragment嵌套,父fragment的visible属性不能下放到子fragment的情况.
+//        boolean curFraVisible = getUserVisibleHint();
+//        boolean parentFraVisible = getParentFragment() == null || getParentFragment().getUserVisibleHint();
+//        boolean curVisible = curFraVisible && parentFraVisible;
+        boolean curVisible = mPageLoaded && isAdded();
+        if(!curVisible) { return; }
+        long currentTime = System.currentTimeMillis();
+        mPageLoadCnt++;
         boolean refresh = false;
-        if(curFraVisible && parentFraVisible) {
-            if(mExpireThreshold == PAGE_NO_EXPIRE) refresh = false;
-            else if (mPageVisibleCount == 1) {
-                mPageLastVisibleTime = System.currentTimeMillis();
-                ++mPageVisibleCount;
-                refresh = true;
-            } else {
-                long cur = System.currentTimeMillis();
-                if((cur - mPageLastVisibleTime) > mExpireThreshold){
-                    mPageVisibleCount = 0;
-                    mPageLastVisibleTime = cur;
-                    refresh = true;
-                }
-                ++mPageVisibleCount;
-            }
+        if (mPageLoadCnt == 1) {
+            refresh = true;
+        } else if((currentTime - mPageLastLoadTime) > mExpireThreshold){
+            mPageLoadCnt = 0;
+            refresh = true;
         }
-        if(refresh) refresh();
+        mPageLastLoadTime = currentTime;
+        if(!refresh) { return; }
+        onPageReload();
+        refresh();
     }
     protected void runOnMainThread(Runnable runnable){
         _v_layout.post(runnable);
     }
-
-    public void refresh(){}
-
     protected boolean sIfIsFirstVisible(){
-        boolean yes = mPageVisibleCount == 1;
-        if(yes) {mPageVisibleCount++;}
+        boolean yes = mPageLoadCnt == 1;
+        if(yes) { mPageLoadCnt++; }
         return yes;
     }
-
     @Override
     public void API_REQUEST(Observable observable){
         Disposable disposable = observable.subscribe();
@@ -131,5 +134,9 @@ public abstract class FBase extends Fragment implements IRetrofitApi{
             if(disposable != null && !disposable.isDisposed()) disposable.dispose();
         }
     }
+
+    protected void onPageReload() {}
+    @Deprecated
+    public void refresh(){}
 
 }

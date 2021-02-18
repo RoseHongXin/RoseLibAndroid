@@ -78,11 +78,13 @@ public class TabSwitchHelper {
                 Fragment formerFra = formerIdx >= 0 && formerIdx < mFras.length ? mFras[formerIdx] : null;
                 Fragment fra = mFras[idx];
                 FragmentTransaction transaction = mFraMgr.beginTransaction();
+
                 if(formerFra != null) transaction.hide(formerFra);
-                if(mFraMgr.findFragmentByTag(fra.getClass().getSimpleName()) == null){
-                    transaction.add(mFraContainerId, fra, fra.getClass().getSimpleName());
+                if(!fra.isAdded() && mFraMgr.findFragmentByTag(fra.getClass().getSimpleName()) == null){
+                    transaction.add(mFraContainerId, fra, fra.getClass().getSimpleName()).commitNow();
+                }else{
+                    transaction.show(fra).commitNow();
                 }
-                transaction.show(fra).commit();
             }
             if(mListener != null) mListener.onSelected(v.getId(), idx, tv);
             mSelectedId = id;

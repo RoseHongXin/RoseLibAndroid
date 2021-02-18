@@ -1,68 +1,45 @@
 package rose.android.jlib.widget.dialog;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import androidx.annotation.ColorRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.TextView;
+import hx.lib.R;
+import rose.android.jlib.widget.adapterview.VhBase;
+import rose.android.jlib.widget.adapterview.recyclerview.ApBase;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import hx.lib.R;
-import rose.android.jlib.widget.adapterview.VhBase;
-import rose.android.jlib.widget.adapterview.recyclerview.ApBase;
 
-/**
- * Created by Rose on 3/2/2017.
- */
-
-public class DMenuBU extends DialogFragment{
+public class DMenuBU extends DlgBase {
 
     private RecyclerView _rv_menus;
     private Callback mCb;
     private List<String> mTexts;
-    private Activity mAct;
     private @ColorRes int mCancelBtnColor = -1;
     private @ColorRes List<Integer> mItemTextColors;
 
-    public static DMenuBU obtain() {
-        return new DMenuBU();
+    public static DMenuBU obtain(Activity act) {
+        DMenuBU dlg = new DMenuBU();
+        dlg.selfHost(act);
+        return dlg;
     }
 
     public DMenuBU(){
         mItemTextColors = new ArrayList<>();
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Dialog dialog = getDialog();
-        DialogHelper.NoPadding(dialog, Gravity.BOTTOM);
-        Window window = dialog.getWindow();
-        if(window != null) {
-            window.setWindowAnimations(R.style.dialog_menu_anim);
-            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-            WindowManager.LayoutParams params = window.getAttributes();
-            params.dimAmount = 0.2f;
-            window.setAttributes(params);
-        }
-        return inflater.inflate(R.layout.d_menu_bu, container, true);
+    protected int sGetLayout() {
+        return R.layout.d_menu_bu;
     }
 
     @Override
@@ -74,11 +51,6 @@ public class DMenuBU extends DialogFragment{
         Button _bt_cancel = view.findViewById(R.id._bt_cancel);
         if(mCancelBtnColor != -1) _bt_cancel.setTextColor(getResources().getColor(mCancelBtnColor));
         _bt_cancel.setOnClickListener(v -> dismiss());
-    }
-
-    public DMenuBU host(Activity act){
-        mAct = act;
-        return this;
     }
 
     public DMenuBU callback(Callback cb){
@@ -104,7 +76,7 @@ public class DMenuBU extends DialogFragment{
     }
 
     public DMenuBU show(){
-        show(((AppCompatActivity)mAct).getSupportFragmentManager(), "DMenuBU");
+        super.selfShow("DMenuBU");
         return this;
     }
 

@@ -5,21 +5,17 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
-import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import com.cncoderx.wheelview.Wheel3DView;
+import hx.lib.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,14 +23,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import hx.lib.R;
-
-/**
- * Created by Rose on 3/2/2017.
- */
 
 @SuppressLint("DefaultLocale")
-public class DDateTimeSelect extends DialogFragment{
+public class DDateTimeSelect extends DlgBase {
 
     public static final int MASK_YEAR       = 1 << 6;
     public static final int MASK_MONTH      = 1 << 5;
@@ -48,6 +39,11 @@ public class DDateTimeSelect extends DialogFragment{
     public static int MODE_HOUR_MINUTE_SECOND = MASK_HOUR | MASK_MINUTE | MASK_SECOND;
     public static int MODE_FULL = MODE_YEAR_MONTH_DAY | MODE_HOUR_MINUTE_SECOND;
     public static int MODE_EXCLUDE_SECOND = MODE_YEAR_MONTH_DAY | MODE_HOUR_MINUTE;
+    public static int MODE_EXCLUDE_MINUTE_SECOND = MODE_YEAR_MONTH_DAY | MASK_HOUR;
+
+    public static final String FMT_YMD = "yyyy-MM-dd";
+    public static final String FMT_HMS = "HH:mm:ss";
+    public static final String FMT_HM = "HH:mm";
 
     private View _li_year;
     private View _li_month;
@@ -63,9 +59,8 @@ public class DDateTimeSelect extends DialogFragment{
     private Wheel3DView _whv_second;
 
     private Callback mCb;
-    private Activity mAct;
     private int mMode = MODE_FULL;
-    private String mFormat = "yyyy-MM-dd hh:mm:ss";
+    private String mFormat = "yyyy-MM-dd HH:mm:ss";
     private boolean mFillAfterSelect = true;
     private TextView _tv_anchor;
     private int mYear, mMonthIdx;
@@ -73,24 +68,30 @@ public class DDateTimeSelect extends DialogFragment{
     private Calendar mCalendar = Calendar.getInstance();
     private int[] mDefValues;
 
-    public static DDateTimeSelect obtain() {
-        return new DDateTimeSelect();
+    public static DDateTimeSelect obtain(Activity act) {
+        DDateTimeSelect dlg = new DDateTimeSelect();
+        dlg.selfHost(act);
+        return dlg;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected int sGetLayout() {
+        return R.layout.d_full_datetime;
+    }
+
+    @Override
+    protected boolean onCustomDlgWindow(Window window) {
         Dialog dialog = getDialog();
-        dialog.setCancelable(true);
-        DialogHelper.NoPadding(dialog, Gravity.BOTTOM);
-        Window window = dialog.getWindow();
-        if(window != null) {
-            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
-            WindowManager.LayoutParams params = window.getAttributes();
-            params.dimAmount = 0.2f;
-            window.setAttributes(params);
+        if(dialog != null){
+            dialog.setCancelable(true);
+            DialogHelper.NoPadding(dialog, Gravity.BOTTOM);
         }
-        return inflater.inflate(R.layout.d_full_datetime, container, true);
+        window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
+        WindowManager.LayoutParams params = window.getAttributes();
+        params.dimAmount = 0.2f;
+        window.setAttributes(params);
+        return true;
+
     }
 
     @SuppressLint("DefaultLocale")
@@ -224,10 +225,6 @@ public class DDateTimeSelect extends DialogFragment{
         _whv_day.setCurrentIndex(mDefValues[2] - 1);
     }
 
-    public DDateTimeSelect host(Activity act){
-        mAct = act;
-        return this;
-    }
     public DDateTimeSelect mode(int mode){
         mMode = mode;
         return this;
@@ -309,14 +306,18 @@ public class DDateTimeSelect extends DialogFragment{
     }
 
     public DDateTimeSelect show(){
-        show(((AppCompatActivity)mAct).getSupportFragmentManager(), "DDateTimeSelect");
+        super.selfShow("DDateTimeSelect");
         return this;
     }
-
 
     public static String current(String format){
         Calendar calendar = Calendar.getInstance();
         return DateFormat.format(format, calendar.getTime()).toString();
+    }
+    public static int getCalendarField(Date date, int field){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar.get(field);
     }
     public static String format(String time, String format){
         @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format);
@@ -328,6 +329,12 @@ public class DDateTimeSelect extends DialogFragment{
             e.printStackTrace();
         }
         return dateStr;
+    }
+    public static int[] minutes2hm(int minutes){
+        int[] hourAndMinute = new int[2];
+        hourAndMinute[0] = minutes / 60;
+        hourAndMinute[1] = minutes % 60;
+        return hourAndMinute;
     }
 
     public interface Callback{

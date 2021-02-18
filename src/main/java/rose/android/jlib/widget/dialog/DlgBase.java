@@ -4,27 +4,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-
-import androidx.annotation.ColorRes;
-import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.StyleRes;
+import android.view.*;
+import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
-import rose.android.jlib.kit.log.Log4Android;
 import hx.lib.R;
+import rose.android.jlib.kit.log.Log4Android;
 
-/**
- * Created by RoseHongXin on 2017/8/1 0001.
- */
 
 public abstract class DlgBase extends DialogFragment {
 
@@ -34,12 +21,13 @@ public abstract class DlgBase extends DialogFragment {
     protected @ColorRes int mBgColor = android.R.color.transparent;
     protected @StyleRes int mAnimStyle = R.style.dialog_bottom_up;
 
-    protected FragmentManager mFraManager;
+    protected FragmentManager mFraMgr;
     protected Activity mAct;
     protected View _v_layout;
 
     protected abstract @LayoutRes int sGetLayout();
-
+    protected boolean onCustomDlgWindow(Window window) { return false; }
+    protected void onDlgWindowAppend(Window window) { }
 
     @Nullable
     @Override
@@ -47,14 +35,15 @@ public abstract class DlgBase extends DialogFragment {
         if(getContext() != null && mTheme != -1) getContext().setTheme(mTheme);
         Dialog dialog = getDialog();
         DialogHelper.Padding(dialog, mGravity, mPadding, mPadding);
-        Window window = dialog.getWindow();
-        if (window != null) {
+        Window window = dialog != null ? dialog.getWindow() : null;
+        if (window != null && !onCustomDlgWindow(window)) {
             window.setWindowAnimations(mAnimStyle);
             window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(mBgColor)));
             WindowManager.LayoutParams params = window.getAttributes();
             params.dimAmount = 0.2f;
             window.setAttributes(params);
             window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+            onDlgWindowAppend(window);
         }
         _v_layout = inflater.inflate(sGetLayout(), container, true);
         return _v_layout;
@@ -86,16 +75,21 @@ public abstract class DlgBase extends DialogFragment {
 //        ft.commitAllowingStateLoss();
 //    }
 
-
-    public DlgBase host(Activity act){
+    public DlgBase selfHost(Activity act){
         this.mAct = act;
-        this.mFraManager = ((AppCompatActivity)act).getSupportFragmentManager();
+        this.mFraMgr = ((AppCompatActivity)act).getSupportFragmentManager();
         return this;
     }
 
-    public DlgBase show(){
-        if(mAct != null && !mAct.isDestroyed() && !mAct.isFinishing() && mFraManager != null) {
-            show(mFraManager, this.getClass().getSimpleName());
+    public DlgBase selfShow(Object ... args){
+        if(mAct != null && !mAct.isDestroyed() && !mAct.isFinishing() && mFraMgr != null) {
+            try {
+                String tag = this.getClass().getSimpleName();
+                if(args.length > 0 && args[0] instanceof String){ tag = (String)args[0]; }
+                show(mFraMgr, tag);
+            }catch (Exception e){
+                Log4Android.w(this, "show exception: " + e.getMessage());
+            }
         }
         return this;
     }
@@ -107,7 +101,7 @@ public abstract class DlgBase extends DialogFragment {
                 super.dismiss();
             }
         }
-        catch (Exception e){ Log4Android.w(this, "show exception: " + e.getMessage()); }
+        catch (Exception e){ Log4Android.w(this, "dismiss exception: " + e.getMessage()); }
     }
 
 }

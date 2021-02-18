@@ -15,6 +15,12 @@ import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.widget.ImageView;
+import androidx.annotation.NonNull;
+import androidx.core.content.FileProvider;
+import androidx.loader.content.CursorLoader;
+import hx.lib.R;
+import rose.android.jlib.components.PermissionImpl;
+import rose.android.jlib.kit.log.Log4Android;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -22,13 +28,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import androidx.annotation.NonNull;
-import androidx.core.content.FileProvider;
-import androidx.loader.content.CursorLoader;
-import rose.android.jlib.components.PermissionImpl;
-import rose.android.jlib.kit.log.Log4Android;
-import hx.lib.R;
 
 /**
  * Created by rose on 16-8-1.
@@ -89,8 +88,7 @@ public class DImagePicker {
     }
 
     public DImagePicker show() {
-        DMenuBU.obtain()
-                .host(mAct)
+        DMenuBU.obtain(mAct)
                 .texts(mAct.getString(R.string.HX_gallery), mAct.getString(R.string.HX_camera))
                 .callback((idx, text) -> {
                     if (idx == 0) {

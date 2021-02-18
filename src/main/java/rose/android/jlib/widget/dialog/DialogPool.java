@@ -71,11 +71,13 @@ public class DialogPool {
         String title = text(act, texts != null && texts.length > 0 ? texts[0] : null);
         String msg = text(act, texts != null && texts.length > 1 ? texts[1] : null);
         String positiveBt = text(act, texts != null && texts.length > 2 ? texts[2] : null);
-        String btTxt = TextUtils.isEmpty(positiveBt) ? act.getString(R.string.HX_confirm) : positiveBt;
+        String negativeBt = text(act, texts != null && texts.length > 3 ? texts[3] : null);
+        String positiveBtnTxt = TextUtils.isEmpty(positiveBt) ? act.getString(android.R.string.yes) : positiveBt;
+        String negativeBtnTxt = TextUtils.isEmpty(negativeBt) ? act.getString(android.R.string.no) : negativeBt;
         AlertDialog.Builder builder = new AlertDialog.Builder(act)
                 .setCancelable(false)
-                .setPositiveButton(btTxt, listener)
-                .setNegativeButton(R.string.HX_cancel, null);
+                .setPositiveButton(positiveBtnTxt, listener)
+                .setNegativeButton(negativeBtnTxt, null);
         AlertDialog dlg;
         if(TextUtils.isEmpty(title)){
             dlg = builder.setTitle(msg).create();

@@ -7,33 +7,21 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.cncoderx.wheelview.Wheel3DView;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
+import com.cncoderx.wheelview.Wheel3DView;
 import hx.lib.R;
 
-/**
- * Created by Rose on 3/2/2017.
- */
+import java.util.ArrayList;
+import java.util.List;
 
-public class DItemBUConfirm extends DialogFragment{
+public class DItemBUConfirm extends DlgBase {
 
     private TextView _tv_title;
     private Wheel3DView _whv_items;
@@ -44,15 +32,16 @@ public class DItemBUConfirm extends DialogFragment{
     private Drawable[] mIcons;
     private int[] mValues;
     private String mDefValue;
-    private Activity mAct;
     private TextView _tv_anchor;
     private TextFormatCallback mTextFormatCallback;
     private Object mBtnText;
     private boolean mShow4Select = false;
     private int mSelectedIdx = -1;
 
-    public static DItemBUConfirm obtain() {
-        return new DItemBUConfirm();
+    public static DItemBUConfirm obtain(Activity act) {
+        DItemBUConfirm dlg = new DItemBUConfirm();
+        dlg.selfHost(act);
+        return dlg;
     }
 
     @NonNull
@@ -84,25 +73,20 @@ public class DItemBUConfirm extends DialogFragment{
         return super.onCreateDialog(savedInstanceState);
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Dialog dialog = getDialog();
-        Window window = dialog != null ? dialog.getWindow() : null;
-        if (window != null) {
-            DialogHelper.NoPadding(dialog, Gravity.BOTTOM);
-            window.setWindowAnimations(R.style.dialog_bottom_up);
-            WindowManager.LayoutParams params = window.getAttributes();
-            params.dimAmount = 0.2f;
-            window.setAttributes(params);
-        }
+    protected int sGetLayout() {
+        return R.layout.d_item_bu_confirm;
+    }
+
+    @Override
+    protected void onDlgWindowAppend(Window window) {
+        super.onDlgWindowAppend(window);
         if(mShow4Select){
             if(window != null) window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
-            return null;
+            return;
         }else{
             if(window != null) window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
         }
-        return inflater.inflate(R.layout.d_item_bu_confirm, container, true);
     }
 
     @Override
@@ -181,12 +165,6 @@ public class DItemBUConfirm extends DialogFragment{
         }
     }
 
-
-    public DItemBUConfirm host(Activity act){
-        mAct = act;
-        return this;
-    }
-
     public DItemBUConfirm callback(Callback cb){
         mCb = cb;
         return this;
@@ -261,13 +239,13 @@ public class DItemBUConfirm extends DialogFragment{
     }
 
     public DItemBUConfirm show(){
-        show(((AppCompatActivity)mAct).getSupportFragmentManager(), "DItemBUConfirm");
+        super.selfShow("DItemBUConfirm");
         return this;
     }
 
     public DItemBUConfirm show4select(){
         mShow4Select = true;
-        show(((AppCompatActivity)mAct).getSupportFragmentManager(), "DItemBUConfirm");
+        super.selfShow("DItemBUConfirm4Select");
         return this;
     }
 
