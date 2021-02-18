@@ -71,6 +71,7 @@ public class JACKSON {
     }
 
     public static String toString(Object obj, String ... ignoreFields) {
+        if(obj == null) { return ""; }
         ObjectMapper mapper = mapper();
         try {
             if(obj instanceof Collection){

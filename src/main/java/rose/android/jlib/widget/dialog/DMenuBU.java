@@ -1,6 +1,7 @@
 package rose.android.jlib.widget.dialog;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,6 +41,13 @@ public class DMenuBU extends DlgBase {
     @Override
     protected int sGetLayout() {
         return R.layout.d_menu_bu;
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        setStyle(STYLE_NO_FRAME, R.style.Dialog_Menu);
+        return super.onCreateDialog(savedInstanceState);
     }
 
     @Override

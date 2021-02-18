@@ -10,7 +10,7 @@
     android:paddingLeft="@dimen/l_p_h_middle"
     android:paddingRight="@dimen/l_p_h_middle"
     android:paddingTop="@dimen/l_p_v_middle"
-    tools:theme="@style/Dialog_Waiting">
+    tools:theme="@style/Dialog_Loading">
 
     <!--<ProgressBar android:id="@+id/_pb_" style="@style/dialog.pb_ring"/>-->
     <ProgressBar
