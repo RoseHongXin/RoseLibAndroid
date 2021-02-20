@@ -15,7 +15,8 @@ import rose.android.jlib.kit.log.Log4Android;
 
 public abstract class DlgBase extends DialogFragment {
 
-    protected  @StyleRes int mTheme = -1;
+    protected int mStyle = STYLE_NO_TITLE;
+    protected  @StyleRes int mTheme = 0;
     protected int mPadding = 24;
     protected int mGravity = Gravity.BOTTOM;
     protected @ColorRes int mBgColor = android.R.color.transparent;
@@ -29,10 +30,16 @@ public abstract class DlgBase extends DialogFragment {
     protected boolean onCustomDlgWindow(Window window) { return false; }
     protected void onDlgWindowAppend(Window window) { }
 
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        setStyle(mStyle, mTheme);
+        return super.onCreateDialog(savedInstanceState);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if(getContext() != null && mTheme != -1) getContext().setTheme(mTheme);
         Dialog dialog = getDialog();
         DialogHelper.Padding(dialog, mGravity, mPadding, mPadding);
         Window window = dialog != null ? dialog.getWindow() : null;
@@ -75,6 +82,10 @@ public abstract class DlgBase extends DialogFragment {
 //        ft.commitAllowingStateLoss();
 //    }
 
+    public DlgBase selfMgr(FragmentManager mgr){
+        this.mFraMgr = mgr;
+        return this;
+    }
     public DlgBase selfHost(Activity act){
         this.mAct = act;
         this.mFraMgr = ((AppCompatActivity)act).getSupportFragmentManager();
@@ -82,7 +93,8 @@ public abstract class DlgBase extends DialogFragment {
     }
 
     public DlgBase selfShow(Object ... args){
-        if(mAct != null && !mAct.isDestroyed() && !mAct.isFinishing() && mFraMgr != null) {
+        if(mFraMgr == null) { return this; }
+        if(mAct == null || (!mAct.isDestroyed() && !mAct.isFinishing())) {
             try {
                 String tag = this.getClass().getSimpleName();
                 if(args.length > 0 && args[0] instanceof String){ tag = (String)args[0]; }

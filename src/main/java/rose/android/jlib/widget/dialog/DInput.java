@@ -11,20 +11,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StyleRes;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import hx.lib.R;
 import rose.android.jlib.kit.log.Log4Android;
 import rose.android.jlib.kit.view.ViewKit;
-import hx.lib.R;
 
 /**
  * Created by RoseHongXin on 2017/8/1 0001.
  */
 
-public class DInput extends DialogFragment {
+public class DInput extends DlgBase {
 
     private final static String TAG = "DInput";
 
@@ -34,7 +32,6 @@ public class DInput extends DialogFragment {
     private TextInputEditText _et_edit;
     private Button _bt_editConfirm;
 
-    private @StyleRes int mTheme = -1;
     private TextView _tv_anchor;
     private Callback mCb;
     private String mText;
@@ -42,7 +39,6 @@ public class DInput extends DialogFragment {
     private Object mTitle;
     private Object mHint;
     private int mInputType = -1;
-    private FragmentManager mFraManager;
     private boolean mFillAfterInput;
     private boolean mAutoDismiss = true;
 
@@ -53,25 +49,26 @@ public class DInput extends DialogFragment {
         return new Builder(act);
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        if(getContext() != null && mTheme != -1) getContext().setTheme(mTheme);
+    protected int sGetLayout() {
+        return R.layout.d_input;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        mPadding = 0;
+        mTheme = R.style.Dialog_Input;
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onDlgWindowAppend(Window window) {
+        super.onDlgWindowAppend(window);
         Dialog dialog = getDialog();
-        DialogHelper.NoPadding(dialog, Gravity.BOTTOM);
-        Window window = dialog.getWindow();
-        if (window != null) {
-            window.setWindowAnimations(R.style.dialog_bottom_up);
-            window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(android.R.color.transparent)));
-            WindowManager.LayoutParams params = window.getAttributes();
-            params.dimAmount = 0.2f;
-            window.setAttributes(params);
-            window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-        }
+        if(dialog == null) { return; }
         dialog.setCanceledOnTouchOutside(true);
         dialog.setOnCancelListener(dlg -> dismiss());
         dialog.setOnDismissListener(dlg -> ViewKit.hideInputMgr(_et_edit));
-        return inflater.inflate(R.layout.d_input, container, true);
     }
 
     @Override
@@ -120,7 +117,7 @@ public class DInput extends DialogFragment {
     }
 
     public DInput show(){
-        show(mFraManager, TAG);
+        super.selfShow(TAG);
         return this;
     }
 
@@ -136,14 +133,14 @@ public class DInput extends DialogFragment {
 
     public static class Builder{
 
-        private DInput mDialog;
+        private final DInput mDialog;
 
         public Builder(){
             mDialog = new DInput();
         }
         public Builder(Activity act){
             mDialog = new DInput();
-            mDialog.mFraManager = ((AppCompatActivity)act).getSupportFragmentManager();
+            mDialog.selfHost(act);
         }
 
         public Builder title(Object title){
@@ -174,8 +171,8 @@ public class DInput extends DialogFragment {
             mDialog.mAutoDismiss = auto;
             return this;
         }
-        public Builder fraManager(FragmentManager fragmentManager){
-            mDialog.mFraManager = fragmentManager;
+        public Builder fraMgr(FragmentManager mgr){
+            mDialog.selfMgr(mgr);
             return this;
         }
         public Builder anchor(TextView _tv_anchor){

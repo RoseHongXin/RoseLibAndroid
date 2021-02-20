@@ -55,7 +55,7 @@
                 android:id="@+id/_bt_editConfirm"
                 style="@style/Btn.FixHeight"
                 android:layout_width="wrap_content"
-                android:text="@string/HX_confirm"/>
+                android:text="@android:string/ok"/>
         </LinearLayout>
 
 

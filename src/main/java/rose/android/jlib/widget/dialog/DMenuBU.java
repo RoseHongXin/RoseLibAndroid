@@ -43,11 +43,10 @@ public class DMenuBU extends DlgBase {
         return R.layout.d_menu_bu;
     }
 
-    @NonNull
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
-        setStyle(STYLE_NO_FRAME, R.style.Dialog_Menu);
-        return super.onCreateDialog(savedInstanceState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        mTheme = R.style.Dialog_Menu;
+        super.onCreate(savedInstanceState);
     }
 
     @Override

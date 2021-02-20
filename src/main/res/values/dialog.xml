@@ -24,6 +24,19 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:windowAnimationStyle">@style/dialog.menu_anim</item>
     </style>
+    <style name="Dialog_Input" parent="Theme.AppCompat.Dialog">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/windowBackground</item>
+        <item name="colorButtonNormal">@color/colorPrimary</item>
+        <item name="colorControlHighlight">@color/colorPrimary</item>
+<!--        <item name="colorPressedHighlight">@android:color/white</item>-->
+        <item name="android:colorButtonNormal">@color/colorPrimary</item>
+        <item name="android:colorPressedHighlight">@android:color/white</item>
+        <item name="android:colorControlHighlight">@color/colorPrimary</item>
+        <item name="android:textColorPrimary">@color/textColor</item>
+    </style>
 
     <style name="dialog"/>
 

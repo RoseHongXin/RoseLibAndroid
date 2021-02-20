@@ -12,7 +12,7 @@
     <Button
         android:id="@+id/_bt_cancel"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/bt_height"
         android:background="@drawable/sh_bt_round_corner"
         android:textColor="?android:attr/colorAccent"
         android:layout_marginTop="@dimen/l_m_v"
