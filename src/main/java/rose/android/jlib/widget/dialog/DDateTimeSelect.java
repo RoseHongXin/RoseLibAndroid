@@ -15,7 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.cncoderx.wheelview.Wheel3DView;
-import hx.lib.R;
+import rose.android.jlib.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -335,6 +335,11 @@ public class DDateTimeSelect extends DlgBase {
         hourAndMinute[0] = minutes / 60;
         hourAndMinute[1] = minutes % 60;
         return hourAndMinute;
+    }
+    public static String seconds2hm(int seconds){
+        int hour = seconds / 3600;
+        int minute = seconds % 3600 / 60;
+        return String.format("%1$02d:%2$02d", hour, minute);
     }
 
     public interface Callback{

@@ -11,7 +11,7 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
-import hx.lib.R;
+import rose.android.jlib.R;
 import rose.android.jlib.widget.adapterview.VhBase;
 import rose.android.jlib.widget.adapterview.recyclerview.ApBase;
 

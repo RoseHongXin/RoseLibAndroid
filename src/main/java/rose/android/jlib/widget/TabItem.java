@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import hx.lib.R;
+import rose.android.jlib.R;
 
 /**
  * Created by rose on 17-09-12.

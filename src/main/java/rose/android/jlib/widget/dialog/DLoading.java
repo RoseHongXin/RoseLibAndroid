@@ -14,7 +14,7 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import rose.android.jlib.kit.log.Log4Android;
-import hx.lib.R;
+import rose.android.jlib.R;
 
 
 /**

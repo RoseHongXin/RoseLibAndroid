@@ -9,7 +9,7 @@ import android.view.View;
 import java.util.List;
 
 import rose.android.jlib.kit.refresh.P2rlPageLoader;
-import hx.lib.R;
+import rose.android.jlib.R;
 import rose.android.jlib.widget.adapterview.VhBase;
 import rose.android.jlib.widget.adapterview.recyclerview.ApBase;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;

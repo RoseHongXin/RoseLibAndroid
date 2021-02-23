@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import hx.lib.R;
+import rose.android.jlib.R;
 
 
 public class ClickHelper {

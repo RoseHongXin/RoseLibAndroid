@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="TabSwitch_corner">6dp</dimen>
+    <color name="TabSwitch_bg_default">@color/colorPrimary</color>
+    <color name="TabSwitch_bg_check">@android:color/white</color>
+    <dimen name="TabSwitch_height">32dp</dimen>
+    <dimen name="TabSwitch_border">1px</dimen>
+
+    <style name="TabSwitch_tv">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">@dimen/TabSwitch_height</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/sl_tab_switch</item>
+    </style>
+
+    <style name="TabSwitch_tv_reverse">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">@dimen/TabSwitch_height</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/sl_tab_switch_reverse</item>
+    </style>
+
+</resources>

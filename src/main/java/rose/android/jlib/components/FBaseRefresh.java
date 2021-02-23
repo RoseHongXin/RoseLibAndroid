@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
 import butterknife.ButterKnife;
 import rose.android.jlib.kit.refresh.P2rlLoader;
-import hx.lib.R;
+import rose.android.jlib.R;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 import io.reactivex.Observable;
 

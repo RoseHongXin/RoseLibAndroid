@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="LinearItem_height_default">48dp</dimen>
+
+    <dimen name="LinearItem_p_h">@dimen/l_p_h</dimen>
+    <dimen name="LinearItem_p_v">@dimen/l_p_v</dimen>
+    <dimen name="LinearItem_gap">@dimen/l_p_small</dimen>
+    <dimen name="LinearItem_gapLeft">@dimen/l_p_min</dimen>
+    <dimen name="LinearItem_gapRight">@dimen/l_p_min</dimen>
+
+    <style name="LinearItem">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/l_p_middle</item>
+        <item name="android:paddingBottom">@dimen/l_p_middle</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginRight">@dimen/LinearItem_gapLeft</item>
+        <item name="android:layout_marginLeft">@dimen/LinearItem_gapLeft</item>
+        <!--<item name="android:textColor">@color/txt_title</item>-->
+        <item name="android:scaleType">centerInside</item>
+        <!--<item name="android:visibility">gone</item>-->
+    </style>
+
+
+    <declare-styleable name="LinearItem">
+        <attr name="paddingHorizontal" format="reference|dimension"/>
+        <attr name="paddingVertical" format="reference|dimension"/>
+        <attr name="gapLeft" format="reference|dimension"/>
+        <attr name="gapRight" format="reference|dimension"/>
+        <attr name="iconLeft" format="reference"/>
+        <attr name="iconRight" format="reference"/>
+        <attr name="sizeIconLeft" format="reference|dimension"/>
+        <attr name="sizeIconRight" format="reference|dimension"/>
+        <attr name="textLeft" format="string"/>
+        <attr name="textRight" format="string"/>
+        <attr name="sizeTextLeft" format="reference|dimension"/>
+        <attr name="sizeTextRight" format="reference|dimension"/>
+        <attr name="colorTextLeft" format="reference|color"/>
+        <attr name="colorTextRight" format="reference|color"/>
+        <attr name="clickRectRight" format="boolean"/>
+    </declare-styleable>
+
+</resources>

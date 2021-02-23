@@ -19,7 +19,7 @@ import java.util.List;
 
 import androidx.annotation.DrawableRes;
 import androidx.recyclerview.widget.RecyclerView;
-import hx.lib.R;
+import rose.android.jlib.R;
 import rose.android.jlib.widget.adapterview.VhBase;
 import rose.android.jlib.widget.adapterview.recyclerview.ApBase;
 

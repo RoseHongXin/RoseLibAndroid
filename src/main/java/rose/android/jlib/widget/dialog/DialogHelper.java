@@ -11,7 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import androidx.appcompat.app.AlertDialog;
-import hx.lib.R;
+import rose.android.jlib.R;
 
 /**
  * Created by RoseHongXin on 2017/5/17 0017.

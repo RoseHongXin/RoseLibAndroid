@@ -14,7 +14,7 @@ import androidx.annotation.StyleRes;
 import androidx.fragment.app.FragmentManager;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import hx.lib.R;
+import rose.android.jlib.R;
 import rose.android.jlib.kit.log.Log4Android;
 import rose.android.jlib.kit.view.ViewKit;
 

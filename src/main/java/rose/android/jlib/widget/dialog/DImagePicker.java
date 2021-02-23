@@ -18,7 +18,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
 import androidx.loader.content.CursorLoader;
-import hx.lib.R;
+import rose.android.jlib.R;
 import rose.android.jlib.components.PermissionImpl;
 import rose.android.jlib.kit.log.Log4Android;
 

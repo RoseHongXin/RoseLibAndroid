@@ -9,7 +9,7 @@ import android.text.TextUtils;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import hx.lib.R;
+import rose.android.jlib.R;
 
 /**
  * Created by RoseHongXin on 2018/5/14 0014.

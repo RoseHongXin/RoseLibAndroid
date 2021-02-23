@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
-import hx.lib.R;
+import rose.android.jlib.R;
 
 /**
  * Created by rose on 16-8-11.

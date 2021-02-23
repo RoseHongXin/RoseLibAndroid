@@ -15,7 +15,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-import hx.lib.R;
+import rose.android.jlib.R;
 
 /**
  * Created by RoseHongXin on 2017/9/8 0008.

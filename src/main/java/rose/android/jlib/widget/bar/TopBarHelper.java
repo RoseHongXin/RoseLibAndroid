@@ -14,7 +14,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import hx.lib.R;
+import rose.android.jlib.R;
 
 /**
  * Created by RoseHongXin on 2018/1/26 0026.

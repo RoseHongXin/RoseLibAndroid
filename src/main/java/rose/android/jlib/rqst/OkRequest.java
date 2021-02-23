@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import androidx.annotation.NonNull;
 import com.fasterxml.jackson.core.type.TypeReference;
 import rose.android.jlib.kit.log.Log4Android;
-import hx.lib.R;
+import rose.android.jlib.R;
 import rose.android.jlib.widget.dialog.DLoading;
 import okhttp3.*;
 import okhttp3.logging.HttpLoggingInterceptor;

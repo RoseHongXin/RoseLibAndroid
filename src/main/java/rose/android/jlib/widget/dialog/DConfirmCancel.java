@@ -9,7 +9,7 @@ import android.widget.EditText;
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.AlertDialog;
-import hx.lib.R;
+import rose.android.jlib.R;
 
 /**
  * Created by Rose on 3/2/2017.

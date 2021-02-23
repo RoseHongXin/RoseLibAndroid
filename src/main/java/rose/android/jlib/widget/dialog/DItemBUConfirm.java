@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import com.cncoderx.wheelview.Wheel3DView;
-import hx.lib.R;
+import rose.android.jlib.R;
 
 import java.util.ArrayList;
 import java.util.List;

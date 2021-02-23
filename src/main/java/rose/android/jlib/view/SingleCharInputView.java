@@ -21,7 +21,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import hx.lib.R;
+import rose.android.jlib.R;
 
 /**
  * Created by RoseHongXin on 2018/3/7 0007.
