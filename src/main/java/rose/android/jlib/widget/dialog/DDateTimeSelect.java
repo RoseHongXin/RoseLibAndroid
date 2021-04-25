@@ -2,15 +2,11 @@ package rose.android.jlib.widget.dialog;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.Dialog;
-import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -76,22 +72,14 @@ public class DDateTimeSelect extends DlgBase {
 
     @Override
     protected int sGetLayout() {
-        return R.layout.d_full_datetime;
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP ? R.layout.d_full_datetime : R.layout.d_full_datetime_compat;
     }
 
     @Override
-    protected boolean onCustomDlgWindow(Window window) {
-        Dialog dialog = getDialog();
-        if(dialog != null){
-            dialog.setCancelable(true);
-            DialogHelper.NoPadding(dialog, Gravity.BOTTOM);
-        }
-        window.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.windowBackground)));
-        WindowManager.LayoutParams params = window.getAttributes();
-        params.dimAmount = 0.2f;
-        window.setAttributes(params);
-        return true;
-
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        mPadding = 0;
+        mBgColor = R.color.windowBackground;
+        super.onCreate(savedInstanceState);
     }
 
     @SuppressLint("DefaultLocale")
