@@ -21,7 +21,7 @@ public class PermissionImpl {
 
     public static final int REQ_CODE_PERMISSIONS = 0xFFEE;
 
-    public static void require(Activity act, String ... permissions) {
+    public static void require(Activity act, int rqCode, String ... permissions) {
         List<String> needDoRequire = new ArrayList<>();
         for (String permission : permissions) {
             if (ContextCompat.checkSelfPermission(act, permission) != PackageManager.PERMISSION_GRANTED) {needDoRequire.add(permission);}
@@ -30,7 +30,10 @@ public class PermissionImpl {
         if(needDoRequire.isEmpty()) return;
         permissionArray = new String[needDoRequire.size()];
         needDoRequire.toArray(permissionArray);
-        ActivityCompat.requestPermissions(act, permissionArray, REQ_CODE_PERMISSIONS);
+        ActivityCompat.requestPermissions(act, permissionArray, rqCode);
+    }
+    public static void require(Activity act, String ... permissions) {
+        require(act, REQ_CODE_PERMISSIONS, permissions);
     }
 
     public static boolean checkIfDenied(Activity act, String permission){

@@ -15,6 +15,14 @@ git checkout ./--fileName   舍弃本地修改[全部/指定文件]
 git clone --depth=1   xxx   慢,只拉最近一次commit,会快很多(完整的commit历史不会被拉下来)
 
 git配置可直接修改 .git/config 文件
+
+#### 本地服务搭建
+sudo useradd -m RoseHongXin
+sudo passwd RoseHongXin  //添加ssh登录用户和密码
+sudo apt-get install openssh-server
+sudo chown RoseHongXin:RoseHongXin /*git dir*
+cd /*git dir* & git init --bare **.git //添加仓库
+git clone RoseHongXin@*ip*:/git dir*/**git //客户端拉取
 ```
 
 ##### Svn操作:

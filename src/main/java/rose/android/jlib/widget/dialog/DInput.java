@@ -2,10 +2,10 @@ package rose.android.jlib.widget.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.*;
+import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -15,7 +15,6 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import rose.android.jlib.R;
-import rose.android.jlib.kit.log.Log4Android;
 import rose.android.jlib.kit.view.ViewKit;
 
 /**
@@ -92,7 +91,7 @@ public class DInput extends DlgBase {
             if(mTitle instanceof String) _tv_title.setText((String)mTitle);
         }
         if(mBtTxt == null){
-            _bt_editConfirm.setText(R.string.HX_confirm);
+            _bt_editConfirm.setText(android.R.string.ok);
         }else {
             if(mBtTxt instanceof Integer) _bt_editConfirm.setText((int)mBtTxt);
             if(mBtTxt instanceof String) _bt_editConfirm.setText((String)mBtTxt);
@@ -119,16 +118,6 @@ public class DInput extends DlgBase {
     public DInput show(){
         super.selfShow(TAG);
         return this;
-    }
-
-    @Override
-    public void dismiss() {
-        try {
-            if (getActivity() != null && !getActivity().isFinishing() && !getActivity().isDestroyed()){
-                super.dismiss();
-            }
-        }
-        catch (Exception e){ Log4Android.w(this, "show exception: " + e.getMessage()); }
     }
 
     public static class Builder{

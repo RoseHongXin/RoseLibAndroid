@@ -56,12 +56,15 @@ public class DialogPool {
         return dlg;
     }
     public static AlertDialog Confirm(@NonNull Activity act, Object msg, DialogInterface.OnClickListener listener){
-        return Confirm(act, msg, -1, listener);
+        return CONFIRM(act, new Object[]{null, msg}, listener);
     }
     public static AlertDialog Confirm(@NonNull Activity act, Object msg, Object positiveBt, DialogInterface.OnClickListener listener){
-        return Confirm(act, new Object[]{null, msg, positiveBt}, listener);
+        return CONFIRM(act, new Object[]{null, msg, positiveBt}, listener);
     }
     public static AlertDialog Confirm(@NonNull Activity act, Object[] texts, DialogInterface.OnClickListener listener){
+        return CONFIRM(act, texts, listener);
+    }
+    public static AlertDialog CONFIRM(@NonNull Activity act, Object[] texts, DialogInterface.OnClickListener ... listeners){
         if(act == null) return null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             if(act.isFinishing() || act.isDestroyed()) return null;
@@ -74,10 +77,12 @@ public class DialogPool {
         String negativeBt = text(act, texts != null && texts.length > 3 ? texts[3] : null);
         String positiveBtnTxt = TextUtils.isEmpty(positiveBt) ? act.getString(android.R.string.yes) : positiveBt;
         String negativeBtnTxt = TextUtils.isEmpty(negativeBt) ? act.getString(android.R.string.no) : negativeBt;
+        DialogInterface.OnClickListener confirmListener = listeners.length > 0 ? listeners[0] : null;
+        DialogInterface.OnClickListener cancelListener = listeners.length > 1 ? listeners[1] : null;
         AlertDialog.Builder builder = new AlertDialog.Builder(act)
                 .setCancelable(false)
-                .setPositiveButton(positiveBtnTxt, listener)
-                .setNegativeButton(negativeBtnTxt, null);
+                .setPositiveButton(positiveBtnTxt, confirmListener)
+                .setNegativeButton(negativeBtnTxt, cancelListener);
         AlertDialog dlg;
         if(TextUtils.isEmpty(title)){
             dlg = builder.setTitle(msg).create();

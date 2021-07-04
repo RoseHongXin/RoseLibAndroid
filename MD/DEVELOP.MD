@@ -43,3 +43,4 @@ keytool -list -v -keystore "F:/AndroidPro/AndroidSigned" -alias smartwearable -s
 ```
 
 - 169.254.X.X是 Windows操作系统 在 DHCP 信息租用失败时自动给客户机分配的IP地址.
+- adb shell logcat -v time > logcat.txt //console日志到文件

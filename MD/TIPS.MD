@@ -5,7 +5,7 @@
 > Module 的proguard不能穿透到嵌套的Module中(即App引用Lib库,要额外的把proguard贴到App的proguard文件中) <br>
 > WiFi状态WifiManager.WIFI_STATE_ENABLED之后,需要一个时间间隔才能读到ssid,否则会读到<unknown ssid> <br>
 > android:textColorTertiary 作用于EditText <br>
-> If you are using Kotlin, replace annotationProcessor with kapt.----be careful---- <br>
+> If you are using Kotlin, replacAe annotationProcessor with kapt.----be careful---- <br>
 > android:colorControlActivated：表示CheckBox、EditText、Switch、Spinner、RadioButton等控件激活时候的色调，与之相同作用的一个属性：android:colorAccent。作用也是一样的。 <br>
 > android:colorControlNormal：表示CheckBox、EditText、Switch、Spinner、RadioButton等控件默认时的色调 <br>
 * Switch的onClick事件,回调的是selected参数,setSelected给该view的checked赋值<br>
@@ -19,7 +19,11 @@
 >* 需要downgrade到appcompat:1.0.2, 或者自定义WebView, https://stackoverflow.com/questions/41025200/android-view-inflateexception-error-inflating-class-android-webkit-webview
 
 >* TelephonyManager可以get获取的设备表示类参数,在android10/sdk29后,都无法获取,throw SecurityException
-  
+---
+* SDK_INT >= 26 以后, BroadcastReceiver, Background execution not allowed/静态广播失效
+> Intent.setComponent new ComponentName(getApplicationContext(), receiverPkgName); 
+> Intent .addFlags(0x01000000); //?
+> 改为动态注册广播
 ----
 
 > proguard-android.txt 在SDK/tools路径下
@@ -35,56 +39,12 @@
 ----
 
 
-
-###### MPAndroid
-```
-MPAndroid  画groupBar时, 遵循:
-//(barSpace + barWidth) * THE_COUNT + groupSpace = 1.0f;    //THE_COUNT == 2;
-float fromX = -(batWidth + barSpace + groupSpace / 2);
-画几组数据,就几组BarDataSet.
-想让XAxis lable居中
-//        xAxis.setAvoidFirstLastClipping(true);
-//        xAxis.setCenterAxisLabels(true);
-//        xAxis.setXOffset(0);
-//        xAxis.setYOffset(0);
-//        xAxis.setSpaceMin(0);
-//        xAxis.setSpaceMax(0);
-以上方法,都无效果 ????
-```
-
-
 ```
 一般某些聊天的SDK都依赖于libsqlite.so（环信、融云），不过由于这个包从来没有变化，使用的是系统默认提供的(/system/lib/)。在Android 6.x及以下的平台可以运行。
 Android7.x执行更严格的安全检查，禁止使用系统目录的内容。所以如果希望在7.x以上版本，需要把系统目录的libsqlite.so拷贝出来，也放在自己app对应指令目录下。
 ---------------------
 ```
 
-
-###### 退出App
-```java
-//            am.killBackgroundProcesses(packageName)   //1
-//            val forceStopPackage = am.javaClass.getDeclaredMethod("forceStopPackage", String :: class.java)
-//            forceStopPackage.isAccessible = true
-//            forceStopPackage.invoke(am, packageName)  //2
-//            android.os.Process.killProcess(android.os.Process.myPid())      //4
-//            System.exit(0)                            //3
-            ///////////////////5
-//            val startMain = Intent(Intent.ACTION_MAIN)
-//            startMain.addCategory(Intent.CATEGORY_HOME)
-//            startMain.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-//            startActivity(startMain)
-//            System.exit(0)
-            ///////////////////5
-```
-
-```
-重新点击Desktop icon 或者通知栏通知, 显示上次退出要home的页面bug修复(launchMode和从哪里启动有关[ES安装后启动就有问题,点击桌面图标就是OK的]).
-Intent notifyIntent = new Intent(this, AMain.class);
-        notifyIntent.setAction(Intent.ACTION_MAIN);
-        notifyIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-        notifyIntent.setFlags(Intent.FLAG_ACTIVITY_PREVIOUS_IS_TOP | Intent.FLAG_ACTIVITY_RETAIN_IN_RECENTS | Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY);
-        PendingIntent notifyPendingIntent = PendingIntent.getActivity(this, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-```
 
 #### lambda在低版本手机(比如华为4.4pad),通过this::****调用父类的方法,会报错(找不到方法?).
 
@@ -96,3 +56,6 @@ manifest.xml intent-filter必须指定Category(一般指定android.intent.catego
 通过setComponent("pkgName", "pkgName.clzName")一样可以打开activity.
 uri方式打开activity还没测试.
 ```
+
+#### BLE 蓝牙
+> GATT_ERROR C层错误, 多半都是手机本身蓝牙模块引起的,重启一次看是否恢复.
