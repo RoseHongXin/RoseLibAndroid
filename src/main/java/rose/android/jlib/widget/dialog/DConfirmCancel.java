@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
-
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.AlertDialog;
@@ -27,16 +26,13 @@ public class DConfirmCancel {
     private Object mPositiveBtText;
     private Object mTitle;
 
-    public static DConfirmCancel builder(){
-        return new DConfirmCancel();
+    public static DConfirmCancel builder(Activity act){
+        DConfirmCancel dlg = new DConfirmCancel();
+        dlg.mAct = act;
+        return dlg;
     }
     public DConfirmCancel layout(@LayoutRes int layoutRes){
         this.mLayoutRes = layoutRes;
-        return this;
-    }
-
-    public DConfirmCancel host(Activity act){
-        this.mAct = act;
         return this;
     }
     public DConfirmCancel bt(Object positiveBtText){

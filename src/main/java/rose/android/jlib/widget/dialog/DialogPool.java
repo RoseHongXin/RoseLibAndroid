@@ -44,13 +44,7 @@ public class DialogPool {
                         .setCancelable(false)
                         .setNeutralButton(R.string.HX_confirm, listener),
                 dialog -> {
-                    int count = textNewLineCharacterCount(decoMsg);
-                    TextView _tv_ = ((AlertDialog)dialog).findViewById(R.id.alertTitle);
-                    if(count == 0 && _tv_ != null){
-                        TextPaint paint = _tv_.getPaint();
-                        count = (int) (paint.measureText(decoMsg) / (_tv_.getWidth() - _tv_.getPaddingLeft() - _tv_.getPaddingRight()) + 0.5f);
-                    }
-                    if(_tv_ != null){ _tv_.setLines(_tv_.getLineCount() + count); }
+                    loadTitle(decoMsg, (AlertDialog) dialog);
                 });
         dlg.show();
         return dlg;
