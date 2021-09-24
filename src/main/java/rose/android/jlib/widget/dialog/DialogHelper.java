@@ -55,21 +55,20 @@ public class DialogHelper {
         }
     }
 
-    public static AlertDialog BtnCenter(AlertDialog.Builder builder){
-        return BtnCenter(builder, null);
+    public static AlertDialog BtnCenter(AlertDialog dlg){
+        return BtnCenter(dlg, null);
     }
-    public static AlertDialog BtnCenter(AlertDialog.Builder builder, DialogInterface.OnShowListener onShowListener){
-        AlertDialog dialog = builder.create();
-        dialog.setOnShowListener(d -> {
-            Button positiveBt = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+    public static AlertDialog BtnCenter(AlertDialog dlg, DialogInterface.OnShowListener onShowListener){
+        dlg.setOnShowListener(d -> {
+            Button positiveBt = dlg.getButton(AlertDialog.BUTTON_NEUTRAL);
             LinearLayout.LayoutParams layoutParams  = (LinearLayout.LayoutParams) positiveBt.getLayoutParams();
             layoutParams.width = LinearLayout.LayoutParams.MATCH_PARENT;
             layoutParams.gravity = Gravity.CENTER;
             positiveBt.setLayoutParams(layoutParams);
             positiveBt.setTextColor(positiveBt.getResources().getColor(R.color.colorAccent));
-            if(onShowListener != null) onShowListener.onShow(dialog);
+            if(onShowListener != null) onShowListener.onShow(dlg);
         });
-        return dialog;
+        return dlg;
     }
     public static AlertDialog BtnFlat(AlertDialog dialog, AlertDialog.OnShowListener onShowListener){
         dialog.setOnShowListener(dlg -> {

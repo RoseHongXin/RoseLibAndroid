@@ -38,14 +38,12 @@ public class DialogPool {
             if(act.isFinishing()) return null;
         }
         final String decoMsg = text(act, msg);
-        AlertDialog dlg = DialogHelper.BtnCenter(
-                new AlertDialog.Builder(act)
-                        .setTitle(decoMsg)
-                        .setCancelable(false)
-                        .setNeutralButton(R.string.HX_confirm, listener),
-                dialog -> {
-                    loadTitle(decoMsg, (AlertDialog) dialog);
-                });
+        AlertDialog dlg = new AlertDialog.Builder(act)
+                .setTitle(decoMsg)
+                .setCancelable(false)
+                .setNeutralButton(R.string.HX_confirm, listener)
+                .create();
+        DialogHelper.BtnCenter(dlg, dialog -> { loadTitle(decoMsg, dlg); });
         dlg.show();
         return dlg;
     }
