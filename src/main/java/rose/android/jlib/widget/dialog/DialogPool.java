@@ -41,7 +41,7 @@ public class DialogPool {
         AlertDialog dlg = new AlertDialog.Builder(act)
                 .setTitle(decoMsg)
                 .setCancelable(false)
-                .setNeutralButton(R.string.HX_confirm, listener)
+                .setNeutralButton(android.R.string.ok, listener)
                 .create();
         DialogHelper.BtnCenter(dlg, dialog -> { loadTitle(decoMsg, dlg); });
         dlg.show();
@@ -67,8 +67,8 @@ public class DialogPool {
         String msg = text(act, texts != null && texts.length > 1 ? texts[1] : null);
         String positiveBt = text(act, texts != null && texts.length > 2 ? texts[2] : null);
         String negativeBt = text(act, texts != null && texts.length > 3 ? texts[3] : null);
-        String positiveBtnTxt = TextUtils.isEmpty(positiveBt) ? act.getString(android.R.string.yes) : positiveBt;
-        String negativeBtnTxt = TextUtils.isEmpty(negativeBt) ? act.getString(android.R.string.no) : negativeBt;
+        String positiveBtnTxt = TextUtils.isEmpty(positiveBt) ? act.getString(android.R.string.ok) : positiveBt;
+        String negativeBtnTxt = TextUtils.isEmpty(negativeBt) ? act.getString(android.R.string.cancel) : negativeBt;
         DialogInterface.OnClickListener confirmListener = listeners.length > 0 ? listeners[0] : null;
         DialogInterface.OnClickListener cancelListener = listeners.length > 1 ? listeners[1] : null;
         AlertDialog.Builder builder = new AlertDialog.Builder(act)

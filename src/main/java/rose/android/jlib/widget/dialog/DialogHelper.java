@@ -55,12 +55,12 @@ public class DialogHelper {
         }
     }
 
-    public static AlertDialog BtnCenter(AlertDialog dlg){
-        return BtnCenter(dlg, null);
+    public static AlertDialog BtnCenter(AlertDialog dialog){
+        return BtnCenter(dialog, null);
     }
-    public static AlertDialog BtnCenter(AlertDialog dlg, DialogInterface.OnShowListener onShowListener){
-        dlg.setOnShowListener(d -> {
-            Button positiveBt = dlg.getButton(AlertDialog.BUTTON_NEUTRAL);
+    public static AlertDialog BtnCenter(AlertDialog dialog, DialogInterface.OnShowListener onShowListener){
+        dialog.setOnShowListener(dlg -> {
+            Button positiveBt = dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
             LinearLayout.LayoutParams layoutParams  = (LinearLayout.LayoutParams) positiveBt.getLayoutParams();
             layoutParams.width = LinearLayout.LayoutParams.MATCH_PARENT;
             layoutParams.gravity = Gravity.CENTER;
@@ -68,7 +68,7 @@ public class DialogHelper {
             positiveBt.setTextColor(positiveBt.getResources().getColor(R.color.colorAccent));
             if(onShowListener != null) onShowListener.onShow(dlg);
         });
-        return dlg;
+        return dialog;
     }
     public static AlertDialog BtnFlat(AlertDialog dialog, AlertDialog.OnShowListener onShowListener){
         dialog.setOnShowListener(dlg -> {
