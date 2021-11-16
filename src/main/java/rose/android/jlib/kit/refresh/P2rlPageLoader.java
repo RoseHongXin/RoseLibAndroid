@@ -65,7 +65,7 @@ public abstract class P2rlPageLoader<Ap extends ApBase<Vh, D>, Vh extends VhBase
     public P2rlPageLoader create(){
         mAdapter = adapter();
         initPtrRefresh();
-        refresh();
+//        refresh();
         return this;
     }
 

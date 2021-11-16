@@ -32,6 +32,7 @@ public class PopItem extends PopupWindow {
     private Activity mAct;
     private RecyclerView _rv_;
     private FrameLayout _fr_layout;
+    private int mShowGravity = Gravity.TOP | Gravity.END;
 
     private View _v_anchor;
     private ApBase<VhItem, String> mAdapter;
@@ -72,8 +73,10 @@ public class PopItem extends PopupWindow {
     @SuppressLint("ClickableViewAccessibility")
     private void setPopup() {
         this.setContentView(_fr_layout);
-        this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
-        this.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+//        this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+//        this.setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
+        this.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        this.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
         this.setFocusable(true);
 //        this.setOutsideTouchable(true);
         this.setAnimationStyle(R.style.dialog_pop_am);
@@ -136,10 +139,12 @@ public class PopItem extends PopupWindow {
         this.mFillAfterSelect = fillAfterSelect;
         return this;
     }
+    public PopItem gravity(int gravity){ this.mShowGravity = gravity; return this; }
 
     public void show(){
         if(mAct == null || mAct.isFinishing() || mAct.isDestroyed()) { return; }
-        showAsDropDown(_v_anchor);
+//        showAsDropDown(_v_anchor);
+        showAsDropDown(_v_anchor, 0, 0, mShowGravity);
     }
 
     private class VhItem extends VhBase<String> implements View.OnClickListener {
