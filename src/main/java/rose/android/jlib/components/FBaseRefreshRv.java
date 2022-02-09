@@ -24,7 +24,7 @@ public abstract class FBaseRefreshRv<Ap extends ApBase<Vh, D>, Vh extends VhBase
 
     protected PtrClassicFrameLayout _p2rl_;
     private RecyclerView _rv_;
-
+    protected boolean sRefreshAfterInitialized = true;
     protected P2rlPageLoader mP2rlLoader;
 
     @Override
@@ -52,6 +52,7 @@ public abstract class FBaseRefreshRv<Ap extends ApBase<Vh, D>, Vh extends VhBase
                 .anchor(_p2rl_)
                 .host(getActivity())
                 .create();
+        if(sRefreshAfterInitialized){ mP2rlLoader.refresh(); }
     }
 
     @Override

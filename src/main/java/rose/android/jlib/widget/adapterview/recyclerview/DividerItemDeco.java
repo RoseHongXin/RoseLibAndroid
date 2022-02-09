@@ -27,7 +27,7 @@ public class DividerItemDeco extends RecyclerView.ItemDecoration {
     private static final String TAG = "DividerItem";
     private static final int[] ATTRS = new int[]{android.R.attr.listDivider, android.R.attr.colorEdgeEffect};
 
-    private RecyclerView.LayoutManager mLayoutMgr;
+    private final RecyclerView.LayoutManager mLayoutMgr;
 
     private int mLineWidth = 1;
     private Rect mOutlineRect;
@@ -77,131 +77,50 @@ public class DividerItemDeco extends RecyclerView.ItemDecoration {
     @Override
     public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         if(mLayoutMgr instanceof GridLayoutManager){
-            if(mMenuMode) { drawMenuGrid(c, parent); }
-            else {
+            if(mMenuMode) {
+                GridLayoutManager mgr = (GridLayoutManager) mLayoutMgr;
+                int columns = mgr.getSpanCount();
+                int rows = (int)((float)parent.getChildCount() / (float) columns + 0.5f);
+                int cnt = parent.getChildCount();
+                for (int i = 0; i < cnt; i++) {
+                    View view = parent.getChildAt(i);
+                    parent.getDecoratedBoundsWithMargins(view, mOutlineRect);
+                    int position = parent.getChildAdapterPosition(view) + 1;
+                    mOutlinePath.reset();
+                    int col = position % columns;
+                    int row = (int)Math.ceil(position / (double)columns);
+                    boolean drawRight = col % columns > 0;
+                    boolean drawBottom = row < rows;
+                    if(drawRight && drawBottom){
+                        mOutlinePath.moveTo(mOutlineRect.left, mOutlineRect.bottom);
+                        mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.bottom);
+                        mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.top);
+                    }else if(drawRight){
+                        mOutlinePath.moveTo(mOutlineRect.right, mOutlineRect.top);
+                        mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.bottom);
+                    }else if(drawBottom){
+                        mOutlinePath.moveTo(mOutlineRect.left, mOutlineRect.bottom);
+                        mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.bottom);
+                    }
+                    c.drawPath(mOutlinePath, mPaint);
+                }
+            } else {
                 for (int i = 0; i < parent.getChildCount(); i++) {
                     View view = parent.getChildAt(i);
                     parent.getDecoratedBoundsWithMargins(view, mOutlineRect);
                     c.drawRect(mOutlineRect, mPaint);
                 }
             }
-        }
-        for (int i = 0; i < parent.getChildCount(); i++) {
-            View view = parent.getChildAt(i);
-            parent.getDecoratedBoundsWithMargins(view, mOutlineRect);
-            if(mOrientation == HORIZONTAL){
-                c.drawRect(mOutlineRect, mPaint);
-            }else{
-                c.drawRect(mOutlineRect, mPaint);
+        }else if(mLayoutMgr instanceof LinearLayoutManager){
+            for (int i = 0; i < parent.getChildCount(); i++) {
+                View view = parent.getChildAt(i);
+                parent.getDecoratedBoundsWithMargins(view, mOutlineRect);
+                if(mOrientation == HORIZONTAL){
+                    c.drawLine(mOutlineRect.right, mOutlineRect.top, mOutlineRect.right, mOutlineRect.bottom, mPaint);
+                }else{
+                    c.drawLine(mOutlineRect.left, mOutlineRect.bottom, mOutlineRect.right, mOutlineRect.bottom, mPaint);
+                }
             }
         }
     }
-
-    private void drawMenuGrid(@NonNull Canvas c, @NonNull RecyclerView parent){
-        GridLayoutManager manager = (GridLayoutManager) mLayoutMgr;
-        int span = manager.getSpanCount();
-        int rows = parent.getChildCount() / span - 1;
-        int columns = span - 1;
-        int stroke = mLineWidth;
-        //为了Item大小均匀，将设定分割线平均分给左右两边Item各一半
-        int offset = stroke / 2;
-        for (int i = 0; i < parent.getChildCount(); i++) {
-            View view = parent.getChildAt(i);
-            parent.getDecoratedBoundsWithMargins(view, mOutlineRect);
-            int position = parent.getChildAdapterPosition(view);
-            int row = position / span;
-            int column = position % span;
-            mOutlinePath.reset();
-            if(row == 0) {
-                if(column == 0) {
-                    mOutlinePath.moveTo(mOutlineRect.left, mOutlineRect.bottom);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.bottom);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.top);
-                }else if(column == columns){
-                    mOutlinePath.moveTo(mOutlineRect.left, mOutlineRect.top);
-                    mOutlinePath.lineTo(mOutlineRect.left, mOutlineRect.bottom);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.bottom);
-                }else{
-                    mOutlinePath.moveTo(mOutlineRect.left, mOutlineRect.top);
-                    mOutlinePath.lineTo(mOutlineRect.left, mOutlineRect.bottom);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.bottom);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.top);
-                }
-            }else if(row == rows) {
-                if(column == 0) {
-                    mOutlinePath.moveTo(mOutlineRect.left, mOutlineRect.top);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.top);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.bottom);
-                }else if(column == columns){
-                    mOutlinePath.moveTo(mOutlineRect.left, mOutlineRect.bottom);
-                    mOutlinePath.lineTo(mOutlineRect.left, mOutlineRect.top);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.top);
-                }else{
-                    mOutlinePath.moveTo(mOutlineRect.left, mOutlineRect.bottom);
-                    mOutlinePath.lineTo(mOutlineRect.left, mOutlineRect.top);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.top);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.bottom);
-                }
-            }else {
-                if(column == 0) {
-                    mOutlinePath.moveTo(mOutlineRect.left, mOutlineRect.top);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.top);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.bottom);
-                    mOutlinePath.lineTo(mOutlineRect.left, mOutlineRect.bottom);
-                }else if(column == columns){
-                    mOutlinePath.moveTo(mOutlineRect.right, mOutlineRect.top);
-                    mOutlinePath.lineTo(mOutlineRect.left, mOutlineRect.top);
-                    mOutlinePath.lineTo(mOutlineRect.left, mOutlineRect.bottom);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.bottom);
-                }else{
-                    mOutlinePath.moveTo(mOutlineRect.left, mOutlineRect.top);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.top);
-                    mOutlinePath.lineTo(mOutlineRect.right, mOutlineRect.bottom);
-                    mOutlinePath.lineTo(mOutlineRect.left, mOutlineRect.bottom);
-                }
-            }
-            c.drawPath(mOutlinePath, mPaint);
-        }
-    }
-
-//    @Override
-//    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
-//        if(mMenuMode && mLayoutMgr instanceof GridLayoutManager){
-//            GridLayoutManager manager = (GridLayoutManager) mLayoutMgr;
-//            int childSize = parent.getChildCount();
-//            int span = manager.getSpanCount();
-//            int stroke = mLineWidth;
-//            //为了Item大小均匀，将设定分割线平均分给左右两边Item各一半
-//            int offset = stroke / 2;
-//            int childPosition = parent.getChildAdapterPosition(view);
-//            //第一排，顶部不画
-//            if (childPosition  < span) {
-//                //最左边的，左边不画
-//                if (childPosition  % span == 0) {
-//                    outRect.set(0, 0, offset, 0);
-//                    //最右边，右边不画
-//                } else if (childPosition  % span == span - 1) {
-//                    outRect.set(offset, 0, 0, 0);
-//                } else {
-//                    outRect.set(offset, 0, offset, 0);
-//                }
-//            } else {
-//                //上下的分割线，就从第二排开始，每个区域的顶部直接添加设定大小，不用再均分了
-//                if (childPosition  % span == 0) {
-//                    outRect.set(0, stroke, offset, 0);
-//                } else if (childPosition  % span == span - 1) {
-//                    outRect.set(offset, stroke, 0, 0);
-//                } else {
-//                    outRect.set(offset, stroke, offset, 0);
-//                }
-//            }
-//        }else{
-//            if(mOrientation == HORIZONTAL){
-//
-//            }else if(mOrientation == VERTICAL){
-//
-//            }
-//        }
-//
-//    }
 }
