@@ -80,7 +80,7 @@ public class DividerItemDeco extends RecyclerView.ItemDecoration {
             if(mMenuMode) {
                 GridLayoutManager mgr = (GridLayoutManager) mLayoutMgr;
                 int columns = mgr.getSpanCount();
-                int rows = (int)((float)parent.getChildCount() / (float) columns + 0.5f);
+                int rows = (int)Math.ceil(((float)parent.getChildCount() / (float) columns));
                 int cnt = parent.getChildCount();
                 for (int i = 0; i < cnt; i++) {
                     View view = parent.getChildAt(i);
