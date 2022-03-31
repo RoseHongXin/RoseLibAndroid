@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 
 public final class Encrypter {
 
-    public static String md5(String text) {
+    public static String MD5(String text) {
         if(text == null) text = "";
         byte[] hash;
         try {
@@ -18,10 +18,10 @@ public final class Encrypter {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Huh, MD5 should be supported?", e);
         }
-        return byts2Hex(hash);
+        return byts2hex(hash);
     }
 
-    public static String sha256(String text){
+    public static String SHA256(String text){
         if(text == null) text = "";
         byte[] hash;
         try {
@@ -31,10 +31,10 @@ public final class Encrypter {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Huh, SHA-256 should be supported?", e);
         }
-        return byts2Hex(hash);
+        return byts2hex(hash);
     }
 
-    private static String byts2Hex(byte[] byts){
+    private static String byts2hex(byte[] byts){
         StringBuilder hex = new StringBuilder(byts.length * 2);
         for (byte b : byts) {
             if ((b & 0xFF) < 0x10) hex.append("0");

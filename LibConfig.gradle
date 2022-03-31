@@ -19,7 +19,7 @@ ext{
             glide: "4.11.0",
 //            okhttp3: "4.2.2",   //3.14.1
             okhttp3: "3.14.1",    //测试机
-            butterknife: '10.2.0',
+            butterknife: '10.2.3',
             fastjson: '1.2.62',
 //            jackson: '2.10.1',
             jackson: '2.9.6',   //测试机

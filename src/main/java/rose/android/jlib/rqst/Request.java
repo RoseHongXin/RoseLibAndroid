@@ -23,7 +23,7 @@ public abstract class Request {
     protected DLoading sDialog;
     protected final Context sCtx;
     protected final String sUrl;
-    private final OkHttpClient mOkHttpClient;
+    private OkHttpClient mOkHttpClient;
     private final OkHttpClient.Builder mOkHttpBuilder;
     protected final ObjectMapper mObjMapper;
 
@@ -34,7 +34,7 @@ public abstract class Request {
     }
     protected OkHttpClient client() { return mOkHttpClient; }
 
-    protected Request(Context ctx, String url){
+    protected Request(Context ctx, String url, boolean ... initializeLazily){
         this.sCtx = ctx;
         this.sUrl = url;
         mOkHttpBuilder = new OkHttpClient.Builder()
@@ -49,6 +49,11 @@ public abstract class Request {
         mObjMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         mObjMapper.configure(MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES, true);
         mObjMapper.setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+        if(initializeLazily.length <= 0 || !initializeLazily[0]){
+            initialize();
+        }
+    }
+    protected void initialize(){
         Interceptor interceptor = getInterceptor();
         if (interceptor != null) { mOkHttpBuilder.addInterceptor(interceptor); }
         mOkHttpClient = onInit(mOkHttpBuilder);

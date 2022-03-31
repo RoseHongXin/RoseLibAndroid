@@ -88,5 +88,8 @@
     <string name="HX_originalPassInputHint">请输入原密码</string>
     <string name="HX_newPassInputHint">请输入新密码</string>
     <string name="HX_passAlterSuccess">密码修改成功!</string>
+    <string name="HX_phoneInputWrongToast">请输入正确的手机号!</string>
+    <string name="HX_selectHintF">请选择[%1$s]</string>
+
 
 </resources>

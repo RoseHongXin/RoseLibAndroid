@@ -1,6 +1,9 @@
 package rose.android.jlib.kit.view;
 
-import android.app.Activity;
+import android.text.TextUtils;
+import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import androidx.appcompat.widget.SearchView;
 
 /**
@@ -13,36 +16,27 @@ public class SrvHelper {
         return new SrvHelper(_srv_, cb);
     }
 
-//    public static SrvHelper handle(Fragment fra, Callback cb){
-//        return handle(fra.getView(), cb);
-//    }
-    public static SrvHelper handle(Activity act, Callback cb){
-        return handle(act.findViewById(android.R.id.content), cb);
+    public static SrvHelper handle(EditText _et_searchKey, View _iv_textClear, Callback cb){
+        return new SrvHelper(_et_searchKey, _iv_textClear, cb);
     }
 
-//    public static SrvHelper handle(View _v_layout, Callback cb){
-//        return new SrvHelper(_v_layout, cb);
-//    }
-
-//    private SrvHelper(View _v_layout, Callback cb){
-//        EditText _et_searchKey = (EditText) _v_layout.findViewById(R.id._et_searchKey);
-//        View _iv_textClear = _v_layout.findViewById(R.id._iv_textClear);
-//        if(_iv_textClear != null){
-//            _iv_textClear.setOnClickListener(v -> {
-//                _et_searchKey.text("");
-//                ViewKit.hideInputMgr(_et_searchKey);
-//            });
-//        }
-//        if(_et_searchKey != null){
-//            _et_searchKey.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
-//            _et_searchKey.setOnEditorActionListener((v, actionId, event) -> {
-//                String text = v.getText().toString();
-//                if(TextUtils.isEmpty(text)) return true;
-//                if(cb != null) cb.onSearch(text);
-//                return true;
-//            });
-//        }
-//    }
+    private SrvHelper(EditText _et_searchKey, View _iv_textClear, Callback cb){
+        if(_iv_textClear != null){
+            _iv_textClear.setOnClickListener(v -> {
+                _et_searchKey.setText("");
+                ViewKit.hideInputMgr(_et_searchKey);
+            });
+        }
+        if(_et_searchKey != null){
+            _et_searchKey.setImeOptions(EditorInfo.IME_ACTION_SEARCH);
+            _et_searchKey.setOnEditorActionListener((v, actionId, event) -> {
+                String text = v.getText().toString();
+                if(TextUtils.isEmpty(text)) return true;
+                if(cb != null) cb.onSearch(text);
+                return true;
+            });
+        }
+    }
 
     private SrvHelper(SearchView _srv_, Callback cb){
         _srv_.setOnCloseListener(() -> {
