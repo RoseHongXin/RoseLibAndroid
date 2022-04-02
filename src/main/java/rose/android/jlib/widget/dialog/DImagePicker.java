@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.FileProvider;
 import androidx.loader.content.CursorLoader;
 import rose.android.jlib.R;
-import rose.android.jlib.components.PermissionImpl;
+import rose.android.jlib.components.PermImpl;
 import rose.android.jlib.kit.log.Log4Android;
 
 import java.io.File;
@@ -76,8 +76,8 @@ public class DImagePicker {
         startChooser(false);
     }
     private void startChooser(boolean multiSelect){
-        if(!PermissionImpl.checkIfGranted(mAct, Manifest.permission.READ_EXTERNAL_STORAGE)){
-            PermissionImpl.require(mAct, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if(!PermImpl.ifGranted(mAct, Manifest.permission.READ_EXTERNAL_STORAGE)){
+            PermImpl.require(mAct, Manifest.permission.READ_EXTERNAL_STORAGE);
             return;
         }
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -94,8 +94,8 @@ public class DImagePicker {
                     if (idx == 0) {
                         startChooser(mMultiSelect);
                     } else if (idx == 1) {
-                        if(!PermissionImpl.checkIfGranted(mAct, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-                            PermissionImpl.require(mAct, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                        if(!PermImpl.ifGranted(mAct, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+                            PermImpl.require(mAct, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE);
                             return;
                         }
                         File img = createFile(mAct);
