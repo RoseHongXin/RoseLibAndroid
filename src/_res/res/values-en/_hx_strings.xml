@@ -63,6 +63,8 @@
     <string name="HX_confirm2finishWhileEditing">Information\'s not saved, Exit now？</string>
     <string name="HX_clickAgain2home">Click again and switch to HOME!</string>
     <string name="HX_serverInternalError">Server internal error</string>
+    <string name="HX_responseBodyNull">Response body null, contact the developer!!!</string>
+    <string name="HX_responseUnknownCodeF">Response unknown code, contact the developer!!!/(%d)</string>
     <string name="HX_socketTimeout">Request timeout</string>
     <string name="HX_invalidHttpRequest">Request invalid</string>
     <string name="HX_requestDataDeserializeError">Data deserialize error!</string>

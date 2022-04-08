@@ -39,6 +39,11 @@ public class DImagePicker {
     private static final int CAMERA_REQ_CODE = 5002;
     public static final int IMAGE_REQ_CODE = 5001;
 
+    private final String[] PERMS = new String[]{
+            Manifest.permission.CAMERA,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.MANAGE_EXTERNAL_STORAGE,
+    };
     private Activity mAct;
     private Callback mCb;
     private ImageView _iv_;
@@ -94,8 +99,8 @@ public class DImagePicker {
                     if (idx == 0) {
                         startChooser(mMultiSelect);
                     } else if (idx == 1) {
-                        if(!PermImpl.ifGranted(mAct, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-                            PermImpl.require(mAct, Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                        if(!PermImpl.ifGranted(mAct, PERMS)){
+                            PermImpl.require(mAct, PERMS);
                             return;
                         }
                         File img = createFile(mAct);

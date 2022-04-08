@@ -63,6 +63,8 @@
     <string name="HX_confirm2finishWhileEditing">正在编辑的信息未保存，是否立即退出？</string>
     <string name="HX_clickAgain2home">再按一次，回到桌面!</string>
     <string name="HX_serverInternalError">服务器内部错误</string>
+    <string name="HX_responseBodyNull">请求数据异常,请联系开发人员!!!</string>
+    <string name="HX_responseUnknownCodeF">请求数据异常,请联系开发人员!!!/(%d)</string>
     <string name="HX_socketTimeout">请求超时</string>
     <string name="HX_invalidHttpRequest">请求无效</string>
     <string name="HX_requestDataDeserializeError">数据解析错误！</string>

@@ -23,7 +23,7 @@ import java.util.List;
 
 public class PermImpl {
 
-    public static final int REQ_CODE_PERMISSIONS = 0xFFEE;
+    public static final int RC_CODE = 0xFFEE;
 
     public static void require(Activity act, int rqCode, String ... permissions) {
         List<String> needDoRequire = new ArrayList<>();
@@ -39,15 +39,17 @@ public class PermImpl {
                 needDoRequire.add(permission);
             }
         }
-        String[] permissionArray;
         if(needDoRequire.isEmpty() && !requireStoragePerm) return;
-        permissionArray = new String[needDoRequire.size()];
-        needDoRequire.toArray(permissionArray);
-        ActivityCompat.requestPermissions(act, permissionArray, rqCode);
-        if(requireStoragePerm){ requireStorage(act); }
+        if(!needDoRequire.isEmpty()){
+            String[] permissionArray;
+            permissionArray = new String[needDoRequire.size()];
+            needDoRequire.toArray(permissionArray);
+            ActivityCompat.requestPermissions(act, permissionArray, rqCode);
+        }
+        if(requireStoragePerm){ requireStorage(act, rqCode); }
     }
     public static void require(Activity act, String ... permissions) {
-        require(act, REQ_CODE_PERMISSIONS, permissions);
+        require(act, RC_CODE, permissions);
     }
 
     public static boolean ifDenied(Activity act, String permission){
@@ -85,13 +87,13 @@ public class PermImpl {
             return ifGranted(ctx, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
         }
     }
-    public static void requireStorage(Activity act){
+    public static void requireStorage(Activity act, int rqCode){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             Intent intent = new Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION);
             intent.setData(Uri.parse("package:" + act.getPackageName()));
-            act.startActivityForResult(intent, REQ_CODE_PERMISSIONS);
+            act.startActivityForResult(intent, rqCode);
         }else{
-            require(act, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
+            ActivityCompat.requestPermissions(act, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, rqCode);
         }
     }
 }

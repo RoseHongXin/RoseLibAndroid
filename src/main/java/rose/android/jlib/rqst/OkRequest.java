@@ -62,22 +62,19 @@ public class OkRequest extends Request {
                 if(response.isSuccessful()){
                     ResponseBody body = response.body();
                     if(body == null){
-                        mMainHandler.post(() -> {callback.onFailed("");});
+                        mMainHandler.post(() -> { callback.onFailed(sCtx.getString(R.string.HX_responseBodyNull)); });
                     }else{
                         try {
                             D resp = mObjMapper.readValue(body.string(), new TypeReference<D>(){
-                                @Override
-                                public Type getType() {
+                                @Override public Type getType() {
                                     return ((ParameterizedType)callback.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 //                                    return ((ParameterizedType)callback.getClass().getGenericInterfaces()[0]).getActualTypeArguments()[0];
                                 }
                             });
-                            mMainHandler.post(() -> {callback.onResp(resp);});
+                            mMainHandler.post(() -> { callback.onResp(resp);} );
                         } catch (IOException e) {
                             e.printStackTrace();
-                            mMainHandler.post(() -> {
-                                callback.onFailed(e.getMessage());
-                            });
+                            mMainHandler.post(() -> { callback.onFailed(e.getMessage()); });
 
                         }
                         body.close();
@@ -87,6 +84,7 @@ public class OkRequest extends Request {
                         String message = response.message();
                         if(response.code() == 404) { message = sCtx.getString(R.string.HX_invalidHttpRequest); }
                         else if(response.code() >= 500 && response.code() <= 505){ message = sCtx.getString(R.string.HX_serverInternalError); }
+                        message = TextUtils.isEmpty(message) ? sCtx.getString(R.string.HX_responseUnknownCodeF, response.code()) : message;
                         callback.onFailed(message);
                     });
                 }
