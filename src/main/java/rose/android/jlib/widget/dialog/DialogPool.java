@@ -6,8 +6,10 @@ import android.content.DialogInterface;
 import android.os.Build;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.view.WindowManager;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+import androidx.annotation.StyleRes;
 import androidx.appcompat.app.AlertDialog;
 import rose.android.jlib.R;
 
@@ -107,5 +109,20 @@ public class DialogPool {
             if(resId != -1) txtStr = ctx.getString(resId);
         }
         return txtStr;
+    }
+
+    public static AlertDialog NewContextDlg(Context ctx, @StyleRes int style) {
+        AlertDialog dialog = new AlertDialog.Builder(ctx, style)
+                .create();
+        if (dialog.getWindow() != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
+            } else {
+                dialog.getWindow().setType(WindowManager.LayoutParams.TYPE_TOAST);
+            }
+            dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                    | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+        }
+        return dialog;
     }
 }
