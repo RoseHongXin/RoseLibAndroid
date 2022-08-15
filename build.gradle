@@ -8,20 +8,18 @@ android {
     defaultConfig {
         minSdkVersion props.minSdkVersion
         targetSdkVersion props.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
         consumerProguardFiles 'consumer-rules.pro'
     }
     buildTypes {
         release {
             minifyEnabled buildVars.proguard
             zipAlignEnabled buildVars.proguard
-            if(buildVars.proguard) proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if(buildVars.proguard) { proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro' }
         }
         debug {
             minifyEnabled buildVars.proguard
             zipAlignEnabled buildVars.proguard
-            if(buildVars.proguard) proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if(buildVars.proguard) { proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro' }
         }
     }
     lintOptions {
@@ -42,48 +40,50 @@ android {
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
-            List<String> resDirs = new ArrayList<>()
-            getDirs(resDirs, file("src").listFiles(), "res")
-            for (int i = 0; i < resDirs.size(); i++) {
-                res.srcDirs resDirs.get(i)
-            }
-            List<String> javaDirs = new ArrayList<>()
-            getDirs(javaDirs, file("src").listFiles(), "java")
-            for (int i = 0; i < javaDirs.size(); i++) {
-                java.srcDirs javaDirs.get(i)
-            }
+            res.srcDirs "src/_res/res", "src/extension/ptrlib/res", "src/main/res"
+            java.srcDirs "src/extension/ptrlib/java", "src/main/java"
         }
     }
 }
 
 dependencies {
-//    implementation RoseLibDependencies
-    api 'androidx.core:core:1.3.2'
-    api 'androidx.recyclerview:recyclerview:1.1.0'
+    api 'androidx.core:core:1.8.0'
+    api 'androidx.recyclerview:recyclerview:1.2.1'
     api 'androidx.cardview:cardview:1.0.0'
-    api 'androidx.fragment:fragment:1.3.0-beta02'
-    api 'com.google.android.material:material:1.3.0-alpha04'
-    api 'androidx.appcompat:appcompat:1.2.0'
+    api 'androidx.fragment:fragment:1.5.1'
+    api 'com.google.android.material:material:1.4.0'
+    api 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.percentlayout:percentlayout:1.0.0'
-    api 'androidx.constraintlayout:constraintlayout:2.0.4'
+    api 'androidx.constraintlayout:constraintlayout:2.1.4'
     api 'androidx.viewpager:viewpager:1.0.0'
 
-    api 'com.fasterxml.jackson.core:jackson-core:' + ver.jackson
-    api 'com.fasterxml.jackson.core:jackson-annotations:' + ver.jackson
-    api 'com.fasterxml.jackson.core:jackson-databind:' + ver.jackson
-    api 'com.alibaba:fastjson:' + ver.fastjson
-    api 'io.reactivex.rxjava2:rxjava:' + ver.rxjava
-    api 'io.reactivex.rxjava2:rxandroid:' + ver.rxandroid
-    api 'com.jakewharton:butterknife:' + ver.butterknife
+    api 'com.fasterxml.jackson.core:jackson-core:2.13.3'
+    api 'com.fasterxml.jackson.core:jackson-annotations:2.13.3'
+    api 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
+//    api 'com.alibaba:fastjson:1.2.76'
+    api 'io.reactivex.rxjava3:rxjava:3.1.5'
+    api 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'com.jakewharton:butterknife:10.2.3'
 //    implementation annotationProcessor 'com.jakewharton:butterknife-compiler:' + ver.butterknife
-    implementation 'com.jakewharton.rxbinding2:rxbinding:2.1.1'
-    api "com.squareup.okhttp3:okhttp:" + ver.okhttp3
-    api "com.squareup.okhttp3:logging-interceptor:" + ver.okhttp3
+//    implementation 'com.jakewharton.rxbinding2:rxbinding:2.2.0'
+//    implementation 'com.jakewharton.rxbinding4:rxbinding-material:4.0.0'
+    api 'com.squareup.okhttp3:okhttp:3.14.1'    //测试机兼容
+    api 'com.squareup.okhttp3:logging-interceptor:3.14.1'
 
     implementation 'com.cncoderx.wheelview:library:1.2.2'  //https://github.com/CNCoderX/WheelView
 
 }
 
+/*
+getDirs(resDirs, file("src").listFiles(), "res")
+for (int i = 0; i < resDirs.size(); i++) {
+    res.srcDirs resDirs.get(i)
+}
+List<String> javaDirs = new ArrayList<>()
+getDirs(javaDirs, file("src").listFiles(), "java")
+for (int i = 0; i < javaDirs.size(); i++) {
+    java.srcDirs javaDirs.get(i)
+}
 void getDirs(List<String> list, dirs, String key){
     dirs.each{
         if(it.isDirectory()){
@@ -92,3 +92,6 @@ void getDirs(List<String> list, dirs, String key){
         }
     }
 }
+*/
+
+

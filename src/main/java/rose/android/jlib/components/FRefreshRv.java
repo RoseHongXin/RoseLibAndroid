@@ -13,7 +13,7 @@ import rose.android.jlib.R;
 import rose.android.jlib.widget.adapterview.VhBase;
 import rose.android.jlib.widget.adapterview.recyclerview.ApBase;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 
 /**
  * Created by rose on 16-8-11.

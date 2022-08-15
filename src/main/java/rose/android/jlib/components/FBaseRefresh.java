@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
 import rose.android.jlib.kit.refresh.P2rlLoader;
 import rose.android.jlib.R;
 import in.srain.cube.views.ptr.PtrClassicFrameLayout;
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 
 /**
  * Created by RoseHongXin on 2017/11/1 0001.
