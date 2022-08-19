@@ -42,7 +42,7 @@ public class DImagePicker {
     private final String[] PERMS = new String[]{
             Manifest.permission.CAMERA,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.MANAGE_EXTERNAL_STORAGE,
+//            Manifest.permission.MANAGE_EXTERNAL_STORAGE,
     };
     private Activity mAct;
     private Callback mCb;
@@ -91,6 +91,32 @@ public class DImagePicker {
         if(multiSelect) intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         mAct.startActivityForResult(Intent.createChooser(intent,"Select Picture"), IMAGE_REQ_CODE);
     }
+    private void startCam(){
+        if(!PermImpl.ifGranted(mAct, PERMS)){
+            PermImpl.require(mAct, PERMS);
+            return;
+        }
+        File img = createFile(mAct);
+        Uri imageUriFromCamera = createImagePathUri(mAct, img);
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUriFromCamera);
+        mAct.startActivityForResult(intent, CAMERA_REQ_CODE);
+        mAct.getApplication().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
+            @Override public void onActivityCreated(@NonNull Activity activity, Bundle savedInstanceState) {}
+            @Override public void onActivityStarted(@NonNull Activity activity) {}
+            @Override public void onActivityResumed(@NonNull Activity activity) {
+                if (activity == mAct) {
+                    mCb.onPicture(img.getAbsolutePath());
+                    mAct.getApplication().unregisterActivityLifecycleCallbacks(this);
+                }
+            }
+            @Override public void onActivityPaused(@NonNull Activity activity) {}
+            @Override public void onActivityStopped(@NonNull Activity activity) {}
+            @Override public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {}
+            @Override public void onActivityDestroyed(@NonNull Activity activity) {}
+        });
+    }
 
     public DImagePicker show() {
         DMenuBU.obtain(mAct)
@@ -99,30 +125,7 @@ public class DImagePicker {
                     if (idx == 0) {
                         startChooser(mMultiSelect);
                     } else if (idx == 1) {
-                        if(!PermImpl.ifGranted(mAct, PERMS)){
-                            PermImpl.require(mAct, PERMS);
-                            return;
-                        }
-                        File img = createFile(mAct);
-                        Uri imageUriFromCamera = createImagePathUri(mAct, img);
-                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUriFromCamera);
-                        mAct.startActivityForResult(intent, CAMERA_REQ_CODE);
-                        mAct.getApplication().registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
-                            @Override public void onActivityCreated(@NonNull Activity activity, Bundle savedInstanceState) {}
-                            @Override public void onActivityStarted(@NonNull Activity activity) {}
-                            @Override public void onActivityResumed(@NonNull Activity activity) {
-                                if (activity == mAct) {
-                                    mCb.onPicture(img.getAbsolutePath());
-                                    mAct.getApplication().unregisterActivityLifecycleCallbacks(this);
-                                }
-                            }
-                            @Override public void onActivityPaused(@NonNull Activity activity) {}
-                            @Override public void onActivityStopped(@NonNull Activity activity) {}
-                            @Override public void onActivitySaveInstanceState(@NonNull Activity activity, @NonNull Bundle outState) {}
-                            @Override public void onActivityDestroyed(@NonNull Activity activity) {}
-                        });
+                        startCam();
                     }
                 })
                 .show();

@@ -55,10 +55,6 @@ public class PermImpl {
     public static boolean ifDenied(Activity act, String permission){
         return ActivityCompat.checkSelfPermission(act, permission) == PackageManager.PERMISSION_DENIED;
     }
-    public static boolean ifGranted(Context ctx, String permission){
-        if(ctx == null) return false;
-        return ContextCompat.checkSelfPermission(ctx, permission) == PackageManager.PERMISSION_GRANTED;
-    }
     public static boolean ifGranted(Context ctx, String ... permissions){
         for(String permission : permissions){
             if(Manifest.permission.READ_EXTERNAL_STORAGE.equalsIgnoreCase(permission) ||
