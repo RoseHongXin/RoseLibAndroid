@@ -32,6 +32,8 @@
     <dimen name="l_m_v">12dp</dimen>
     <dimen name="l_m_v_middle">24dp</dimen>
     <dimen name="l_m_v_larger">36dp</dimen>
+    <dimen name="l_m_large">24dp</dimen>
+    <dimen name="l_m_middle">16dp</dimen>
     <dimen name="l_m_small">8dp</dimen>
     <dimen name="l_m_min">4dp</dimen>
 
