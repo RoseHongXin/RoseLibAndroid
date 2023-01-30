@@ -21,6 +21,7 @@
     <dimen name="l_p_v">10dp</dimen>
     <dimen name="l_p_v_middle">14dp</dimen>
     <dimen name="l_p_v_larger">18dp</dimen>
+    <dimen name="l_p_large">24dp</dimen>
     <dimen name="l_p_middle">12dp</dimen>
     <dimen name="l_p_small">6dp</dimen>
     <dimen name="l_p_little">4dp</dimen>
