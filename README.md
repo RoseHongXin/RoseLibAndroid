@@ -7,3 +7,5 @@
 - greenDao生成dao层代码,CustomType的Convert必须显示import.(否则识别不到)
 
 ---
+
+git clone --depth=1 https://github.com/RoseHongXin/RoseLibAndroid.git
